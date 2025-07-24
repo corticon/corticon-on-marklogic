@@ -1,0 +1,63 @@
+{
+  "template": {
+    "description": "",
+    "context": "/",
+    "collections": [
+      "http://example.com/data/ledger"
+    ],
+    "templates": [
+      {
+        "context": "/corticon/messages/message",
+        "rows": [
+          {
+            "schemaName": "Ledger",
+            "viewName": "Messages",
+            "viewLayout": "sparse",
+            "columns": [
+              {
+                "name": "uri",
+                "scalarType": "string",
+                "val": "xdmp:node-uri(.)",
+                "nullable": true,
+                "invalidValues": "ignore"
+              },
+              {
+                "name": "severity",
+                "scalarType": "string",
+                "val": "severity",
+                "nullable": true,
+                "invalidValues": "ignore"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "/corticon/metrics/attributeChanges",
+        "rows": [
+          {
+            "schemaName": "Ledger",
+            "viewName": "AttributeChanges",
+            "viewLayout": "sparse",
+            "columns": [
+              {
+                "name": "uri",
+                "scalarType": "string",
+                "val": "xdmp:node-uri(.)",
+                "nullable": true,
+                "invalidValues": "ignore"
+              },
+              {
+                "name": "rulesheetName",
+                "scalarType": "string",
+                "val": "rulesheetName",
+                "nullable": true,
+                "invalidValues": "ignore"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
