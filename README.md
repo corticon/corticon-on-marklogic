@@ -1,126 +1,104 @@
-# corticon-on-marklogic
 
-This project demonstrates how to run [Corticon.js](https://www.progress.com/corticon) decision services directly inside a [MarkLogic](https://www.marklogic.com/) database using [ml-gradle](https://github.com/marklogic-community/ml-gradle) for deployment and environment management.
+corticon-on-marklogic
+=====================
+
+This project demonstrates how to run [Corticon.js](https://docs.progress.com/category/corticon-javascript) decision services directly inside a [MarkLogic](https://www.marklogic.com/) database using [ml-gradle](https://github.com/marklogic-community/ml-gradle) for deployment and environment management.
 
 It includes preconfigured roles, users, triggers, and modules for integrating Corticon.js rule execution into a MarkLogic-based data pipeline.
 
----
+* * *
 
-## 🧰 Prerequisites
+🧰 Prerequisites
+----------------
 
-- Java 11+
-- Gradle 6.0+
-- A running MarkLogic instance (locally or remotely)
-- Optional: [Corticon.js Studio](https://www.progress.com/corticon) to generate `decisionServiceBundle.js`
+*   Java 11+
+*   Gradle 6.0+
+*   A running MarkLogic instance (locally or remotely)
+*   [Corticon.js Studio](https://www.progress.com/campaigns/corticon/corticon-request-trial) to generate `decisionServiceBundle.js` (Optional)
 
----
+* * *
 
-## 📥 Get the Project
-
-### Option 1: Clone with Git
-
-```bash
-git clone https://github.com/your-username/corticon-on-marklogic.git
-cd corticon-on-marklogic
-```
-
-### Option 2: GitHub Desktop
-
-1.  Open GitHub Desktop
-
-2.  Clone the repository from GitHub
-
-3.  Open a terminal in the cloned folder
-
-### Option 3: Download ZIP
-
-1.  Visit the [repository page](https://github.com/your-username/corticon-on-marklogic)
-
-2.  Click the green **"Code"** button → **"Download ZIP"**
-
-3.  Extract it, then open a terminal in the extracted folder
-   
-## ⚙️ Configuration
+⚙️ Configuration
+----------------
 
 Before deploying, set the following properties in `gradle.properties`:
-```
-mlHost=localhost
-mlUsername=admin
-mlPassword=admin
-```
-🔐 Change mlUsername and mlPassword to match your MarkLogic admin account or environment-specific credentials.
 
-## 🚀 Deploy the Project
+    mlHost=localhost
+    mlUsername=admin
+    mlPassword=password
+    mlRestPort=8004
+    
 
-From the project root, run:
-```bash
-gradle mlDeploy
-```
-This will:
+🔐 **Important**: Update `mlUsername` and `mlPassword` to match your MarkLogic admin account or environment-specific credentials. The provided `flux.bat` script also uses these credentials, so ensure they are consistent.
 
-*   Create the content, schemas, and triggers databases
+* * *
 
-*   Configure the REST server
+🚀 Deploying the Project
+------------------------
 
-*   Deploy security roles and users
+From the project root, run the following command to deploy the application to your MarkLogic instance:
 
-*   Deploy Corticon.js modules to MarkLogic
+    gradle mlDeploy
+    
 
-*   Register a trigger to run Corticon on document update
-  
+This command will automatically perform the following actions:
+
+*   Create the content, schemas, and triggers databases.
+*   Configure the REST server on port 8004.
+*   Deploy security roles and users, including `corticonml-admin`, `corticonml-writer`, `corticonml-reader`, and `corticonml-nobody`.
+*   Deploy Corticon.js modules to MarkLogic.
+*   Register a trigger named `corticonTrigger` that executes automatically when new documents are created in the `http://example.com/data/household` collection.
+
 To undeploy everything:
-```bash
-gradle mlUndeploy
-```
 
-## ✅ Upload a Document (Trigger Execution Test)
+    gradle mlUndeploy
+    
 
-After deploying the app and modules, you can **trigger the decision service** by uploading a document into the target collection.
+* * *
 
-### 🔁 Using `curl`:
+✅ Uploading Documents (Trigger Execution Test)
+----------------------------------------------
 
-```curl --location --request PUT 'http://localhost:8004/v1/documents?uri=%2Fdata%2FledgerDemo%2FCASE01-SETTLED.json&perm%3Acorticonml-reader=read&perm%3Acorticonml-writer=update&collection=http%3A%2F%2Fexample.com%2Fdata%2Fledger' \ --header 'Content-Type: application/json' \ --digest --user corticonml-admin:admin \ --data '{ "marketCalendar": { "market": "XETR", "date": "2025-07-22T20:00:00.000-0400", "isBusinessDay": true }, "trade": { "quantity": "1000.000000", "tradeDate": "2025-07-20T20:00:00.000-0400", "assetClass": "Equity", "actualSettlementDate": "2025-07-22T20:00:00.000-0400", "market": "XETR", "agreedSettlementDate": "2025-07-22T20:00:00.000-0400", "netCashAmount": "45500.000000", "counterpartyId": "CPTY-001", "security": { "description": "BASF SE", "isin": "DE000BASF111" }, "settlementCurrency": "EUR", "price": "45.500000", "quantityRemaining": "0.000000", "tradeId": "CASE01-SETTLED", "tradeType": "Buy", "status": "Settled" }, "counterparty": { "counterpartyId": "CPTY-001", "lei": "5493001B3S86FF8BA273", "tier": "Tier 1", "name": "Alpha Trading" } }'```
+After deploying, you can test the functionality by uploading a sample document. The provided `flux.bat` script is configured to import a sample `households.json` file. You must first edit the script to provide the correct paths.
 
-### 📫 Or via Postman:
-1. Open Postman and create a PUT request:
+### 📝 Edit the `flux.bat` script
 
-    `http://localhost:8004/v1/documents?uri=/data/ledgerDemo/CASE01-SETTLED.json&perm:corticonml-reader=read&perm:corticonml-writer=update&collection=http://example.com/data/ledger`
+Update the placeholder paths in `flux.bat` to match your local environment:
 
-2. Set the **Authorization type** to **Digest Auth**
+*   `{insert path to marklogic-flux-1.3.0\bin\flux}`: Replace with the absolute path to your `flux.bat` executable.
+*   `{insert path to data\households.json}`: Replace with the absolute path to the `households.json` file in your project directory.
 
-    *   Username: `corticonml-admin`
+The updated command should look similar to this:
 
-    *   Password: `corticonml-admin`
+    "C:\marklogic-flux-1.3.0\bin\flux" import-aggregate-json-files --path "C:\path\to\your\project\data\households.json" --connection-string "corticonml-admin:corticonml-admin@localhost:8004" --permissions corticonml-reader,read,corticonml-writer,update --collections http://example.com/data/household --uri-template "/data/household/{householdId}.json" & pause
+    
 
-3.   In the **Headers** tab, add:
-4.  In the **Body** tab, select **raw** and paste the same JSON shown above.
+### 🚀 Run the `flux.bat` script
 
-5.  Click **Send**
+Executing this script will import the sample household data, and the `corticonTrigger` will automatically run the Corticon.js decision service on each document.
 
-If everything is set up correctly, this will insert the document, and the **trigger** will automatically run the Corticon.js decision service on it.
+* * *
 
+🗂️ Project Structure and Key Components
+----------------------------------------
 
-## 🗂️ Project Structure
+    src/main/
+    ├── ml-config/         # App server, database, user, role, trigger configuration
+    │   └── triggers/      # corticonTrigger.json
+    │   └── security/      # roles/ and users/
+    │   └── databases/     # content/triggers/schemas DBs
+    │   └── rest-api.json
+    ├── ml-modules/
+    │   └── ext/           # Corticon.js modules and integration logic
+    │   └── options/       # Search options (e.g., corticonml-options.xml)
+    ├── ml-schemas/
+    │   └── tde/           # Template-driven extraction (e.g., corticon.tde)
+    
 
-```bash
-src/main/
-├── ml-config/         # App server, database, user, role, trigger configuration
-│   └── triggers/      # corticonTrigger.json
-│   └── security/      # roles/ and users/
-│   └── databases/     # content/triggers/schemas DBs
-│   └── rest-api.json
-├── ml-modules/
-│   └── ext/           # Corticon.js modules and integration logic
-│   └── options/       # Search options (e.g., corticonml-options.xml)
-├── ml-schemas/
-│   └── tde/           # Template-driven extraction (e.g., corticon.tde)
-```
+**Key components in this project:**
 
-Key components:
-*   `decisionServiceBundle.js` — generated by Corticon Studio; executes rules
-
-*   `marklogic.trigger.sample.sjs` — trigger module logic that calls the Corticon decision service
-
-*   `corticonTrigger.json` — trigger config tied to a collection
-
-
+*   **`decisionServiceBundle.js`**: The generated file from Corticon.js Studio that contains the executable rules.
+*   **`marklogic.trigger.sample.sjs`**: A server-side JavaScript module that defines the trigger logic to call the Corticon decision service.
+*   **`corticonTrigger.json`**: The configuration file for the trigger that links the `marklogic.trigger.sample.sjs` module to the `http://example.com/data/household` collection. It specifies that the trigger should run on `pre-commit` updates to document content.
+*   **`corticon.tde`**: A Template Driven Extraction file that defines how to extract data from the enriched documents into a relational view for SQL queries.
+*   **`gradle.properties`**: Defines variables used during deployment, such as the MarkLogic host, port, username, and password.

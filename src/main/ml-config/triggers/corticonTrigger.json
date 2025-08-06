@@ -4,7 +4,7 @@
     "event": {
         "data-event": {
             "collection-scope": {
-                "uri": "http://example.com/data/ledger"
+                "uri": "http://example.com/data/household"
             },
             "document-content": {
                 "update-kind": "create"

@@ -1,0 +1,1 @@
+"{insert path to marklogic-flux-1.3.0\bin\flux}" import-aggregate-json-files --path "{insert path to data\households.json}" --connection-string "corticonml-admin:corticonml-admin@localhost:8004" --permissions corticonml-reader,read,corticonml-writer,update --collections http://example.com/data/household --uri-template "/data/household/{householdId}.json"& pause
