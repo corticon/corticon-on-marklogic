@@ -1,0 +1,32 @@
+[{
+    "marketCalendar": {
+        "market": "LSE",
+        "date": "2025-07-22T20:00:00.000-0400",
+        "isBusinessDay": true
+    },
+    "trade": {
+        "quantity": "5000.000000",
+        "tradeDate": "2025-07-20T20:00:00.000-0400",
+        "assetClass": "Equity",
+        "market": "LSE",
+        "agreedSettlementDate": "2025-07-22T20:00:00.000-0400",
+        "netCashAmount": "22500.000000",
+        "counterpartyId": "CPTY-002",
+        "security": {
+            "description": "Glencore PLC",
+            "isin": "GB00BH4HKS39"
+        },
+        "settlementCurrency": "GBP",
+        "price": "4.500000",
+        "quantityRemaining": "5000.000000",
+        "tradeId": "CASE02-FAILED-EQUITY",
+        "tradeType": "Sell",
+        "status": "Matched"
+    },
+    "counterparty": {
+        "counterpartyId": "CPTY-002",
+        "lei": "5493002C4T97GG9CB384",
+        "tier": "Tier 2",
+        "name": "Beta Securities"
+    }
+}]

@@ -13,7 +13,7 @@ const decisionService = require("/ext/decisionServiceBundle.js");
 
 const configuration = {
     logLevel: 0,
- //   executionMetrics: true,
+   executionMetrics: true,
     logFunction: console.log
 };
 

@@ -7,97 +7,53 @@
         ],
         "templates": [
             {
+                "context": "payload",
+                "rows": [
+                    {
+                        "schemaName": "household",
+                        "viewName": "household",
+                        "columns": [
+                            { "name": "uri", "scalarType": "string", "val": "xdmp:node-uri(.)" },
+                            { "name": "householdId", "scalarType": "string", "val": "householdId" },
+                            { "name": "state", "scalarType": "string", "val": "state" },
+                            { "name": "size", "scalarType": "integer", "val": "size" },
+                            { "name": "annualIncome", "scalarType": "decimal", "val": "annualIncome" },
+                            { "name": "povertyGuideline", "scalarType": "decimal", "val": "povertyGuideline" },
+                            { "name": "householdPercentFPL", "scalarType": "decimal", "val": "householdPercentFPL" }
+                        ]
+                    }
+                ]
+            },
+            {
                 "context": "payload/individual",
                 "rows": [
                     {
                         "schemaName": "household",
                         "viewName": "individual",
                         "columns": [
-                            {
-                                "name": "first",
-                                "scalarType": "string",
-                                "val": "first"
-                            },
-                            {
-                                "name": "last",
-                                "scalarType": "string",
-                                "val": "last"
-                            },
-                            {
-                                "name": "dob",
-                                "scalarType": "date",
-                                "val": "dob"
-                            },
-                            {
-                                "name": "isParentOrCaretaker",
-                                "scalarType": "boolean",
-                                "val": "isParentOrCaretaker"
-                            },
-                            {
-                                "name": "disabled",
-                                "scalarType": "boolean",
-                                "val": "disabled"
-                            },
-                            {
-                                "name": "inHospice",
-                                "scalarType": "boolean",
-                                "val": "inHospice"
-                            },
-                            {
-                                "name": "pregnant",
-                                "scalarType": "boolean",
-                                "val": "pregnant"
-                            },
-                            {
-                                "name": "inLongTermCare",
-                                "scalarType": "boolean",
-                                "val": "inLongTermCare"
-                            },
-                            {
-                                "name": "hasHCBS",
-                                "scalarType": "boolean",
-                                "val": "hasHCBS"
-                            },
-                            {
-                                "name": "isRefugee",
-                                "scalarType": "boolean",
-                                "val": "isRefugee"
-                            },
-                            {
-                                "name": "receivesAbdCashAssistance",
-                                "scalarType": "boolean",
-                                "val": "receivesAbdCashAssistance"
-                            },
-                            {
-                                "name": "ssn",
-                                "scalarType": "string",
-                                "val": "ssn"
-                            },
-                            {
-                                "name": "gender",
-                                "scalarType": "string",
-                                "val": "gender"
-                            },
-                            {
-                                "name": "usCitizen",
-                                "scalarType": "boolean",
-                                "val": "usCitizen"
-                            },
-                            {
-                                "name": "monthlyIncome",
-                                "scalarType": "decimal",
-                                "val": "monthlyIncome"
-                            },
-                            {
-                                "name": "participantCancerProgram",
-                                "scalarType": "boolean",
-                                "val": "participantCancerProgram"
-                            },
-                            {
-                                "name": "formerFosterCare",
-                                "scalarType": "boolean",
-                                "val": "formerFosterCare"
-                            }
+                            { "name": "uri", "scalarType": "string", "val": "xdmp:node-uri(.)" },
+                            { "name": "householdId", "scalarType": "string", "val": "ancestor::*[householdId]/householdId" },
+                            { "name": "ssn", "scalarType": "string", "val": "ssn", "nullable": true },
+                            { "name": "first", "scalarType": "string", "val": "first" },
+                            { "name": "last", "scalarType": "string", "val": "last" },
+                            { "name": "dob", "scalarType": "date", "val": "dob" },
+                            { "name": "isParentOrCaretaker", "scalarType": "boolean", "val": "isParentOrCaretaker" },
+                            { "name": "disabled", "scalarType": "boolean", "val": "disabled" },
+                            { "name": "inHospice", "scalarType": "boolean", "val": "inHospice" },
+                            { "name": "pregnant", "scalarType": "boolean", "val": "pregnant" },
+                            { "name": "inLongTermCare", "scalarType": "boolean", "val": "inLongTermCare" },
+                            { "name": "hasHCBS", "scalarType": "boolean", "val": "hasHCBS" },
+                            { "name": "isRefugee", "scalarType": "boolean", "val": "isRefugee" },
+                            { "name": "receivesAbdCashAssistance", "scalarType": "boolean", "val": "receivesAbdCashAssistance" },
+                            { "name": "usCitizen", "scalarType": "boolean", "val": "usCitizen" },
+                            { "name": "monthlyIncome", "scalarType": "decimal", "val": "monthlyIncome" },
+                            { "name": "participantCancerProgram", "scalarType": "boolean", "val": "participantCancerProgram" },
+                            { "name": "formerFosterCare", "scalarType": "boolean", "val": "formerFosterCare" },
+                            { "name": "enrolledMedicare", "scalarType": "boolean", "val": "enrolledMedicare" },
+                            { "name": "hadMedicareUntilReturnToWork", "scalarType": "boolean", "val": "hadMedicareUntilReturnToWork" },
+                            { "name": "age", "scalarType": "integer", "val": "age" },
+                            { "name": "aged", "scalarType": "boolean", "val": "aged", "nullable": true },
+                            { "name": "highestFavorable", "scalarType": "string", "val": "highestFavorable", "nullable": true }
                         ]
                     }
                 ]
@@ -108,60 +64,14 @@
                     {
                         "schemaName": "household",
                         "viewName": "population",
-                        "viewLayout": "sparse",
                         "columns": [
-                            {
-                                "name": "favorability",
-                                "scalarType": "integer",
-                                "val": "favorability",
-                                                                "nullable": true
-                            },
-                            {
-                                "name": "group",
-                                "scalarType": "string",
-                                "val": "group",
-                                                                "nullable": true
-                            },
-                            {
-                                "name": "magiGroup",
-                                "scalarType": "string",
-                                "val": "magiGroup",
-                                                                "nullable": true
-
-                            },
-                            {
-                                "name": "magiIncomePercent",
-                                "scalarType": "decimal",
-                                "val": "magiIncomePercent",
-                                                                "nullable": true
-                            }
-                        ]
-                    }
-                ]
-            },
-                        {
-                "context": "payload/individual/stateRequirement",
-                "rows": [
-                    {
-                        "schemaName": "household",
-                        "viewName": "stateRequirement",
-                        "viewLayout": "sparse",
-                        "columns": [
-                            {
-                                "name": "householdSize",
-                                "scalarType": "integer",
-                                "val": "householdSize"
-                            },
-                            {
-                                "name": "state",
-                                "scalarType": "string",
-                                "val": "state"
-                            },
-                            {
-                                "name": "povertyGuideline",
-                                "scalarType": "decimal",
-                                "val": "povertyGuideline"
-                            }
+                            { "name": "individual_ssn", "scalarType": "string", "val": "../../ssn" },
+                            { "name": "favorability", "scalarType": "integer", "val": "favorability", "nullable": true },
+                            { "name": "group", "scalarType": "string", "val": "group", "nullable": true },
+                            { "name": "magiGroup", "scalarType": "string", "val": "magiGroup", "nullable": true },
+                            { "name": "magiIncomePercent", "scalarType": "decimal", "val": "magiIncomePercent", "nullable": true },
+                            { "name": "fundingSource", "scalarType": "string", "val": "fundingSource", "nullable": true },
+                            { "name": "incomeIneligible", "scalarType": "boolean", "val": "incomeIneligible", "nullable": true }
                         ]
                     }
                 ]
@@ -172,194 +82,12 @@
                     {
                         "schemaName": "household",
                         "viewName": "Messages",
-                        "viewLayout": "sparse",
                         "columns": [
-                            {
-                                "name": "uri",
-                                "scalarType": "string",
-                                "val": "xdmp:node-uri(.)",
-                                "nullable": true
-                            },
-                            {
-                                "name": "severity",
-                                "scalarType": "string",
-                                "val": "severity"
-                            },
-                            {
-                                "name": "text",
-                                "scalarType": "string",
-                                "val": "text"
-                            },
-                            {
-                                "name": "ruleSheet",
-                                "scalarType": "string",
-                                "val": "ruleSheet"
-                            },
-                            {
-                                "name": "rule",
-                                "scalarType": "string",
-                                "val": "rule"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "context": "/corticon/Metrics/attributeChanges",
-                "rows": [
-                    {
-                        "schemaName": "household",
-                        "viewName": "AttributeChanges",
-                        "columns": [
-                            {
-                                "name": "uri",
-                                "scalarType": "string",
-                                "val": "xdmp:node-uri(.)"
-                            },
-                            {
-                                "name": "rulesheetName",
-                                "scalarType": "string",
-                                "val": "rulesheetName"
-                            },
-                            {
-                                "name": "ruleNumber",
-                                "scalarType": "string",
-                                "val": "ruleNumber"
-                            },
-                            {
-                                "name": "entityName",
-                                "scalarType": "string",
-                                "val": "entityName"
-                            },
-                            {
-                                "name": "entityCorticonId",
-                                "scalarType": "string",
-                                "val": "entityCorticonId"
-                            },
-                            {
-                                "name": "attributeName",
-                                "scalarType": "string",
-                                "val": "attributeName"
-                            },
-                            {
-                                "name": "afterValue",
-                                "scalarType": "string",
-                                "val": "afterValue"
-                            },
-                            {
-                                "name": "sequence",
-                                "scalarType": "int",
-                                "val": "sequence"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "context": "/corticon/Metrics/associationChanges",
-                "rows": [
-                    {
-                        "schemaName": "household",
-                        "viewName": "AssociationChanges",
-                        "viewLayout": "sparse",
-                        "columns": [
-                            {
-                                "name": "uri",
-                                "scalarType": "string",
-                                "val": "xdmp:node-uri(.)"
-                            },
-                            {
-                                "name": "rulesheetName",
-                                "scalarType": "string",
-                                "val": "rulesheetName"
-                            },
-                            {
-                                "name": "ruleNumber",
-                                "scalarType": "string",
-                                "val": "ruleNumber"
-                            },
-                            {
-                                "name": "sourceEntityName",
-                                "scalarType": "string",
-                                "val": "sourceEntityName"
-                            },
-                            {
-                                "name": "sourceEntityCorticonId",
-                                "scalarType": "string",
-                                "val": "sourceEntityCorticonId"
-                            },
-                            {
-                                "name": "associationRoleName",
-                                "scalarType": "string",
-                                "val": "associationRoleName"
-                            },
-                            {
-                                "name": "targetEntityName",
-                                "scalarType": "string",
-                                "val": "targetEntityName"
-                            },
-                            {
-                                "name": "targetEntityCorticonId",
-                                "scalarType": "string",
-                                "val": "targetEntityCorticonId"
-                            },
-                            {
-                                "name": "action",
-                                "scalarType": "string",
-                                "val": "action"
-                            },
-                            {
-                                "name": "sequence",
-                                "scalarType": "int",
-                                "val": "sequence"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "context": "/corticon/Metrics/entityChanges",
-                "rows": [
-                    {
-                        "schemaName": "household",
-                        "viewName": "EntityChanges",
-                        "viewLayout": "sparse",
-                        "columns": [
-                            {
-                                "name": "uri",
-                                "scalarType": "string",
-                                "val": "xdmp:node-uri(.)"
-                            },
-                            {
-                                "name": "rulesheetName",
-                                "scalarType": "string",
-                                "val": "rulesheetName"
-                            },
-                            {
-                                "name": "ruleNumber",
-                                "scalarType": "string",
-                                "val": "ruleNumber"
-                            },
-                            {
-                                "name": "entityName",
-                                "scalarType": "string",
-                                "val": "entityName"
-                            },
-                            {
-                                "name": "entityCorticonId",
-                                "scalarType": "string",
-                                "val": "entityCorticonId"
-                            },
-                            {
-                                "name": "action",
-                                "scalarType": "string",
-                                "val": "action"
-                            },
-                            {
-                                "name": "sequence",
-                                "scalarType": "int",
-                                "val": "sequence"
-                            }
+                            { "name": "uri", "scalarType": "string", "val": "xdmp:node-uri(.)" },
+                            { "name": "severity", "scalarType": "string", "val": "severity" },
+                            { "name": "text", "scalarType": "string", "val": "text" },
+                            { "name": "ruleSheet", "scalarType": "string", "val": "ruleSheet" },
+                            { "name": "rule", "scalarType": "string", "val": "rule" }
                         ]
                     }
                 ]
