@@ -89,26 +89,280 @@ Executing this script will import the sample household data, and the `corticonTr
 
 -----
 
-## 🗂️ Project Structure and Key Components
+## MarkLogic Template Driven Extraction (TDE) for Household Eligibility Data
 
-```bash
-src/main/
-├── ml-config/         # App server, database, user, role, trigger configuration
-│   └── triggers/      # corticonTrigger.json
-│   └── security/      # roles/ and users/
-│   └── databases/     # content/triggers/schemas DBs
-│   └── rest-api.json
-├── ml-modules/
-│   └── ext/           # Corticon.js modules and integration logic
-│   └── options/       # Search options (e.g., corticonml-options.xml)
-├── ml-schemas/
-│   └── tde/           # Template-driven extraction (e.g., corticon.tde)
+This TDE template enables SQL queries on household eligibility data processed by Corticon rules engines. The template extracts data from JSON documents containing:
+
+- Household demographic information
+- Individual member details and eligibility statuses
+- Population group evaluations and income thresholds
+- Rule execution messages and decision audit trails
+
+### Data Structure
+
+The source JSON documents follow this structure:
+```json
+{
+  "payload": {
+    "householdId": "string",
+    "state": "string", 
+    "size": integer,
+    "annualIncome": decimal,
+    "povertyGuideline": decimal,
+    "householdPercentFPL": decimal,
+    "individual": [
+      {
+        "ssn": "string",
+        "first": "string",
+        "last": "string",
+        "age": integer,
+        "highestFavorable": "string",
+        "population": [
+          {
+            "group": "string",
+            "incomeIneligible": boolean,
+            "favorability": integer
+          }
+        ]
+      }
+    ]
+  },
+  "corticon": {
+    "messages": {
+      "message": [
+        {
+          "severity": "string",
+          "text": "string",
+          "ruleSheet": "string",
+          "rule": "string"
+        }
+      ]
+    }
+  }
+}
 ```
 
-**Key components in this project:**
+### TDE Template
 
-  * **`decisionServiceBundle.js`**: The generated file from Corticon.js Studio that contains the executable rules.
-  * **`marklogic.trigger.sample.sjs`**: A server-side JavaScript module that defines the trigger logic to call the Corticon decision service.
-  * **`corticonTrigger.json`**: The configuration file for the trigger that links the `marklogic.trigger.sample.sjs` module to the `http://example.com/data/household` collection. It specifies that the trigger should run on `pre-commit` updates to document content.
-  * **`corticon.tde`**: A Template Driven Extraction file that defines how to extract data from the enriched documents into a relational view for SQL queries.
-  * **`gradle.properties`**: Defines variables used during deployment, such as the MarkLogic host, port, username, and password.
+[The TDE template](src/main/ml-schemas/tde/corticon.tde) creates four relational views:
+
+### 1. Household View (`household`)
+Extracts household-level information:
+- householdId, state, size
+- annualIncome, povertyGuideline, householdPercentFPL
+- uri (document URI for linking)
+
+### 2. Individual View (`household.individual`) 
+Extracts individual member information:
+- Personal details (ssn, first, last, age)
+- Eligibility flags (disabled, pregnant, usCitizen, etc.)
+- Final eligibility determination (highestFavorable)
+- householdId for joining to household data
+
+### 3. Population View (`household.population`)
+Extracts eligibility group evaluations:
+- group (eligibility category evaluated)
+- incomeIneligible (whether income disqualified)
+- favorability (ranking of eligibility path)
+- individual_ssn for joining to individual data
+
+### 4. Messages View (`household.Messages`)
+Extracts rule execution logs:
+- severity, text (rule message content)
+- ruleSheet, rule (specific rule identification)
+- uri for linking to source document
+
+### Sample SQL Queries
+
+#### Population Analysis
+
+_Count of Eligible Individuals by State and Program_: Counts approved individuals by health program and state
+```sql
+SELECT
+  h.state,
+  i.highestFavorable AS program,
+  COUNT(i.ssn) AS numberOfIndividuals
+FROM household.household AS h
+JOIN household.individual AS i ON h.householdId = i.householdId
+WHERE i.highestFavorable IS NOT NULL
+GROUP BY
+  h.state,
+  i.highestFavorable
+ORDER BY
+  h.state,
+  numberOfIndividuals DESC;
+```
+*Average Household Income by Program*: Calculates income statistics by program
+```sql
+SELECT
+  i.highestFavorable AS program,
+  AVG(CAST(h.annualIncome AS DECIMAL(18, 2))) AS averageAnnualIncome
+FROM household.household AS h
+JOIN household.individual AS i ON h.householdId = i.householdId
+WHERE i.highestFavorable IS NOT NULL
+GROUP BY
+  i.highestFavorable
+ORDER BY
+  averageAnnualIncome DESC;
+```
+#### Demographic Analysis
+
+*Age Demographics of Ineligible Parents/Caretakers*: Shows age distribution of income-ineligible parent/caretaker applicants
+```sql
+SELECT
+  IneligibleParents.ageBracket,
+  COUNT(IneligibleParents.ssn) AS numberOfIneligibleIndividuals
+FROM (
+  SELECT
+    CASE
+      WHEN i.age BETWEEN 18 AND 25 THEN '18-25'
+      WHEN i.age BETWEEN 26 AND 40 THEN '26-40'
+      WHEN i.age BETWEEN 41 AND 55 THEN '41-55'
+      ELSE '56+'
+    END AS ageBracket,
+    i.ssn
+  FROM household.individual AS i
+  JOIN household.population AS p ON i.ssn = p.individual_ssn
+  WHERE
+    p."group" = 'Parents and Caretaker Relatives' AND p.incomeIneligible = 1
+) AS IneligibleParents
+GROUP BY
+  IneligibleParents.ageBracket
+ORDER BY
+  IneligibleParents.ageBracket;
+```
+
+#### Policy Impact Analysis
+
+*States with Highest Potential Coverage Expansion*: - Find "Near Miss" Households (Potential Expansion Group): Identifies states with most potential coverage expansion
+```sql
+SELECT
+  IneligibleParents.ageBracket,
+  COUNT(IneligibleParents.ssn) AS numberOfIneligibleIndividuals
+FROM (
+  SELECT
+    CASE
+      WHEN i.age BETWEEN 18 AND 25 THEN '18-25'
+      WHEN i.age BETWEEN 26 AND 40 THEN '26-40'
+      WHEN i.age BETWEEN 41 AND 55 THEN '41-55'
+      ELSE '56+'
+    END AS ageBracket,
+    i.ssn
+  FROM household.individual AS i
+  JOIN household.population AS p ON i.ssn = p.individual_ssn
+  WHERE
+    p."group" = 'Parents and Caretaker Relatives' AND p.incomeIneligible = 1
+) AS IneligibleParents
+GROUP BY
+  IneligibleParents.ageBracket
+ORDER BY
+  IneligibleParents.ageBracket;
+```
+
+```sql
+SELECT
+  h.state,
+  COUNT(DISTINCT h.householdId) AS potentialNewHouseholds
+FROM household.household AS h
+JOIN household.individual AS i
+  ON h.householdId = i.householdId
+JOIN household.population AS p
+  ON i.ssn = p.individual_ssn
+WHERE
+  -- Focus on specific eligibility group
+  p."group" = 'Parents and Caretaker Relatives'
+  AND p.incomeIneligible = 1
+  -- Only households with no current eligibility
+  AND h.householdId NOT IN (
+    SELECT householdId
+    FROM household.individual
+    WHERE highestFavorable IS NOT NULL
+  )
+  -- Income over current limit but under 25% higher limit
+  AND CAST(h.annualIncome AS DECIMAL(18, 2)) > (
+    CAST(h.povertyGuideline AS DECIMAL(18, 2)) * CAST(p.magiIncomePercent AS DECIMAL(18, 2))
+  )
+  AND CAST(h.annualIncome AS DECIMAL(18, 2)) <= (
+    CAST(h.povertyGuideline AS DECIMAL(18, 2)) * CAST(p.magiIncomePercent AS DECIMAL(18, 2)) * 1.25
+  )
+GROUP BY
+  h.state
+ORDER BY
+  potentialNewHouseholds DESC;
+```
+
+#### Individual Case & Data Quality Analysis
+
+*Full Eligibility Picture for a Household*: Case file summary showing all programs considered per family member
+```sql
+SELECT
+  i.first,
+  i.last,
+  i.age,
+  i.highestFavorable,
+  p."group" AS consideredGroup,
+  p.incomeIneligible
+FROM household.individual AS i
+LEFT JOIN household.population AS p ON i.ssn = p.individual_ssn
+WHERE i.householdId = '353021'  -- Replace with target household
+ORDER BY
+  i.first,
+  p.favorability DESC;
+```
+
+*Mismatched Age/Program Evaluations*: Data quality check for logical errors in program assignments
+```sql
+SELECT
+  i.householdId,
+  i.first,
+  i.last,
+  i.age,
+  p."group" AS mismatchedGroup
+FROM household.individual AS i
+JOIN household.population AS p ON i.ssn = p.individual_ssn
+WHERE
+  (p."group" = 'Infants (0-1)' AND i.age > 1) OR
+  (p."group" = 'Young Children (Ages 1-5)' AND (i.age < 1 OR i.age > 5)) OR
+  (p."group" = 'Older Children (Ages 6-18)' AND (i.age < 6 OR i.age > 18))
+ORDER BY
+  i.householdId;
+```
+#### Rule & Decision Tracing
+
+*Most Frequent Rule Executions*: Top 10 Most Frequent "Determination" Rules: Ranks most impactful eligibility determination rules
+```sql
+SELECT TOP 10
+  m.rule,
+  m.ruleSheet,
+  COUNT(*) AS executionCount
+FROM household.Messages AS m
+WHERE
+  m.ruleSheet = 'Determination'
+GROUP BY
+  m.rule,
+  m.ruleSheet
+ORDER BY
+  executionCount DESC;
+```
+*Rule Tracing for Individual Decisions*: Pinpoint the Exact Rule That Made a Person Income-Ineligible: Traces specific rule messages explaining denials
+```sql
+SELECT
+  i.first,
+  i.last,
+  p."group" AS consideredGroup,
+  m.text AS reason,
+  m.ruleSheet,
+  m.rule
+FROM household.individual AS i
+JOIN household.population AS p ON i.ssn = p.individual_ssn
+JOIN household.Messages AS m ON i.uri = m.uri
+WHERE i.first = 'Etienne' AND i.last = 'Arnow'  -- Replace with target individual
+  AND p.incomeIneligible = 'true'
+  AND m.text LIKE '%income eligibility requirements%';
+```
+
+
+## Documentation References
+- [MarkLogic TDE Documentation](https://docs.marklogic.com/guide/app-dev/TDE)
+- [SQL on MarkLogic Guide](https://docs.marklogic.com/guide/sql)
+- [Template Driven Extraction Tutorial](https://developer.marklogic.com/learn/template-driven-extraction/)
