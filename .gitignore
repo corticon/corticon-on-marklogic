@@ -5,6 +5,7 @@ build
 gradle-local.properties
 /.nb-gradle
 /.settings
+/.vs
 /.project
 sample-project/data/export/
 sample-project/local.gradle
