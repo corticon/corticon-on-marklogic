@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_GE7YJHOfEfCO7cIybbdn2g" externalChecksum="2722078124:507989954:4130292688" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_vkAiMHOZEfCO7cIybbdn2g" vocabulary="../../Rule%20Vocabulary.ecore#/">
+    <rule>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action>
+        <opaqueExpression expression="StateRequirement.eligibilityGroups+=', Higher-Income Pregnant'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.eligibilityGroups = StateRequirement.eligibilityGroups + ', Higher-Income Pregnant'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="eligibilityGroups" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.eligibilityGroups">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="eligibilityGroups" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.eligibilityGroups">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="StateRequirement.state = 'Kentucky'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'Kentucky'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="StateRequirement.state" rhs="'Kentucky'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercent = 2.13">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 2.13" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercentLowerBound = 1.95">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.95" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.fundingSource = 'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+      <action/>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="StateRequirement.state = 'Missouri'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'Missouri'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="StateRequirement.state" rhs="'Missouri'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercent = 3">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 3" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercentLowerBound = 1.96">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.96" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.fundingSource = 'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="StateRequirement.state = 'New Jersey'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'New Jersey'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="StateRequirement.state" rhs="'New Jersey'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercent = 2">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 2" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercentLowerBound = 1.94">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.94" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.fundingSource = 'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="StateRequirement.state = 'Rhode Island'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'Rhode Island'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="StateRequirement.state" rhs="'Rhode Island'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercent = 2.53">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 2.53" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercentLowerBound = 1.9">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.9" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.fundingSource = 'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="StateRequirement.state = 'Virginia'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'Virginia'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="StateRequirement.state" rhs="'Virginia'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercent = 2">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 2" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercentLowerBound = 1.43">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.43" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.fundingSource = 'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="StateRequirement.state = 'West Virginia'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'West Virginia'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="StateRequirement.state" rhs="'West Virginia'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercent = 3">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 3" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.magiIncomePercentLowerBound = 1.85">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.85" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="higherIncomePregnant.fundingSource = 'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <filter/>
+    <filter logicalVariables="#//@ruleset/@logicalVariables.0 #//@ruleset/@logicalVariables.0/@extension.0">
+      <opaqueExpression expression="higherIncomePregnant.magiGroup='Higher-Income Pregnant'">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiGroup = 'Higher-Income Pregnant'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+          <referencedTermList>
+            <terms text="magiGroup" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiGroup">
+              <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </opaqueExpression>
+    </filter>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.1 #//@ruleset/@rules.2 #//@ruleset/@rules.3 #//@ruleset/@rules.4 #//@ruleset/@rules.5 #//@ruleset/@rules.6" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0">
+      <text expression="For the Higher-Income Pregnant group in  [{StateRequirement.state}], set the MAGI income multiplier to [{higherIncomePregnant.magiIncomePercent}], the lower bound multiplier to [{higherIncomePregnant.magiIncomePercentLowerBound}], and the funding source to [{higherIncomePregnant.fundingSource}].">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="For the Higher-Income Pregnant group in  [ + StateRequirement.state + ], set the MAGI income multiplier to [ + higherIncomePregnant.magiIncomePercent + ], the lower bound multiplier to [ + higherIncomePregnant.magiIncomePercentLowerBound + ], and the funding source to [ + higherIncomePregnant.fundingSource + ]." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+              <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </parentTerm>
+            </terms>
+            <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+              <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </parentTerm>
+            </terms>
+            <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+              <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+            <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+              <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <logicalVariable entity="../../Rule%20Vocabulary.ecore#//StateRequirement" filters="#//@ruleset/@filters.1">
+      <extension explicit="true" association="true" entity="../../Rule%20Vocabulary.ecore#//Population" traversedAssocRole="../../Rule%20Vocabulary.ecore#//StateRequirement/population" ruleStatements="#//@ruleset/@ruleStatements.0" filters="#//@ruleset/@filters.1">
+        <alias value="higherIncomePregnant"/>
+        <referencedAttributes attribute="../../Rule%20Vocabulary.ecore#//Population/magiIncomePercent"/>
+        <referencedAttributes attribute="../../Rule%20Vocabulary.ecore#//Population/magiGroup"/>
+        <referencedAttributes attribute="../../Rule%20Vocabulary.ecore#//Population/fundingSource"/>
+        <referencedAttributes attribute="../../Rule%20Vocabulary.ecore#//Population/magiIncomePercentLowerBound"/>
+      </extension>
+      <referencedAttributes attribute="../../Rule%20Vocabulary.ecore#//StateRequirement/state"/>
+      <referencedAttributes attribute="../../Rule%20Vocabulary.ecore#//StateRequirement/householdSize"/>
+      <referencedAttributes attribute="../../Rule%20Vocabulary.ecore#//StateRequirement/eligibilityGroups"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" advanced="true">
+    <actionSection rowCount="50" columnWidthFactor="0.5">
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="higherIncomePregnant.magiIncomePercent">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent" datatype="Decimal" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="higherIncomePregnant.magiIncomePercentLowerBound">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound" datatype="Decimal" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="higherIncomePregnant.fundingSource">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource" datatype="String" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell/>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell/>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="StateRequirement.eligibilityGroups+=', Higher-Income Pregnant'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.eligibilityGroups = StateRequirement.eligibilityGroups + ', Higher-Income Pregnant'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="eligibilityGroups" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.eligibilityGroups">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="eligibilityGroups" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.eligibilityGroups">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFolder" expanded="true">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFilter" expression="higherIncomePregnant.magiGroup='Higher-Income Pregnant'" filter="#//@ruleset/@filters.1"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFolder">
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFilter" expression="higherIncomePregnant.magiGroup='Higher-Income Pregnant'" filter="#//@ruleset/@filters.1"/>
+            </children>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.0/@referencedAttributes.0"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.0/@referencedAttributes.1"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.0/@referencedAttributes.2"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.0/@referencedAttributes.3"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.2"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="50">
+      <filterItemList filter="#//@ruleset/@filters.0">
+        <expressionCell/>
+      </filterItemList>
+      <filterItemList filter="#//@ruleset/@filters.1">
+        <expressionCell external="higherIncomePregnant.magiGroup='Higher-Income Pregnant'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiGroup = 'Higher-Income Pregnant'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="magiGroup" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiGroup">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </filterItemList>
+    </filterSection>
+    <ruleStatementSection rowCount="50" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400">
+      <ruleStatementItemList rowHeight="50" ruleStatement="#//@ruleset/@ruleStatements.0">
+        <reference external="1:6"/>
+        <text external="For the Higher-Income Pregnant group in  [{StateRequirement.state}], set the MAGI income multiplier to [{higherIncomePregnant.magiIncomePercent}], the lower bound multiplier to [{higherIncomePregnant.magiIncomePercentLowerBound}], and the funding source to [{higherIncomePregnant.fundingSource}].">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="For the Higher-Income Pregnant group in  [ + StateRequirement.state + ], set the MAGI income multiplier to [ + higherIncomePregnant.magiIncomePercent + ], the lower bound multiplier to [ + higherIncomePregnant.magiIncomePercentLowerBound + ], and the funding source to [ + higherIncomePregnant.fundingSource + ]." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+    </ruleStatementSection>
+    <conditionSection rowCount="50" columnWidthFactor="0.5">
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="StateRequirement.state">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state" datatype="String" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+    </conditionSection>
+    <ruleSection columnCount="7">
+      <ruleColumnList ruleId="0" columnWidth="100" pRule="#//@ruleset/@rules.0">
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet="X"/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="1" columnWidth="100" pRule="#//@ruleset/@rules.1">
+        <conditionValueSetCellList valueSet="'Kentucky'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'Kentucky'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="2.13">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 2.13" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="1.95">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.95" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="2" columnWidth="100" pRule="#//@ruleset/@rules.2">
+        <conditionValueSetCellList valueSet="'Missouri'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'Missouri'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="3">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 3" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="1.96">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.96" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="3" columnWidth="100" pRule="#//@ruleset/@rules.3">
+        <conditionValueSetCellList valueSet="'New Jersey'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'New Jersey'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="2">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 2" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="1.94">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.94" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="4" columnWidth="100" pRule="#//@ruleset/@rules.4">
+        <conditionValueSetCellList valueSet="'Rhode Island'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'Rhode Island'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="2.53">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 2.53" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="1.9">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.9" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="5" columnWidth="100" pRule="#//@ruleset/@rules.5">
+        <conditionValueSetCellList valueSet="'Virginia'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'Virginia'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="2">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 2" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="1.43">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.43" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="6" columnWidth="100" pRule="#//@ruleset/@rules.6">
+        <conditionValueSetCellList valueSet="'West Virginia'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="StateRequirement.state = 'West Virginia'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="state" datatype="String" termtype="ATTRIBUTE" fulltext="StateRequirement.state">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="3">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercent = 3" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercent" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercent">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="1.85">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.magiIncomePercentLowerBound = 1.85" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="magiIncomePercentLowerBound" datatype="Decimal" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.magiIncomePercentLowerBound">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'CHIP'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="higherIncomePregnant.fundingSource = 'CHIP'" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="fundingSource" datatype="String" termtype="ATTRIBUTE" fulltext="higherIncomePregnant.fundingSource">
+                <parentTerm text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                  <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="higherIncomePregnant" datatype="Population" termtype="ENTITY" fulltext="higherIncomePregnant">
+                <parentTerm text="StateRequirement" datatype="StateRequirement" termtype="ENTITY" fulltext="StateRequirement"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>
