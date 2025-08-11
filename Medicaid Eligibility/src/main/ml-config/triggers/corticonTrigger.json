@@ -1,0 +1,21 @@
+{
+    "name": "corticonTrigger",
+    "description": "corticon trigger",
+    "event": {
+        "data-event": {
+            "collection-scope": {
+                "uri": "http://example.com/data/household"
+            },
+            "document-content": {
+                "update-kind": "create"
+            },
+            "when": "pre-commit"
+        }
+    },
+    "module": "ext/marklogic.trigger.sample.sjs",
+    "module-db": "%%MODULES_DATABASE%%",
+    "module-root": "/",
+    "enabled": true,
+    "recursive": true,
+    "task-priority": "normal"
+}
