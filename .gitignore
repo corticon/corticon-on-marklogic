@@ -1,19 +1,18 @@
-/bin
-.classpath
-build
-.gradle
-gradle-local.properties
-/.nb-gradle
-/.settings
-/.vs
-/.project
-sample-project/data/export/
-sample-project/local.gradle
-examples/sample-project/local.gradle
-examples/mlcp-project/data/export/
-.idea
+# # Ignore user-specific configuration files in ANY subdirectory
+**/gradle.properties
+
+# Ignore generated data files
+**/data/mockaroo_output.json
+
+# Ignore local build artifacts and caches for all projects
+**/build/
+**/.gradle/
+
+# Ignore common IDE files
+.idea/
 *.iml
-out
-gradle-local.properties
-snyk
-.vscode
+*.iws
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
