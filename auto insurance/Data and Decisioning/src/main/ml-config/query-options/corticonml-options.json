@@ -1,0 +1,11 @@
+{
+  "options": {
+    "searchable-expression": [
+      "payload/drivers/last",
+      "payload/familyName",
+      "payload/vehicles/make",
+      "payload/vehicles/model",
+      "/payload/state"
+    ]
+  }
+}

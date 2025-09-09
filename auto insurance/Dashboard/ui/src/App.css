@@ -1,0 +1,93 @@
+/* General App Styling */
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+/* Main two-column layout using Flexbox */
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 0 2rem;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Left Sidebar: Search and Facets */
+.search-controls {
+  flex: 0 0 250px; /* Do not grow, do not shrink, base width of 250px */
+}
+
+/* Search Box from ml-fasttrack */
+.search-box input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Facet styling from ml-fasttrack */
+.string-facet {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.string-facet .facet-title {
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+.string-facet ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.string-facet li {
+  cursor: pointer;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.string-facet li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Right Side: Search Results */
+.results {
+  flex-grow: 1; /* Take up all remaining space */
+}
+
+/* Custom styling for each result card from our renderItem function */
+.policy-snippet {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.policy-snippet h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.policy-snippet p {
+  margin: 4px 0;
+}
+
+.policy-snippet .uri-display {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 10px;
+}

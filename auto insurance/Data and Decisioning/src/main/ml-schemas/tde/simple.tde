@@ -1,0 +1,666 @@
+{
+    "template": {
+        "description": "Simplified TDE",
+        "context": "/",
+        "collections": [
+            "http://example.com/data/policy"
+        ],
+        "templates": [
+            {
+                "context": "payload",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "Details",
+                        "columns": [
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "state",
+                                "scalarType": "string",
+                                "val": "state",
+                                "nullable": true
+                            },
+                            {
+                                "name": "familyName",
+                                "scalarType": "string",
+                                "val": "familyName",
+                                "nullable": true
+                            },
+                            {
+                                "name": "paymentPlan",
+                                "scalarType": "string",
+                                "val": "paymentPlan",
+                                "nullable": true
+                            },
+                            {
+                                "name": "netPremium",
+                                "scalarType": "decimal",
+                                "val": "netPremium",
+                                "nullable": true
+                            },
+                            {
+                                "name": "isPaperless",
+                                "scalarType": "boolean",
+                                "val": "isPaperless",
+                                "nullable": true
+                            },
+                            {
+                                "name": "hasHomePolicy",
+                                "scalarType": "boolean",
+                                "val": "hasHomePolicy",
+                                "nullable": true
+                            },
+                            {
+                                "name": "isMultiCar",
+                                "scalarType": "boolean",
+                                "val": "isMultiCar",
+                                "nullable": true
+                            },
+                            {
+                                "name": "customerSince",
+                                "scalarType": "date",
+                                "val": "customerSince",
+                                "nullable": true
+                            },
+                            {
+                                "name": "isAutoPay",
+                                "scalarType": "boolean",
+                                "val": "isAutoPay",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "payload/drivers",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "Drivers",
+                        "columns": [
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "first",
+                                "scalarType": "string",
+                                "val": "first",
+                                "nullable": true
+                            },
+                            {
+                                "name": "last",
+                                "scalarType": "string",
+                                "val": "last",
+                                "nullable": true
+                            },
+                            {
+                                "name": "dob",
+                                "scalarType": "date",
+                                "val": "dob",
+                                "nullable": true
+                            },
+                            {
+                                "name": "age",
+                                "scalarType": "int",
+                                "val": "age",
+                                "nullable": true
+                            },
+                            {
+                                "name": "advancedDriverTraining",
+                                "scalarType": "boolean",
+                                "val": "advancedDriverTraining",
+                                "nullable": true
+                            },
+                            {
+                                "name": "awayAtSchool",
+                                "scalarType": "boolean",
+                                "val": "awayAtSchool",
+                                "nullable": true
+                            },
+                            {
+                                "name": "goodStudent",
+                                "scalarType": "boolean",
+                                "val": "goodStudent",
+                                "nullable": true
+                            },
+                            {
+                                "name": "gpa",
+                                "scalarType": "decimal",
+                                "val": "gpa",
+                                "nullable": true
+                            },
+                            {
+                                "name": "fullTimeStudent",
+                                "scalarType": "boolean",
+                                "val": "fullTimeStudent",
+                                "nullable": true
+                            },
+                            {
+                                "name": "gradeAverage",
+                                "scalarType": "string",
+                                "val": "gradeAverage",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "payload/drivers/incidents",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "Incidents",
+                        "columns": [
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "date",
+                                "scalarType": "date",
+                                "val": "date",
+                                "nullable": true
+                            },
+                            {
+                                "name": "incidentType",
+                                "scalarType": "string",
+                                "val": "incidentType",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "payload/vehicles",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "Vehicles",
+                        "columns": [
+                            {
+                                "name": "abs",
+                                "scalarType": "string",
+                                "val": "abs",
+                                "nullable": true
+                            },
+                            {
+                                "name": "adaptiveHeadlights",
+                                "scalarType": "string",
+                                "val": "adaptiveHeadlights",
+                                "nullable": true
+                            },
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "autoBrake",
+                                "scalarType": "string",
+                                "val": "autoBrake",
+                                "nullable": true
+                            },
+                            {
+                                "name": "automaticPedestrianAlertingSound",
+                                "scalarType": "string",
+                                "val": "automaticPedestrianAlertingSound",
+                                "nullable": true
+                            },
+                            {
+                                "name": "autoReverseSystem",
+                                "scalarType": "string",
+                                "val": "autoReverseSystem",
+                                "nullable": true
+                            },
+                            {
+                                "name": "axleConfiguration",
+                                "scalarType": "string",
+                                "val": "axleConfiguration",
+                                "nullable": true
+                            },
+                            {
+                                "name": "backupCam",
+                                "scalarType": "string",
+                                "val": "backupCam",
+                                "nullable": true
+                            },
+                            {
+                                "name": "blindSpotWarning",
+                                "scalarType": "string",
+                                "val": "blindSpotWarning",
+                                "nullable": true
+                            },
+                            {
+                                "name": "bodyStyle",
+                                "scalarType": "string",
+                                "val": "bodyStyle",
+                                "nullable": true
+                            },
+                            {
+                                "name": "brakeSystem",
+                                "scalarType": "string",
+                                "val": "brakeSystem",
+                                "nullable": true
+                            },
+                            {
+                                "name": "combinedBrakingSystem",
+                                "scalarType": "string",
+                                "val": "combinedBrakingSystem",
+                                "nullable": true
+                            },
+                            {
+                                "name": "crashImminentBraking",
+                                "scalarType": "string",
+                                "val": "crashImminentBraking",
+                                "nullable": true
+                            },
+                            {
+                                "name": "customMotorcycleType",
+                                "scalarType": "string",
+                                "val": "customMotorcycleType",
+                                "nullable": true
+                            },
+                            {
+                                "name": "dynamicBrakeSupport",
+                                "scalarType": "string",
+                                "val": "dynamicBrakeSupport",
+                                "nullable": true
+                            },
+                            {
+                                "name": "edr",
+                                "scalarType": "string",
+                                "val": "edr",
+                                "nullable": true
+                            },
+                            {
+                                "name": "electronicStabilityControl",
+                                "scalarType": "string",
+                                "val": "electronicStabilityControl",
+                                "nullable": true
+                            },
+                            {
+                                "name": "engineModel",
+                                "scalarType": "string",
+                                "val": "engineModel",
+                                "nullable": true
+                            },
+                            {
+                                "name": "forwardCollisionWarning",
+                                "scalarType": "string",
+                                "val": "forwardCollisionWarning",
+                                "nullable": true
+                            },
+                            {
+                                "name": "grossVehicleWeightRating",
+                                "scalarType": "string",
+                                "val": "grossVehicleWeightRating",
+                                "nullable": true
+                            },
+                            {
+                                "name": "isHighTheft",
+                                "scalarType": "boolean",
+                                "val": "isHighTheft",
+                                "nullable": true
+                            },
+                            {
+                                "name": "laneDepartureWarning",
+                                "scalarType": "string",
+                                "val": "laneDepartureWarning",
+                                "nullable": true
+                            },
+                            {
+                                "name": "laneKeepingAssistance",
+                                "scalarType": "string",
+                                "val": "laneKeepingAssistance",
+                                "nullable": true
+                            },
+                            {
+                                "name": "make",
+                                "scalarType": "string",
+                                "val": "make",
+                                "nullable": true
+                            },
+                            {
+                                "name": "miles",
+                                "scalarType": "integer",
+                                "val": "miles",
+                                "nullable": true
+                            },
+                            {
+                                "name": "milesDrivenAnnually",
+                                "scalarType": "integer",
+                                "val": "milesDrivenAnnually",
+                                "nullable": true
+                            },
+                            {
+                                "name": "model",
+                                "scalarType": "string",
+                                "val": "model",
+                                "nullable": true
+                            },
+                            {
+                                "name": "modelYear",
+                                "scalarType": "string",
+                                "val": "modelYear",
+                                "nullable": true
+                            },
+                            {
+                                "name": "netPremium",
+                                "scalarType": "decimal",
+                                "val": "netPremium",
+                                "nullable": true
+                            },
+                            {
+                                "name": "parkAssist",
+                                "scalarType": "string",
+                                "val": "parkAssist",
+                                "nullable": true
+                            },
+                            {
+                                "name": "pedestrianAutoBrake",
+                                "scalarType": "string",
+                                "val": "pedestrianAutoBrake",
+                                "nullable": true
+                            },
+                            {
+                                "name": "primaryDriverName",
+                                "scalarType": "string",
+                                "val": "primaryDriverName",
+                                "nullable": true
+                            },
+                            {
+                                "name": "rearCrossTrafficAlert",
+                                "scalarType": "string",
+                                "val": "rearCrossTrafficAlert",
+                                "nullable": true
+                            },
+                            {
+                                "name": "rearVisibilityCamera",
+                                "scalarType": "string",
+                                "val": "rearVisibilityCamera",
+                                "nullable": true
+                            },
+                            {
+                                "name": "salvageTitleIssued",
+                                "scalarType": "boolean",
+                                "val": "salvageTitleIssued",
+                                "nullable": true
+                            },
+                            {
+                                "name": "series",
+                                "scalarType": "string",
+                                "val": "series",
+                                "nullable": true
+                            },
+                            {
+                                "name": "tractionControl",
+                                "scalarType": "string",
+                                "val": "tractionControl",
+                                "nullable": true
+                            },
+                            {
+                                "name": "transmission",
+                                "scalarType": "string",
+                                "val": "transmission",
+                                "nullable": true
+                            },
+                            {
+                                "name": "trim",
+                                "scalarType": "string",
+                                "val": "trim",
+                                "nullable": true
+                            },
+                            {
+                                "name": "type",
+                                "scalarType": "string",
+                                "val": "type",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "payload/vehicles/antiTheftDevice",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "AntiTheftDevice",
+                        "columns": [
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "category",
+                                "scalarType": "string",
+                                "val": "category",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "payload/vehicles/coverages",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "Coverages",
+                        "columns": [
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "part",
+                                "scalarType": "string",
+                                "val": "part",
+                                "nullable": true
+                            },
+                            {
+                                "name": "baseRate",
+                                "scalarType": "decimal",
+                                "val": "baseRate",
+                                "nullable": true
+                            },
+                            {
+                                "name": "premium",
+                                "scalarType": "decimal",
+                                "val": "premium",
+                                "nullable": true
+                            },
+                            {
+                                "name": "compulsary",
+                                "scalarType": "boolean",
+                                "val": "compulsary",
+                                "nullable": true
+                            },
+                            {
+                                "name": "ineligible",
+                                "scalarType": "boolean",
+                                "val": "ineligible",
+                                "nullable": true
+                            },
+                            {
+                                "name": "surchargeTotal",
+                                "scalarType": "decimal",
+                                "val": "surchargeTotal",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "payload/vehicles/coverages/discount",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "Discounts",
+                        "columns": [
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "category",
+                                "scalarType": "string",
+                                "val": "category",
+                                "nullable": true
+                            },
+                            {
+                                "name": "value",
+                                "scalarType": "decimal",
+                                "val": "value",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "payload/vehicles/coverages/surcharge",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "Surcharges",
+                        "columns": [
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "description",
+                                "scalarType": "string",
+                                "val": "description",
+                                "nullable": true
+                            },
+                            {
+                                "name": "value",
+                                "scalarType": "decimal",
+                                "val": "value",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "corticon/messages/message",
+                "rows": [
+                    {
+                        "schemaName": "corticon",
+                        "viewName": "Messages",
+                        "columns": [
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "fn:root(.)/payload[1]/applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "severity",
+                                "scalarType": "string",
+                                "val": "severity",
+                                "nullable": true
+                            },
+                            {
+                                "name": "text",
+                                "scalarType": "string",
+                                "val": "text",
+                                "nullable": true
+                            },
+                            {
+                                "name": "ruleSheet",
+                                "scalarType": "string",
+                                "val": "ruleSheet",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "context": "corticon/Metrics/attributeChanges",
+                "rows": [
+                    {
+                        "schemaName": "policy",
+                        "viewName": "AttributeChanges",
+                        "columns": [
+                            {
+                                "name": "uri",
+                                "scalarType": "string",
+                                "val": "xdmp:node-uri(.)"
+                            },
+                            {
+                                "name": "applicationId",
+                                "scalarType": "string",
+                                "val": "fn:root(.)/payload/applicationId",
+                                "nullable": true
+                            },
+                            {
+                                "name": "rulesheetName",
+                                "scalarType": "string",
+                                "val": "rulesheetName",
+                                "nullable": true
+                            },
+                            {
+                                "name": "ruleNumber",
+                                "scalarType": "string",
+                                "val": "ruleNumber",
+                                "nullable": true
+                            },
+                            {
+                                "name": "entityName",
+                                "scalarType": "string",
+                                "val": "entityName",
+                                "nullable": true
+                            },
+                            {
+                                "name": "attributeName",
+                                "scalarType": "string",
+                                "val": "attributeName",
+                                "nullable": true
+                            },
+                            {
+                                "name": "afterValue",
+                                "scalarType": "string",
+                                "val": "string(afterValue)",
+                                "nullable": true
+                            },
+                            {
+                                "name": "sequence",
+                                "scalarType": "integer",
+                                "val": "sequence",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
