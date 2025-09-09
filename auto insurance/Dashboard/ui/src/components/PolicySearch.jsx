@@ -1,18 +1,35 @@
+// ui/src/components/PolicySearch.jsx
 import { useState } from 'react';
 import { getPolicy, searchPolicies } from '../api/marklogicService';
+
 export default function PolicySearch() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [selectedPolicy, setSelectedPolicy] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleSearch = async () => {
-    const data = await searchPolicies(query);
-    setResults(data.results);
+    try {
+      setError(null);
+      const data = await searchPolicies(query); // pass query string
+      setResults(data.results || []); // ensure fallback
+    } catch (err) {
+      console.error("Search failed:", err);
+      setError(err.message || "Search failed");
+      setResults([]);
+    }
   };
 
   const handleSelect = async (applicationId) => {
-    const policy = await getPolicy(applicationId);
-    setSelectedPolicy(policy);
+    try {
+      setError(null);
+      const policy = await getPolicy(applicationId);
+      setSelectedPolicy(policy);
+    } catch (err) {
+      console.error("Failed to fetch policy:", err);
+      setError(err.message || "Failed to fetch policy");
+      setSelectedPolicy(null);
+    }
   };
 
   return (
@@ -25,16 +42,25 @@ export default function PolicySearch() {
       />
       <button onClick={handleSearch}>Search</button>
 
-      <ul>
-        {results.map((r) => (
-          <li key={r.payload.applicationId}>
-            {r.payload.familyName} — {r.payload.applicationId}
-            <button onClick={() => handleSelect(r.payload.applicationId)}>
-              View
-            </button>
-          </li>
-        ))}
-      </ul>
+      {error && <div style={{ color: 'red' }}>{error}</div>}
+
+<ul>
+  {results.map((r, docIndex) => 
+    r.payload.map((p, payloadIndex) => {
+      const applicationId = p.applicationId;
+      const familyName = p.familyName || "Unknown";
+      const key = `${r.inputPayloadUri}-${payloadIndex}`; // unique key for React
+      return (
+        <li key={key}>
+          {familyName} — {applicationId}
+          <button onClick={() => handleSelect(applicationId)}>View</button>
+        </li>
+      );
+    })
+  )}
+</ul>
+
+
       {selectedPolicy && (
         <pre style={{ whiteSpace: 'pre-wrap' }}>
           {JSON.stringify(selectedPolicy, null, 2)}

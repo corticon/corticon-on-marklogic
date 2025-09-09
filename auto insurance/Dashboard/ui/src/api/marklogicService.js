@@ -5,14 +5,12 @@ const ML_HOST = import.meta.env.VITE_ML_HOST || "localhost";
 const ML_PORT = import.meta.env.VITE_ML_PORT || "4004"; // middle tier port
 const ML_PROXY_BASE = `http://${ML_HOST}:${ML_PORT}/v1`;
 
-// Options resource name
+// Ensure declared const; use env or default
 const OPTIONS_NAME = import.meta.env.VITE_ML_OPTIONS || "corticonml-options";
-
-// Convenience base URL for resource calls
-const RESOURCE_BASE = `${ML_PROXY_BASE}/resources/${OPTIONS_NAME}`;
 
 /**
  * Fetch a single document by URI
+ * @param {string} uri - e.g. "/data/policy-input/01K4AYBA202YG995ETCDXZV62D.json"
  */
 export async function getDocument(uri) {
   try {
@@ -29,24 +27,32 @@ export async function getDocument(uri) {
   }
 }
 
-// Search policies using the REST resource
-export async function searchPolicies(q) {
-  const url = `${RESOURCE_BASE}?rs:action=searchPolicies&rs:q=${encodeURIComponent(q)}`;
+/**
+ * Search policies with structured constraints
+ * @param {Object} constraints - e.g. { state: "Virginia", hasHomePolicy: true, paymentPlan: "Semi-Annual" }
+ */
+export async function searchPolicies(qText) {
+  if (!qText) {
+    throw new Error("searchPolicies requires a query string");
+  }
+
+  const url = `${ML_PROXY_BASE}/resources/${OPTIONS_NAME}?rs:action=searchPolicies&rs:q=${encodeURIComponent(qText)}`;  
   const resp = await fetch(url);
   if (!resp.ok) throw new Error(`Failed to search policies`);
-  return resp.json(); // { results: [...], count: n }
-}
-
-// Fetch a policy by applicationId
-export async function getPolicy(applicationId) {
-  const url = `${RESOURCE_BASE}?rs:action=getPolicy&rs:applicationId=${applicationId}`;
-  const resp = await fetch(url);
-  if (!resp.ok) throw new Error(`Failed to fetch policy ${applicationId}`);
+  
   return resp.json();
 }
 
+
+
+
+
 /**
- * General document search
+ * Search documents with a MarkLogic query.
+ * queryBody example:
+ * { qtext: "virginia" }
+ * { query: { queries: [{ "range-constraint-query": { "constraint-name":"state","value":["Virginia"] } }] } }
+ * options: { format?: "json"|"xml", pageLength?: number, start?: number }
  */
 export async function searchDocuments(queryBody, options = {}) {
   try {
@@ -65,6 +71,7 @@ export async function searchDocuments(queryBody, options = {}) {
     });
 
     if (!response.ok) {
+      // Try to parse the error response from MarkLogic
       const errorData = await response.json().catch(() => null);
       if (errorData && errorData.errorResponse) {
         const { status, message } = errorData.errorResponse;
@@ -78,29 +85,38 @@ export async function searchDocuments(queryBody, options = {}) {
     throw err;
   }
 }
+export async function getPolicy(applicationId) {
+  const url = `${ML_PROXY_BASE}/resources/${OPTIONS_NAME}?rs:action=getPolicy&rs:applicationId=${encodeURIComponent(applicationId)}`;
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`Failed to fetch policy ${applicationId}`);
+  return resp.json();
+}
+
+
 
 /**
- * Convenience qtext search
+ * Convenience: qtext-only search
  */
 export async function searchByQtext(qtext, options = {}) {
   return searchDocuments({ qtext: qtext || "" }, options);
 }
 
 /**
- * Convenience search by applicationId
+ * Convenience: search by policy ID
  */
-export async function searchByApplicationId(applicationId, options = {}) {
+export async function searchByApplicationId (applicationId, options = {}) {
   const query = {
-    query: {
-      queries: [
+    "query": {
+      "queries": [
         {
           "value-query": {
             "json-property": "applicationId",
-            text: [applicationId]
+            "text": [applicationId] 
           }
         }
       ]
     }
   };
+  // Pass the 'query' object directly
   return searchDocuments(query, options);
 }
