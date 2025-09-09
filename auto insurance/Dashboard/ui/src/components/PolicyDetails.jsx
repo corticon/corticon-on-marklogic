@@ -1,5 +1,13 @@
-// components/PolicyDetails.jsx
-import React from "react";
+// ui/src/components/PolicyDetails.jsx
+import React from 'react';
+import VehicleDetails from './VehicleDetails';
+import DriverDetails from './DriverDetails';
+
+const YesNo = ({ value }) => (
+  <span className={value ? 'text-success' : 'text-danger'}>
+    {value ? 'Yes' : 'No'}
+  </span>
+);
 
 export default function PolicyDetails({ policy }) {
   if (!policy) return null;
@@ -7,75 +15,60 @@ export default function PolicyDetails({ policy }) {
   const {
     applicationId,
     familyName,
-    addressLine1,
-    city,
+    customerSince,
+    paymentPlan,
     state,
-    postalCode,
     vehicles = [],
     drivers = [],
-    discounts = [],
-    surcharges = [],
-    premium
-  } = policy;
-
-  const name = familyName || policy?.insured?.familyName || "—";
-  const address = [addressLine1, city, state, postalCode].filter(Boolean).join(", ") || "—";
+    discount = [],
+    netPremium,
+  } = policy.payload[0];
 
   return (
-    <div className="mt-6">
-      <calcite-panel heading={`Policy /data/policy-input/${applicationId}.json`}>
-        <calcite-block heading="Insured" collapsible open>
-          <div><strong>Name:</strong> {name}</div>
-          <div><strong>Address:</strong> {address}</div>
-          <div><strong>Customer Since:</strong> {policy.customerSince || "—"}</div>
-          <div><strong>Payment Plan:</strong> {policy.paymentPlan || "—"}</div>
-          <div><strong>Paperless:</strong> {policy.isPaperless ? "Yes" : "No"}</div>
-          <div><strong>Home Policy:</strong> {policy.hasHomePolicy ? "Yes" : "No"}</div>
-        </calcite-block>
-
-        <calcite-block heading={`Vehicles (${vehicles.length})`} collapsible>
-          {vehicles.map((v, i) => {
-            const title = [v.make, v.model].filter(Boolean).join(" ") || "Vehicle";
-            const subtitle = [v.year, v.trim].filter(Boolean).join(" • ");
-            return (
-              <calcite-card key={i}>
-                <span slot="title">{title}</span>
-                <span slot="subtitle">{subtitle || "—"}</span>
-              </calcite-card>
-            );
-          })}
-        </calcite-block>
-
-        <calcite-block heading={`Drivers (${drivers.length})`} collapsible>
-          {drivers.map((d, i) => {
-            const title = [d.givenName, d.familyName].filter(Boolean).join(" ").trim() || "Driver";
-            const subtitle = [d.licenseNumber, d.birthDate].filter(Boolean).join(" • ");
-            return (
-              <calcite-card key={i}>
-                <span slot="title">{title}</span>
-                <span slot="subtitle">{subtitle}</span>
-              </calcite-card>
-            );
-          })}
-        </calcite-block>
-
-        <div style={{ display: "grid", gap: "0.75rem", marginTop: "0.75rem" }}>
-          <calcite-block heading={`Discounts (${discounts.length || 0})`} collapsible>
-            {(!discounts || discounts.length === 0) ? "None." :
-              discounts.map((d, i) => <div key={i}>{d.name || d.type} — {d.amount ?? d.percent ?? ""}</div>)
-            }
-          </calcite-block>
-          <calcite-block heading={`Surcharges (${surcharges.length || 0})`} collapsible>
-            {(!surcharges || surcharges.length === 0) ? "None." :
-              surcharges.map((s, i) => <div key={i}>{s.name || s.type} — {s.amount ?? s.percent ?? ""}</div>)
-            }
-          </calcite-block>
+    <div className="policy-details-container">
+      <div className="policy-header">
+        <div>
+          <h2>Policy Details: <a href={`/policy/${applicationId}`}>{applicationId}</a></h2>
+          <h3>{familyName} Family • {state}</h3>
         </div>
+        <div className="net-premium-display">
+          <span>Net Premium</span>
+          <p>${netPremium ? netPremium.toLocaleString() : '—'}</p>
+        </div>
+      </div>
 
-        <calcite-block heading="Premium" collapsible>
-          {premium != null ? `$${Number(premium).toLocaleString()}` : "—"}
-        </calcite-block>
-      </calcite-panel>
+      <div className="details-section">
+        <h4>Policy Summary</h4>
+        <div className="details-grid policy-summary">
+          <div><strong>Customer Since:</strong> {customerSince}</div>
+          <div><strong>Payment Plan:</strong> {paymentPlan}</div>
+          <div><strong>Multi-Car Policy:</strong> <YesNo value={policy.payload[0].isMultiCar} /></div>
+          <div><strong>Home Policy Bundle:</strong> <YesNo value={policy.payload[0].hasHomePolicy} /></div>
+          <div><strong>Paperless Billing:</strong> <YesNo value={policy.payload[0].isPaperless} /></div>
+          <div>
+            <strong>Policy Discounts:</strong>
+            {discount.map(d => `${d.category} (${d.value * 100}%)`).join(', ')}
+          </div>
+        </div>
+      </div>
+
+      <div className="details-section">
+        <h4>Drivers ({drivers.length})</h4>
+        <div className="accordion">
+          {drivers.map((driver, i) => (
+            <DriverDetails key={i} driver={driver} />
+          ))}
+        </div>
+      </div>
+
+      <div className="details-section">
+        <h4>Vehicles ({vehicles.length})</h4>
+        <div className="accordion">
+          {vehicles.map((vehicle, i) => (
+            <VehicleDetails key={i} vehicle={vehicle} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

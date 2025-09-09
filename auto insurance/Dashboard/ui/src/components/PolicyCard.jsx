@@ -1,14 +1,9 @@
 // PolicyCard.jsx
 export default function PolicyCard({ result, onSelect }) {
-  const title = result?.uri?.split("/").pop() || "Untitled";
-  const snippet =
-    Array.isArray(result?.matches)
-      ? result.matches
-          .flatMap(m => m["match-text"] || [])
-          .map(t => (typeof t === "string" ? t : t.highlight))
-          .filter(Boolean)
-          .join(" … ")
-      : (result?.content?.payload?.familyName || result?.content?.payload?.state || "");
+  // 'result' is now the policy object from the payload array
+  const title = result?.familyName ? `${result.familyName} Family` : result?.applicationId || "Untitled";
+  const snippet = `ID: ${result?.applicationId || "—"} • State: ${result?.state || "—"}`;
+
   return (
     <div className="border rounded-lg p-3 shadow hover:shadow-md cursor-pointer transition"
          onClick={() => onSelect?.(result)}>

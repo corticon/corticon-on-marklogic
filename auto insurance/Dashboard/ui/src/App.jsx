@@ -24,20 +24,22 @@ export default function App() {
       setLoading(false);
     }
   }
-
   return (
     <ErrorBoundary>
-      <div className="p-6 space-y-6">
-        <h2 className="font-bold mb-2">Policy Search</h2>
-        <PolicySearch
-          initialId="01K4AY3ZXF0YGJFFJ840DXNRB9"
-          onSearch={fetchPolicy}
-        />
-
-        {loading && <div className="text-gray-500">Loading…</div>}
-        {error && <div className="text-red-600">{error}</div>}
-
-        {policy && <PolicyDetails policy={policy} />}
+      <div className="container">
+        <div className="search-controls">
+          <h2 className="font-bold mb-2">Policy Search</h2>
+          <PolicySearch onSearch={fetchPolicy} />
+        </div>
+        <div className="results">
+          {loading && <div className="text-gray-500">Loading…</div>}
+          {error && <div className="text-red-600">{error}</div>}
+          {policy ? (
+            <PolicyDetails policy={policy} />
+          ) : (
+            <div className="placeholder">Search for a policy to see the details.</div>
+          )}
+        </div>
       </div>
     </ErrorBoundary>
   );
