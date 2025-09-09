@@ -1,24 +1,21 @@
 import { useState } from "react";
 import PolicyDetails from "./PolicyDetails";
-// Import the renamed function
 import { searchByApplicationId } from "../api/marklogicService";
 
 export default function SearchWidget() {
-  // Rename state variable for clarity
   const [applicationId, setApplicationId] = useState("");
   const [policy, setPolicy] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const runSearch = async () => {
-    if (!applicationId) {
+    if (!applicationId.trim()) {
       setError("Please enter an Application ID.");
       return;
     }
     try {
       setLoading(true);
       setError(null);
-      // Call the correct function with the correct variable
       const data = await searchByApplicationId(applicationId);
       if (data?.results?.length > 0) {
         setPolicy(data.results[0]);
@@ -34,6 +31,13 @@ export default function SearchWidget() {
     }
   };
 
+  // Allow search on Enter key press
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      runSearch();
+    }
+  };
+
   return (
     <div className="p-6">
       <div className="space-y-6">
@@ -44,10 +48,16 @@ export default function SearchWidget() {
             className="border rounded px-2 py-1 flex-1"
             value={applicationId}
             onChange={(e) => setApplicationId(e.target.value)}
+            onKeyPress={handleKeyPress} // Added for Enter key search
             placeholder="Enter Application ID..."
+            disabled={loading} // Disable input while loading
           />
-          <button onClick={runSearch} className="bg-blue-500 text-white px-4 py-1 rounded">
-            Search
+          <button
+            onClick={runSearch}
+            className="bg-blue-500 text-white px-4 py-1 rounded disabled:bg-gray-400"
+            disabled={loading} // Disable button while loading
+          >
+            {loading ? 'Searching...' : 'Search'}
           </button>
         </div>
       </div>

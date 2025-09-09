@@ -42,7 +42,6 @@ export async function searchDocuments(queryBody, options = {}) {
       start: String(options.start || 1)
     });
 
-    // Always include the named options so constraints/facets match server config
     const url = `${ML_PROXY_BASE}/search?${params.toString()}&options=${encodeURIComponent(OPTIONS_NAME)}`;
 
     const response = await fetch(url, {
@@ -52,6 +51,12 @@ export async function searchDocuments(queryBody, options = {}) {
     });
 
     if (!response.ok) {
+      // Try to parse the error response from MarkLogic
+      const errorData = await response.json().catch(() => null);
+      if (errorData && errorData.errorResponse) {
+        const { status, message } = errorData.errorResponse;
+        throw new Error(`Search failed: ${status} - ${message}`);
+      }
       throw new Error(`Search failed. HTTP ${response.status}`);
     }
     return await response.json();
@@ -60,6 +65,7 @@ export async function searchDocuments(queryBody, options = {}) {
     throw err;
   }
 }
+
 
 /**
  * Convenience: qtext-only search
