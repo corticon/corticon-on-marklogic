@@ -5,12 +5,14 @@ const ML_HOST = import.meta.env.VITE_ML_HOST || "localhost";
 const ML_PORT = import.meta.env.VITE_ML_PORT || "4004"; // middle tier port
 const ML_PROXY_BASE = `http://${ML_HOST}:${ML_PORT}/v1`;
 
-// Ensure declared const; use env or default
+// Options resource name
 const OPTIONS_NAME = import.meta.env.VITE_ML_OPTIONS || "corticonml-options";
+
+// Convenience base URL for resource calls
+const RESOURCE_BASE = `${ML_PROXY_BASE}/resources/${OPTIONS_NAME}`;
 
 /**
  * Fetch a single document by URI
- * @param {string} uri - e.g. "/data/policy-input/01K4AYBA202YG995ETCDXZV62D.json"
  */
 export async function getDocument(uri) {
   try {
@@ -27,12 +29,24 @@ export async function getDocument(uri) {
   }
 }
 
+// Search policies using the REST resource
+export async function searchPolicies(q) {
+  const url = `${RESOURCE_BASE}?rs:action=searchPolicies&rs:q=${encodeURIComponent(q)}`;
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`Failed to search policies`);
+  return resp.json(); // { results: [...], count: n }
+}
+
+// Fetch a policy by applicationId
+export async function getPolicy(applicationId) {
+  const url = `${RESOURCE_BASE}?rs:action=getPolicy&rs:applicationId=${applicationId}`;
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`Failed to fetch policy ${applicationId}`);
+  return resp.json();
+}
+
 /**
- * Search documents with a MarkLogic query.
- * queryBody example:
- * { qtext: "virginia" }
- * { query: { queries: [{ "range-constraint-query": { "constraint-name":"state","value":["Virginia"] } }] } }
- * options: { format?: "json"|"xml", pageLength?: number, start?: number }
+ * General document search
  */
 export async function searchDocuments(queryBody, options = {}) {
   try {
@@ -51,7 +65,6 @@ export async function searchDocuments(queryBody, options = {}) {
     });
 
     if (!response.ok) {
-      // Try to parse the error response from MarkLogic
       const errorData = await response.json().catch(() => null);
       if (errorData && errorData.errorResponse) {
         const { status, message } = errorData.errorResponse;
@@ -66,30 +79,28 @@ export async function searchDocuments(queryBody, options = {}) {
   }
 }
 
-
 /**
- * Convenience: qtext-only search
+ * Convenience qtext search
  */
 export async function searchByQtext(qtext, options = {}) {
   return searchDocuments({ qtext: qtext || "" }, options);
 }
 
 /**
- * Convenience: search by policy ID
+ * Convenience search by applicationId
  */
-export async function searchByApplicationId (applicationId, options = {}) {
+export async function searchByApplicationId(applicationId, options = {}) {
   const query = {
-    "query": {
-      "queries": [
+    query: {
+      queries: [
         {
           "value-query": {
             "json-property": "applicationId",
-            "text": [applicationId] 
+            text: [applicationId]
           }
         }
       ]
     }
   };
-  // Pass the 'query' object directly
   return searchDocuments(query, options);
 }
