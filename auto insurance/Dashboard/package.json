@@ -1,7 +1,7 @@
 {
   "name": "insurance-chatbot",
   "version": "1.0.0",
-    "type": "module",
+  "type": "module",
   "description": "Backend server for the insurance chatbot",
   "main": "src/server.js",
   "scripts": {
@@ -13,9 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "http-proxy-middleware": "^3.0.0",
+    "dotenv": "17.2.2",
+    "express": "5.1.0",
+    "http-proxy-middleware": "^3.0.5",
     "morgan": "^1.10.1"
   }
 }

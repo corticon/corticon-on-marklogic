@@ -4,6 +4,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import PolicySearch from "./components/PolicySearch";
 import PolicyDetails from "./components/PolicyDetails";
 import { getPolicy } from "./api/marklogicService";
+import "./App.css";
 
 export default function App() {
   const [policy, setPolicy] = useState(null);

@@ -30,7 +30,7 @@ export default function PolicySearch({ onSearch }) {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search by name or ID"
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} className="btn-primary">Search</button>
       </div>
 
       {error && <div style={{ color: 'red' }}>{error}</div>}
