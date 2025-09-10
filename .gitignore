@@ -16,3 +16,5 @@
 # Ignore operating system files
 .DS_Store
 Thumbs.db
+
+sync.ffs_db
