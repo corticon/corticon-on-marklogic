@@ -5,6 +5,7 @@ import VehiclesTable from './VehiclesTable';
 import DecisionLog from './DecisionLog';
 import ExecutionTrace from './ExecutionTrace';
 import AccordionItem from './AccordionItem';
+import PolicyNetworkGraph from './PolicyNetworkGraph';
 
 const YesNo = ({ value }) => (
   <span className={value ? 'text-success' : 'text-danger'}>
@@ -74,6 +75,10 @@ export default function PolicyDetails({ policy }) {
 
           <AccordionItem title={`Vehicles (${vehicles.length})`}>
             <VehiclesTable vehicles={vehicles} />
+          </AccordionItem>
+
+          <AccordionItem title="Policy Network Graph">
+            <PolicyNetworkGraph policy={policy} />
           </AccordionItem>
         </div>
       )}

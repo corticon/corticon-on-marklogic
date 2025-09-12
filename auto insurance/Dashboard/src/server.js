@@ -1,5 +1,6 @@
+// src/server.js
 import express from "express";
-import fetch from "node-fetch";
+import DigestClient from "digest-fetch";
 import dotenv from "dotenv";
 import path from "path";
 
@@ -15,8 +16,6 @@ const ML_PASS = process.env.ML_PASS || "password";
 const MIDDLE_TIER_PORT = process.env.ML_MIDDLE_TIER_PORT || 4004;
 const UI_ORIGIN = process.env.UI_ORIGIN || "http://localhost:5173";
 
-const basicAuth = "Basic " + Buffer.from(`${ML_USER}:${ML_PASS}`).toString("base64");
-
 // --- CORS ---
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", UI_ORIGIN);
@@ -28,35 +27,35 @@ app.use((req, res, next) => {
 });
 
 // --- Proxy route ---
-app.all("/v1/*", async (req, res) => {
+app.all("/v1/{*splat}", async (req, res) => {
   const url = `http://${ML_HOST}:${ML_PORT}${req.originalUrl}`;
-
+  
+  const client = new DigestClient(ML_USER, ML_PASS);
+  
   const options = {
     method: req.method,
     headers: {
-      "Authorization": basicAuth,
       "Content-Type": req.headers['content-type'] || "application/json"
     },
-body: (req.method !== "GET")
-  ? JSON.stringify(req.body || {})
-  : undefined
+    body: (req.method !== "GET")
+      ? JSON.stringify(req.body || {})
+      : undefined
   };
 
-try {
-  const response = await fetch(url, options);
-  const data = await response.text();
-  console.log(`[Proxy] ${req.method} ${url} => ${response.status}`);
-  res.status(response.status).send(data);
-} catch (err) {
-  console.error("[Proxy Error]", err);
-  res.status(500).send({ error: err.message });
-}
-
+  try {
+    const response = await client.fetch(url, options);
+    const data = await response.text();
+    console.log(`[Proxy] ${req.method} ${url} => ${response.status}`);
+    res.status(response.status).send(data);
+  } catch (err) {
+    console.error("[Proxy Error]", err);
+    res.status(500).send({ error: err.message });
+  }
 });
 
 // --- Health endpoint ---
 app.get("/health", (req, res) => res.json({ ok: true }));
 
 app.listen(MIDDLE_TIER_PORT, () => {
-  console.log(`Proxy running at http://localhost:${MIDDLE_TIER_PORT} → ${ML_HOST}:${ML_PORT}`);
+  console.log(`Proxy running at http://localhost:${MIDDLE_TIER_PORT} -> ${ML_HOST}:${ML_PORT}`);
 });

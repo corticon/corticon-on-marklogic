@@ -98,7 +98,19 @@ export async function getPolicy(applicationId) {
  * Convenience: qtext-only search
  */
 export async function searchByQtext(qtext, options = {}) {
-  return searchDocuments({ qtext: qtext || "" }, options);
+  const queryBody = {
+    "search": {
+      "query": {
+        "qtext": qtext || ""
+      },
+      "options": {
+        "extract-document-data": {
+          "extract-path": "."
+        }
+      }
+    }
+  };
+  return searchDocuments(queryBody, options);
 }
 
 /**

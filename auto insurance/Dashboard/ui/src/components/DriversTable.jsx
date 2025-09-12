@@ -23,7 +23,7 @@ export default function DriversTable({ drivers }) {
             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{driver.first} {driver.last}</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">{driver.age}</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">{driver.yearLicensed}</td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">{driver.incidents.length}</td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">{driver.incidents ? driver.incidents.length : 0}</td>
             <td className="px-6 py-4 text-sm text-gray-500">
               <ul className="list-disc list-inside">
                 {driver.discount?.map(d => <li key={d.category}>{d.category}</li>)}
