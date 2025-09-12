@@ -1,7 +1,8 @@
+// ui/src/components/PoliciesByState.jsx
 
 import React, { useState, useEffect } from 'react';
 import { GeoMap } from 'ml-fasttrack';
-import { searchByQtext } from '../api/marklogicService';
+import { searchPolicies } from '../api/marklogicService'; // Corrected import
 
 const stateCoordinates = {
   "AL": { "latitude": 32.806671, "longitude": -86.791130 },
@@ -80,7 +81,9 @@ const PoliciesByState = () => {
       setLoading(true);
       setError(null);
       try {
-        const data = await searchByQtext('');
+        // Call the correct search function for the custom endpoint
+        const data = await searchPolicies(''); 
+        // The data returned from searchPolicies is already the list of policies
         setPolicies(data.results || []);
       } catch (err) {
         setError(err.message || 'Failed to fetch policies');
@@ -92,13 +95,13 @@ const PoliciesByState = () => {
   }, []);
 
   const transformMarkers = (policies) => {
-    const policiesByState = policies.reduce((acc, policy) => {
-      if (policy.extracted && policy.extracted.content && policy.extracted.content[0]) {
-        const doc = policy.extracted.content[0];
+    if (!policies) return [];
+
+    const policiesByState = policies.reduce((acc, doc) => {
+        // The policy data is the first item in the payload array
         if (doc.payload && doc.payload[0] && doc.payload[0].state) {
           const fullStateName = doc.payload[0].state;
           const stateAbbr = stateNameToAbbr[fullStateName];
-
           if (stateAbbr) {
             if (!acc[stateAbbr]) {
               acc[stateAbbr] = { count: 0, state: stateAbbr };
@@ -106,7 +109,6 @@ const PoliciesByState = () => {
             acc[stateAbbr].count++;
           }
         }
-      }
       return acc;
     }, {});
 

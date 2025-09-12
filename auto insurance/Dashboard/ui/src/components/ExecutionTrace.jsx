@@ -1,5 +1,69 @@
 // ui/src/components/ExecutionTrace.jsx
 import React from 'react';
+import { DataGrid } from 'ml-fasttrack';
+
+// Helper function to extract the rulesheet name from the file path
+const getRulesheetNameFromPath = (fullPath) => {
+  if (typeof fullPath !== 'string') return '';
+  const parts = fullPath.split('/');
+  const filenameWithExt = parts[parts.length - 1];
+  if (!filenameWithExt) return '';
+  const filenameParts = filenameWithExt.split('.');
+  return filenameParts[0];
+};
+
+// Define columns for each type of change
+const attributeColumns = [
+  { 
+    field: 'rulesheetName', 
+    title: 'Rulesheet', 
+    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
+  },
+  { field: 'ruleNumber', title: 'Rule #' },
+  { field: 'entityCorticonId', title: 'Entity ID' },
+  { field: 'entityName', title: 'Entity Name' },
+  { field: 'attributeName', title: 'Attribute Name' },
+  { 
+    field: 'beforeValue', 
+    title: 'Before Value', 
+    cell: (props) => <td className="break-all"><pre>{JSON.stringify(props.value, null, 2)}</pre></td> 
+  },
+  { 
+    field: 'afterValue', 
+    title: 'After Value', 
+    cell: (props) => <td className="break-all"><pre>{JSON.stringify(props.value, null, 2)}</pre></td> 
+  },
+  { field: 'sequence', title: 'Sequence' },
+];
+
+const associationColumns = [
+  { 
+    field: 'rulesheetName', 
+    title: 'Rulesheet', 
+    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
+  },
+  { field: 'ruleNumber', title: 'Rule #' },
+  { field: 'sourceEntityCorticonId', title: 'Source Entity ID' },
+  { field: 'sourceEntityName', title: 'Source Entity Name' },
+  { field: 'associationRoleName', title: 'Association' },
+  { field: 'targetEntityCorticonId', title: 'Target Entity ID' },
+  { field: 'targetEntityName', title: 'Target Entity Name' },
+  { field: 'action', title: 'Action' },
+  { field: 'sequence', title: 'Sequence' },
+];
+
+const entityColumns = [
+  { 
+    field: 'rulesheetName', 
+    title: 'Rulesheet', 
+    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
+  },
+  { field: 'ruleNumber', title: 'Rule #' },
+  { field: 'entityCorticonId', title: 'Entity ID' },
+  { field: 'entityName', title: 'Entity Name' },
+  { field: 'action', title: 'Action' },
+  { field: 'sequence', title: 'Sequence' },
+];
 
 export default function ExecutionTrace({ metrics }) {
   if (!metrics) {
@@ -12,92 +76,21 @@ export default function ExecutionTrace({ metrics }) {
     <div>
       <h4>Attribute Changes</h4>
       {attributeChanges && attributeChanges.length > 0 ? (
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sequence</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rulesheet</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rule</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Entity</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Attribute</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Before</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">After</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {attributeChanges.map((change, index) => (
-              <tr key={index}>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.sequence}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.rulesheetName}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.ruleNumber}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.entityName} ({change.entityCorticonId})</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.attributeName}</td>
-                <td className="px-6 py-4 text-sm text-gray-500 break-all"><pre>{JSON.stringify(change.beforeValue, null, 2)}</pre></td>
-                <td className="px-6 py-4 text-sm text-gray-500 break-all"><pre>{JSON.stringify(change.afterValue, null, 2)}</pre></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <DataGrid data={attributeChanges} columns={attributeColumns} />
       ) : (
         <p>No attribute changes.</p>
       )}
 
       <h4 className="mt-8">Association Changes</h4>
       {associationChanges && associationChanges.length > 0 ? (
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sequence</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rulesheet</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rule</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Source Entity</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Association</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target Entity</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {associationChanges.map((change, index) => (
-              <tr key={index}>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.sequence}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.rulesheetName}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.ruleNumber}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.sourceEntityName} ({change.sourceEntityCorticonId})</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.associationRoleName}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.targetEntityName} ({change.targetEntityCorticonId})</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.action}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <DataGrid data={associationChanges} columns={associationColumns} />
       ) : (
         <p>No association changes.</p>
       )}
 
       <h4 className="mt-8">Entity Changes</h4>
       {entityChanges && entityChanges.length > 0 ? (
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sequence</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rulesheet</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rule</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Entity</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {entityChanges.map((change, index) => (
-              <tr key={index}>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.sequence}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.rulesheetName}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.ruleNumber}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.entityName} ({change.entityCorticonId})</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{change.action}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <DataGrid data={entityChanges} columns={entityColumns} />
       ) : (
         <p>No entity changes.</p>
       )}

@@ -1,7 +1,7 @@
 // ui/src/components/PolicySearch.jsx
 import { useState } from 'react';
 import PolicyCard from './PolicyCard';
-import { searchPolicies } from '../api/marklogicService';
+import { searchPoliciesByQtext } from '../api/marklogicService'; // Changed import
 
 export default function PolicySearch({ onSearch }) {
   const [query, setQuery] = useState('01K4AYBA809PTDRW505S07R1HW');
@@ -11,10 +11,10 @@ export default function PolicySearch({ onSearch }) {
   const handleSearch = async () => {
     try {
       setError(null);
-      const data = await searchPolicies(query);
+      const data = await searchPoliciesByQtext(query); // Changed function call
       // The API returns an object with a 'results' key
       setResults(data.results || []);
-    } catch (err) { // <-- The opening curly brace was missing here
+    } catch (err) {
       console.error("Search failed:", err);
       setError(err.message || "Search failed");
       setResults([]);

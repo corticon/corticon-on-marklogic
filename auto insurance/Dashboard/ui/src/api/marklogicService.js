@@ -28,24 +28,59 @@ export async function getDocument(uri) {
 }
 
 /**
- * Search policies with structured constraints
- * @param {Object} constraints - e.g. { state: "Virginia", hasHomePolicy: true, paymentPlan: "Semi-Annual" }
+ * Search all policies for the map widget.
+ * @param {string} qtext - A full-text query string.
  */
-export async function searchPolicies(qText) {
-  if (!qText) {
-    throw new Error("searchPolicies requires a query string");
+export async function searchPolicies(qtext) {
+  if (typeof qtext !== 'string') {
+    throw new Error('searchPolicies requires a string query argument.');
   }
 
-  const url = `${ML_PROXY_BASE}/resources/${OPTIONS_NAME}?rs:action=searchPolicies&rs:q=${encodeURIComponent(qText)}`;  
-  const resp = await fetch(url);
-  if (!resp.ok) throw new Error(`Failed to search policies`);
+  // Use the custom MarkLogic endpoint to handle the search
+  const url = `${ML_PROXY_BASE}/resources/${OPTIONS_NAME}?rs:action=searchPolicies&rs:q=${encodeURIComponent(qtext)}`;  
   
-  return resp.json();
+  try {
+    const resp = await fetch(url);
+    if (!resp.ok) {
+      const errorData = await resp.json().catch(() => null);
+      if (errorData && errorData.error) {
+        throw new Error(`Custom search failed: ${errorData.error}`);
+      }
+      throw new Error(`Custom search failed. HTTP ${resp.status}`);
+    }
+    return resp.json();
+  } catch (err) {
+    console.error("[searchPolicies] Error:", err);
+    throw err;
+  }
 }
 
+/**
+ * Search policies by Qtext for the search bar.
+ * @param {string} qtext - A full-text query string.
+ */
+export async function searchPoliciesByQtext(qtext) {
+  if (typeof qtext !== 'string') {
+    throw new Error('searchPoliciesByQtext requires a string query argument.');
+  }
 
+  const url = `${ML_PROXY_BASE}/resources/${OPTIONS_NAME}?rs:action=searchPoliciesByQtext&rs:q=${encodeURIComponent(qtext)}`;
 
-
+  try {
+    const resp = await fetch(url);
+    if (!resp.ok) {
+      const errorData = await resp.json().catch(() => null);
+      if (errorData && errorData.error) {
+        throw new Error(`Custom search failed: ${errorData.error}`);
+      }
+      throw new Error(`Custom search failed. HTTP ${resp.status}`);
+    }
+    return resp.json();
+  } catch (err) {
+    console.error("[searchPoliciesByQtext] Error:", err);
+    throw err;
+  }
+}
 
 /**
  * Search documents with a MarkLogic query.
@@ -90,27 +125,6 @@ export async function getPolicy(applicationId) {
   const resp = await fetch(url);
   if (!resp.ok) throw new Error(`Failed to fetch policy ${applicationId}`);
   return resp.json();
-}
-
-
-
-/**
- * Convenience: qtext-only search
- */
-export async function searchByQtext(qtext, options = {}) {
-  const queryBody = {
-    "search": {
-      "query": {
-        "qtext": qtext || ""
-      },
-      "options": {
-        "extract-document-data": {
-          "extract-path": "."
-        }
-      }
-    }
-  };
-  return searchDocuments(queryBody, options);
 }
 
 /**

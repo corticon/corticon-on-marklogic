@@ -1,61 +1,99 @@
-import { useEffect, useState } from "react";
-import { searchDocuments } from "../../api/marklogicService";
+// ui/src/components/PoliciesByState.jsx
 
-export default function AveragePremiumByState() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+import React, { useState, useEffect } from 'react';
+import { GeoMap } from 'ml-fasttrack';
+import { searchPolicies } from '../api/marklogicService'; // Correct import
+
+const stateCoordinates = {
+  // ... (stateCoordinates object remains the same)
+};
+
+const stateNameToAbbr = {
+  // ... (stateNameToAbbr object remains the same)
+};
+
+const PoliciesByState = () => {
+  const [policies, setPolicies] = useState([]);
+  const [loading, setLoading] = useState(false); // Set to false initially
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchPremiums() {
+    const fetchAllPolicies = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        setLoading(true);
-        setError(null);
-        const res = await searchDocuments({ qtext: "" }, { pageLength: 100, start: 1, format: "json" });
-        const docs = Array.isArray(res?.results) ? res.results.map((r) => r?.content).filter(Boolean) : [];
-
-        const totals = {};
-        for (const doc of docs) {
-          const state = doc?.payload?.state || doc?.state || null;
-          const raw = doc?.payload?.netPremium ?? doc?.netPremium ?? null;
-          const premium = typeof raw === "number" ? raw : parseFloat(raw);
-          if (!state || Number.isNaN(premium)) continue;
-          if (!totals[state]) totals[state] = { sum: 0, count: 0 };
-          totals[state].sum += premium;
-          totals[state].count += 1;
-        }
-
-        const averages = Object.entries(totals)
-          .map(([state, { sum, count }]) => ({ state, averagePremium: count ? sum / count : 0 }))
-          .sort((a, b) => b.averagePremium - a.averagePremium);
-
-        setData(averages);
-      } catch (e) {
-        setError(e.message || "Failed to load");
+        const data = await searchPolicies(''); // Call searchPolicies instead
+        // The results are now directly the policy payloads.
+        setPolicies(data.results || []);
+      } catch (err) {
+        setError(err.message || 'Failed to fetch policies');
       } finally {
         setLoading(false);
       }
-    }
-    fetchPremiums();
+    };
+    fetchAllPolicies();
   }, []);
 
-  if (loading) return <div>Loading…</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!Array.isArray(data) || data.length === 0) return <div>No data.</div>;
+  const transformMarkers = (policies) => {
+    if (!policies) return [];
+
+    const policiesByState = policies.reduce((acc, doc) => {
+        if (doc.payload && doc.payload[0] && doc.payload[0].state) {
+          const fullStateName = doc.payload[0].state;
+          const stateAbbr = stateNameToAbbr[fullStateName];
+          if (stateAbbr) {
+            if (!acc[stateAbbr]) {
+              acc[stateAbbr] = { count: 0, state: stateAbbr };
+            }
+            acc[stateAbbr].count++;
+          }
+        }
+      return acc;
+    }, {});
+
+    return Object.values(policiesByState).map(stateData => {
+      const coords = stateCoordinates[stateData.state];
+      if (!coords) {
+        return null;
+      }
+
+      return {
+        point: {
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+          uri: stateData.state
+        },
+        symbol: {
+          type: 'simple-marker',
+          color: 'blue',
+          size: '10px',
+        },
+        popupTemplate: {
+            title: `${stateData.state}`,
+            content: `Number of policies: ${stateData.count}`
+        }
+      };
+    }).filter(Boolean);
+  };
 
   return (
-    <table>
-      <thead>
-        <tr><th>State</th><th>Average Premium</th></tr>
-      </thead>
-      <tbody>
-        {data.map((d) => (
-          <tr key={d.state}>
-            <td>{d.state}</td>
-            <td>{d.averagePremium.toFixed(2)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div>
+      <h2>Policies by State</h2>
+      {loading && <div>Loading...</div>}
+      {error && <div style={{ color: 'red' }}>{error}</div>}
+      <div style={{ height: '600px', border: '1px solid #ccc', borderRadius: '5px' }}>
+        <GeoMap
+          markers={policies}
+          transformMarkers={transformMarkers}
+          esriApiKey="AAPTxy8BH1VEsoebNVZXo8HurB6tqQwavudVSaREHRyGRjgF6CfWanva0OmOthzBIROC5AhBVEafVdatjzKvwC7agHkGMq7XXvxgys_nD2DNRa2b58dXLgLn9FdfQ1wtKcYzWlbmXxWpJ9Tw_1ndEOk2btmYn3NdopZhq5_ito9OsdkcDHctFRUhH9Z_wy2R2eJmIEW-EPjOUbI-PdfJWSmtsOE8YUUoDrBRoukp0dsorRc.AT1_YaYwaQ6t" // <-- IMPORTANT: Replace with your actual ESRI API Key
+          viewType="2D"
+          zoom={3}
+          center={[-98.556, 39.810]}
+        />
+      </div>
+      <p><strong>Note:</strong> You need to replace "YOUR_ESRI_API_KEY" with your actual ESRI API Key in the `PoliciesByState.jsx` component.</p>
+    </div>
   );
-}
+};
+
+export default PoliciesByState;
