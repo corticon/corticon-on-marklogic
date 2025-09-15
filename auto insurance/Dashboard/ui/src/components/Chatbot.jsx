@@ -1,6 +1,5 @@
 // src/components/Chatbot.jsx
 import { useState } from "react";
-import ReactMarkdown from "react-markdown"; // Import the library
 import { sendMessage } from "../api/marklogicService";
 
 export default function Chatbot() {
@@ -21,7 +20,7 @@ export default function Chatbot() {
     try {
       const response = await sendMessage(input);
       setMessages([...newMessages, { role: "assistant", content: response.reply }]);
-    } catch (e) {
+    } catch (e) { // <-- ADDED THE OPENING BRACE HERE
       setError(e.message || "Failed to get response");
     } finally {
       setLoading(false);
@@ -33,12 +32,7 @@ export default function Chatbot() {
       <div className="messages">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.role}`}>
-            {/* --- Use ReactMarkdown for assistant messages --- */}
-            {msg.role === 'assistant' ? (
-              <ReactMarkdown>{msg.content}</ReactMarkdown>
-            ) : (
-              msg.content
-            )}
+            {msg.content}
           </div>
         ))}
         {loading && <div className="message assistant">...</div>}

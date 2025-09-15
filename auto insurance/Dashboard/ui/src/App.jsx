@@ -1,8 +1,10 @@
+// src/App.jsx
 import { useState } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import PolicySearch from "./components/PolicySearch";
 import PolicyDetails from "./components/PolicyDetails";
 import PoliciesByState from "./components/PoliciesByState";
+import Chatbot from "./components/Chatbot"; // This import is correct
 import { getPolicy } from "./api/marklogicService";
 import "./App.css";
 
@@ -32,6 +34,7 @@ export default function App() {
         <div className="view-switcher">
           <button onClick={() => setView('search')} className={view === 'search' ? 'active' : ''}>Policy Search</button>
           <button onClick={() => setView('map')} className={view === 'map' ? 'active' : ''}>Policies by State</button>
+          <button onClick={() => setView('chat')} className={view === 'chat' ? 'active' : ''}>Chatbot</button>
         </div>
 
         {view === 'search' && (
@@ -55,6 +58,13 @@ export default function App() {
         {view === 'map' && (
           <PoliciesByState />
         )}
+
+        {/* --- THIS PART WAS MISSING --- */}
+        {view === 'chat' && (
+          <Chatbot />
+        )}
+        {/* ----------------------------- */}
+
       </div>
     </ErrorBoundary>
   );

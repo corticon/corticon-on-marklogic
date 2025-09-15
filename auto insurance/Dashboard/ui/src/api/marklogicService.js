@@ -146,3 +146,24 @@ export async function searchByApplicationId (applicationId, options = {}) {
   // Pass the 'query' object directly
   return searchDocuments(query, options);
 }
+
+
+const CHAT_API_BASE = `http://${ML_HOST}:${ML_PORT}/api`;
+
+export async function sendMessage(message) {
+  try {
+    const response = await fetch(`${CHAT_API_BASE}/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to send message");
+    }
+    return await response.json();
+  } catch (err) {
+    console.error("[sendMessage] Error:", err);
+    throw err;
+  }
+}

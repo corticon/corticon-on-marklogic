@@ -340,3 +340,92 @@
   border-bottom-color: #007ac2;
   font-weight: bold;
 }
+
+/* src/App.css */
+.chatbot-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+.message {
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  max-width: 80%;
+}
+
+.message.user {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+.message.assistant {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+}
+
+.input-area {
+  display: flex;
+}
+
+.input-area input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.input-area button {
+  margin-left: 8px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Add these new styles to the end of your App.css file */
+
+.message.assistant {
+  text-align: left;
+}
+
+.message.assistant h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.25em;
+}
+
+.message.assistant p {
+  margin-bottom: 0.75em;
+  line-height: 1.5;
+}
+
+.message.assistant ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 1em;
+}
+
+.message.assistant li {
+  margin-bottom: 0.5em;
+}
+
+.message.assistant strong {
+  font-weight: bold;
+  color: #333;
+}
