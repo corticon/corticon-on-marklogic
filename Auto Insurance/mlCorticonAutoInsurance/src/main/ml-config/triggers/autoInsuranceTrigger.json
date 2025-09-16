@@ -1,0 +1,21 @@
+{
+    "name": "autoInsuranceTrigger",
+    "description": "Trigger to enrich documents in-place with Corticon rules",
+    "event": {
+        "data-event": {
+            "collection-scope": {
+                "uri": "http://example.com/data/policy-input"
+            },
+            "document-content": {
+                "update-kind": "create"
+            },
+            "when": "post-commit"
+        }
+    },
+    "module": "ext/autoInsuranceTrigger.sjs",
+    "module-db": "%%MODULES_DATABASE%%",
+    "module-root": "/",
+    "enabled": true,
+    "recursive": false,
+    "task-priority": "normal"
+}

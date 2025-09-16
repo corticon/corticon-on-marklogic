@@ -1,0 +1,444 @@
+/* General App Styling */
+.App {
+  text-align: center;
+}
+
+/* Main two-column layout using Flexbox */
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  text-align: left;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Left Sidebar: Search and Facets */
+.search-controls {
+  flex: 0 0 300px;
+  background-color: #f8f8f8;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-box {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Right Side: Search Results */
+.results {
+  flex-grow: 1;
+}
+
+/* Placeholder text */
+.placeholder {
+  color: #888;
+  text-align: center;
+  margin-top: 4rem;
+  font-style: italic;
+  padding: 2rem;
+  background-color: #fafafa;
+  border-radius: 8px;
+}
+
+/* Policy Details Styling */
+.policy-details-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.policy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.policy-header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.policy-header h2 a {
+  text-decoration: none;
+  color: #007ac2;
+}
+
+.policy-header h2 a:hover {
+  text-decoration: underline;
+}
+
+.policy-header h3 {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0;
+}
+
+.net-premium-display {
+  text-align: right;
+}
+
+.net-premium-display span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.net-premium-display p {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #35ac46;
+}
+
+.metrics-grid, .details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.metric-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.metric-card p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007ac2;
+}
+
+.policy-summary {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.tabs {
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.tabs button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tabs button.active {
+  color: #007ac2;
+  border-bottom-color: #007ac2;
+  font-weight: bold;
+}
+
+.entity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.entity-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.card-header {
+  background-color: #f1f1f1;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.sub-section h5 {
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.sub-section ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+.sub-section li {
+  margin-bottom: 0.25rem;
+}
+
+.text-success { color: #35ac46; }
+.text-danger { color: #D83020; }
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+.coverage-table {
+  font-size: 0.9rem;
+}
+
+.decision-log-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.decision-log-table th, .decision-log-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.decision-log-table thead {
+  background-color: #f2f2f2;
+}
+
+.severity-badge {
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.8rem;
+  min-width: 60px;
+  text-align: center;
+  display: inline-block;
+}
+
+.severity-info .severity-badge { background-color: #2196f3; }
+.severity-warning .severity-badge { background-color: #ff9800; color: #333; }
+
+
+
+/* Button Styling */
+.btn-primary {
+  background-color: #007ac2;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #005a8c;
+}
+
+/* Accordion Styling */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Increased gap */
+}
+
+.accordion-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Added shadow */
+  background-color: #ffffff; /* Added background color */
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.accordion-header h4 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.accordion-content {
+  padding: 1.5rem;
+}
+
+.carrot {
+  transition: transform 0.3s ease;
+}
+
+.carrot.open {
+  transform: rotate(90deg); /* Changed rotation for chevron */
+}
+
+/* View Switcher */
+.view-switcher {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 1rem;
+}
+
+.view-switcher button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+
+.view-switcher button.active {
+  color: #007ac2;
+  border-bottom-color: #007ac2;
+  font-weight: bold;
+}
+
+/* src/App.css */
+.chatbot-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+.message {
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  max-width: 80%;
+}
+
+.message.user {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+.message.assistant {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+}
+
+.input-area {
+  display: flex;
+}
+
+.input-area input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.input-area button {
+  margin-left: 8px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Add these new styles to the end of your App.css file */
+
+.message.assistant {
+  text-align: left;
+}
+
+.message.assistant h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.25em;
+}
+
+.message.assistant p {
+  margin-bottom: 0.75em;
+  line-height: 1.5;
+}
+
+.message.assistant ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 1em;
+}
+
+.message.assistant li {
+  margin-bottom: 0.5em;
+}
+
+.message.assistant strong {
+  font-weight: bold;
+  color: #333;
+}
+
+
+.is-selectable {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.is-selectable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+

@@ -1,0 +1,568 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "customerSince": {},
+          "drivers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "advancedDriverTraining": {
+                  "type": "boolean"
+                },
+                "dob": {
+                  "type": "string"
+                },
+                "first": {
+                  "type": "string"
+                },
+                "fullTimeStudent": {
+                  "type": "boolean"
+                },
+                "gpa": {},
+                "gradeAverage": {},
+                "incidents": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "incidentType": {
+                        "type": "string"
+                      },
+                      "applicationId": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "date",
+                      "incidentType",
+                      "applicationId"
+                    ]
+                  }
+                },
+                "last": {
+                  "type": "string"
+                },
+                "yearLicensed": {
+                  "type": "number"
+                },
+                "age": {
+                  "type": "number"
+                },
+                "applicationId": {
+                  "type": "string"
+                },
+                "surcharge": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "applicationId": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "applicationId",
+                      "description",
+                      "value"
+                    ]
+                  }
+                },
+                "discount": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "applicationId": {
+                        "type": "string"
+                      },
+                      "category": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "applicationId",
+                      "category",
+                      "value"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "advancedDriverTraining",
+                "dob",
+                "first",
+                "fullTimeStudent",
+                "gpa",
+                "gradeAverage",
+                "last",
+                "yearLicensed",
+                "age",
+                "applicationId"
+              ]
+            }
+          },
+          "familyName": {
+            "type": "string"
+          },
+          "hasHomePolicy": {
+            "type": "boolean"
+          },
+          "isPaperless": {
+            "type": "boolean"
+          },
+          "paymentPlan": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "abs": {
+                  "type": "string"
+                },
+                "adaptiveHeadlights": {
+                  "type": "string"
+                },
+                "antiTheftDevice": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category": {
+                        "type": "string"
+                      },
+                      "applicationId": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "category",
+                      "applicationId"
+                    ]
+                  }
+                },
+                "backupCam": {
+                  "type": "string"
+                },
+                "blindSpotWarning": {
+                  "type": "string"
+                },
+                "bodyStyle": {
+                  "type": "string"
+                },
+                "brakeSystem": {
+                  "type": "string"
+                },
+                "combinedBreakingSystem": {},
+                "coverages": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "part": {
+                        "type": "string"
+                      },
+                      "applicationId": {
+                        "type": "string"
+                      },
+                      "baseRate": {
+                        "type": "number"
+                      },
+                      "discount": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "applicationId": {
+                              "type": "string"
+                            },
+                            "category": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "applicationId",
+                            "category",
+                            "value"
+                          ]
+                        }
+                      },
+                      "potentialDiscount": {
+                        "type": "number"
+                      },
+                      "premium": {
+                        "type": "number"
+                      },
+                      "discountTotal": {
+                        "type": "number"
+                      },
+                      "compulsary": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "part",
+                      "applicationId"
+                    ]
+                  }
+                },
+                "crashImminentBraking": {
+                  "type": "string"
+                },
+                "dynamicBrakeSupport": {
+                  "type": "string"
+                },
+                "electronicStabilityControl": {
+                  "type": "string"
+                },
+                "engine": {},
+                "forwardCollisionWarning": {
+                  "type": "string"
+                },
+                "laneDepartureWarning": {
+                  "type": "string"
+                },
+                "laneKeepingAssistance": {
+                  "type": "string"
+                },
+                "make": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "modelYear": {
+                  "type": "number"
+                },
+                "parkAssist": {
+                  "type": "string"
+                },
+                "pedestrianAutoBrake": {
+                  "type": "string"
+                },
+                "rearCrossTrafficAlert": {
+                  "type": "string"
+                },
+                "salvageTitleIssued": {
+                  "type": "boolean"
+                },
+                "series": {},
+                "tractionControl": {
+                  "type": "string"
+                },
+                "transmission": {
+                  "type": "string"
+                },
+                "trim": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "applicationId": {
+                  "type": "string"
+                },
+                "isHighTheft": {
+                  "type": "boolean"
+                },
+                "discount": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "number"
+                      },
+                      "applicationId": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "category",
+                      "value",
+                      "applicationId"
+                    ]
+                  }
+                },
+                "netPremium": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "antiTheftDevice",
+                "bodyStyle",
+                "combinedBreakingSystem",
+                "coverages",
+                "engine",
+                "make",
+                "model",
+                "modelYear",
+                "salvageTitleIssued",
+                "series",
+                "type",
+                "applicationId",
+                "isHighTheft",
+                "discount",
+                "netPremium"
+              ]
+            }
+          },
+          "isMultiCar": {
+            "type": "boolean"
+          },
+          "discount": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "applicationId": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "applicationId",
+                "category",
+                "value"
+              ]
+            }
+          },
+          "netPremium": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "applicationId",
+          "customerSince",
+          "drivers",
+          "familyName",
+          "hasHomePolicy",
+          "isPaperless",
+          "paymentPlan",
+          "state",
+          "vehicles",
+          "isMultiCar",
+          "discount",
+          "netPremium"
+        ]
+      }
+    },
+    "corticon": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "severity": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "ruleSheet": {
+                    "type": "string"
+                  },
+                  "rule": {}
+                },
+                "required": [
+                  "severity",
+                  "text",
+                  "ruleSheet",
+                  "rule"
+                ]
+              }
+            }
+          },
+          "required": [
+            "message"
+          ]
+        },
+        "Metrics": {
+          "type": "object",
+          "properties": {
+            "attributeChanges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "rulesheetName": {
+                    "type": "string"
+                  },
+                  "ruleNumber": {},
+                  "entityCorticonId": {
+                    "type": "string"
+                  },
+                  "entityName": {
+                    "type": "string"
+                  },
+                  "attributeName": {
+                    "type": "string"
+                  },
+                  "afterValue": {},
+                  "sequence": {
+                    "type": "number"
+                  },
+                  "beforeValue": {}
+                },
+                "required": [
+                  "rulesheetName",
+                  "ruleNumber",
+                  "entityCorticonId",
+                  "entityName",
+                  "attributeName",
+                  "afterValue",
+                  "sequence",
+                  "beforeValue"
+                ]
+              }
+            },
+            "associationChanges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "rulesheetName": {
+                    "type": "string"
+                  },
+                  "ruleNumber": {},
+                  "sourceEntityName": {
+                    "type": "string"
+                  },
+                  "sourceEntityCorticonId": {
+                    "type": "string"
+                  },
+                  "associationRoleName": {
+                    "type": "string"
+                  },
+                  "targetEntityName": {
+                    "type": "string"
+                  },
+                  "targetEntityCorticonId": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "sequence": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "rulesheetName",
+                  "ruleNumber",
+                  "sourceEntityName",
+                  "sourceEntityCorticonId",
+                  "associationRoleName",
+                  "targetEntityName",
+                  "targetEntityCorticonId",
+                  "action",
+                  "sequence"
+                ]
+              }
+            },
+            "entityChanges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "rulesheetName": {
+                    "type": "string"
+                  },
+                  "ruleNumber": {},
+                  "entityName": {
+                    "type": "string"
+                  },
+                  "entityCorticonId": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "sequence": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "rulesheetName",
+                  "ruleNumber",
+                  "entityName",
+                  "entityCorticonId",
+                  "action",
+                  "sequence"
+                ]
+              }
+            }
+          },
+          "required": [
+            "attributeChanges",
+            "associationChanges",
+            "entityChanges"
+          ]
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "messages",
+        "Metrics",
+        "timestamp",
+        "status"
+      ]
+    },
+    "inputPayloadUri": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "payload",
+    "corticon",
+    "inputPayloadUri"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "role-name" : "corticonml-reader",
+  "description" : "Can view documents, but not edit",
+  "role" : [ "corticonml-nobody" ],
+  "privilege" : [ {
+    "privilege-name" : "rest-reader",
+    "action" : "http://marklogic.com/xdmp/privileges/rest-reader",
+    "kind" : "execute"
+  } ]
+}
