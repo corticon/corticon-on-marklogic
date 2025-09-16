@@ -1,35 +1,57 @@
-# Node.js dependencies
-/insurance-chatbot/node_modules
-/insurance-chatbot/ui/node_modules
-/insurance-chatbot/ui/dist
+# Dependencies
+**/node_modules/
+**/bower_components/
 
-# Environment variables
-.env
-/insurance-chatbot/.env
-/insurance-chatbot/ui/.env
+# Build artifacts
+**/build/
+**/dist/
+**/.out/
+**/*.zip
+**/*.tar
+**/*.tar.gz
+**/*.tgz
+
+# Gradle
+.gradle/
+build/
+!wrapper/gradle-wrapper.jar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
 
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Gradle cache
-/mlCorticonAutoInsurance/.gradle
-/mlCorticonAutoInsurance/build/
 
 # IDEs and editors
 .idea/
 .vscode/
 *.swp
 *~
+*.iml
+*.ipr
+*.iws
 
 # OS generated files
 .DS_Store
 Thumbs.db
 
-# Other generated or temporary files
-sync.ffs_db
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Other
 *.pdf
-/insurance-chatbot/develop_with_fasttrack_2025-09-11-11-04-16.pdf
-/mlCorticonAutoInsurance/mlCorticonAutoInsurance_File_List.txt
-/mlCorticonAutoInsurance/src/src_File_List.txt
+*.ffs_db
+src_File_List.txt
