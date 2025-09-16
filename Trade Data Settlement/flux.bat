@@ -1,1 +1,0 @@
-"C:\path\to\flux\bin\flux" import-aggregate-json-files --path "C:\path\to\your\project\data\tradeData.json" --connection-string "user:password@localhost:8004" --permissions role,read,role,update --collections http://example.com/data/ledger --uri-template "/data/ledger/{/trade/tradeId}.json" & pause
