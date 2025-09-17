@@ -12,7 +12,7 @@ export default function PolicyCard({ policyData, onSelect }) {
   return (
     <div className={cardClassName} onClick={onSelect}>
       <div className="policy-header">
-        <h2>{familyName || 'Untitled'}</h2>
+        <h2>{familyName ? `${familyName} Family Policy` : 'Untitled'}</h2>
         <div className="policy-meta">
           <span>ID: {applicationId || '—'}</span>
           <span className="separator">•</span>
@@ -21,7 +21,7 @@ export default function PolicyCard({ policyData, onSelect }) {
       </div>
       <div className="policy-body">
         <div className="premium-display">
-          <span className="label">Net Premium</span>
+          <span className="label">Net Premium:</span>
           <span className="value">
             {netPremium ? `$${netPremium.toFixed(2)}` : 'N/A'}
           </span>

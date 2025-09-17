@@ -18,7 +18,7 @@ export default function PolicyDetails({ policy }) {
   const { corticon } = policy;
 
   return (
-    <div className="policy-details-container space-y-6">
+    <div className="policy-details-container space-y-6 border rounded-md p-6 bg-white">
       <PolicyCard policyData={policyData} />
 
       {/* Tab container */}
