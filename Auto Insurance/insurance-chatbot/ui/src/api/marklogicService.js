@@ -151,19 +151,22 @@ export async function searchByApplicationId (applicationId, options = {}) {
 const CHAT_API_BASE = `http://${ML_HOST}:${ML_PORT}/api`;
 
 export async function sendMessage(message) {
-  try {
-    const response = await fetch(`${CHAT_API_BASE}/chat`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to send message");
-    }
-    return await response.json();
-  } catch (err) {
-    console.error("[sendMessage] Error:", err);
-    throw err;
+  const resp = await fetch(`${CHAT_API_BASE}/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message }),
+  });
+  const text = await resp.text();
+  // Try to parse JSON; if parse fails or reply empty, surface it
+  let data;
+  try { data = JSON.parse(text); } catch { data = null; }
+  if (!resp.ok) {
+    console.error("[sendMessage] HTTP error:", resp.status, text);
+    throw new Error(data?.error || `Failed to send message (${resp.status})`);
   }
+  if (!data || typeof data.reply !== "string" || data.reply.trim().length === 0) {
+    console.warn("[sendMessage] Empty reply payload:", text);
+    return { reply: "No answer produced for this turn. Try asking about a specific policy ID (e.g., include the applicationId)." };
+  }
+  return data;
 }

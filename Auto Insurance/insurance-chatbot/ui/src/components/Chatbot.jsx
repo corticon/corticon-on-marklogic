@@ -26,7 +26,8 @@ export default function Chatbot() {
 
     try {
       const response = await sendMessage(input);
-      setMessages([...newMessages, { role: "assistant", content: response.reply }]);
+      const reply = (response.reply || "").trim();
+      setMessages([...newMessages, { role: "assistant", content: reply || "_No response._" }]);
     } catch (e) {
       setError(e.message || "Failed to get response");
     } finally {
