@@ -1,71 +1,99 @@
-import React, { useState } from "react";
+app.get('/api/analytics', async (req, res) => {
+  const type = req.query.type;
+  let sql;
 
-export default function AnalyticsPanel() {
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
-  const [error, setError] = useState(null);
+  switch (type) {
+    case 'mostCommonAssistance':
+      sql = `
+        SELECT name AS assistanceProgram, COUNT(*) AS count
+        FROM household.classOfAssistance
+        WHERE name IS NOT NULL
+        GROUP BY name
+        ORDER BY count DESC
+        LIMIT 10;
+      `;
+      break;
 
-  const runAnalytics = async (type) => {
-    setLoading(true);
-    setError(null);
-    setResult(null);
+    case 'eligibilityByAgeGroup':
+      sql = `
+        SELECT
+          CASE
+            WHEN age < 19 THEN 'Child (0-18)'
+            WHEN age BETWEEN 19 AND 64 THEN 'Adult (19-64)'
+            ELSE 'Senior (65+)' END AS ageGroup,
+          COUNT(*) AS individuals
+        FROM household.individual
+        WHERE age IS NOT NULL
+        GROUP BY ageGroup
+        ORDER BY individuals DESC;
+      `;
+      break;
 
-    try {
-      const resp = await fetch(`http://localhost:4001/api/analytics?type=${type}`);
-      const data = await resp.json();
-      setResult(data);
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
+    case 'nearMissFPL':
+      sql = `
+        SELECT householdId, state, annualIncome, householdPercentFPL
+        FROM household.household
+        WHERE householdPercentFPL BETWEEN 1.9 AND 2.1
+        ORDER BY householdPercentFPL;
+      `;
+      break;
+
+    case 'avgIncomeByFamilySize':
+      sql = `
+        SELECT familySize, ROUND(AVG(annualIncome), 2) AS avgIncome
+        FROM household.household
+        WHERE familySize IS NOT NULL
+        GROUP BY familySize
+        ORDER BY familySize;
+      `;
+      break;
+
+    case 'topDenialReasons':
+      sql = `
+        SELECT text AS reason, COUNT(*) AS occurrences
+        FROM household.eligibilityNote
+        WHERE text LIKE '%ineligible%' OR text LIKE '%denied%'
+        GROUP BY text
+        ORDER BY occurrences DESC
+        LIMIT 10;
+      `;
+      break;
+
+    default:
+      return res.status(400).json({ error: 'Unknown analytics type' });
+  }
+
+  console.log(`(Analytics) Running SQL: ${sql.trim().slice(0, 80)}...`);
+
+  const options = {
+    hostname: mlHost,
+    port: mlRestPort,
+    path: '/v1/rows?format=json',
+    method: 'POST',
+    headers: {
+      'Authorization': 'Basic ' + Buffer.from(mlUser + ':' + mlPass).toString('base64'),
+      'Content-Type': 'application/sql',
+    },
   };
 
-  return (
-    <div className="p-4 bg-white border rounded-xl shadow mb-6">
-      <h2 className="text-lg font-semibold mb-3 text-gray-800">Analytics Dashboard</h2>
+  const mlReq = http.request(options, (mlRes) => {
+    let data = '';
+    mlRes.on('data', (chunk) => (data += chunk));
+    mlRes.on('end', () => {
+      try {
+        res.json(JSON.parse(data));
+      } catch (e) {
+        console.error('(Analytics) Failed to parse:', e);
+        res.status(500).json({ error: 'Invalid JSON from MarkLogic', raw: data });
+      }
+    });
+  });
 
-      <div className="flex flex-wrap gap-2 mb-4">
-        <button
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          onClick={() => runAnalytics("totalHouseholds")}
-        >
-          Total Households
-        </button>
+  mlReq.on('error', (e) => {
+    console.error('(Analytics) HTTP error:', e);
+    res.status(500).json({ error: e.message });
+  });
 
-        <button
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          onClick={() => runAnalytics("avgIncomeByState")}
-        >
-          Avg Income by State
-        </button>
-
-        <button
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          onClick={() => runAnalytics("fplOver200")}
-        >
-          Households &gt; 200% FPL
-        </button>
-
-        <button
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          onClick={() => runAnalytics("top10Income")}
-        >
-          Top 10 by Income
-        </button>
-      </div>
-
-      {loading && <div className="text-gray-500 animate-pulse">Running analytics...</div>}
-
-      {error && <div className="text-red-600">Error: {error}</div>}
-
-      {result && (
-        <div className="overflow-x-auto mt-3">
-          <pre className="bg-gray-50 p-3 text-sm rounded max-h-96 overflow-y-auto">
-            {JSON.stringify(result, null, 2)}
-          </pre>
-        </div>
-      )}
-    </div>
-  );
-}
+  mlReq.write(sql);
+  mlReq.end();
+});

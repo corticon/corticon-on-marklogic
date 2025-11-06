@@ -9,7 +9,6 @@
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
-const marklogic = require('marklogic'); // 🔹 Add the MarkLogic Node.js Client
 
 // Constants
 const PORT = 4001;
@@ -26,115 +25,112 @@ const mlRestPort = process.env.ML_REST_PORT || 8004;
 const mlUser = process.env.ML_USER || 'corticonml-admin';
 const mlPass = process.env.ML_PASS || 'corticonml-admin';
 
-// 🔹 Create a MarkLogic client for analytics
-const db = marklogic.createDatabaseClient({
-  host: mlHost,
-  port: mlRestPort,
-  user: mlUser,
-  password: mlPass,
-  authType: 'digest'
-});
-
 // --------------------------------------------------
-// 🔹 New Analytics API (for your React dashboard)
+// 🔹 Analytics API using MarkLogic /v1/rows
 // --------------------------------------------------
-// --------------------------------------------------
-// 🔹 Analytics API via REST /v1/rows
-// --------------------------------------------------
-const https = require('https');
-
 app.get('/api/analytics', async (req, res) => {
   const type = req.query.type;
   let sql;
 
-switch (type) {
-  case 'totalHouseholds':
-    sql = `
-      SELECT COUNT(*) AS total
-      FROM household.household;
-    `;
-    break;
+  switch (type) {
+    case 'mostCommonAssistance':
+      sql = `
+        SELECT name AS assistanceProgram, COUNT(*) AS count
+        FROM household.classOfAssistance
+        WHERE name IS NOT NULL
+        GROUP BY name
+        ORDER BY count DESC
+        LIMIT 10;
+      `;
+      break;
 
-  case 'avgIncomeByState':
-    sql = `
-      SELECT state AS state, AVG(annualIncome) AS avgIncome
-      FROM household.household
-      WHERE state IS NOT NULL
-      GROUP BY state
-      ORDER BY state;
-    `;
-    break;
+    case 'eligibilityByAgeGroup':
+      sql = `
+        SELECT
+          CASE
+            WHEN age < 19 THEN 'Child (0-18)'
+            WHEN age BETWEEN 19 AND 64 THEN 'Adult (19-64)'
+            ELSE 'Senior (65+)' END AS ageGroup,
+          COUNT(*) AS individuals
+        FROM household.individual
+        WHERE age IS NOT NULL
+        GROUP BY ageGroup
+        ORDER BY individuals DESC;
+      `;
+      break;
 
-  case 'fplOver200':
-    sql = `
-      SELECT COUNT(*) AS over200
-      FROM household.household
-      WHERE householdPercentFPL > 2.0;
-    `;
-    break;
+    case 'nearMissFPL':
+      sql = `
+        SELECT householdId, state, annualIncome, householdPercentFPL
+        FROM household.household
+        WHERE householdPercentFPL BETWEEN 1.9 AND 2.1
+        ORDER BY householdPercentFPL;
+      `;
+      break;
 
-  case 'top10Income':
-    sql = `
-      SELECT householdId, state, annualIncome, householdPercentFPL
-      FROM household.household
-      WHERE annualIncome IS NOT NULL
-      ORDER BY annualIncome DESC
-      LIMIT 10;
-    `;
-    break;
+    case 'avgIncomeByFamilySize':
+      sql = `
+        SELECT familySize, ROUND(AVG(annualIncome), 2) AS avgIncome
+        FROM household.household
+        WHERE familySize IS NOT NULL
+        GROUP BY familySize
+        ORDER BY familySize;
+      `;
+      break;
 
-  default:
-    return res.status(400).json({ error: 'Unknown analytics type' });
-}
+    case 'topDenialReasons':
+      sql = `
+        SELECT text AS reason, COUNT(*) AS occurrences
+        FROM household.eligibilityNote
+        WHERE text LIKE '%ineligible%' OR text LIKE '%denied%'
+        GROUP BY text
+        ORDER BY occurrences DESC
+        LIMIT 10;
+      `;
+      break;
 
-  try {
-    console.log(`(Analytics) Running SQL: ${sql.trim().slice(0, 80)}...`);
-
-    const options = {
-      hostname: mlHost,
-      port: mlRestPort,
-      path: '/v1/rows?format=json',
-      method: 'POST',
-      headers: {
-        'Authorization':
-          'Basic ' + Buffer.from(mlUser + ':' + mlPass).toString('base64'),
-        'Content-Type': 'application/sql',
-      },
-    };
-
-    const mlReq = http.request(options, (mlRes) => {
-      let data = '';
-
-      mlRes.on('data', (chunk) => {
-        data += chunk;
-      });
-
-      mlRes.on('end', () => {
-        try {
-          const parsed = JSON.parse(data);
-          res.json(parsed);
-        } catch (e) {
-          console.error('(Analytics) Failed to parse:', e);
-          res.status(500).json({ error: 'Invalid JSON from MarkLogic', raw: data });
-        }
-      });
-    });
-
-    mlReq.on('error', (e) => {
-      console.error('(Analytics) HTTP error:', e);
-      res.status(500).json({ error: e.message });
-    });
-
-    mlReq.write(sql);
-    mlReq.end();
-  } catch (err) {
-    console.error('(Analytics) Unexpected error:', err);
-    res.status(500).json({ error: err.message });
+    default:
+      return res.status(400).json({ error: 'Unknown analytics type' });
   }
+
+  console.log(`(Analytics) Running SQL: ${sql.trim().slice(0, 80)}...`);
+
+  const options = {
+    hostname: mlHost,
+    port: mlRestPort,
+    path: '/v1/rows?format=json',
+    method: 'POST',
+    headers: {
+      'Authorization': 'Basic ' + Buffer.from(mlUser + ':' + mlPass).toString('base64'),
+      'Content-Type': 'application/sql',
+    },
+  };
+
+  const mlReq = http.request(options, (mlRes) => {
+    let data = '';
+    mlRes.on('data', (chunk) => (data += chunk));
+    mlRes.on('end', () => {
+      try {
+        res.json(JSON.parse(data));
+      } catch (e) {
+        console.error('(Analytics) Failed to parse:', e);
+        res.status(500).json({ error: 'Invalid JSON from MarkLogic', raw: data });
+      }
+    });
+  });
+
+  mlReq.on('error', (e) => {
+    console.error('(Analytics) HTTP error:', e);
+    res.status(500).json({ error: e.message });
+  });
+
+  mlReq.write(sql);
+  mlReq.end();
 });
 
+
 // --------------------------------------------------
-// Original Basic Auth Proxy (unchanged)
+// Basic Auth Proxy for MarkLogic FastTrack
 // --------------------------------------------------
 app.all(/\/v1\/.*/, (req, res) => {
   console.log(`(Basic Proxy) proxying ${req.method} ${req.url}`);
@@ -145,16 +141,13 @@ app.all(/\/v1\/.*/, (req, res) => {
     method: req.method,
     headers: {
       'Content-Type': req.header('Content-Type') || 'application/json',
-      'Authorization':
-        'Basic ' + Buffer.from(mlUser + ':' + mlPass).toString('base64')
-    }
+      'Authorization': 'Basic ' + Buffer.from(mlUser + ':' + mlPass).toString('base64'),
+    },
   };
 
   const mlReq = http.request(options, (mlRes) => {
     res.statusCode = mlRes.statusCode;
-    Object.keys(mlRes.headers).forEach((key) => {
-      res.setHeader(key, mlRes.headers[key]);
-    });
+    Object.keys(mlRes.headers).forEach((key) => res.setHeader(key, mlRes.headers[key]));
     mlRes.on('data', (d) => res.write(d));
     mlRes.on('end', () => res.end());
   });

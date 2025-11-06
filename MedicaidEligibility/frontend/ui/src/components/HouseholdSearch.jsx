@@ -19,12 +19,15 @@ export default function HouseholdSearch() {
       .map((r) => {
         const p = r?.extracted?.content?.[0]?.payload;
         if (!p) return null;
+
         const members = p.individual
           ?.map((i) => `${i.first} ${i.last}`)
           .filter(Boolean)
           .join(", ");
+
         const primary = p.individual?.[0]?.classOfAssistance?.[0]?.name || "";
         const notes = p.individual?.[0]?.eligibilityNote?.map((n) => n.text) || [];
+
         return {
           familyName: p.familyName,
           householdId: p.householdId,
@@ -68,10 +71,25 @@ export default function HouseholdSearch() {
         </h2>
       )}
 
+      {/* 👇 Updated display logic for welcome, empty, and results */}
       <div>
-        {items.length === 0 ? (
-          <p>No results yet. Try searching above.</p>
+        {searchResponse?.results == null ? (
+          // 👇 Show this before any search has happened
+          <div className="text-gray-600 text-center mt-10">
+            <h2 className="text-xl font-semibold mb-2">
+              Welcome to the Medicaid Eligibility Dashboard
+            </h2>
+            <p className="text-gray-500">
+              Use the search bar above to find households by family name, state, or ID.
+            </p>
+          </div>
+        ) : items.length === 0 ? (
+          // 👇 Show when a search returned nothing
+          <p className="text-gray-500 mt-6 text-center">
+            No matching results found.
+          </p>
         ) : (
+          // 👇 Show when there are results
           items.map((row, i) => <HouseholdCard key={i} row={row} />)
         )}
       </div>
