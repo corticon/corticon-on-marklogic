@@ -1,6 +1,7 @@
 # Dependencies
 **/node_modules/
 **/bower_components/
+**/ml-fasttrack-2.0.0-20250701b/
 
 # Build artifacts
 **/build/

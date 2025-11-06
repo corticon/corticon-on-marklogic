@@ -18,7 +18,7 @@ export default function App() {
         basePath=""
         options="corticonml-options"
         debug={true}
-        initSearch={true}
+        initSearch={false}
         disableSearchOnChange={false}
       >
         <div className="container">
