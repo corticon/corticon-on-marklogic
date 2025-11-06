@@ -1,0 +1,2278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_X_W5RIjbEfCtu4mGXb_68A" externalChecksum="2722078124:507989954:0" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_ZnwI8JSYEfCu1_NJwzOiTw" vocabulary="Vocabulary.ecore#/">
+    <rule>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="Vehicle.antiTheftDevice.category = 'Category I'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category = 'Category I'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.antiTheftDevice.category" rhs="'Category I'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [value = 0.08 *  1, category ='Anti-Theft Device / Vehicle Recovery System']">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * 1 , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="Vehicle.antiTheftDevice.category = 'Category II'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category = 'Category II'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.antiTheftDevice.category" rhs="'Category II'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [value = 0.08 *  2, category ='Anti-Theft Device / Vehicle Recovery System']">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * 2 , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="Vehicle.antiTheftDevice.category = 'Category III'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category = 'Category III'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.antiTheftDevice.category" rhs="'Category III'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [value = 0.08 *  3, category ='Anti-Theft Device / Vehicle Recovery System']">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * 3 , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="Vehicle.antiTheftDevice.category = 'Category IV'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category = 'Category IV'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.antiTheftDevice.category" rhs="'Category IV'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [value = 0.08 *  4, category ='Anti-Theft Device / Vehicle Recovery System']">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * 4 , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.electronicStabilityControl = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.electronicStabilityControl = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="electronicStabilityControl" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.electronicStabilityControl">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.electronicStabilityControl" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Electronic Stability Control', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Electronic Stability Control' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.2">
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.forwardCollisionWarning = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.forwardCollisionWarning = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="forwardCollisionWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.forwardCollisionWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.forwardCollisionWarning" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Forward Collision Warning', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Forward Collision Warning' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.3">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.laneKeepingAssistance = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.laneKeepingAssistance = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="laneKeepingAssistance" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.laneKeepingAssistance">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.laneKeepingAssistance" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Lane Keeping Assist', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Lane Keeping Assist' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.4">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.crashImminentBraking = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.crashImminentBraking = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="crashImminentBraking" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.crashImminentBraking">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.crashImminentBraking" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Crash Imminent Braking', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Crash Imminent Braking' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.5">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.blindSpotWarning = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.blindSpotWarning = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="blindSpotWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.blindSpotWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.blindSpotWarning" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Blind Spot Warning', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Blind Spot Warning' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.6">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.laneDepartureWarning = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.laneDepartureWarning = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="laneDepartureWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.laneDepartureWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.laneDepartureWarning" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Lane Departure Warning', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Lane Departure Warning' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.7">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.backupCam = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.backupCam = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="backupCam" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.backupCam">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.backupCam" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Backup Camera', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Backup Camera' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.8">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.tractionControl = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.tractionControl = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="tractionControl" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.tractionControl">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.tractionControl" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Traction Control', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Traction Control' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.9">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.parkAssist = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.parkAssist = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="parkAssist" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.parkAssist">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.parkAssist" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Park Assist', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Park Assist' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.10">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.dynamicBrakeSupport = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.dynamicBrakeSupport = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="dynamicBrakeSupport" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.dynamicBrakeSupport">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.dynamicBrakeSupport" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Dynamic Brake Support', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Dynamic Brake Support' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.11">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.rearCrossTrafficAlert = 'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.rearCrossTrafficAlert = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="rearCrossTrafficAlert" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.rearCrossTrafficAlert">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.rearCrossTrafficAlert" rhs="'Standard'"/>
+      </condition>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Rear Cross Traffic Alert', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Rear Cross Traffic Alert' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.12">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Vehicle.milesDrivenAnnually &lt; 7000">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.milesDrivenAnnually &lt; 7000" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="milesDrivenAnnually" datatype="Integer" termtype="ATTRIBUTE" fulltext="Vehicle.milesDrivenAnnually">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.milesDrivenAnnually" rhs="&lt; 7000"/>
+      </condition>
+      <action/>
+      <action>
+        <opaqueExpression expression="vehicleDiscounts+=Discount.new [category = 'Low Annual Mileage', value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Low Annual Mileage' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.1 #//@ruleset/@rules.2 #//@ruleset/@rules.3 #//@ruleset/@rules.4" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned Anti-Theft Device / Vehicle Recovery System discount for their security device.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned Anti-Theft Device / Vehicle Recovery System discount for their security device." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.5" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Electronic Stability Control">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Electronic Stability Control" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.6" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Forward Collision Warning">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Forward Collision Warning" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.7" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Lane Keeping Assist">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Lane Keeping Assist" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.8" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Crash Imminent Braking">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Crash Imminent Braking" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.9" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Blind Spot Warning">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Blind Spot Warning" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.10" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Lane Departure Warning">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Lane Departure Warning" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.11" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Backup Camera">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Backup Camera" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.12" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Traction Control">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Traction Control" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.13" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Park Assist">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Park Assist" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.14" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Dynamic Brake Support">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Dynamic Brake Support" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.15" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Rear Cross Traffic Alert">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Rear Cross Traffic Alert" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.16" logicalVariable="#//@ruleset/@logicalVariables.1">
+      <text expression="{Vehicle.make} {Vehicle.model} assigned  discount for its Low Annual Mileage">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for its Low Annual Mileage" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <logicalVariable entity="Vocabulary.ecore#//Discount">
+      <referencedAttributes attribute="Vocabulary.ecore#//Discount/category"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Discount/value"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Discount/applicationId"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Vehicle" ruleStatements="#//@ruleset/@ruleStatements.0 #//@ruleset/@ruleStatements.1 #//@ruleset/@ruleStatements.2 #//@ruleset/@ruleStatements.3 #//@ruleset/@ruleStatements.4 #//@ruleset/@ruleStatements.5 #//@ruleset/@ruleStatements.6 #//@ruleset/@ruleStatements.7 #//@ruleset/@ruleStatements.8 #//@ruleset/@ruleStatements.9 #//@ruleset/@ruleStatements.10 #//@ruleset/@ruleStatements.11 #//@ruleset/@ruleStatements.12">
+      <extension explicit="true" association="true" entity="Vocabulary.ecore#//Discount" traversedAssocRole="Vocabulary.ecore#//Vehicle/discount">
+        <alias value="vehicleDiscounts"/>
+        <referencedAttributes attribute="Vocabulary.ecore#//Discount/category"/>
+      </extension>
+      <extension association="true" entity="Vocabulary.ecore#//AntiTheftDevice" traversedAssocRole="Vocabulary.ecore#//Vehicle/antiTheftDevice">
+        <referencedAttributes attribute="Vocabulary.ecore#//AntiTheftDevice/category"/>
+      </extension>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/isHighTheft"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/applicationId"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/electronicStabilityControl"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/forwardCollisionWarning"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/laneKeepingAssistance"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/crashImminentBraking"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/blindSpotWarning"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/laneDepartureWarning"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/backupCam"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/tractionControl"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/parkAssist"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/dynamicBrakeSupport"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/rearCrossTrafficAlert"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/milesDrivenAnnually"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/make"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/model"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Policy">
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/applicationId"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" sashWeightAdvancedView="28" sashWeightScope="55" sashWeightConditionsActions="58" sashWeightConditionsIf="32">
+    <actionSection rowCount="45" columnWidthFactor="0.5">
+      <actionItemList rowHeight="21">
+        <naturalLanguageText value="Assign that coverage a discount of 8% * the value of the cell here based on the level of anti theft device ---->"/>
+        <valueSetCell/>
+        <expressionCell external="vehicleDiscounts+=Discount.new [value = 0.08 *  cellValue, category ='Anti-Theft Device / Vehicle Recovery System']">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * cellValue , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList rowHeight="21">
+        <naturalLanguageText value="Assign that coverage a 3 % discount with this category ------>"/>
+        <valueSetCell/>
+        <expressionCell external="vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = cellValue ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.2"/>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.1">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.0"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.2"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.3"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.4"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.5"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.6"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.7"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.8"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.9"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.10"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.11"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.12"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.13"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.14"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.15"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.1">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.1/@referencedAttributes.0"/>
+          </children>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.2">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.0"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="33"/>
+    <ruleStatementSection rowCount="38" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400">
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.0">
+        <reference external="1:4"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned Anti-Theft Device / Vehicle Recovery System discount for their security device.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned Anti-Theft Device / Vehicle Recovery System discount for their security device." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.1">
+        <reference external="5"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Electronic Stability Control">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Electronic Stability Control" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.2">
+        <reference external="6"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Forward Collision Warning">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Forward Collision Warning" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.3">
+        <reference external="7"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Lane Keeping Assist">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Lane Keeping Assist" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.4">
+        <reference external="8"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Crash Imminent Braking">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Crash Imminent Braking" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.5">
+        <reference external="9"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Blind Spot Warning">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Blind Spot Warning" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.6">
+        <reference external="10"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned discount for having feature: Lane Departure Warning">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned discount for having feature: Lane Departure Warning" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.7">
+        <reference external="11"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Backup Camera">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Backup Camera" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.8">
+        <reference external="12"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Traction Control">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Traction Control" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.9">
+        <reference external="13"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Park Assist">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Park Assist" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.10">
+        <reference external="14"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Dynamic Brake Support">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Dynamic Brake Support" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.11">
+        <reference external="15"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Rear Cross Traffic Alert">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for having feature: Rear Cross Traffic Alert" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.12">
+        <reference external="16"/>
+        <text external="{Vehicle.make} {Vehicle.model} assigned  discount for its Low Annual Mileage">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  assigned  discount for its Low Annual Mileage" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+    </ruleStatementSection>
+    <conditionSection rowCount="51" columnWidthFactor="0.5">
+      <conditionItemList>
+        <naturalLanguageText value="For vehicles with this category of antitheft device ----->"/>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.antiTheftDevice.category">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category" datatype="String" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <naturalLanguageText value="Does the vehicle have electronic stability control (T/F) ---->"/>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.electronicStabilityControl">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.electronicStabilityControl" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="electronicStabilityControl" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.electronicStabilityControl">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <naturalLanguageText value="Does the vehicle have forward collision warning (T/F) ---->"/>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.forwardCollisionWarning">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.forwardCollisionWarning" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="forwardCollisionWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.forwardCollisionWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.laneKeepingAssistance">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.laneKeepingAssistance" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="laneKeepingAssistance" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.laneKeepingAssistance">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.crashImminentBraking">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.crashImminentBraking" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="crashImminentBraking" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.crashImminentBraking">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.blindSpotWarning">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.blindSpotWarning" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="blindSpotWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.blindSpotWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList rowHeight="16">
+        <valueSetCell/>
+        <expressionCell external="Vehicle.laneDepartureWarning">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.laneDepartureWarning" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="laneDepartureWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.laneDepartureWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell valueSet=""/>
+        <expressionCell external="Vehicle.backupCam">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.backupCam" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="backupCam" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.backupCam">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.tractionControl">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.tractionControl" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="tractionControl" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.tractionControl">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell valueSet=""/>
+        <expressionCell external="Vehicle.parkAssist">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.parkAssist" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="parkAssist" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.parkAssist">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.dynamicBrakeSupport">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.dynamicBrakeSupport" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="dynamicBrakeSupport" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.dynamicBrakeSupport">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.rearCrossTrafficAlert">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.rearCrossTrafficAlert" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="rearCrossTrafficAlert" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.rearCrossTrafficAlert">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.milesDrivenAnnually">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.milesDrivenAnnually" datatype="Integer" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="milesDrivenAnnually" datatype="Integer" termtype="ATTRIBUTE" fulltext="Vehicle.milesDrivenAnnually">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+    </conditionSection>
+    <ruleSection columnCount="26">
+      <ruleColumnList ruleId="0" columnWidth="100" pRule="#//@ruleset/@rules.0">
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="1" columnWidth="112" pRule="#//@ruleset/@rules.1">
+        <conditionValueSetCellList valueSet="'Category I'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category = 'Category I'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="1">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * 1 , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="2" columnWidth="100" pRule="#//@ruleset/@rules.2">
+        <conditionValueSetCellList valueSet="'Category II'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category = 'Category II'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="2">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * 2 , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="3" columnWidth="100" pRule="#//@ruleset/@rules.3">
+        <conditionValueSetCellList valueSet="'Category III'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category = 'Category III'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="3">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * 3 , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="4" columnWidth="184" pRule="#//@ruleset/@rules.4">
+        <conditionValueSetCellList valueSet="'Category IV'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.antiTheftDevice.category = 'Category IV'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.antiTheftDevice.category">
+                <parentTerm text="antiTheftDevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="Vehicle.antiTheftDevice" variable="#//@ruleset/@logicalVariables.1/@extension.1">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="4">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.08 * 4 , Discount.category = 'Anti-Theft Device / Vehicle Recovery System' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="5" columnWidth="100" pRule="#//@ruleset/@rules.5">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.electronicStabilityControl = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="electronicStabilityControl" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.electronicStabilityControl">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Electronic Stability Control'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Electronic Stability Control' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="6" columnWidth="100" pRule="#//@ruleset/@rules.6">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.forwardCollisionWarning = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="forwardCollisionWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.forwardCollisionWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Forward Collision Warning'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Forward Collision Warning' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="7" columnWidth="100" pRule="#//@ruleset/@rules.7">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.laneKeepingAssistance = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="laneKeepingAssistance" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.laneKeepingAssistance">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Lane Keeping Assist'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Lane Keeping Assist' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="8" columnWidth="100" pRule="#//@ruleset/@rules.8">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.crashImminentBraking = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="crashImminentBraking" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.crashImminentBraking">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Crash Imminent Braking'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Crash Imminent Braking' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="9" columnWidth="100" pRule="#//@ruleset/@rules.9">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.blindSpotWarning = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="blindSpotWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.blindSpotWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Blind Spot Warning'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Blind Spot Warning' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="10" columnWidth="100" pRule="#//@ruleset/@rules.10">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.laneDepartureWarning = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="laneDepartureWarning" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.laneDepartureWarning">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Lane Departure Warning'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Lane Departure Warning' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="11" columnWidth="100" pRule="#//@ruleset/@rules.11">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.backupCam = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="backupCam" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.backupCam">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Backup Camera'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Backup Camera' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="12" columnWidth="100" pRule="#//@ruleset/@rules.12">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.tractionControl = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="tractionControl" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.tractionControl">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Traction Control'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Traction Control' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="13" columnWidth="100" pRule="#//@ruleset/@rules.13">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.parkAssist = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="parkAssist" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.parkAssist">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Park Assist'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Park Assist' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="14" columnWidth="100" pRule="#//@ruleset/@rules.14">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.dynamicBrakeSupport = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="dynamicBrakeSupport" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.dynamicBrakeSupport">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Dynamic Brake Support'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Dynamic Brake Support' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="15" columnWidth="100" pRule="#//@ruleset/@rules.15">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Standard'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.rearCrossTrafficAlert = 'Standard'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="rearCrossTrafficAlert" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.rearCrossTrafficAlert">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Rear Cross Traffic Alert'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Rear Cross Traffic Alert' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="16" columnWidth="100" pRule="#//@ruleset/@rules.16">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="&lt; 7000">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.milesDrivenAnnually &lt; 7000" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="milesDrivenAnnually" datatype="Integer" termtype="ATTRIBUTE" fulltext="Vehicle.milesDrivenAnnually">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Low Annual Mileage'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="vehicleDiscounts += Discount.new [ Discount.value = 0.03 , Discount.category = 'Low Annual Mileage' ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="vehicleDiscounts" datatype="Discount" termtype="ENTITY" fulltext="vehicleDiscounts">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>

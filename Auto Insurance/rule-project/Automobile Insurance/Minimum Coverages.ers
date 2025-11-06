@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_SKGWE4jbEfCtu4mGXb_68A" externalChecksum="2722078124:507989954:0" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_bDYHgIhlEfC8I7DNswGvCQ" vocabulary="Vocabulary.ecore#/">
+    <rule>
+      <action>
+        <opaqueExpression expression="Vehicle.coverages+=Coverage.new[compulsary=T, part = 'Bodily Injury to Others', applicationId=Vehicle.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = 'Bodily Injury to Others' , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="Coverage" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="Vehicle.coverages+=Coverage.new[compulsary=T, part = 'Personal Injury Protection', applicationId=Vehicle.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = 'Personal Injury Protection' , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="Coverage" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="Vehicle.coverages+=Coverage.new[compulsary=T, part = 'Bodily Injury Caused By An Uninsured Auto', applicationId=Vehicle.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = 'Bodily Injury Caused By An Uninsured Auto' , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="Coverage" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="Vehicle.coverages+=Coverage.new[compulsary=T, part = 'Damage to Someone Else\'s Property', applicationId=Vehicle.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = 'Damage to Someone Else\'s Property' , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="Coverage" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <logicalVariable entity="Vocabulary.ecore#//Vehicle">
+      <extension association="true" entity="Vocabulary.ecore#//Coverage" traversedAssocRole="Vocabulary.ecore#//Vehicle/coverages"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/applicationId"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Coverage">
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/compulsary"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/part"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/applicationId"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" sashWeightConditionsIf="66">
+    <actionSection rowCount="50" columnWidthFactor="0.5">
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.coverages+=Coverage.new[compulsary=T, part = cellValue, applicationId=Vehicle.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = cellValue , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.coverages+=Coverage.new[compulsary=T, part = cellValue, applicationId=Vehicle.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = cellValue , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.coverages+=Coverage.new[compulsary=T, part = cellValue, applicationId=Vehicle.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = cellValue , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.coverages+=Coverage.new[compulsary=T, part = cellValue, applicationId=Vehicle.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = cellValue , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0"/>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.1">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.2"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="50"/>
+    <ruleStatementSection rowCount="50" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400"/>
+    <conditionSection rowCount="50" scrollRowTop="3" columnWidthFactor="0.5"/>
+    <ruleSection columnCount="20">
+      <ruleColumnList ruleId="0" columnWidth="100" pRule="#//@ruleset/@rules.0">
+        <actionValueSetCellList valueSet="'Bodily Injury to Others'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = 'Bodily Injury to Others' , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="Coverage" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'Personal Injury Protection'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = 'Personal Injury Protection' , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="Coverage" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'Bodily Injury Caused By An Uninsured Auto'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = 'Bodily Injury Caused By An Uninsured Auto' , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="Coverage" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList valueSet="'Damage to Someone Else\'s Property'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.coverages += Coverage.new [ Coverage.part = 'Damage to Someone Else\'s Property' , Coverage.compulsary = T , Coverage.applicationId = Vehicle.applicationId ]" datatype="Coverage" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              <terms text="compulsary" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Coverage.compulsary">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="new" datatype="Coverage" termtype="NEW" fulltext="Coverage.new">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.applicationId">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.applicationId">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>

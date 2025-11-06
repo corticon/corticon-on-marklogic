@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_viMbFIgjEfC8I7DNswGvCQ" externalChecksum="2722078124:507989954:0" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_cWKJMogREfCDLt-0W8iGsQ" vocabulary="Vocabulary.ecore#/">
+    <rule>
+      <action/>
+    </rule>
+    <rule>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Discount.applicationId = null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Discount.applicationId = null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Discount.applicationId" rhs="null"/>
+      </condition>
+      <action/>
+      <action>
+        <opaqueExpression expression="Discount.applicationId = Discount.vehicle.applicationId">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Discount.applicationId = Discount.vehicle.applicationId" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.vehicle.applicationId">
+                <parentTerm text="vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Discount.vehicle" variable="#//@ruleset/@logicalVariables.2/@extension.0">
+                  <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Bodily Injury Caused By An Uninsured Auto'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Bodily Injury Caused By An Uninsured Auto'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Bodily Injury Caused By An Uninsured Auto'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 80">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 80" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Collision'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Collision'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Collision'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 420">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 420" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Comprehensive'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Comprehensive'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Comprehensive'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 130">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 130" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Damage to Someone Else\'s Property'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Damage to Someone Else\'s Property'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Damage to Someone Else\'s Property'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 140">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 140" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Limited Collision'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Limited Collision'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Limited Collision'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 140">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 140" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Medical Payments'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Medical Payments'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Medical Payments'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 25">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 25" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Optional Bodily Injury to Others'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Optional Bodily Injury to Others'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Optional Bodily Injury to Others'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 87.00">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 87.00" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Original Equipment Manufacturer (OEM) Parts Coverage'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Original Equipment Manufacturer (OEM) Parts Coverage'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Original Equipment Manufacturer (OEM) Parts Coverage'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 40">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 40" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Personal Injury Protection'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Personal Injury Protection'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Personal Injury Protection'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 210">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 210" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Substitute Transportation'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Substitute Transportation'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Substitute Transportation'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 35">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 35" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = 'Towing and Labor Costs'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Towing and Labor Costs'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="'Towing and Labor Costs'"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Coverage.baseRate = 12">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 12" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="Coverage.part = null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Coverage.part" rhs="null"/>
+      </condition>
+      <action/>
+    </rule>
+    <ruleStatement post="Info"/>
+    <logicalVariable entity="Vocabulary.ecore#//Coverage">
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/part"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/baseRate"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Policy"/>
+    <logicalVariable entity="Vocabulary.ecore#//Discount">
+      <extension association="true" entity="Vocabulary.ecore#//Vehicle" traversedAssocRole="Vocabulary.ecore#//Discount/vehicle">
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/applicationId"/>
+      </extension>
+      <referencedAttributes attribute="Vocabulary.ecore#//Discount/applicationId"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" advanced="true" sashWeightAdvancedView="22" sashWeightScope="49" sashWeightConditionsActions="41" sashWeightConditionsIf="30">
+    <actionSection rowCount="16" columnWidthFactor="0.5">
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Coverage.baseRate">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate" datatype="Decimal" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Discount.applicationId">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Discount.applicationId" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.1"/>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.1"/>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.2">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.2/@extension.0">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@extension.0/@referencedAttributes.0"/>
+          </children>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="82"/>
+    <ruleStatementSection rowCount="50" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400">
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.0">
+        <reference/>
+        <text/>
+      </ruleStatementItemList>
+    </ruleStatementSection>
+    <conditionSection rowCount="6" columnWidthFactor="0.5">
+      <conditionItemList rowHeight="56">
+        <valueSetCell/>
+        <expressionCell external="Coverage.part">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part" datatype="String" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Discount.applicationId">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Discount.applicationId" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+    </conditionSection>
+    <ruleSection columnCount="109">
+      <ruleColumnList ruleId="0" columnWidth="222" pRule="#//@ruleset/@rules.0">
+        <conditionValueSetCellList/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="1" columnWidth="100" pRule="#//@ruleset/@rules.1">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Discount.applicationId = null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet="Discount.vehicle.applicationId">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Discount.applicationId = Discount.vehicle.applicationId" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.vehicle.applicationId">
+                <parentTerm text="vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Discount.vehicle">
+                  <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="2" columnWidth="100" pRule="#//@ruleset/@rules.2">
+        <conditionValueSetCellList valueSet="'Bodily Injury Caused By An Uninsured Auto'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Bodily Injury Caused By An Uninsured Auto'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="80">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 80" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="3" columnWidth="100" pRule="#//@ruleset/@rules.3">
+        <conditionValueSetCellList valueSet="'Collision'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Collision'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="420">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 420" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="4" columnWidth="100" pRule="#//@ruleset/@rules.4">
+        <conditionValueSetCellList valueSet="'Comprehensive'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Comprehensive'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="130">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 130" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="5" columnWidth="100" pRule="#//@ruleset/@rules.5">
+        <conditionValueSetCellList valueSet="'Damage to Someone Else\'s Property'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Damage to Someone Else\'s Property'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="140">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 140" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="6" columnWidth="100" pRule="#//@ruleset/@rules.6">
+        <conditionValueSetCellList valueSet="'Limited Collision'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Limited Collision'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="140">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 140" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="7" columnWidth="100" pRule="#//@ruleset/@rules.7">
+        <conditionValueSetCellList valueSet="'Medical Payments'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Medical Payments'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="25">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 25" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="8" columnWidth="100" pRule="#//@ruleset/@rules.8">
+        <conditionValueSetCellList valueSet="'Optional Bodily Injury to Others'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Optional Bodily Injury to Others'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="87.00">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 87.00" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="9" columnWidth="100" pRule="#//@ruleset/@rules.9">
+        <conditionValueSetCellList valueSet="'Original Equipment Manufacturer (OEM) Parts Coverage'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Original Equipment Manufacturer (OEM) Parts Coverage'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="40">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 40" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="10" columnWidth="100" pRule="#//@ruleset/@rules.10">
+        <conditionValueSetCellList valueSet="'Personal Injury Protection'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Personal Injury Protection'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="210">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 210" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="11" columnWidth="100" pRule="#//@ruleset/@rules.11">
+        <conditionValueSetCellList valueSet="'Substitute Transportation'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Substitute Transportation'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="35">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 35" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="12" columnWidth="100" pRule="#//@ruleset/@rules.12">
+        <conditionValueSetCellList valueSet="'Towing and Labor Costs'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = 'Towing and Labor Costs'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="12">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.baseRate = 12" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="13" columnWidth="300" pRule="#//@ruleset/@rules.13">
+        <conditionValueSetCellList valueSet="null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.part = null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="part" datatype="String" termtype="ATTRIBUTE" fulltext="Coverage.part">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>

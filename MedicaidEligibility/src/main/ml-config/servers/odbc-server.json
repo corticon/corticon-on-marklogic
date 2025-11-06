@@ -1,0 +1,9 @@
+{
+    "server-name": "MedicaidEligibility-odbc",
+    "server-type": "odbc",
+    "root": "/",
+    "group-name": "Default",
+    "port": 5435,
+    "modules-database": "corticonml-modules",
+    "content-database": "corticonml-content"
+}

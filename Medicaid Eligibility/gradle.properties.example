@@ -1,5 +1,0 @@
-# MarkLogic Connection Properties
-# Copy this file to 'gradle.properties' and fill in your local values.
-mlHost=localhost
-mlUsername=your-marklogic-admin-user
-mlPassword=your-marklogic-admin-password

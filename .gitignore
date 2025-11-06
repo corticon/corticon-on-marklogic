@@ -12,7 +12,7 @@
 **/*.tgz
 
 # Gradle
-.gradle/
+**/.gradle/
 build/
 !wrapper/gradle-wrapper.jar
 
@@ -34,6 +34,7 @@ yarn-error.log*
 # IDEs and editors
 .idea/
 .vscode/
+.project
 *.swp
 *~
 *.iml
@@ -53,5 +54,6 @@ Thumbs.db
 
 # Other
 *.pdf
+*.docx
 *.ffs_db
-src_File_List.txt
+*_File_List.txt

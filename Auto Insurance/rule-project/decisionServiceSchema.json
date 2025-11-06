@@ -1,0 +1,3689 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "title": "Corticon AI Schema",
+    "type": "object",
+    "required": [
+        "vocabulary",
+        "catalog",
+        "mainFlow"
+    ],
+    "properties": {
+        "vocabulary": {
+            "type": "object",
+            "required": [
+                "entities"
+            ],
+            "properties": {
+                "entities": {
+                    "type": "array",
+                    "items": [
+                        {
+                            "name": "AntiTheftDevice",
+                            "attributes": [
+                                {
+                                    "datatype": "String",
+                                    "name": "applicationId"
+                                },
+                                {
+                                    "datatype": "antiTheftDeviceCategory",
+                                    "name": "category"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "type"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Coverage",
+                            "attributes": [
+                                {
+                                    "datatype": "String",
+                                    "name": "applicationId"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "baseRate"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "compulsary"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "deductible"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "discountTotal"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "ineligible"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "limitPerAccident"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "limitPerPerson"
+                                },
+                                {
+                                    "datatype": "coverageType",
+                                    "name": "part"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "potentialDiscount"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "premium"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "surchargeTotal"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Discount",
+                            "attributes": [
+                                {
+                                    "datatype": "String",
+                                    "name": "applicationId"
+                                },
+                                {
+                                    "datatype": "discountType",
+                                    "name": "category"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "value"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Driver",
+                            "attributes": [
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "advancedDriverTraining"
+                                },
+                                {
+                                    "datatype": "Integer",
+                                    "name": "age"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "applicationId"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "atFaultCheck"
+                                },
+                                {
+                                    "datatype": "Date",
+                                    "name": "dob"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "first"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "fullTimeStudent"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "goodStudent"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "gpa"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "gradeAverage"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "last"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "multiTheftCheck"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "name"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Incident",
+                            "attributes": [
+                                {
+                                    "datatype": "String",
+                                    "name": "applicationId"
+                                },
+                                {
+                                    "datatype": "Date",
+                                    "name": "date"
+                                },
+                                {
+                                    "datatype": "Integer",
+                                    "name": "incidentsPerLookback"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "incidentType"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Policy",
+                            "attributes": [
+                                {
+                                    "datatype": "String",
+                                    "name": "applicationId"
+                                },
+                                {
+                                    "datatype": "Date",
+                                    "name": "customerSince"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "familyName"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "hasHomePolicy"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "isLoyaltyCustomer"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "isMultiCar"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "isPaperless"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "netPremium"
+                                },
+                                {
+                                    "datatype": "paymentPlan",
+                                    "name": "paymentPlan"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "state"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Surcharge",
+                            "attributes": [
+                                {
+                                    "datatype": "String",
+                                    "name": "applicationId"
+                                },
+                                {
+                                    "datatype": "surchargeType",
+                                    "name": "description"
+                                },
+                                {
+                                    "datatype": "Integer",
+                                    "name": "incidentsPerLookback"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "value"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Vehicle",
+                            "attributes": [
+                                {
+                                    "datatype": "String",
+                                    "name": "abs"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "adaptiveHeadlights"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "applicationId"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "autoBrake"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "automaticPedestrianAlertingSound"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "autoReverseSystem"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "axleConfiguration"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "backupCam"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "blindSpotWarning"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "bodyStyle"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "brakeSystem"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "combinedBrakingSystem"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "crashImminentBraking"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "customMotorcycleType"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "dynamicBrakeSupport"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "edr"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "electronicStabilityControl"
+                                },
+                                {
+                                    "datatype": "engineModel",
+                                    "name": "engineModel"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "forwardCollisionWarning"
+                                },
+                                {
+                                    "datatype": "grossVehicleWeightRating",
+                                    "name": "grossVehicleWeightRating"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "isHighTheft"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "laneDepartureWarning"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "laneKeepingAssistance"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "make"
+                                },
+                                {
+                                    "datatype": "Integer",
+                                    "name": "miles"
+                                },
+                                {
+                                    "datatype": "Integer",
+                                    "name": "milesDrivenAnnually"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "model"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "modelYear"
+                                },
+                                {
+                                    "datatype": "Decimal",
+                                    "name": "netPremium"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "parkAssist"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "pedestrianAutoBrake"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "primaryDriverName"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "rearCrossTrafficAlert"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "rearVisibilityCamera"
+                                },
+                                {
+                                    "datatype": "Boolean",
+                                    "name": "salvageTitleIssued"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "series"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "tractionControl"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "transmission"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "trim"
+                                },
+                                {
+                                    "datatype": "String",
+                                    "name": "type"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "associations": [
+                    {
+                        "entityOne": "AntiTheftDevice",
+                        "entityTwo": "Vehicle",
+                        "entityOneToTwoRoleName": "vehicle",
+                        "entityTwoToOneRoleName": "antiTheftDevice",
+                        "navigability": "Bidirectional",
+                        "cardinality": "*- >1"
+                    },
+                    {
+                        "entityOne": "Coverage",
+                        "entityTwo": "Discount",
+                        "entityOneToTwoRoleName": "discount",
+                        "entityTwoToOneRoleName": "coverage",
+                        "navigability": "Bidirectional",
+                        "cardinality": "1- >*"
+                    },
+                    {
+                        "entityOne": "Coverage",
+                        "entityTwo": "Surcharge",
+                        "entityOneToTwoRoleName": "surcharge",
+                        "entityTwoToOneRoleName": "coverage",
+                        "navigability": "Bidirectional",
+                        "cardinality": "1- >*"
+                    },
+                    {
+                        "entityOne": "Coverage",
+                        "entityTwo": "Vehicle",
+                        "entityOneToTwoRoleName": "vehicle",
+                        "entityTwoToOneRoleName": "coverages",
+                        "navigability": "Bidirectional",
+                        "cardinality": "*- >1"
+                    },
+                    {
+                        "entityOne": "Discount",
+                        "entityTwo": "Driver",
+                        "entityOneToTwoRoleName": "driver",
+                        "entityTwoToOneRoleName": "discount",
+                        "navigability": "Bidirectional",
+                        "cardinality": "*- >1"
+                    },
+                    {
+                        "entityOne": "Discount",
+                        "entityTwo": "Vehicle",
+                        "entityOneToTwoRoleName": "vehicle",
+                        "entityTwoToOneRoleName": "discount",
+                        "navigability": "Bidirectional",
+                        "cardinality": "*- >1"
+                    },
+                    {
+                        "entityOne": "Driver",
+                        "entityTwo": "Incident",
+                        "entityOneToTwoRoleName": "incidents",
+                        "entityTwoToOneRoleName": "driver",
+                        "navigability": "Bidirectional",
+                        "cardinality": "1- >*"
+                    },
+                    {
+                        "entityOne": "Driver",
+                        "entityTwo": "Surcharge",
+                        "entityOneToTwoRoleName": "surcharge",
+                        "entityTwoToOneRoleName": "driver",
+                        "navigability": "Bidirectional",
+                        "cardinality": "1- >*"
+                    },
+                    {
+                        "entityOne": "Driver",
+                        "entityTwo": "Vehicle",
+                        "entityOneToTwoRoleName": "vehicle",
+                        "entityTwoToOneRoleName": "driver",
+                        "navigability": "Bidirectional",
+                        "cardinality": "*- >*"
+                    },
+                    {
+                        "entityOne": "Policy",
+                        "entityTwo": "Discount",
+                        "entityOneToTwoRoleName": "policy",
+                        "entityTwoToOneRoleName": "discount",
+                        "navigability": "Policy->discount",
+                        "cardinality": "1- >*"
+                    },
+                    {
+                        "entityOne": "Policy",
+                        "entityTwo": "Driver",
+                        "entityOneToTwoRoleName": "policy",
+                        "entityTwoToOneRoleName": "drivers",
+                        "navigability": "Policy->drivers",
+                        "cardinality": "1- >*"
+                    },
+                    {
+                        "entityOne": "Policy",
+                        "entityTwo": "Surcharge",
+                        "entityOneToTwoRoleName": "policy",
+                        "entityTwoToOneRoleName": "surcharge",
+                        "navigability": "Policy->surcharge",
+                        "cardinality": "1- >*"
+                    },
+                    {
+                        "entityOne": "Policy",
+                        "entityTwo": "Vehicle",
+                        "entityOneToTwoRoleName": "policy",
+                        "entityTwoToOneRoleName": "vehicles",
+                        "navigability": "Policy->vehicles",
+                        "cardinality": "1- >*"
+                    }
+                ],
+                "customDatatypes": [
+                    {
+                        "datatype": "String",
+                        "name": "incidentType",
+                        "values": [
+                            {
+                                "value": "'Vehicular Homicide Conviction'"
+                            },
+                            {
+                                "value": "'Auto Insurance Related Fraud or Theft'"
+                            },
+                            {
+                                "value": "'OUI Conviction'"
+                            },
+                            {
+                                "value": "'At Fault Auto Accident'"
+                            },
+                            {
+                                "value": "'Auto Theft or Fire Insurance Claim'"
+                            },
+                            {
+                                "value": "'Intentional Misrepresentation in Collision or Comprehensive Claim'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "discountType",
+                        "values": [
+                            {
+                                "value": "'Age 65 and Older'"
+                            },
+                            {
+                                "value": "'Anti-Theft Device / Vehicle Recovery System'"
+                            },
+                            {
+                                "value": "'Multi-Car'"
+                            },
+                            {
+                                "value": "'Multi-Line'"
+                            },
+                            {
+                                "value": "'Good Student'"
+                            },
+                            {
+                                "value": "'Loyalty'"
+                            },
+                            {
+                                "value": "'Paid In Full'"
+                            },
+                            {
+                                "value": "'Advanced Driver Training'"
+                            },
+                            {
+                                "value": "'Automatic Payment Plan'"
+                            },
+                            {
+                                "value": "'All Electronic'"
+                            },
+                            {
+                                "value": "'Adaptive Headlights'"
+                            },
+                            {
+                                "value": "'Forward Collision Warning'"
+                            },
+                            {
+                                "value": "'Electronic Stability Control'"
+                            },
+                            {
+                                "value": "'Low Annual Mileage'"
+                            },
+                            {
+                                "value": "'Safe Driver / Incident-Free'"
+                            },
+                            {
+                                "value": "'Blind Spot Warning'"
+                            },
+                            {
+                                "value": "'Lane Departure Warning'"
+                            },
+                            {
+                                "value": "'Crash Imminent Braking'"
+                            },
+                            {
+                                "value": "'Lane Keeping Assist'"
+                            },
+                            {
+                                "value": "'Dynamic Brake Support'"
+                            },
+                            {
+                                "value": "'Park Assist'"
+                            },
+                            {
+                                "value": "'Backup Camera'"
+                            },
+                            {
+                                "value": "'Traction Control'"
+                            },
+                            {
+                                "value": "'Rear Cross Traffic Alert'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "paymentPlan",
+                        "values": [
+                            {
+                                "value": "'Monthly'"
+                            },
+                            {
+                                "value": "'Semi-Annual'"
+                            },
+                            {
+                                "value": "'Paid In Full'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "coverageType",
+                        "values": [
+                            {
+                                "value": "'Bodily Injury to Others'"
+                            },
+                            {
+                                "value": "'Personal Injury Protection'"
+                            },
+                            {
+                                "value": "'Bodily Injury Caused By An Uninsured Auto'"
+                            },
+                            {
+                                "value": "'Damage to Someone Else\\'s Property'"
+                            },
+                            {
+                                "value": "'Optional Bodily Injury to Others'"
+                            },
+                            {
+                                "value": "'Medical Payments'"
+                            },
+                            {
+                                "value": "'Collision'"
+                            },
+                            {
+                                "value": "'Limited Collision'"
+                            },
+                            {
+                                "value": "'Comprehensive'"
+                            },
+                            {
+                                "value": "'Substitute Transportation'"
+                            },
+                            {
+                                "value": "'Towing and Labor Costs'"
+                            },
+                            {
+                                "value": "'Bodily Injury Caused By An Underinsured Auto'"
+                            },
+                            {
+                                "value": "'Auto Loan / Lease Coverage'"
+                            },
+                            {
+                                "value": "'Original Equipment Manufacturer (OEM) Parts Coverage'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "vehicleType",
+                        "values": [
+                            {
+                                "value": "'Coupe'"
+                            },
+                            {
+                                "value": "'Convertible/Cabriolet'"
+                            },
+                            {
+                                "value": "'Wagon'"
+                            },
+                            {
+                                "value": "'Sedan/Saloon'"
+                            },
+                            {
+                                "value": "'Hatchback/Liftback/Notchback'"
+                            },
+                            {
+                                "value": "'Minivan'"
+                            },
+                            {
+                                "value": "'Roadster'"
+                            },
+                            {
+                                "value": "'Pickup'"
+                            },
+                            {
+                                "value": "'Van'"
+                            },
+                            {
+                                "value": "'Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)'"
+                            },
+                            {
+                                "value": "'Truck'"
+                            },
+                            {
+                                "value": "'Cargo Van'"
+                            },
+                            {
+                                "value": "'Sport Utility Truck (SUT)'"
+                            },
+                            {
+                                "value": "'Crossover Utility Vehicle (CUV)'"
+                            },
+                            {
+                                "value": "'Low Speed Vehicle (LSV) / Neighborhood Electric Vehicle (NEV)'"
+                            },
+                            {
+                                "value": "'Motorcycle - Unenclosed Three Wheeled or Open Autocycle [1 Rear Wheel]'"
+                            },
+                            {
+                                "value": "'Step Van / Walk-in Van'"
+                            },
+                            {
+                                "value": "'Motorcycle - Sport'"
+                            },
+                            {
+                                "value": "'Motorcycle - Scooter'"
+                            },
+                            {
+                                "value": "'Motorcycle - Dual Sport / Adventure / Supermoto / On/Off-road'"
+                            },
+                            {
+                                "value": "'Motorcycle - Street'"
+                            },
+                            {
+                                "value": "'Motorcycle - Touring / Sport Touring'"
+                            },
+                            {
+                                "value": "'Motorcycle - Custom'"
+                            },
+                            {
+                                "value": "'Motorcycle - Three-Wheeled Motorcycle (2 Rear Wheels)'"
+                            },
+                            {
+                                "value": "'Motorcycle - Underbone'"
+                            },
+                            {
+                                "value": "'Motorcycle - Cruiser'"
+                            },
+                            {
+                                "value": "'Motorcycle - Small / Minibike'"
+                            },
+                            {
+                                "value": "'Motorcycle - Standard'"
+                            },
+                            {
+                                "value": "'Motorcycle - Moped'"
+                            },
+                            {
+                                "value": "'Motorcycle - Unknown Body Class'"
+                            },
+                            {
+                                "value": "'Off-road Vehicle - All Terrain Vehicle (ATV) (Motorcycle-style)'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "antiTheftDeviceCategory",
+                        "values": [
+                            {
+                                "value": "'Category I'"
+                            },
+                            {
+                                "value": "'Category II'"
+                            },
+                            {
+                                "value": "'Category III'"
+                            },
+                            {
+                                "value": "'Category IV'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "make",
+                        "values": [
+                            {
+                                "value": "'Acura'"
+                            },
+                            {
+                                "value": "'Alfa Romeo'"
+                            },
+                            {
+                                "value": "'Aston Martin'"
+                            },
+                            {
+                                "value": "'Audi'"
+                            },
+                            {
+                                "value": "'Bentley'"
+                            },
+                            {
+                                "value": "'BMW'"
+                            },
+                            {
+                                "value": "'Buick'"
+                            },
+                            {
+                                "value": "'BYD'"
+                            },
+                            {
+                                "value": "'Cadillac'"
+                            },
+                            {
+                                "value": "'Chevrolet'"
+                            },
+                            {
+                                "value": "'Chrysler'"
+                            },
+                            {
+                                "value": "'Dodge'"
+                            },
+                            {
+                                "value": "'Ferrari'"
+                            },
+                            {
+                                "value": "'Fiat'"
+                            },
+                            {
+                                "value": "'Fisker'"
+                            },
+                            {
+                                "value": "'Ford'"
+                            },
+                            {
+                                "value": "'Genesis'"
+                            },
+                            {
+                                "value": "'GMC'"
+                            },
+                            {
+                                "value": "'Honda'"
+                            },
+                            {
+                                "value": "'Hummer'"
+                            },
+                            {
+                                "value": "'Hyundai'"
+                            },
+                            {
+                                "value": "'Infiniti'"
+                            },
+                            {
+                                "value": "'Jaguar'"
+                            },
+                            {
+                                "value": "'Jeep'"
+                            },
+                            {
+                                "value": "'Kia'"
+                            },
+                            {
+                                "value": "'Lamborghini'"
+                            },
+                            {
+                                "value": "'Land Rover'"
+                            },
+                            {
+                                "value": "'Lexus'"
+                            },
+                            {
+                                "value": "'Lincoln'"
+                            },
+                            {
+                                "value": "'Lotus'"
+                            },
+                            {
+                                "value": "'Lucid'"
+                            },
+                            {
+                                "value": "'Mahindra'"
+                            },
+                            {
+                                "value": "'Maserati'"
+                            },
+                            {
+                                "value": "'Maybach'"
+                            },
+                            {
+                                "value": "'Mazda'"
+                            },
+                            {
+                                "value": "'McLaren'"
+                            },
+                            {
+                                "value": "'Mercedes-Benz'"
+                            },
+                            {
+                                "value": "'MINI'"
+                            },
+                            {
+                                "value": "'Mitsubishi'"
+                            },
+                            {
+                                "value": "'Nissan'"
+                            },
+                            {
+                                "value": "'Polestar'"
+                            },
+                            {
+                                "value": "'Porsche'"
+                            },
+                            {
+                                "value": "'Ram'"
+                            },
+                            {
+                                "value": "'RIVIAN'"
+                            },
+                            {
+                                "value": "'Rolls-Royce'"
+                            },
+                            {
+                                "value": "'smart'"
+                            },
+                            {
+                                "value": "'Subaru'"
+                            },
+                            {
+                                "value": "'Tesla'"
+                            },
+                            {
+                                "value": "'Toyota'"
+                            },
+                            {
+                                "value": "'Volkswagen'"
+                            },
+                            {
+                                "value": "'Volvo'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "surchargeType",
+                        "values": [
+                            {
+                                "value": "'Vehicular Homicide Conviction'"
+                            },
+                            {
+                                "value": "'Auto Insurance Related Fraud or Theft'"
+                            },
+                            {
+                                "value": "'Multiple Theft/Fire Claims'"
+                            },
+                            {
+                                "value": "'OUI Conviction'"
+                            },
+                            {
+                                "value": "'Multiple At-Fault Accidents'"
+                            },
+                            {
+                                "value": "'Intentional Misrepresentation in Collision or Comprehensive Claim'"
+                            },
+                            {
+                                "value": "'High-Theft Vehicle without AntiTheft Device'"
+                            },
+                            {
+                                "value": "'High-Performance Vehicle'"
+                            },
+                            {
+                                "value": "'High-Risk Vehicle Class'"
+                            },
+                            {
+                                "value": "'Youthful Operator'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "grossVehicleWeightRating",
+                        "values": [
+                            {
+                                "value": "'Class 1: 6,000 lb or less (2,722 kg or less)'"
+                            },
+                            {
+                                "value": "'Class 1D: 5,001 - 6,000 lb (2,268 - 2,722 kg)'"
+                            },
+                            {
+                                "value": "'Class 2E: 6,001 - 7,000 lb (2,722 - 3,175 kg)'"
+                            },
+                            {
+                                "value": "'Class 2: 6,001 - 10,000 lb (2,722 - 4,536 kg)'"
+                            },
+                            {
+                                "value": "'Class 1C: 4,001 - 5,000 lb (1,814 - 2,268 kg)'"
+                            },
+                            {
+                                "value": "'Class 1A: 3,000 lb or less (1,360 kg or less)'"
+                            },
+                            {
+                                "value": "'Class 1B: 3,001 - 4,000 lb (1,360 - 1,814 kg)'"
+                            },
+                            {
+                                "value": "'Class 2F: 7,001 - 8,000 lb (3,175 - 3,629 kg)'"
+                            }
+                        ]
+                    },
+                    {
+                        "datatype": "String",
+                        "name": "engineModel",
+                        "values": [
+                            {
+                                "value": "'B8444S'"
+                            },
+                            {
+                                "value": "'3.0T'"
+                            },
+                            {
+                                "value": "'4.0T'"
+                            },
+                            {
+                                "value": "'2.0 TFSI'"
+                            },
+                            {
+                                "value": "'2.5T'"
+                            },
+                            {
+                                "value": "'TFSI'"
+                            },
+                            {
+                                "value": "'TFSO'"
+                            },
+                            {
+                                "value": "'VVT-i Engine'"
+                            },
+                            {
+                                "value": "'B4204TSH(HP)'"
+                            },
+                            {
+                                "value": "'TFSI Engine'"
+                            },
+                            {
+                                "value": "'TDV6'"
+                            },
+                            {
+                                "value": "'1750 Turbo 4 Cylinder'"
+                            },
+                            {
+                                "value": "'TFSI Direct-Injection'"
+                            },
+                            {
+                                "value": "'55 TFSI (3.0T)'"
+                            },
+                            {
+                                "value": "'A25A-FKS'"
+                            },
+                            {
+                                "value": "'2GR-FKS'"
+                            },
+                            {
+                                "value": "'PY Turbo'"
+                            }
+                        ]
+                    }
+                ],
+                "corticon vocabulary metrics": {
+                    "total number of corticon vocabulary associations": 13,
+                    "total number of corticon vocabulary attributes": 91,
+                    "total number of corticon vocabulary entities": 8,
+                    "total number of corticon vocabulary custom data types": 10
+                }
+            }
+        },
+        "catalog": {
+            "type": "object",
+            "properties": {
+                "ruleflows": [],
+                "serviceCallouts": [],
+                "rulesheets": [
+                    {
+                        "ccId": 1,
+                        "rules": [
+                            {
+                                "ruleId": "A0",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.age",
+                                        "value": "Driver.dob.yearsBetween(today)"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Driver",
+                                        "text": "{Driver.first} {Driver.last}'s age set to {Driver.age}."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "F0",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.drivers.applicationId",
+                                        "value": "Policy.applicationId"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "G0",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.vehicles.applicationId",
+                                        "value": "Policy.applicationId"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "H0",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.drivers.incidents.applicationId",
+                                        "value": "Policy.applicationId"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "I0",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.vehicles.antiTheftDevice.applicationId",
+                                        "value": "Policy.applicationId"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.goodStudent",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Driver.fullTimeStudent",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Driver.gradeAverage",
+                                        "value": "{'B', 'B+', 'A-', 'A', 'A+'}"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Driver",
+                                        "text": "{Driver.first} {Driver.last} qualifies as a good student based on being a full-time student with a grade average of 'B' or better."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.goodStudent",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Driver.fullTimeStudent",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Driver.gpa",
+                                        "value": ">=3"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Driver",
+                                        "text": "{Driver.first} {Driver.last} qualifies as a good student based on being a full-time student with a GPA of 3.0 or higher."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.isLoyaltyCustomer",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.customerSince.yearsBetween(today) >= 3",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.isMultiCar",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.vehicles- >size",
+                                        "value": ">=2"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "5",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.vehicles.coverages.applicationId",
+                                        "value": "Policy.applicationId"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.vehicles.coverages.applicationId",
+                                        "value": "null"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "6",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.incidents.remove",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Driver.incidents.incidentType",
+                                        "value": "'Vehicular Homicide Conviction'"
+                                    },
+                                    {
+                                        "expression": "Driver.incidents.date.yearsBetween(today)",
+                                        "value": "> 5"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "7",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.incidents.remove",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Driver.incidents.incidentType",
+                                        "value": "'Auto Insurance Related Fraud or Theft'"
+                                    },
+                                    {
+                                        "expression": "Driver.incidents.date.yearsBetween(today)",
+                                        "value": "> 5"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "8",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.incidents.remove",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Driver.incidents.incidentType",
+                                        "value": "'OUI Conviction'"
+                                    },
+                                    {
+                                        "expression": "Driver.incidents.date.yearsBetween(today)",
+                                        "value": "> 3"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "9",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.incidents.remove",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Driver.incidents.incidentType",
+                                        "value": "'At Fault Auto Accident'"
+                                    },
+                                    {
+                                        "expression": "Driver.incidents.date.yearsBetween(today)",
+                                        "value": "> 3"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "10",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.incidents.remove",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Driver.incidents.incidentType",
+                                        "value": "'Auto Theft or Fire Insurance Claim'"
+                                    },
+                                    {
+                                        "expression": "Driver.incidents.date.yearsBetween(today)",
+                                        "value": "> 3"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "11",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.incidents.remove",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Driver.incidents.incidentType",
+                                        "value": "'Intentional Misrepresentation in Collision or Comprehensive Claim'"
+                                    },
+                                    {
+                                        "expression": "Driver.incidents.date.yearsBetween(today)",
+                                        "value": "> 5"
+                                    }
+                                ],
+                                "rulestatements": []
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Initialization_and_Eligibility"
+                    },
+                    {
+                        "ccId": 2,
+                        "rules": [
+                            {
+                                "ruleId": "A0",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.coverages+=Coverage.new[compulsary=T, part = cellValue, applicationId=Vehicle.applicationId]",
+                                        "value": "'Bodily Injury to Others'"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "B0",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.coverages+=Coverage.new[compulsary=T, part = cellValue, applicationId=Vehicle.applicationId]",
+                                        "value": "'Personal Injury Protection'"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "C0",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.coverages+=Coverage.new[compulsary=T, part = cellValue, applicationId=Vehicle.applicationId]",
+                                        "value": "'Bodily Injury Caused By An Uninsured Auto'"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "D0",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.coverages+=Coverage.new[compulsary=T, part = cellValue, applicationId=Vehicle.applicationId]",
+                                        "value": "'Damage to Someone Else\\'s Property'"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Minimum Coverages"
+                    },
+                    {
+                        "ccId": 3,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.coverages.ineligible",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.salvageTitleIssued",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Vehicle.coverages.part",
+                                        "value": "{'Collision', 'Comprehensive'}"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Violation",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.coverages.part} coverages are not available for vehicles with salvage titles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.coverages.ineligible",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.coverages.part",
+                                        "value": "'Original Equipment Manufacturer (OEM) Parts Coverage'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger-today.year",
+                                        "value": ">10"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Violation",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.coverages.part} is unavailable for vehicles greater than 10 years old."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.coverages.ineligible",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.coverages.part",
+                                        "value": "'Original Equipment Manufacturer (OEM) Parts Coverage'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.type.contains(cellValue)",
+                                        "value": "{'Classic', 'Antique Car', 'Motorcycle', 'Motorhome', 'RV', 'Trailer', 'Golfmobile', 'Snowmobile'}"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Violation",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.coverages.part} is unavailable for {Vehicle.type} vehicles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.coverages- >exists (part = 'Auto Loan / Lease Coverage')",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Vehicle.coverages- >exists (part = 'Comprehensive')",
+                                        "value": "F"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Violation",
+                                        "alias": "Vehicle",
+                                        "text": "Auto Loan/Lease Coverage requires that the vehicle also has Collision and Comprehensive."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "5",
+                                "actions": [],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.coverages- >exists (part = 'Auto Loan / Lease Coverage')",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Vehicle.coverages- >exists (part = 'Collision')",
+                                        "value": "F"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Violation",
+                                        "alias": "Vehicle",
+                                        "text": "Auto Loan/Lease Coverage requires that the vehicle also has Collision and Comprehensive."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "6",
+                                "actions": [
+                                    {
+                                        "expression": "allDrivers.surcharge+=Surcharge.new [value = 0.1, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Youthful Operator'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "allDrivers.age<25",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "",
+                                        "text": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Validation"
+                    },
+                    {
+                        "ccId": 4,
+                        "rules": [
+                            {
+                                "ruleId": "A0",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "F"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} is not on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Acura'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'ILX', 'MDX', 'RLX', 'TLX'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Alfa Romeo'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "'Stelvio'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Audi'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'A5', 'A6', 'A7', 'Q3', 'Q7', 'Q8', 'SQ5'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'BMW'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'530', '530XE', '540', 'X4', 'X5', 'X6', 'X7'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "5",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Cadillac'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "'Escalade'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "6",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Chevrolet'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Camaro', 'Corvette', 'Silverado C1500 (All Versions)', 'Silverado K1500 (All Versions)', 'Silverado K2500 (All Versions)', 'Silverado K3500 (All Versions)', 'Suburban C1500 (All Versions)', 'Suburban K1500 (All Versions)', 'Tahoe'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "7",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Chrysler'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'300', '300C'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "8",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Dodge'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Challenger', 'Charger', 'Durango', 'Journey'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "9",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Ford'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Expedition', 'Explorer', 'F150', 'F150 Supercrew', 'F250 Super Duty', 'F350 Super Duty', 'Fusion', 'Mustang'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "10",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'GMC'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Sierra C1500 (All Versions)', 'Sierra C2500', 'Sierra K1500 (All Versions)', 'Sierra K2500 (All Versions)', 'Sierra K3500 (All Versions)', 'Yukon', 'Yukon XL'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "11",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Honda'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "'Accord'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "12",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Infiniti'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Q50', 'Q60', 'QX50', 'QX60', 'QX80'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "13",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Jaguar'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'F-Pace', 'XF'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "14",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Jeep'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Gladiator', 'Grand Cherokee'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "15",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Kia'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Cadenza', 'Optima', 'Stinger'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "16",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Land Rover'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Range Rover', 'Range Rover Evoque', 'Range Rover Sport', 'Range Rover Velar'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "17",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Lexus'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'GS 350', 'GX 460', 'RC 350'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "18",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Lincoln'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'MKZ', 'Navigator'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "19",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Mazda'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "'CX-9'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "20",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Mercedes-Benz'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'C', 'CLA', 'CLS', 'E', 'G', 'GLC Coupe', 'GLE Coupe', 'GLS', 'S'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "21",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Mitsubishi'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "'Outlander Sport'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "22",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Nissan'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'370Z', 'Altima', 'Armada', 'Frontier', 'Maxima', 'Pathfinder', 'Titan', 'Titan XD'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "23",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Porsche'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'Cayenne', 'Macan', 'Panamera'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "24",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'RAM'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'1500', '1500 Classic', '2500', '3500'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "25",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.isHighTheft",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.make",
+                                        "value": "'Toyota'"
+                                    },
+                                    {
+                                        "expression": "Vehicle.model",
+                                        "value": "{'4Runner', '86', 'Camry', 'Tacoma Double Cab', 'Tundra (All Versions)'}"
+                                    },
+                                    {
+                                        "expression": "Vehicle.modelYear.toInteger>=today.year - 5",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles."
+                                    }
+                                ]
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "High Theft Autos"
+                    },
+                    {
+                        "ccId": 5,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.drivers.surcharge+=Surcharge.new [value = 1.5, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Vehicular Homicide Conviction'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.drivers.incidents- >exists(incidentType=cellValue)",
+                                        "value": "'Vehicular Homicide Conviction'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Policy.drivers",
+                                        "text": "{Policy.drivers.first} {Policy.drivers.last} assigned surcharge for the Vehicular Homicide Conviction within past 5 years of their driving record."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.drivers.surcharge+=Surcharge.new [value = 1, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Auto Insurance Related Fraud or Theft'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.drivers.incidents- >exists(incidentType=cellValue)",
+                                        "value": "'Auto Insurance Related Fraud or Theft'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Policy.drivers",
+                                        "text": "{Policy.drivers.first} {Policy.drivers.last} assigned surcharge for the Auto Insurance Related Fraud or Theft within past 5 years of their driving record."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.drivers.surcharge+=Surcharge.new [value =1.2, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'OUI Conviction'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.drivers.incidents- >exists(incidentType=cellValue)",
+                                        "value": "'OUI Conviction'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Policy.drivers",
+                                        "text": "{Policy.drivers.first} {Policy.drivers.last} assigned surcharge for the OUI Conviction in the past 3 years on their driving record."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [
+                                    {
+                                        "expression": "Driver.atFaultCheck",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.drivers.incidents- >exists(incidentType=cellValue)",
+                                        "value": "'At Fault Auto Accident'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "5",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.drivers.multiTheftCheck",
+                                        "value": "T"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.drivers.incidents- >exists(incidentType=cellValue)",
+                                        "value": "'Auto Theft or Fire Insurance Claim'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "6",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.drivers.surcharge+=Surcharge.new [value =0.25, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Intentional Misrepresentation in Collision or Comprehensive Claim'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.drivers.incidents- >exists(incidentType=cellValue)",
+                                        "value": "'Intentional Misrepresentation in Collision or Comprehensive Claim'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Policy.drivers",
+                                        "text": "{Policy.drivers.first} {Policy.drivers.last} assigned surcharge for the Intentional Misrepresentation in Collision or Comprehensive Claim within past 5 years of their driving record."
+                                    }
+                                ]
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Driver Surcharges"
+                    },
+                    {
+                        "ccId": 6,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "multiTheftDriver.surcharge+=Surcharge.new [value =0.25, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Multiple Theft/Fire Claims'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "multiTheftOrFire- >size",
+                                        "value": ">=2"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "multiTheftDriver",
+                                        "text": "{multiTheftDriver.first} {multiTheftDriver.last} assigned surcharge for having at least 2 Theft/Fire claims in the past three years."
+                                    }
+                                ]
+                            }
+                        ],
+                        "filters": [
+                            {
+                                "expression": "multiTheftDriver.multiTheftCheck=T"
+                            },
+                            {
+                                "expression": "multiTheftOrFire.incidentType = 'Auto Theft or Fire Insurance Claim'"
+                            }
+                        ],
+                        "ccName": "Theft Count"
+                    },
+                    {
+                        "ccId": 7,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "atFaultDriver.surcharge+=Surcharge.new [value =0.25, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Multiple At-Fault Accidents'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "atFaultIncident- >size",
+                                        "value": ">=4"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "atFaultDriver",
+                                        "text": "{atFaultDriver.first} {atFaultDriver.last} assigned surcharge for having at least 4 At Fault Accident claims in the past three years."
+                                    }
+                                ]
+                            }
+                        ],
+                        "filters": [
+                            {
+                                "expression": "atFaultDriver.atFaultCheck=T"
+                            },
+                            {
+                                "expression": "atFaultIncident.incidentType = 'At Fault Auto Accident'"
+                            }
+                        ],
+                        "ccName": "At Fault Count"
+                    },
+                    {
+                        "ccId": 8,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.vehicles.surcharge+=Surcharge.new [value = 0.5, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'High-Theft Vehicle without AntiTheft Device'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.vehicles.isHighTheft",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "catIIIorIVdevice- >isEmpty",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Policy.vehicles",
+                                        "text": "{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned surcharge for being a high theft vehicle without a category 3 or category 4 anti theft device."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.vehicles.surcharge+=Surcharge.new [value = 0.12, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'High-Risk Vehicle Class'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.vehicles.bodyStyle <> null",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Policy.vehicles.bodyStyle.contains(cellValue)",
+                                        "value": "{'Truck', 'SUV'}"
+                                    },
+                                    {
+                                        "expression": "Policy.vehicles.grossVehicleWeightRating.contains('Class 2')",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Policy.vehicles",
+                                        "text": "{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned High-Risk Vehicle Class ({Policy.vehicles.bodyStyle}s with a class 2 gross vehicle weight rating)."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.vehicles.surcharge+=Surcharge.new [value = 0.22, description =cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'High-Performance Vehicle'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.vehicles.bodyStyle <> null",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Policy.vehicles.bodyStyle.contains(cellValue)",
+                                        "value": "{'Coupe', 'Convertible/Cabriolet'}"
+                                    },
+                                    {
+                                        "expression": "Policy.vehicles.engineModel",
+                                        "value": "{'3.0T', '4.0T', '2.5T', 'TFSI', 'PY Turbo'}"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Warning",
+                                        "alias": "Policy.vehicles",
+                                        "text": "{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned High-Performance Vehicle surcharge ({Policy.vehicles.bodyStyle}s with a {Policy.vehicles.engineModel} engine."
+                                    }
+                                ]
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Vehicle Surcharges"
+                    },
+                    {
+                        "ccId": 9,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "policyLevelDiscount+=Discount.new [value =0.05, category = cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Multi-Car'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.isMultiCar",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Policy",
+                                        "text": "{Policy.familyName} family's policy qualifies for a multi car discount."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "policyLevelDiscount+=Discount.new [category = cellValue, value = 0.12, applicationId=Policy.applicationId]",
+                                        "value": "'Multi-Line'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.hasHomePolicy",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Policy",
+                                        "text": "{Policy.familyName} family's policy qualifies for a multi line discount."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "policyLevelDiscount+=Discount.new [value=0.01, category = cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Paid In Full'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.paymentPlan",
+                                        "value": "'Paid In Full'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Policy",
+                                        "text": "{Policy.familyName} family's policy qualifies for the paid in full discount."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [
+                                    {
+                                        "expression": "policyLevelDiscount+=Discount.new [value = 0.02, category = cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'All Electronic'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.isPaperless",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Policy",
+                                        "text": "{Policy.familyName} family's policy qualifies for the paperless discount"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "5",
+                                "actions": [
+                                    {
+                                        "expression": "policyLevelDiscount+=Discount.new [value =0.05, category = cellValue, applicationId=Policy.applicationId]",
+                                        "value": "'Loyalty'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Policy.isLoyaltyCustomer",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Policy",
+                                        "text": "{Policy.familyName} family's policy qualifies for the loyalty discount for being a customer since {Policy.customerSince}."
+                                    }
+                                ]
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Policy Level Discounts"
+                    },
+                    {
+                        "ccId": 10,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "driverLevelDiscount+=Discount.new [value = 0.1, category = cellValue, applicationId=coveredDriver.applicationId]",
+                                        "value": "'Good Student'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "coveredDriver.goodStudent",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "coveredDriver",
+                                        "text": "{coveredDriver.first} {coveredDriver.last} assigned a good student discount."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "driverLevelDiscount+=Discount.newUnique [value = 0.25, category = cellValue, applicationId=coveredDriver.applicationId]",
+                                        "value": "'Age 65 and Older'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "coveredDriver.age",
+                                        "value": ">= 65"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "coveredDriver",
+                                        "text": "{coveredDriver.first} {coveredDriver.last} assigned the Age 65 or older discount."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "driverLevelDiscount+=Discount.newUnique [value = 0.25, category = cellValue, applicationId=coveredDriver.applicationId]",
+                                        "value": "'Safe Driver / Incident-Free'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "coveredDriver.incidents- >isEmpty",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "coveredDriver",
+                                        "text": "{coveredDriver.first} {coveredDriver.last} assigned the Safe Driver / Incident-Free discount."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [
+                                    {
+                                        "expression": "driverLevelDiscount+=Discount.newUnique [value = 0.25, category = cellValue, applicationId=coveredDriver.applicationId]",
+                                        "value": "'Safe Driver / Incident-Free'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "coveredDriver.advancedDriverTraining",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": []
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Driver Level Discounts"
+                    },
+                    {
+                        "ccId": 11,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [value = 0.08 * cellValue, category ='Anti-Theft Device / Vehicle Recovery System']",
+                                        "value": "1"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.antiTheftDevice.category",
+                                        "value": "'Category I'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned Anti-Theft Device / Vehicle Recovery System discount for their security device."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [value = 0.08 * cellValue, category ='Anti-Theft Device / Vehicle Recovery System']",
+                                        "value": "2"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.antiTheftDevice.category",
+                                        "value": "'Category II'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned Anti-Theft Device / Vehicle Recovery System discount for their security device."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [value = 0.08 * cellValue, category ='Anti-Theft Device / Vehicle Recovery System']",
+                                        "value": "3"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.antiTheftDevice.category",
+                                        "value": "'Category III'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned Anti-Theft Device / Vehicle Recovery System discount for their security device."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [value = 0.08 * cellValue, category ='Anti-Theft Device / Vehicle Recovery System']",
+                                        "value": "4"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.antiTheftDevice.category",
+                                        "value": "'Category IV'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned Anti-Theft Device / Vehicle Recovery System discount for their security device."
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "5",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Electronic Stability Control'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.electronicStabilityControl",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned discount for having feature: Electronic Stability Control"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "6",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Forward Collision Warning'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.forwardCollisionWarning",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned discount for having feature: Forward Collision Warning"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "7",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Lane Keeping Assist'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.laneKeepingAssistance",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned discount for having feature: Lane Keeping Assist"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "8",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Crash Imminent Braking'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.crashImminentBraking",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned discount for having feature: Crash Imminent Braking"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "9",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Blind Spot Warning'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.blindSpotWarning",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned discount for having feature: Blind Spot Warning"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "10",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Lane Departure Warning'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.laneDepartureWarning",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned discount for having feature: Lane Departure Warning"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "11",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Backup Camera'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.backupCam",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Backup Camera"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "12",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Traction Control'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.tractionControl",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Traction Control"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "13",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Park Assist'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.parkAssist",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Park Assist"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "14",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Dynamic Brake Support'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.dynamicBrakeSupport",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Dynamic Brake Support"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "15",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Rear Cross Traffic Alert'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.rearCrossTrafficAlert",
+                                        "value": "'Standard'"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned  discount for having feature: Rear Cross Traffic Alert"
+                                    }
+                                ]
+                            },
+                            {
+                                "ruleId": "16",
+                                "actions": [
+                                    {
+                                        "expression": "vehicleDiscounts+=Discount.new [category = cellValue, value = 0.03]",
+                                        "value": "'Low Annual Mileage'"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Vehicle.milesDrivenAnnually",
+                                        "value": "< 7000"
+                                    }
+                                ],
+                                "rulestatements": [
+                                    {
+                                        "severity": "Info",
+                                        "alias": "Vehicle",
+                                        "text": "{Vehicle.make} {Vehicle.model} assigned  discount for its Low Annual Mileage"
+                                    }
+                                ]
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Vehicle Level Discounts"
+                    },
+                    {
+                        "ccId": 12,
+                        "rules": [
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "Discount.applicationId",
+                                        "value": "Discount.vehicle.applicationId"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Discount.applicationId",
+                                        "value": "null"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "80"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Bodily Injury Caused By An Uninsured Auto'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "420"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Collision'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "130"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Comprehensive'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "5",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "140"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Damage to Someone Else\\'s Property'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "6",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "140"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Limited Collision'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "7",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "25"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Medical Payments'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "8",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "87.00"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Optional Bodily Injury to Others'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "9",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "40"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Original Equipment Manufacturer (OEM) Parts Coverage'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "10",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "210"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Personal Injury Protection'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "11",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "35"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Substitute Transportation'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "12",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.baseRate",
+                                        "value": "12"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "'Towing and Labor Costs'"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "13",
+                                "actions": [],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.part",
+                                        "value": "null"
+                                    }
+                                ],
+                                "rulestatements": []
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Base Rates"
+                    },
+                    {
+                        "ccId": 13,
+                        "rules": [],
+                        "filters": [],
+                        "ccName": "Discounts and Surcharges per Coverage Type"
+                    },
+                    {
+                        "ccId": 14,
+                        "rules": [
+                            {
+                                "ruleId": "B0",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.potentialDiscount=((Coverage.discount.value- >sum).min(0.6))",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "C0",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.premium",
+                                        "value": "Coverage.baseRate"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Discount Cap"
+                    },
+                    {
+                        "ccId": 15,
+                        "rules": [
+                            {
+                                "ruleId": "E0",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.surchargeTotal",
+                                        "value": "Coverage.baseRate*(Coverage.surcharge.value- >sum)"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "F0",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.discountTotal",
+                                        "value": "Coverage.baseRate*Coverage.potentialDiscount"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "1",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.premium*= (1 + Coverage.surcharge.value- >sum - Coverage.potentialDiscount)",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.surcharge- >isEmpty",
+                                        "value": "F"
+                                    },
+                                    {
+                                        "expression": "Coverage.discount- >isEmpty",
+                                        "value": "F"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "2",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.premium*= (1- (Coverage.potentialDiscount))",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.surcharge- >isEmpty",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Coverage.discount- >isEmpty",
+                                        "value": "F"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "3",
+                                "actions": [
+                                    {
+                                        "expression": "Coverage.premium*= (1 + (Coverage.surcharge.value- >sum))",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.surcharge- >isEmpty",
+                                        "value": "F"
+                                    },
+                                    {
+                                        "expression": "Coverage.discount- >isEmpty",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "4",
+                                "actions": [],
+                                "conditions": [
+                                    {
+                                        "expression": "Coverage.surcharge- >isEmpty",
+                                        "value": "T"
+                                    },
+                                    {
+                                        "expression": "Coverage.discount- >isEmpty",
+                                        "value": "T"
+                                    }
+                                ],
+                                "rulestatements": []
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Coverage Premium Calculation"
+                    },
+                    {
+                        "ccId": 16,
+                        "rules": [
+                            {
+                                "ruleId": "A0",
+                                "actions": [
+                                    {
+                                        "expression": "Vehicle.netPremium=Vehicle.coverages.premium- >sum",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            },
+                            {
+                                "ruleId": "B0",
+                                "actions": [
+                                    {
+                                        "expression": "Policy.netPremium = Policy.vehicles.netPremium- >sum",
+                                        "value": "X"
+                                    }
+                                ],
+                                "conditions": [],
+                                "rulestatements": []
+                            }
+                        ],
+                        "filters": [],
+                        "ccName": "Net Premium"
+                    }
+                ],
+                "branches": [],
+                "subflows": []
+            }
+        },
+        "corticon decision service metrics": {
+            "total number of ruleflows": 1,
+            "total number of service callouts": 0,
+            "total number of ruleflow branches": 0,
+            "total number of ruleflow subflows": 0,
+            "total number of rulesheets": 16
+        },
+        "mainFlow": {
+            "type": "object",
+            "required": [
+                "ruleNodes"
+            ],
+            "properties": {
+                "ruleNodes": [
+                    {
+                        "ccReference": 1,
+                        "order": 1
+                    },
+                    {
+                        "ccReference": 2,
+                        "order": 2
+                    },
+                    {
+                        "ccReference": 3,
+                        "order": 3
+                    },
+                    {
+                        "ccReference": 4,
+                        "order": 4
+                    },
+                    {
+                        "ccReference": 5,
+                        "order": 5
+                    },
+                    {
+                        "ccReference": 6,
+                        "order": 6
+                    },
+                    {
+                        "ccReference": 7,
+                        "order": 7
+                    },
+                    {
+                        "ccReference": 8,
+                        "order": 8
+                    },
+                    {
+                        "ccReference": 9,
+                        "order": 9
+                    },
+                    {
+                        "ccReference": 10,
+                        "order": 10
+                    },
+                    {
+                        "ccReference": 11,
+                        "order": 11
+                    },
+                    {
+                        "ccReference": 12,
+                        "order": 12
+                    },
+                    {
+                        "ccReference": 13,
+                        "order": 13
+                    },
+                    {
+                        "ccReference": 14,
+                        "order": 14
+                    },
+                    {
+                        "ccReference": 15,
+                        "order": 15
+                    },
+                    {
+                        "ccReference": 16,
+                        "order": 16
+                    }
+                ]
+            }
+        }
+    }
+}

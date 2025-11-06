@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.common="http:///com/corticon/rulesemf/common.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_eNq54YgQEfCDLt-0W8iGsQ" externalChecksum="2722078124:507989954:0" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <validationMessages xsi:type="com.corticon.rulesemf.common:InternationalValidationMessage" UUID="_Uj_H4I5oEfCvN6uvQVdjCw" key="101" type="Validation" severity="Warning" invalidObjects="#//@rulesheetViewList.0/@ruleSection/@ruleColumnList.2/@conditionValueSetCellList.3" textKey="RulesheetTableModelAPIImpl.Validation.InvalidVariableUsage" locationKey="RulesheetTableModelAPIImpl.Validation.Location.If">
+    <textVariables>Variable usage warning: use of multiple variables and literals disables analysis functions.</textVariables>
+    <locationVariables>d</locationVariables>
+    <locationVariables>2</locationVariables>
+  </validationMessages>
+  <validationMessages xsi:type="com.corticon.rulesemf.common:InternationalValidationMessage" UUID="_Uj_u8I5oEfCvN6uvQVdjCw" key="101" type="Validation" severity="Warning" invalidObjects="#//@rulesheetViewList.0/@ruleSection/@ruleColumnList.3/@conditionValueSetCellList.3" textKey="RulesheetTableModelAPIImpl.Validation.InvalidVariableUsage" locationKey="RulesheetTableModelAPIImpl.Validation.Location.If">
+    <textVariables>Variable usage warning: use of multiple variables and literals disables analysis functions.</textVariables>
+    <locationVariables>d</locationVariables>
+    <locationVariables>3</locationVariables>
+  </validationMessages>
+  <ruleset vocabularyUpdateStamp="_bDYHgIhlEfC8I7DNswGvCQ" vocabulary="Vocabulary.ecore#/">
+    <rule>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="(Policy.vehicles.isHighTheft)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.vehicles.isHighTheft ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.vehicles.isHighTheft">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.vehicles.isHighTheft" rhs="T"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(catIIIorIVdevice->isEmpty)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( catIIIorIVdevice->isEmpty ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="catIIIorIVdevice" datatype="Boolean" termtype="COLLECTION" fulltext="catIIIorIVdevice->isEmpty">
+                <parentTerm text="catIIIorIVdevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="catIIIorIVdevice" variable="#//@ruleset/@logicalVariables.1/@extension.0/@extension.0">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="catIIIorIVdevice->isEmpty" rhs="T"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action>
+        <opaqueExpression expression="Policy.vehicles.surcharge+=Surcharge.new [value = 0.5, description ='High-Theft Vehicle without AntiTheft Device', applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.5 , Surcharge.description = 'High-Theft Vehicle without AntiTheft Device' , Surcharge.applicationId = Policy.applicationId ]" datatype="Surcharge" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="(Policy.vehicles.bodyStyle &lt;> null)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.vehicles.bodyStyle &lt;> null ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.vehicles.bodyStyle &lt;> null" rhs="T"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Policy.vehicles.bodyStyle.contains('Truck') or Policy.vehicles.bodyStyle.contains('SUV')">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.bodyStyle.contains ( 'Truck' ) or Policy.vehicles.bodyStyle.contains ( 'SUV' )" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="contains ('Truck')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains ('Truck')">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+              <terms text="contains ('SUV')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains ('SUV')">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.vehicles.bodyStyle.contains(cellValue)" rhs="{'Truck', 'SUV'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Policy.vehicles.grossVehicleWeightRating.contains('Class 2'))=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.vehicles.grossVehicleWeightRating.contains ( 'Class 2' ) ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="contains ('Class 2')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.grossVehicleWeightRating.contains ('Class 2')">
+                <parentTerm text="grossVehicleWeightRating" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.grossVehicleWeightRating">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.vehicles.grossVehicleWeightRating.contains('Class 2')" rhs="T"/>
+      </condition>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="Policy.vehicles.surcharge+=Surcharge.new [value = 0.12, description ='High-Risk Vehicle Class', applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.12 , Surcharge.description = 'High-Risk Vehicle Class' , Surcharge.applicationId = Policy.applicationId ]" datatype="Surcharge" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.2">
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="(Policy.vehicles.bodyStyle &lt;> null)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.vehicles.bodyStyle &lt;> null ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.vehicles.bodyStyle &lt;> null" rhs="T"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Policy.vehicles.bodyStyle.contains('Coupe') or Policy.vehicles.bodyStyle.contains('Convertible/Cabriolet')">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.bodyStyle.contains ( 'Coupe' ) or Policy.vehicles.bodyStyle.contains ( 'Convertible/Cabriolet' )" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="contains ('Coupe')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains ('Coupe')">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+              <terms text="contains ('Convertible/Cabriolet')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains ('Convertible/Cabriolet')">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.vehicles.bodyStyle.contains(cellValue)" rhs="{'Coupe', 'Convertible/Cabriolet'}"/>
+      </condition>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Policy.vehicles.engineModel = '3.0T' or Policy.vehicles.engineModel = '4.0T' or Policy.vehicles.engineModel = '2.5T' or Policy.vehicles.engineModel = 'TFSI' or Policy.vehicles.engineModel = 'PY Turbo'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.engineModel = '3.0T' or Policy.vehicles.engineModel = '4.0T' or Policy.vehicles.engineModel = '2.5T' or Policy.vehicles.engineModel = 'TFSI' or Policy.vehicles.engineModel = 'PY Turbo'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="engineModel" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.engineModel">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.vehicles.engineModel" rhs="{'3.0T', '4.0T', '2.5T', 'TFSI', 'PY Turbo'}"/>
+      </condition>
+      <action/>
+      <action/>
+      <action>
+        <opaqueExpression expression="Policy.vehicles.surcharge+=Surcharge.new [value = 0.22, description ='High-Performance Vehicle', applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.22 , Surcharge.description = 'High-Performance Vehicle' , Surcharge.applicationId = Policy.applicationId ]" datatype="Surcharge" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <ruleStatement post="Warning" ruleModelElements="#//@ruleset/@rules.1" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0">
+      <text expression="{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned surcharge for being a high theft vehicle without a category 3 or category 4 anti theft device.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.modelYear +   + Policy.vehicles.make +   + Policy.vehicles.model +  assigned surcharge for being a high theft vehicle without a category 3 or category 4 anti theft device." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.make">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.modelYear">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.model">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Warning" ruleModelElements="#//@ruleset/@rules.2" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0">
+      <text expression="{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned High-Risk Vehicle Class ({Policy.vehicles.bodyStyle}s with a class 2 gross vehicle weight rating).">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.modelYear +   + Policy.vehicles.make +   + Policy.vehicles.model +  assigned High-Risk Vehicle Class ( + Policy.vehicles.bodyStyle + s with a class 2 gross vehicle weight rating)." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.make">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.modelYear">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.model">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Warning" ruleModelElements="#//@ruleset/@rules.3" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0">
+      <text expression="{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned High-Performance Vehicle surcharge ({Policy.vehicles.bodyStyle}s with a {Policy.vehicles.engineModel} engine.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.modelYear +   + Policy.vehicles.make +   + Policy.vehicles.model +  assigned High-Performance Vehicle surcharge ( + Policy.vehicles.bodyStyle + s with a  + Policy.vehicles.engineModel +  engine." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="engineModel" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.engineModel">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.make">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.modelYear">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.model">
+              <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <logicalVariable entity="Vocabulary.ecore#//Surcharge">
+      <referencedAttributes attribute="Vocabulary.ecore#//Surcharge/description"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Surcharge/value"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Surcharge/applicationId"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Policy">
+      <extension association="true" entity="Vocabulary.ecore#//Vehicle" traversedAssocRole="Vocabulary.ecore#//Policy/vehicles" ruleStatements="#//@ruleset/@ruleStatements.0 #//@ruleset/@ruleStatements.1 #//@ruleset/@ruleStatements.2">
+        <extension explicit="true" association="true" entity="Vocabulary.ecore#//AntiTheftDevice" traversedAssocRole="Vocabulary.ecore#//Vehicle/antiTheftDevice">
+          <alias value="catIIIorIVdevice"/>
+          <referencedAttributes attribute="Vocabulary.ecore#//AntiTheftDevice/category"/>
+        </extension>
+        <extension explicit="true" association="true" entity="Vocabulary.ecore#//Coverage" traversedAssocRole="Vocabulary.ecore#//Vehicle/coverages">
+          <alias value="collisionCoverage"/>
+          <extension association="true" entity="Vocabulary.ecore#//Surcharge" traversedAssocRole="Vocabulary.ecore#//Coverage/surcharge"/>
+          <referencedAttributes attribute="Vocabulary.ecore#//Coverage/applicationId"/>
+          <referencedAttributes attribute="Vocabulary.ecore#//Coverage/part"/>
+        </extension>
+        <extension explicit="true" association="true" entity="Vocabulary.ecore#//Coverage" traversedAssocRole="Vocabulary.ecore#//Vehicle/coverages">
+          <alias value="vehicleComprehensive"/>
+          <extension association="true" entity="Vocabulary.ecore#//Surcharge" traversedAssocRole="Vocabulary.ecore#//Coverage/surcharge"/>
+          <referencedAttributes attribute="Vocabulary.ecore#//Coverage/applicationId"/>
+          <referencedAttributes attribute="Vocabulary.ecore#//Coverage/part"/>
+        </extension>
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/isHighTheft"/>
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/grossVehicleWeightRating"/>
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/bodyStyle"/>
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/engineModel"/>
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/make"/>
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/modelYear"/>
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/model"/>
+      </extension>
+      <extension association="true" entity="Vocabulary.ecore#//Driver" traversedAssocRole="Vocabulary.ecore#//Policy/drivers">
+        <extension association="true" entity="Vocabulary.ecore#//Surcharge" traversedAssocRole="Vocabulary.ecore#//Driver/surcharge"/>
+        <referencedAttributes attribute="Vocabulary.ecore#//Driver/age"/>
+      </extension>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/applicationId"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Vehicle">
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/model"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/modelYear"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/make"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" sashWeightAdvancedView="19" sashWeightScope="59" sashWeightConditionsActions="47" sashWeightConditionsIf="33">
+    <actionSection rowCount="46" columnWidthFactor="0.5">
+      <actionItemList rowHeight="56">
+        <valueSetCell/>
+        <expressionCell external="Policy.vehicles.surcharge+=Surcharge.new [value = 0.5, description =cellValue, applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.5 , Surcharge.description = cellValue , Surcharge.applicationId = Policy.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList rowHeight="76">
+        <valueSetCell/>
+        <expressionCell external="Policy.vehicles.surcharge+=Surcharge.new [value = 0.12, description =cellValue, applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.12 , Surcharge.description = cellValue , Surcharge.applicationId = Policy.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList rowHeight="106">
+        <valueSetCell/>
+        <expressionCell external="Policy.vehicles.surcharge+=Surcharge.new [value = 0.22, description =cellValue, applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.22 , Surcharge.description = cellValue , Surcharge.applicationId = Policy.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.2"/>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.1">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0/@extension.0">
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@extension.0/@referencedAttributes.0"/>
+            </children>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0/@extension.1">
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@extension.1/@referencedAttributes.0"/>
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0/@extension.1/@extension.0"/>
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@extension.1/@referencedAttributes.1"/>
+            </children>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0/@extension.2">
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@extension.2/@referencedAttributes.0"/>
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0/@extension.2/@extension.0"/>
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@extension.2/@referencedAttributes.1"/>
+            </children>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.0"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.1"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.2"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.3"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.4"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.5"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.6"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.1">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.1/@extension.0"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.1/@referencedAttributes.0"/>
+          </children>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.2">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.2"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="32"/>
+    <ruleStatementSection rowCount="50" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400">
+      <ruleStatementItemList rowHeight="60" ruleStatement="#//@ruleset/@ruleStatements.0">
+        <reference external="1"/>
+        <text external="{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned surcharge for being a high theft vehicle without a category 3 or category 4 anti theft device.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.modelYear +   + Policy.vehicles.make +   + Policy.vehicles.model +  assigned surcharge for being a high theft vehicle without a category 3 or category 4 anti theft device." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.make">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.modelYear">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.model">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList rowHeight="54" ruleStatement="#//@ruleset/@ruleStatements.1">
+        <reference external="2"/>
+        <text external="{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned High-Risk Vehicle Class ({Policy.vehicles.bodyStyle}s with a class 2 gross vehicle weight rating).">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.modelYear +   + Policy.vehicles.make +   + Policy.vehicles.model +  assigned High-Risk Vehicle Class ( + Policy.vehicles.bodyStyle + s with a class 2 gross vehicle weight rating)." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.make">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.modelYear">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.model">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList rowHeight="86" ruleStatement="#//@ruleset/@ruleStatements.2">
+        <reference external="3"/>
+        <text external="{Policy.vehicles.modelYear} {Policy.vehicles.make} {Policy.vehicles.model} assigned High-Performance Vehicle surcharge ({Policy.vehicles.bodyStyle}s with a {Policy.vehicles.engineModel} engine.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.modelYear +   + Policy.vehicles.make +   + Policy.vehicles.model +  assigned High-Performance Vehicle surcharge ( + Policy.vehicles.bodyStyle + s with a  + Policy.vehicles.engineModel +  engine." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="engineModel" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.engineModel">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.make">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.modelYear">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.model">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+    </ruleStatementSection>
+    <conditionSection rowCount="37" columnWidthFactor="0.5">
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Policy.vehicles.isHighTheft">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.isHighTheft" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.vehicles.isHighTheft">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="catIIIorIVdevice->isEmpty">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="catIIIorIVdevice->isEmpty" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="catIIIorIVdevice" datatype="Boolean" termtype="COLLECTION" fulltext="catIIIorIVdevice->isEmpty">
+                <parentTerm text="catIIIorIVdevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="catIIIorIVdevice" variable="#//@ruleset/@logicalVariables.1/@extension.0/@extension.0">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Policy.vehicles.bodyStyle &lt;> null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.bodyStyle &lt;> null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList rowHeight="16">
+        <valueSetCell/>
+        <expressionCell external="Policy.vehicles.bodyStyle.contains(cellValue)">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.bodyStyle.contains ( cellValue )" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="true">
+            <referencedTermList>
+              <terms text="contains (cellValue)" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains (cellValue)">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList rowHeight="82">
+        <valueSetCell/>
+        <expressionCell external="Policy.vehicles.grossVehicleWeightRating.contains('Class 2')">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.grossVehicleWeightRating.contains ( 'Class 2' )" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="contains ('Class 2')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.grossVehicleWeightRating.contains ('Class 2')">
+                <parentTerm text="grossVehicleWeightRating" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.grossVehicleWeightRating">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList rowHeight="41">
+        <valueSetCell/>
+        <expressionCell external="Policy.vehicles.engineModel">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.engineModel" datatype="String" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="engineModel" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.engineModel">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+    </conditionSection>
+    <ruleSection columnCount="12">
+      <ruleColumnList ruleId="0" columnWidth="100" pRule="#//@ruleset/@rules.0">
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="1" columnWidth="100" pRule="#//@ruleset/@rules.1">
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.vehicles.isHighTheft ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.vehicles.isHighTheft">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( catIIIorIVdevice->isEmpty ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="catIIIorIVdevice" datatype="Boolean" termtype="COLLECTION" fulltext="catIIIorIVdevice->isEmpty">
+                <parentTerm text="catIIIorIVdevice" datatype="AntiTheftDevice" termtype="ENTITY" fulltext="catIIIorIVdevice" variable="#//@ruleset/@logicalVariables.1/@extension.0/@extension.0">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="'High-Theft Vehicle without AntiTheft Device'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.5 , Surcharge.description = 'High-Theft Vehicle without AntiTheft Device' , Surcharge.applicationId = Policy.applicationId ]" datatype="Surcharge" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="2" columnWidth="268" pRule="#//@ruleset/@rules.2">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.vehicles.bodyStyle &lt;> null ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList validationMessages="#//@validationMessages.0" tooltip="Variable usage warning: use of multiple variables and literals disables analysis functions." valueSet="{'Truck', 'SUV'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.bodyStyle.contains ( 'Truck' ) or Policy.vehicles.bodyStyle.contains ( 'SUV' )" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="contains ('Truck')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains ('Truck')">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+              <terms text="contains ('SUV')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains ('SUV')">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.vehicles.grossVehicleWeightRating.contains ( 'Class 2' ) ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="contains ('Class 2')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.grossVehicleWeightRating.contains ('Class 2')">
+                <parentTerm text="grossVehicleWeightRating" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.grossVehicleWeightRating">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet="'High-Risk Vehicle Class'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.12 , Surcharge.description = 'High-Risk Vehicle Class' , Surcharge.applicationId = Policy.applicationId ]" datatype="Surcharge" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="3" columnWidth="524" pRule="#//@ruleset/@rules.3">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.vehicles.bodyStyle &lt;> null ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList validationMessages="#//@validationMessages.1" tooltip="Variable usage warning: use of multiple variables and literals disables analysis functions." valueSet="{'Coupe', 'Convertible/Cabriolet'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.bodyStyle.contains ( 'Coupe' ) or Policy.vehicles.bodyStyle.contains ( 'Convertible/Cabriolet' )" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="contains ('Coupe')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains ('Coupe')">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+              <terms text="contains ('Convertible/Cabriolet')" datatype="Boolean" termtype="METHOD" fulltext="Policy.vehicles.bodyStyle.contains ('Convertible/Cabriolet')">
+                <parentTerm text="bodyStyle" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.bodyStyle">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="{'3.0T', '4.0T', '2.5T', 'TFSI', 'PY Turbo'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.engineModel = '3.0T' or Policy.vehicles.engineModel = '4.0T' or Policy.vehicles.engineModel = '2.5T' or Policy.vehicles.engineModel = 'TFSI' or Policy.vehicles.engineModel = 'PY Turbo'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="engineModel" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.vehicles.engineModel">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.1"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet="'High-Performance Vehicle'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.vehicles.surcharge += Surcharge.new [ Surcharge.value = 0.22 , Surcharge.description = 'High-Performance Vehicle' , Surcharge.applicationId = Policy.applicationId ]" datatype="Surcharge" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Policy.vehicles.surcharge">
+                <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles">
+                  <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+                </parentTerm>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="description" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.description">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Surcharge.value">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Surcharge.applicationId">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+              <terms text="new" datatype="Surcharge" termtype="NEW" fulltext="Surcharge.new">
+                <parentTerm text="Surcharge" datatype="Surcharge" termtype="ENTITY" fulltext="Surcharge"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>

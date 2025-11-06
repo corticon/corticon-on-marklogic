@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_Z-OIMJSYEfCu1_NJwzOiTw" externalChecksum="2722078124:507989954:0" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_ZnwI8JSYEfCu1_NJwzOiTw" vocabulary="Vocabulary.ecore#/">
+    <rule>
+      <action/>
+      <action>
+        <opaqueExpression expression="Coverage.potentialDiscount=((Coverage.discount.value->sum).min(0.6))">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.potentialDiscount = ( ( Coverage.discount.value->sum ).min ( 0.6 ) )" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="potentialDiscount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.potentialDiscount">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Coverage_discount_value" datatype="Decimal" termtype="COLLECTION" fulltext="Coverage.discount.value->sum">
+                <parentTerm text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.discount.value">
+                  <parentTerm text="discount" datatype="Discount" termtype="ENTITY" fulltext="Coverage.discount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                    <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="Coverage.premium = Coverage.baseRate">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.premium = Coverage.baseRate" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="premium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.premium">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <logicalVariable entity="Vocabulary.ecore#//Coverage">
+      <extension association="true" entity="Vocabulary.ecore#//Discount" traversedAssocRole="Vocabulary.ecore#//Coverage/discount">
+        <referencedAttributes attribute="Vocabulary.ecore#//Discount/value"/>
+      </extension>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/potentialDiscount"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/premium"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/baseRate"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" sashWeightConditionsIf="41">
+    <actionSection rowCount="51" columnWidthFactor="0.5">
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell/>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Coverage.potentialDiscount=((Coverage.discount.value->sum).min(0.6))">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.potentialDiscount = ( ( Coverage.discount.value->sum ).min ( 0.6 ) )" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="potentialDiscount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.potentialDiscount">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Coverage_discount_value" datatype="Decimal" termtype="COLLECTION" fulltext="Coverage.discount.value->sum">
+                <parentTerm text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.discount.value">
+                  <parentTerm text="discount" datatype="Discount" termtype="ENTITY" fulltext="Coverage.discount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                    <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Coverage.premium">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.premium" datatype="Decimal" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="premium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.premium">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.0/@referencedAttributes.0"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.2"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="50"/>
+    <ruleStatementSection rowCount="50" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400"/>
+    <conditionSection rowCount="50" scrollRowTop="3" columnWidthFactor="0.5"/>
+    <ruleSection columnCount="20">
+      <ruleColumnList ruleId="0" columnWidth="376" pRule="#//@ruleset/@rules.0">
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet="X"/>
+        <actionValueSetCellList valueSet="Coverage.baseRate">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Coverage.premium = Coverage.baseRate" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="premium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.premium">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              <terms text="baseRate" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Coverage.baseRate">
+                <parentTerm text="Coverage" datatype="Coverage" termtype="ENTITY" fulltext="Coverage"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>

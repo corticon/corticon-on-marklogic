@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_IDFC4IjbEfCtu4mGXb_68A" externalChecksum="2722078124:507989954:0" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_bDYHgIhlEfC8I7DNswGvCQ" vocabulary="Vocabulary.ecore#/">
+    <rule>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+      <condition>
+        <opaqueExpression expression="(Policy.isMultiCar)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.isMultiCar ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isMultiCar" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isMultiCar">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.isMultiCar" rhs="T"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action>
+        <opaqueExpression expression="policyLevelDiscount+=Discount.new [value =0.05, category = 'Multi-Car', applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.05 , Discount.category = 'Multi-Car' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition/>
+      <condition>
+        <opaqueExpression expression="(Policy.hasHomePolicy)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.hasHomePolicy ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="hasHomePolicy" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.hasHomePolicy">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.hasHomePolicy" rhs="T"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <condition/>
+      <action/>
+      <action>
+        <opaqueExpression expression="policyLevelDiscount+=Discount.new [category = 'Multi-Line', value = 0.12, applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.12 , Discount.category = 'Multi-Line' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.2">
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="Policy.paymentPlan = 'Paid In Full'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.paymentPlan = 'Paid In Full'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="paymentPlan" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.paymentPlan">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.paymentPlan" rhs="'Paid In Full'"/>
+      </condition>
+      <condition/>
+      <condition/>
+      <action/>
+      <action/>
+      <action>
+        <opaqueExpression expression="policyLevelDiscount+=Discount.new [value=0.01, category = 'Paid In Full', applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.01 , Discount.category = 'Paid In Full' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.3">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="(Policy.isPaperless)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.isPaperless ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isPaperless" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isPaperless">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.isPaperless" rhs="T"/>
+      </condition>
+      <condition/>
+      <action/>
+      <action/>
+      <action/>
+      <action>
+        <opaqueExpression expression="policyLevelDiscount+=Discount.new [value = 0.02, category = 'All Electronic', applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.02 , Discount.category = 'All Electronic' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.4">
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="(Policy.isLoyaltyCustomer)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.isLoyaltyCustomer ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isLoyaltyCustomer" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isLoyaltyCustomer">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Policy.isLoyaltyCustomer" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="policyLevelDiscount+=Discount.new [value =0.05, category = 'Loyalty', applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.05 , Discount.category = 'Loyalty' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+      <action/>
+    </rule>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.1" logicalVariable="#//@ruleset/@logicalVariables.0">
+      <text expression="{Policy.familyName} family's policy qualifies for a multi car discount.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for a multi car discount." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+              <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.2" logicalVariable="#//@ruleset/@logicalVariables.0">
+      <text expression="{Policy.familyName} family's policy qualifies for a multi line discount.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for a multi line discount." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+              <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.3" logicalVariable="#//@ruleset/@logicalVariables.0">
+      <text expression="{Policy.familyName} family's policy qualifies for the paid in full discount.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for the paid in full discount." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+              <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.4" logicalVariable="#//@ruleset/@logicalVariables.0">
+      <text expression="{Policy.familyName} family's policy qualifies for the paperless discount">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for the paperless discount" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+              <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.5" logicalVariable="#//@ruleset/@logicalVariables.0">
+      <text expression="{Policy.familyName} family's policy qualifies for the loyalty discount for being a customer since {Policy.customerSince}.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for the loyalty discount for being a customer since  + Policy.customerSince + ." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+              <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+            <terms text="customerSince" datatype="DateTime" termtype="ATTRIBUTE" fulltext="Policy.customerSince">
+              <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <logicalVariable entity="Vocabulary.ecore#//Policy" ruleStatements="#//@ruleset/@ruleStatements.0 #//@ruleset/@ruleStatements.1 #//@ruleset/@ruleStatements.2 #//@ruleset/@ruleStatements.3 #//@ruleset/@ruleStatements.4">
+      <extension explicit="true" association="true" entity="Vocabulary.ecore#//Discount" traversedAssocRole="Vocabulary.ecore#//Policy/discount">
+        <alias value="policyLevelDiscount"/>
+      </extension>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/paymentPlan"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/applicationId"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/isMultiCar"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/hasHomePolicy"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/isPaperless"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/isLoyaltyCustomer"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/familyName"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/customerSince"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Coverage">
+      <extension association="true" entity="Vocabulary.ecore#//Discount" traversedAssocRole="Vocabulary.ecore#//Coverage/discount"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/part"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/applicationId"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Discount">
+      <referencedAttributes attribute="Vocabulary.ecore#//Discount/category"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Discount/value"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Discount/applicationId"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" advanced="true" sashWeightAdvancedView="32" sashWeightScope="60" sashWeightConditionsActions="47" sashWeightConditionsIf="32">
+    <actionSection rowCount="51" columnWidthFactor="0.5">
+      <actionItemList rowHeight="41">
+        <naturalLanguageText value="Assign that coverage a 5% discount with this category ------>"/>
+        <valueSetCell/>
+        <expressionCell external="policyLevelDiscount+=Discount.new [value =0.05, category = cellValue, applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.05 , Discount.category = cellValue , Discount.applicationId = Policy.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList rowHeight="36">
+        <naturalLanguageText value="Assign that coverage a 12% discount with this category ------>"/>
+        <valueSetCell/>
+        <expressionCell external="policyLevelDiscount+=Discount.new [category = cellValue, value = 0.12, applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.12 , Discount.category = cellValue , Discount.applicationId = Policy.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList rowHeight="37">
+        <naturalLanguageText value="Assign that coverage a 1% discount with this category ------>"/>
+        <valueSetCell/>
+        <expressionCell external="policyLevelDiscount+=Discount.new [value=0.01, category = cellValue, applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.01 , Discount.category = cellValue , Discount.applicationId = Policy.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="policyLevelDiscount+=Discount.new [value = 0.02, category = cellValue, applicationId=Policy.applicationId]">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.02 , Discount.category = cellValue , Discount.applicationId = Policy.applicationId ]" datatype="String" expressiontype="ASSIGNMENT" enumeration="false" cellValue="true">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount" variable="#//@ruleset/@logicalVariables.2"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList rowHeight="43">
+        <valueSetCell valueSet=""/>
+        <expressionCell/>
+      </actionItemList>
+      <actionItemList rowHeight="38">
+        <naturalLanguageText value="Assign that coverage a 25% discount with this category ------>"/>
+        <valueSetCell valueSet=""/>
+        <expressionCell/>
+      </actionItemList>
+      <actionItemList rowHeight="46">
+        <naturalLanguageText value="Assign that coverage a discount of 8% * the value of the cell here based on the level of anti theft device ---->"/>
+        <valueSetCell valueSet=""/>
+        <expressionCell/>
+      </actionItemList>
+      <actionItemList rowHeight="57">
+        <naturalLanguageText value="Assign that coverage a 3 % discount with this category ------>"/>
+        <valueSetCell valueSet=""/>
+        <expressionCell/>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.2"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.3"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.4"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.5"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.6"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.7"/>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.1">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.1"/>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.2">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.2"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="50"/>
+    <ruleStatementSection rowCount="38" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="177" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400">
+      <ruleStatementItemList rowHeight="18" ruleStatement="#//@ruleset/@ruleStatements.0">
+        <reference external="1"/>
+        <text external="{Policy.familyName} family's policy qualifies for a multi car discount.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for a multi car discount." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.1">
+        <reference external="2"/>
+        <text external="{Policy.familyName} family's policy qualifies for a multi line discount.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for a multi line discount." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.2">
+        <reference external="3"/>
+        <text external="{Policy.familyName} family's policy qualifies for the paid in full discount.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for the paid in full discount." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.3">
+        <reference external="4"/>
+        <text external="{Policy.familyName} family's policy qualifies for the paperless discount">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for the paperless discount" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.4">
+        <reference external="5"/>
+        <text external="{Policy.familyName} family's policy qualifies for the loyalty discount for being a customer since {Policy.customerSince}.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.familyName +  family's policy qualifies for the loyalty discount for being a customer since  + Policy.customerSince + ." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="familyName" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.familyName">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="customerSince" datatype="DateTime" termtype="ATTRIBUTE" fulltext="Policy.customerSince">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+    </ruleStatementSection>
+    <conditionSection rowCount="43" columnWidthFactor="0.5">
+      <conditionItemList>
+        <naturalLanguageText value="Is this policy is more multiple veicles (T/F) ----->"/>
+        <valueSetCell/>
+        <expressionCell external="Policy.isMultiCar">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.isMultiCar" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isMultiCar" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isMultiCar">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <naturalLanguageText value="If customer also has a homeowners' policy (T/F) ----->"/>
+        <valueSetCell/>
+        <expressionCell external="Policy.hasHomePolicy">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.hasHomePolicy" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="hasHomePolicy" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.hasHomePolicy">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <naturalLanguageText value="If customer has this type of payment plan ------>"/>
+        <valueSetCell/>
+        <expressionCell external="Policy.paymentPlan">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.paymentPlan" datatype="String" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="paymentPlan" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.paymentPlan">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <naturalLanguageText value="If the policy is set up to be paperless (T/F) ----->"/>
+        <valueSetCell/>
+        <expressionCell external="Policy.isPaperless">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.isPaperless" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isPaperless" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isPaperless">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <naturalLanguageText value="Is customer categorized as a loyalty customer based on years of renewed policies (T/F) ---->"/>
+        <valueSetCell/>
+        <expressionCell external="Policy.isLoyaltyCustomer">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.isLoyaltyCustomer" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isLoyaltyCustomer" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isLoyaltyCustomer">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+    </conditionSection>
+    <ruleSection columnCount="8">
+      <ruleColumnList ruleId="0" columnWidth="100" pRule="#//@ruleset/@rules.0">
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="1" columnWidth="82" pRule="#//@ruleset/@rules.1">
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.isMultiCar ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isMultiCar" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isMultiCar">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet="'Multi-Car'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.05 , Discount.category = 'Multi-Car' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="2" columnWidth="112" pRule="#//@ruleset/@rules.2">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.hasHomePolicy ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="hasHomePolicy" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.hasHomePolicy">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="'Multi-Line'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.12 , Discount.category = 'Multi-Line' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="3" columnWidth="100" pRule="#//@ruleset/@rules.3">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="'Paid In Full'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.paymentPlan = 'Paid In Full'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="true" cellValue="false">
+            <referencedTermList>
+              <terms text="paymentPlan" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.paymentPlan">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet="'Paid In Full'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.01 , Discount.category = 'Paid In Full' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="4" columnWidth="100" pRule="#//@ruleset/@rules.4">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.isPaperless ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isPaperless" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isPaperless">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet="'All Electronic'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.02 , Discount.category = 'All Electronic' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="5" columnWidth="100" pRule="#//@ruleset/@rules.5">
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Policy.isLoyaltyCustomer ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isLoyaltyCustomer" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Policy.isLoyaltyCustomer">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="'Loyalty'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="policyLevelDiscount += Discount.new [ Discount.value = 0.05 , Discount.category = 'Loyalty' , Discount.applicationId = Policy.applicationId ]" datatype="Discount" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="policyLevelDiscount" datatype="Discount" termtype="ENTITY" fulltext="policyLevelDiscount">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              <terms text="value" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Discount.value">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Policy.applicationId">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy"/>
+              </terms>
+              <terms text="applicationId" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.applicationId">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="new" datatype="Discount" termtype="NEW" fulltext="Discount.new">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+              <terms text="category" datatype="String" termtype="ATTRIBUTE" fulltext="Discount.category">
+                <parentTerm text="Discount" datatype="Discount" termtype="ENTITY" fulltext="Discount"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList/>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>

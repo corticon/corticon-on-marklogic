@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_H7VZSpSSEfCRGq-lBOrbNQ" externalChecksum="2722078124:507989954:0" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_bDYHgIhlEfC8I7DNswGvCQ" vocabulary="Vocabulary.ecore#/">
+    <rule>
+      <action>
+        <opaqueExpression expression="Vehicle.netPremium=Vehicle.coverages.premium->sum">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.netPremium = Vehicle.coverages.premium->sum" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="netPremium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Vehicle.netPremium">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="Vehicle_coverages_premium" datatype="Decimal" termtype="COLLECTION" fulltext="Vehicle.coverages.premium->sum">
+                <parentTerm text="premium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Vehicle.coverages.premium">
+                  <parentTerm text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action>
+        <opaqueExpression expression="Policy.netPremium = Policy.vehicles.netPremium->sum">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.netPremium = Policy.vehicles.netPremium->sum" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="netPremium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Policy.netPremium">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Policy_vehicles_netPremium" datatype="Decimal" termtype="COLLECTION" fulltext="Policy.vehicles.netPremium->sum">
+                <parentTerm text="netPremium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Policy.vehicles.netPremium">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <logicalVariable entity="Vocabulary.ecore#//Policy">
+      <extension association="true" entity="Vocabulary.ecore#//Vehicle" traversedAssocRole="Vocabulary.ecore#//Policy/vehicles">
+        <extension association="true" entity="Vocabulary.ecore#//Coverage" traversedAssocRole="Vocabulary.ecore#//Vehicle/coverages">
+          <referencedAttributes attribute="Vocabulary.ecore#//Coverage/premium"/>
+        </extension>
+        <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/netPremium"/>
+      </extension>
+      <referencedAttributes attribute="Vocabulary.ecore#//Policy/netPremium"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Vehicle">
+      <extension association="true" entity="Vocabulary.ecore#//Coverage" traversedAssocRole="Vocabulary.ecore#//Vehicle/coverages">
+        <referencedAttributes attribute="Vocabulary.ecore#//Coverage/premium"/>
+      </extension>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/netPremium"/>
+    </logicalVariable>
+    <logicalVariable entity="Vocabulary.ecore#//Coverage">
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/discountTotal"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Coverage/surchargeTotal"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable">
+    <actionSection rowCount="51" columnWidthFactor="0.5">
+      <actionItemList>
+        <valueSetCell valueSet=""/>
+        <expressionCell external="Vehicle.netPremium=Vehicle.coverages.premium->sum">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.netPremium = Vehicle.coverages.premium->sum" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="netPremium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Vehicle.netPremium">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+              <terms text="Vehicle_coverages_premium" datatype="Decimal" termtype="COLLECTION" fulltext="Vehicle.coverages.premium->sum">
+                <parentTerm text="premium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Vehicle.coverages.premium">
+                  <parentTerm text="coverages" datatype="Coverage" termtype="ENTITY" fulltext="Vehicle.coverages" variable="#//@ruleset/@logicalVariables.1/@extension.0">
+                    <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.1"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Policy.netPremium = Policy.vehicles.netPremium->sum">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Policy.netPremium = Policy.vehicles.netPremium->sum" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="netPremium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Policy.netPremium">
+                <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Policy_vehicles_netPremium" datatype="Decimal" termtype="COLLECTION" fulltext="Policy.vehicles.netPremium->sum">
+                <parentTerm text="netPremium" datatype="Decimal" termtype="ATTRIBUTE" fulltext="Policy.vehicles.netPremium">
+                  <parentTerm text="vehicles" datatype="Vehicle" termtype="ENTITY" fulltext="Policy.vehicles" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                    <parentTerm text="Policy" datatype="Policy" termtype="ENTITY" fulltext="Policy" variable="#//@ruleset/@logicalVariables.0"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0/@extension.0">
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.0/@extension.0/@referencedAttributes.0"/>
+            </children>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.0/@referencedAttributes.0"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.1">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" logicalVariable="#//@ruleset/@logicalVariables.1/@extension.0">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@extension.0/@referencedAttributes.0"/>
+          </children>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" logicalVariable="#//@ruleset/@logicalVariables.2">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.2/@referencedAttributes.1"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="50"/>
+    <ruleStatementSection rowCount="50" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400"/>
+    <conditionSection rowCount="50" columnWidthFactor="0.5"/>
+    <ruleSection columnCount="20">
+      <ruleColumnList ruleId="0" columnWidth="100" pRule="#//@ruleset/@rules.0">
+        <actionValueSetCellList valueSet="X"/>
+        <actionValueSetCellList valueSet="X"/>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>

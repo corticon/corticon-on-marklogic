@@ -1,0 +1,21 @@
+{
+    "name": "medicaidEnrichmentTrigger",
+    "description": "Post-commit trigger for Medicaid eligibility enrichment",
+    "event": {
+        "data-event": {
+            "collection-scope": {
+                "uri": "http://example.com/data/medicaid-input"
+            },
+            "document-content": {
+                "update-kind": "create"
+            },
+            "when": "post-commit"
+        }
+    },
+    "module": "/ext/medicaidTrigger.sjs",
+    "module-db": "corticonml-modules",
+    "module-root": "/",
+    "enabled": true,
+    "recursive": true,
+    "task-priority": "normal"
+}

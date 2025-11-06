@@ -1,0 +1,1890 @@
+[
+    {
+        "customerSince": "2016-03-03",
+        "paymentPlan": "Paid In Full",
+        "familyName": "Tomes",
+        "isPaperless": false,
+        "hasHomePolicy": true,
+        "vehicles": [
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category II"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "640i",
+                "pedestrianAutoBrake": null,
+                "make": "BMW",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2012",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": {"part": "Bodily Injury to Others"},
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category III"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "SLC-Class",
+                "pedestrianAutoBrake": null,
+                "make": "Mercedes-Benz",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2013",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category III"},
+                    {"category": "Category II"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "SLS-Class",
+                "pedestrianAutoBrake": null,
+                "make": "Mercedes-Benz",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2017",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": {"part": "Collision"},
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "G20",
+                "pedestrianAutoBrake": null,
+                "make": "Infiniti",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1996",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Roadster",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "SLK-Class",
+                "pedestrianAutoBrake": null,
+                "make": "Mercedes-Benz",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": null,
+                "dynamicBrakeSupport": null,
+                "modelYear": "2003",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            }
+        ],
+        "state": "Washington",
+        "applicationId": "01K483FMGBV57X1NX3KZKDWGCY",
+        "drivers": [
+            {
+                "fullTimeStudent": false,
+                "last": "Tomes",
+                "dob": "2005-07-29",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2025-03-23",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2025-02-24",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2020-06-06",
+                        "incidentType": "OUI Conviction"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Harlene"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Tomes",
+                "dob": "1983-02-18",
+                "advancedDriverTraining": false,
+                "incidents": {
+                    "date": "2024-06-17",
+                    "incidentType": "At Fault Auto Accident"
+                },
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Finley"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Tomes",
+                "dob": "1961-10-21",
+                "advancedDriverTraining": false,
+                "incidents": {
+                    "date": "2025-03-29",
+                    "incidentType": "At Fault Auto Accident"
+                },
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Raeann"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Tomes",
+                "dob": "1950-01-14",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2023-08-07",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2021-03-19",
+                        "incidentType": "OUI Conviction"
+                    },
+                    {
+                        "date": "2020-12-07",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2019-12-07",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Kippy"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Tomes",
+                "dob": "1971-01-30",
+                "advancedDriverTraining": false,
+                "incidents": {
+                    "date": "2024-12-26",
+                    "incidentType": "At Fault Auto Accident"
+                },
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Gail"
+            }
+        ]
+    },
+    {
+        "customerSince": "2009-07-18",
+        "paymentPlan": "Monthly",
+        "familyName": "Ibbetson",
+        "isPaperless": false,
+        "hasHomePolicy": false,
+        "vehicles": {
+            "crashImminentBraking": "Standard",
+            "type": "Convertible/Cabriolet",
+            "coverages": [
+                {"part": "Collision"},
+                {"part": "Comprehensive"}
+            ],
+            "transmission": "Automatic",
+            "trim": null,
+            "brakeSystem": null,
+            "electronicStabilityControl": "Standard",
+            "model": "Cooper Convertible",
+            "pedestrianAutoBrake": "Standard",
+            "make": "MINI",
+            "backupCam": "Standard",
+            "rearCrossTrafficAlert": null,
+            "bodyStyle": "Sedan/Saloon",
+            "dynamicBrakeSupport": "Standard",
+            "modelYear": "2023",
+            "forwardCollisionWarning": "Standard",
+            "laneKeepingAssistance": null,
+            "blindSpotWarning": null,
+            "tractionControl": "Standard",
+            "abs": "Standard",
+            "series": "JCW",
+            "laneDepartureWarning": "Standard",
+            "parkAssist": "Optional",
+            "adaptiveHeadlights": null,
+            "salvageTitleIssued": false
+        },
+        "state": "Colorado",
+        "applicationId": "01K483FNVWAH5ZV2293GH9SS3P",
+        "drivers": {
+            "fullTimeStudent": false,
+            "last": "Ibbetson",
+            "dob": "1998-03-21",
+            "advancedDriverTraining": false,
+            "incidents": {
+                "date": "2022-03-10",
+                "incidentType": "At Fault Auto Accident"
+            },
+            "gpa": null,
+            "gradeAverage": null,
+            "first": "Craggie"
+        }
+    },
+    {
+        "paymentPlan": "Monthly",
+        "familyName": "Waskett",
+        "isPaperless": true,
+        "hasHomePolicy": false,
+        "vehicles": [
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category III"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Malibu",
+                "pedestrianAutoBrake": null,
+                "make": "Chevrolet",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2001",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category III"},
+                    {"category": "Category IV"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Stratus",
+                "pedestrianAutoBrake": null,
+                "make": "Dodge",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2001",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            }
+        ],
+        "state": "Nebraska",
+        "applicationId": "01K483FNWCD1RYKFANK7BQ7HPG",
+        "drivers": {
+            "fullTimeStudent": false,
+            "last": "Waskett",
+            "dob": "1993-08-02",
+            "advancedDriverTraining": true,
+            "incidents": [
+                {
+                    "date": "2020-10-04",
+                    "incidentType": "At Fault Auto Accident"
+                },
+                {
+                    "date": "2022-08-29",
+                    "incidentType": "At Fault Auto Accident"
+                },
+                {
+                    "date": "2021-08-11",
+                    "incidentType": "At Fault Auto Accident"
+                }
+            ],
+            "gpa": null,
+            "gradeAverage": null,
+            "first": "Cristie"
+        }
+    },
+    {
+        "paymentPlan": "Paid In Full",
+        "familyName": "Falconer-Taylor",
+        "isPaperless": true,
+        "hasHomePolicy": false,
+        "vehicles": [
+            {
+                "crashImminentBraking": "Standard",
+                "type": "Wagon",
+                "coverages": {"part": "Collision"},
+                "transmission": "Electronic Continuously Variable (e-CVT)",
+                "trim": "XSE",
+                "brakeSystem": null,
+                "electronicStabilityControl": "Standard",
+                "model": "Camry",
+                "pedestrianAutoBrake": "Standard",
+                "make": "Toyota",
+                "backupCam": "Standard",
+                "rearCrossTrafficAlert": "Standard",
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": "Standard",
+                "modelYear": "2023",
+                "forwardCollisionWarning": "Standard",
+                "laneKeepingAssistance": "Standard",
+                "blindSpotWarning": "Standard",
+                "tractionControl": "Standard",
+                "abs": "Standard",
+                "series": null,
+                "laneDepartureWarning": "Standard",
+                "parkAssist": "Optional",
+                "adaptiveHeadlights": "Standard",
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Coupe",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category II"},
+                    {"category": "Category III"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Beretta",
+                "pedestrianAutoBrake": null,
+                "make": "Chevrolet",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Motorcycle - Dual Sport / Adventure / Supermoto / On/Off-road",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1990",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category IV"},
+                    {"category": "Category II"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Galant",
+                "pedestrianAutoBrake": null,
+                "make": "Mitsubishi",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2001",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category II"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Z4",
+                "pedestrianAutoBrake": null,
+                "make": "BMW",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2012",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            }
+        ],
+        "state": "California",
+        "applicationId": "01K483FNWYNRS9J5MDD49QJYK7",
+        "drivers": [
+            {
+                "fullTimeStudent": false,
+                "last": "Falconer-Taylor",
+                "dob": "1981-01-29",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2024-05-22",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2019-06-02",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2020-01-22",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2024-03-02",
+                        "incidentType": "OUI Conviction"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Lynne"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Falconer-Taylor",
+                "dob": "2010-02-10",
+                "advancedDriverTraining": true,
+                "incidents": [
+                    {
+                        "date": "2024-01-05",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2022-04-25",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Bathsheba"
+            }
+        ]
+    },
+    {
+        "paymentPlan": "Monthly",
+        "familyName": "Andrusyak",
+        "isPaperless": false,
+        "hasHomePolicy": false,
+        "vehicles": [
+            {
+                "crashImminentBraking": null,
+                "type": "Coupe",
+                "coverages": {"part": "Collision"},
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category III"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Reatta",
+                "pedestrianAutoBrake": null,
+                "make": "Buick",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1991",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Mark",
+                "pedestrianAutoBrake": null,
+                "make": "Lincoln",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1993",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": "Optional",
+                "type": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": "Automatic",
+                "trim": null,
+                "antiTheftDevice": {"category": "Category II"},
+                "brakeSystem": null,
+                "electronicStabilityControl": "Standard",
+                "model": "Envision",
+                "pedestrianAutoBrake": null,
+                "make": "Buick",
+                "backupCam": "Standard",
+                "rearCrossTrafficAlert": "Standard",
+                "bodyStyle": null,
+                "dynamicBrakeSupport": "Optional",
+                "modelYear": "2022",
+                "forwardCollisionWarning": "Standard",
+                "laneKeepingAssistance": "Standard",
+                "blindSpotWarning": "Standard",
+                "tractionControl": "Standard",
+                "abs": "Standard",
+                "series": "Essence",
+                "laneDepartureWarning": "Standard",
+                "parkAssist": "Standard",
+                "adaptiveHeadlights": "Standard",
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category IV"},
+                    {"category": "Category II"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "New Yorker",
+                "pedestrianAutoBrake": null,
+                "make": "Chrysler",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": null,
+                "dynamicBrakeSupport": null,
+                "modelYear": "1981",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": "Standard",
+                "type": "Coupe",
+                "coverages": {"part": "Collision"},
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": "Standard",
+                "model": "M2",
+                "pedestrianAutoBrake": null,
+                "make": "BMW",
+                "backupCam": "Standard",
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+                "dynamicBrakeSupport": "Standard",
+                "modelYear": "2019",
+                "forwardCollisionWarning": "Standard",
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": "Standard",
+                "abs": "Standard",
+                "series": null,
+                "laneDepartureWarning": "Standard",
+                "parkAssist": null,
+                "adaptiveHeadlights": "Standard",
+                "salvageTitleIssued": false
+            }
+        ],
+        "state": "California",
+        "applicationId": "01K483FNXWAJTXGDV1Y3VQEQS6",
+        "drivers": [
+            {
+                "fullTimeStudent": false,
+                "last": "Andrusyak",
+                "dob": "1988-01-25",
+                "advancedDriverTraining": true,
+                "incidents": {
+                    "date": "2024-11-09",
+                    "incidentType": "At Fault Auto Accident"
+                },
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Tiertza"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Andrusyak",
+                "dob": "1959-08-07",
+                "advancedDriverTraining": true,
+                "incidents": [
+                    {
+                        "date": "2021-02-27",
+                        "incidentType": "Auto Theft or Fire Insurance Claim"
+                    },
+                    {
+                        "date": "2020-01-12",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2019-06-04",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Myrna"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Andrusyak",
+                "dob": "1945-07-10",
+                "advancedDriverTraining": false,
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Benni"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Andrusyak",
+                "dob": "1955-02-01",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2022-08-19",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2019-01-26",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Slade"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Andrusyak",
+                "dob": "1980-05-29",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2020-04-12",
+                        "incidentType": "OUI Conviction"
+                    },
+                    {
+                        "date": "2023-04-02",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Loreen"
+            }
+        ]
+    },
+    {
+        "paymentPlan": "Monthly",
+        "familyName": "Bartoli",
+        "isPaperless": true,
+        "hasHomePolicy": true,
+        "vehicles": [
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "CL-Class",
+                "pedestrianAutoBrake": null,
+                "make": "Mercedes-Benz",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Pickup",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2016",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": true
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category IV"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Rogue",
+                "pedestrianAutoBrake": null,
+                "make": "Nissan",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Coupe",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2010",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "300",
+                "pedestrianAutoBrake": null,
+                "make": "Mercedes-Benz",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Hatchback/Liftback/Notchback",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1991",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category IV"},
+                    {"category": "Category II"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Corolla",
+                "pedestrianAutoBrake": null,
+                "make": "Toyota",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1995",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": true
+            }
+        ],
+        "state": "Texas",
+        "applicationId": "01K483FNZ2V89XE4696HF8E68Z",
+        "drivers": [
+            {
+                "fullTimeStudent": false,
+                "last": "Bartoli",
+                "dob": "1951-10-20",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2019-02-06",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2021-11-10",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2023-12-02",
+                        "incidentType": "OUI Conviction"
+                    },
+                    {
+                        "date": "2023-04-29",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Roanna"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Bartoli",
+                "dob": "2006-06-21",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2022-01-15",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2025-02-10",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Windy"
+            }
+        ]
+    },
+    {
+        "customerSince": "2023-11-14",
+        "paymentPlan": "Semi-Annual",
+        "familyName": "Metherell",
+        "isPaperless": true,
+        "hasHomePolicy": true,
+        "vehicles": {
+            "crashImminentBraking": "Standard",
+            "type": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+            "coverages": [
+                {"part": "Collision"},
+                {"part": "Comprehensive"}
+            ],
+            "transmission": "Automatic",
+            "trim": "quattro Prestige",
+            "brakeSystem": null,
+            "electronicStabilityControl": "Standard",
+            "model": "SQ7",
+            "pedestrianAutoBrake": null,
+            "make": "Audi",
+            "backupCam": "Standard",
+            "rearCrossTrafficAlert": "Standard",
+            "bodyStyle": "Hatchback/Liftback/Notchback",
+            "dynamicBrakeSupport": null,
+            "modelYear": "2021",
+            "forwardCollisionWarning": "Standard",
+            "laneKeepingAssistance": "Standard",
+            "blindSpotWarning": "Standard",
+            "tractionControl": "Standard",
+            "abs": "Standard",
+            "series": null,
+            "laneDepartureWarning": "Standard",
+            "parkAssist": null,
+            "adaptiveHeadlights": null,
+            "salvageTitleIssued": true
+        },
+        "state": "Washington",
+        "applicationId": "01K483FNZRDGHW8T84ZXD8DSMP",
+        "drivers": [
+            {
+                "fullTimeStudent": false,
+                "last": "Metherell",
+                "dob": "1966-06-28",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2024-08-16",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2020-10-20",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2025-04-22",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Morena"
+            },
+            {
+                "fullTimeStudent": true,
+                "last": "Metherell",
+                "dob": "2006-04-25",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2019-07-14",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2023-11-28",
+                        "incidentType": "Auto Insurance Related Fraud or Theft"
+                    },
+                    {
+                        "date": "2024-12-07",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2019-09-21",
+                        "incidentType": "OUI Conviction"
+                    },
+                    {
+                        "date": "2021-10-28",
+                        "incidentType": "OUI Conviction"
+                    }
+                ],
+                "gpa": "1.800000",
+                "gradeAverage": "D",
+                "first": "Elvira"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Metherell",
+                "dob": "1971-09-07",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2025-04-06",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2020-02-20",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2024-11-18",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2020-09-24",
+                        "incidentType": "OUI Conviction"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Hyacinthe"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Metherell",
+                "dob": "1994-12-09",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2023-01-28",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2021-10-03",
+                        "incidentType": "Intentional Misrepresentation in Collision or Comprehensive Claim"
+                    },
+                    {
+                        "date": "2020-12-23",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2025-03-17",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Ricca"
+            }
+        ]
+    },
+    {
+        "customerSince": "2015-06-15",
+        "paymentPlan": "Semi-Annual",
+        "familyName": "Dregan",
+        "isPaperless": true,
+        "hasHomePolicy": true,
+        "vehicles": [
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": {"part": "Collision"},
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Mirage",
+                "pedestrianAutoBrake": null,
+                "make": "Mitsubishi",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1991",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": true
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Bonneville",
+                "pedestrianAutoBrake": null,
+                "make": "Pontiac",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2002",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": true
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": "Standard",
+                "model": "S6",
+                "pedestrianAutoBrake": null,
+                "make": "Audi",
+                "backupCam": "Standard",
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": "Standard",
+                "modelYear": "2017",
+                "forwardCollisionWarning": "Optional",
+                "laneKeepingAssistance": "Optional",
+                "blindSpotWarning": "Standard",
+                "tractionControl": "Standard",
+                "abs": "Standard",
+                "series": "A6 3.0T quattro prestige/S6 4.0T quattro prestige",
+                "laneDepartureWarning": "Optional",
+                "parkAssist": null,
+                "adaptiveHeadlights": "Optional",
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Roadster",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category III"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "SL-Class",
+                "pedestrianAutoBrake": null,
+                "make": "Mercedes-Benz",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2006",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category II"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Deville",
+                "pedestrianAutoBrake": null,
+                "make": "Cadillac",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1997",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            }
+        ],
+        "state": "Wisconsin",
+        "applicationId": "01K483FP0C8SV239KPKCBD2G58",
+        "drivers": [
+            {
+                "fullTimeStudent": false,
+                "last": "Dregan",
+                "dob": "1980-11-29",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2022-05-11",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2021-01-04",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2020-01-26",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Von"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Dregan",
+                "dob": "1992-01-16",
+                "advancedDriverTraining": false,
+                "incidents": {
+                    "date": "2022-07-09",
+                    "incidentType": "At Fault Auto Accident"
+                },
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Frederic"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Dregan",
+                "dob": "1958-05-30",
+                "advancedDriverTraining": false,
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Hewie"
+            }
+        ]
+    },
+    {
+        "customerSince": "2024-04-28",
+        "paymentPlan": "Paid In Full",
+        "familyName": "Treacher",
+        "isPaperless": true,
+        "hasHomePolicy": true,
+        "vehicles": [
+            {
+                "crashImminentBraking": null,
+                "type": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category III"},
+                    {"category": "Category II"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "GL-Class",
+                "pedestrianAutoBrake": null,
+                "make": "Mercedes-Benz",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2020",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Hatchback/Liftback/Notchback",
+                "coverages": {"part": "Collision"},
+                "transmission": "Automatic",
+                "trim": "Elantra GT N Line",
+                "antiTheftDevice": [
+                    {"category": "Category II"},
+                    {"category": "Category II"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": "Standard",
+                "model": "Elantra GT",
+                "pedestrianAutoBrake": null,
+                "make": "Hyundai",
+                "backupCam": "Standard",
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": "Standard",
+                "modelYear": "2020",
+                "forwardCollisionWarning": "Optional",
+                "laneKeepingAssistance": "Optional",
+                "blindSpotWarning": "Optional",
+                "tractionControl": "Standard",
+                "abs": "Standard",
+                "series": null,
+                "laneDepartureWarning": "Optional",
+                "parkAssist": null,
+                "adaptiveHeadlights": "Optional",
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "K900",
+                "pedestrianAutoBrake": null,
+                "make": "Kia",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Motorcycle - Street",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2017",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": "Standard",
+                "type": "Pickup",
+                "coverages": {"part": "Collision"},
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category I"},
+                "brakeSystem": null,
+                "electronicStabilityControl": "Standard",
+                "model": "Maverick",
+                "pedestrianAutoBrake": null,
+                "make": "Ford",
+                "backupCam": "Standard",
+                "rearCrossTrafficAlert": "Optional",
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2022",
+                "forwardCollisionWarning": "Standard",
+                "laneKeepingAssistance": "Optional",
+                "blindSpotWarning": "Optional",
+                "tractionControl": "Standard",
+                "abs": "Standard",
+                "series": null,
+                "laneDepartureWarning": "Optional",
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Wagon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category I"},
+                    {"category": "Category III"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "MX-5",
+                "pedestrianAutoBrake": null,
+                "make": "Mazda",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sedan/Saloon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2012",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            }
+        ],
+        "state": "California",
+        "applicationId": "01K483FP1BJ79SR6D5J883PW6Z",
+        "drivers": [
+            {
+                "fullTimeStudent": false,
+                "last": "Treacher",
+                "dob": "1986-10-04",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2021-01-21",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2022-07-30",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2025-03-20",
+                        "incidentType": "Intentional Misrepresentation in Collision or Comprehensive Claim"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Phil"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Treacher",
+                "dob": "1977-11-06",
+                "advancedDriverTraining": true,
+                "incidents": [
+                    {
+                        "date": "2024-06-22",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2024-03-05",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2020-10-28",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2022-09-14",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2023-11-16",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Micaela"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Treacher",
+                "dob": "1952-08-17",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2021-10-13",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2022-07-05",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2019-02-24",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2019-09-05",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Marysa"
+            }
+        ]
+    },
+    {
+        "paymentPlan": "Paid In Full",
+        "familyName": "Gooms",
+        "isPaperless": true,
+        "hasHomePolicy": false,
+        "vehicles": [
+            {
+                "crashImminentBraking": null,
+                "type": "Sedan/Saloon",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category IV"},
+                    {"category": "Category III"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "335xi",
+                "pedestrianAutoBrake": null,
+                "make": "BMW",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2007",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": true
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Hatchback/Liftback/Notchback",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category III"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "Celica",
+                "pedestrianAutoBrake": null,
+                "make": "Toyota",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Coupe",
+                "dynamicBrakeSupport": null,
+                "modelYear": "1988",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": "Coupe",
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": {"category": "Category I"},
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "V8 Vantage",
+                "pedestrianAutoBrake": null,
+                "make": "Aston Martin",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Sport Utility Vehicle (SUV)/Multi-Purpose Vehicle (MPV)",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2014",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            },
+            {
+                "crashImminentBraking": null,
+                "type": null,
+                "coverages": [
+                    {"part": "Collision"},
+                    {"part": "Comprehensive"},
+                    {"part": "Optional Bodily Injury to Others"}
+                ],
+                "transmission": null,
+                "trim": null,
+                "antiTheftDevice": [
+                    {"category": "Category III"},
+                    {"category": "Category IV"}
+                ],
+                "brakeSystem": null,
+                "electronicStabilityControl": null,
+                "model": "V90CC",
+                "pedestrianAutoBrake": null,
+                "make": "Volvo",
+                "backupCam": null,
+                "rearCrossTrafficAlert": null,
+                "bodyStyle": "Wagon",
+                "dynamicBrakeSupport": null,
+                "modelYear": "2017",
+                "forwardCollisionWarning": null,
+                "laneKeepingAssistance": null,
+                "blindSpotWarning": null,
+                "tractionControl": null,
+                "abs": null,
+                "series": null,
+                "laneDepartureWarning": null,
+                "parkAssist": null,
+                "adaptiveHeadlights": null,
+                "salvageTitleIssued": false
+            }
+        ],
+        "state": "California",
+        "applicationId": "01K483FP38Y7E994ZDZYQ09RK3",
+        "drivers": [
+            {
+                "fullTimeStudent": false,
+                "last": "Gooms",
+                "dob": "1950-08-10",
+                "advancedDriverTraining": false,
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Frances"
+            },
+            {
+                "fullTimeStudent": true,
+                "last": "Gooms",
+                "dob": "1998-07-04",
+                "advancedDriverTraining": true,
+                "gpa": "3.070000",
+                "gradeAverage": "B",
+                "first": "Inger"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Gooms",
+                "dob": "1966-09-15",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2022-02-07",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2024-11-26",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2019-11-22",
+                        "incidentType": "Auto Theft or Fire Insurance Claim"
+                    },
+                    {
+                        "date": "2025-06-10",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2024-03-04",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Parke"
+            },
+            {
+                "fullTimeStudent": false,
+                "last": "Gooms",
+                "dob": "1974-07-25",
+                "advancedDriverTraining": false,
+                "incidents": [
+                    {
+                        "date": "2019-06-25",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2025-04-12",
+                        "incidentType": "OUI Conviction"
+                    },
+                    {
+                        "date": "2022-01-08",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2024-05-16",
+                        "incidentType": "OUI Conviction"
+                    },
+                    {
+                        "date": "2022-09-26",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": null,
+                "gradeAverage": null,
+                "first": "Sylvester"
+            },
+            {
+                "fullTimeStudent": true,
+                "last": "Gooms",
+                "dob": "1997-06-23",
+                "advancedDriverTraining": true,
+                "incidents": [
+                    {
+                        "date": "2024-06-14",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2024-06-07",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2023-10-06",
+                        "incidentType": "At Fault Auto Accident"
+                    },
+                    {
+                        "date": "2022-03-24",
+                        "incidentType": "At Fault Auto Accident"
+                    }
+                ],
+                "gpa": "3.920000",
+                "gradeAverage": "A",
+                "first": "Howey"
+            }
+        ]
+    }
+]

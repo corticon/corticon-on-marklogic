@@ -1,0 +1,2608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="2" minorVersionNumber="3" buildNumber="8022" updateStamp="_mzBtg4gNEfCDLt-0W8iGsQ" externalChecksum="2722078124:507989954:0" studioType="Javascript">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_ByokEYTYEfCNoPXJ2gRFBw" vocabulary="Vocabulary.ecore#/">
+    <rule>
+      <condition/>
+      <condition/>
+      <action documentingRuleStatements="#//@ruleset/@ruleStatements.0">
+        <opaqueExpression expression="Vehicle.isHighTheft = F">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = F" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Acura'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Acura'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Acura'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'ILX' or Vehicle.model = 'MDX' or Vehicle.model = 'RLX' or Vehicle.model = 'TLX'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'ILX' or Vehicle.model = 'MDX' or Vehicle.model = 'RLX' or Vehicle.model = 'TLX'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'ILX', 'MDX', 'RLX', 'TLX'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Alfa Romeo'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Alfa Romeo'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Alfa Romeo'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Stelvio'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Stelvio'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="'Stelvio'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Audi'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Audi'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Audi'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'A5' or Vehicle.model = 'A6' or Vehicle.model = 'A7' or Vehicle.model = 'Q3' or Vehicle.model = 'Q7' or Vehicle.model = 'Q8' or Vehicle.model = 'SQ5'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'A5' or Vehicle.model = 'A6' or Vehicle.model = 'A7' or Vehicle.model = 'Q3' or Vehicle.model = 'Q7' or Vehicle.model = 'Q8' or Vehicle.model = 'SQ5'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'A5', 'A6', 'A7', 'Q3', 'Q7', 'Q8', 'SQ5'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'BMW'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'BMW'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'BMW'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = '530' or Vehicle.model = '530XE' or Vehicle.model = '540' or Vehicle.model = 'X4' or Vehicle.model = 'X5' or Vehicle.model = 'X6' or Vehicle.model = 'X7'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '530' or Vehicle.model = '530XE' or Vehicle.model = '540' or Vehicle.model = 'X4' or Vehicle.model = 'X5' or Vehicle.model = 'X6' or Vehicle.model = 'X7'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'530', '530XE', '540', 'X4', 'X5', 'X6', 'X7'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Cadillac'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Cadillac'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Cadillac'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Escalade'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Escalade'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="'Escalade'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Chevrolet'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Chevrolet'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Chevrolet'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Camaro' or Vehicle.model = 'Corvette' or Vehicle.model = 'Silverado C1500 (All Versions)' or Vehicle.model = 'Silverado K1500 (All Versions)' or Vehicle.model = 'Silverado K2500 (All Versions)' or Vehicle.model = 'Silverado K3500 (All Versions)' or Vehicle.model = 'Suburban C1500 (All Versions)' or Vehicle.model = 'Suburban K1500 (All Versions)' or Vehicle.model = 'Tahoe'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Camaro' or Vehicle.model = 'Corvette' or Vehicle.model = 'Silverado C1500 (All Versions)' or Vehicle.model = 'Silverado K1500 (All Versions)' or Vehicle.model = 'Silverado K2500 (All Versions)' or Vehicle.model = 'Silverado K3500 (All Versions)' or Vehicle.model = 'Suburban C1500 (All Versions)' or Vehicle.model = 'Suburban K1500 (All Versions)' or Vehicle.model = 'Tahoe'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Camaro', 'Corvette', 'Silverado C1500 (All Versions)', 'Silverado K1500 (All Versions)', 'Silverado K2500 (All Versions)', 'Silverado K3500 (All Versions)', 'Suburban C1500 (All Versions)', 'Suburban K1500 (All Versions)', 'Tahoe'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Chrysler'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Chrysler'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Chrysler'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = '300' or Vehicle.model = '300C'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '300' or Vehicle.model = '300C'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'300', '300C'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Dodge'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Dodge'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Dodge'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Challenger' or Vehicle.model = 'Charger' or Vehicle.model = 'Durango' or Vehicle.model = 'Journey'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Challenger' or Vehicle.model = 'Charger' or Vehicle.model = 'Durango' or Vehicle.model = 'Journey'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Challenger', 'Charger', 'Durango', 'Journey'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Ford'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Ford'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Ford'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Expedition' or Vehicle.model = 'Explorer' or Vehicle.model = 'F150' or Vehicle.model = 'F150 Supercrew' or Vehicle.model = 'F250 Super Duty' or Vehicle.model = 'F350 Super Duty' or Vehicle.model = 'Fusion' or Vehicle.model = 'Mustang'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Expedition' or Vehicle.model = 'Explorer' or Vehicle.model = 'F150' or Vehicle.model = 'F150 Supercrew' or Vehicle.model = 'F250 Super Duty' or Vehicle.model = 'F350 Super Duty' or Vehicle.model = 'Fusion' or Vehicle.model = 'Mustang'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Expedition', 'Explorer', 'F150', 'F150 Supercrew', 'F250 Super Duty', 'F350 Super Duty', 'Fusion', 'Mustang'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'GMC'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'GMC'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'GMC'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Sierra C1500 (All Versions)' or Vehicle.model = 'Sierra C2500' or Vehicle.model = 'Sierra K1500 (All Versions)' or Vehicle.model = 'Sierra K2500 (All Versions)' or Vehicle.model = 'Sierra K3500 (All Versions)' or Vehicle.model = 'Yukon' or Vehicle.model = 'Yukon XL'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Sierra C1500 (All Versions)' or Vehicle.model = 'Sierra C2500' or Vehicle.model = 'Sierra K1500 (All Versions)' or Vehicle.model = 'Sierra K2500 (All Versions)' or Vehicle.model = 'Sierra K3500 (All Versions)' or Vehicle.model = 'Yukon' or Vehicle.model = 'Yukon XL'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Sierra C1500 (All Versions)', 'Sierra C2500', 'Sierra K1500 (All Versions)', 'Sierra K2500 (All Versions)', 'Sierra K3500 (All Versions)', 'Yukon', 'Yukon XL'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Honda'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Honda'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Honda'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Accord'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Accord'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="'Accord'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Infiniti'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Infiniti'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Infiniti'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Q50' or Vehicle.model = 'Q60' or Vehicle.model = 'QX50' or Vehicle.model = 'QX60' or Vehicle.model = 'QX80'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Q50' or Vehicle.model = 'Q60' or Vehicle.model = 'QX50' or Vehicle.model = 'QX60' or Vehicle.model = 'QX80'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Q50', 'Q60', 'QX50', 'QX60', 'QX80'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Jaguar'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Jaguar'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Jaguar'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'F-Pace' or Vehicle.model = 'XF'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'F-Pace' or Vehicle.model = 'XF'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'F-Pace', 'XF'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Jeep'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Jeep'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Jeep'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Gladiator' or Vehicle.model = 'Grand Cherokee'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Gladiator' or Vehicle.model = 'Grand Cherokee'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Gladiator', 'Grand Cherokee'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Kia'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Kia'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Kia'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Cadenza' or Vehicle.model = 'Optima' or Vehicle.model = 'Stinger'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Cadenza' or Vehicle.model = 'Optima' or Vehicle.model = 'Stinger'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Cadenza', 'Optima', 'Stinger'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Land Rover'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Land Rover'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Land Rover'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Range Rover' or Vehicle.model = 'Range Rover Evoque' or Vehicle.model = 'Range Rover Sport' or Vehicle.model = 'Range Rover Velar'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Range Rover' or Vehicle.model = 'Range Rover Evoque' or Vehicle.model = 'Range Rover Sport' or Vehicle.model = 'Range Rover Velar'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Range Rover', 'Range Rover Evoque', 'Range Rover Sport', 'Range Rover Velar'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Lexus'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Lexus'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Lexus'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'GS 350' or Vehicle.model = 'GX 460' or Vehicle.model = 'RC 350'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'GS 350' or Vehicle.model = 'GX 460' or Vehicle.model = 'RC 350'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'GS 350', 'GX 460', 'RC 350'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Lincoln'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Lincoln'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Lincoln'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'MKZ' or Vehicle.model = 'Navigator'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'MKZ' or Vehicle.model = 'Navigator'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'MKZ', 'Navigator'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Mazda'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Mazda'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Mazda'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'CX-9'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'CX-9'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="'CX-9'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Mercedes-Benz'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Mercedes-Benz'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Mercedes-Benz'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'C' or Vehicle.model = 'CLA' or Vehicle.model = 'CLS' or Vehicle.model = 'E' or Vehicle.model = 'G' or Vehicle.model = 'GLC Coupe' or Vehicle.model = 'GLE Coupe' or Vehicle.model = 'GLS' or Vehicle.model = 'S'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'C' or Vehicle.model = 'CLA' or Vehicle.model = 'CLS' or Vehicle.model = 'E' or Vehicle.model = 'G' or Vehicle.model = 'GLC Coupe' or Vehicle.model = 'GLE Coupe' or Vehicle.model = 'GLS' or Vehicle.model = 'S'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'C', 'CLA', 'CLS', 'E', 'G', 'GLC Coupe', 'GLE Coupe', 'GLS', 'S'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Mitsubishi'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Mitsubishi'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Mitsubishi'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Outlander Sport'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Outlander Sport'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="'Outlander Sport'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Nissan'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Nissan'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Nissan'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = '370Z' or Vehicle.model = 'Altima' or Vehicle.model = 'Armada' or Vehicle.model = 'Frontier' or Vehicle.model = 'Maxima' or Vehicle.model = 'Pathfinder' or Vehicle.model = 'Titan' or Vehicle.model = 'Titan XD'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '370Z' or Vehicle.model = 'Altima' or Vehicle.model = 'Armada' or Vehicle.model = 'Frontier' or Vehicle.model = 'Maxima' or Vehicle.model = 'Pathfinder' or Vehicle.model = 'Titan' or Vehicle.model = 'Titan XD'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'370Z', 'Altima', 'Armada', 'Frontier', 'Maxima', 'Pathfinder', 'Titan', 'Titan XD'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Porsche'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Porsche'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Porsche'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = 'Cayenne' or Vehicle.model = 'Macan' or Vehicle.model = 'Panamera'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Cayenne' or Vehicle.model = 'Macan' or Vehicle.model = 'Panamera'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'Cayenne', 'Macan', 'Panamera'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'RAM'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'RAM'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'RAM'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = '1500' or Vehicle.model = '1500 Classic' or Vehicle.model = '2500' or Vehicle.model = '3500'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '1500' or Vehicle.model = '1500 Classic' or Vehicle.model = '2500' or Vehicle.model = '3500'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'1500', '1500 Classic', '2500', '3500'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1">
+      <condition>
+        <opaqueExpression expression="Vehicle.make = 'Toyota'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Toyota'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.make" rhs="'Toyota'"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="Vehicle.model = '4Runner' or Vehicle.model = '86' or Vehicle.model = 'Camry' or Vehicle.model = 'Tacoma Double Cab' or Vehicle.model = 'Tundra (All Versions)'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '4Runner' or Vehicle.model = '86' or Vehicle.model = 'Camry' or Vehicle.model = 'Tacoma Double Cab' or Vehicle.model = 'Tundra (All Versions)'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.model" rhs="{'4Runner', '86', 'Camry', 'Tacoma Double Cab', 'Tundra (All Versions)'}"/>
+      </condition>
+      <condition>
+        <opaqueExpression expression="(Vehicle.modelYear.toInteger>=today.year - 5)=true">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="Vehicle.modelYear.toInteger>=today.year - 5" rhs="T"/>
+      </condition>
+      <action>
+        <opaqueExpression expression="Vehicle.isHighTheft = T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.0/@actions.0" logicalVariable="#//@ruleset/@logicalVariables.0">
+      <text expression="{Vehicle.make} {Vehicle.model} is not on the list of high theft automobiles.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  is not on the list of high theft automobiles." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Warning" ruleModelElements="#//@ruleset/@rules.1 #//@ruleset/@rules.2 #//@ruleset/@rules.3 #//@ruleset/@rules.4 #//@ruleset/@rules.5 #//@ruleset/@rules.6 #//@ruleset/@rules.7 #//@ruleset/@rules.8 #//@ruleset/@rules.9 #//@ruleset/@rules.10 #//@ruleset/@rules.11 #//@ruleset/@rules.12 #//@ruleset/@rules.13 #//@ruleset/@rules.14 #//@ruleset/@rules.15 #//@ruleset/@rules.16 #//@ruleset/@rules.17 #//@ruleset/@rules.18 #//@ruleset/@rules.19 #//@ruleset/@rules.20 #//@ruleset/@rules.21 #//@ruleset/@rules.22 #//@ruleset/@rules.23 #//@ruleset/@rules.24 #//@ruleset/@rules.25" logicalVariable="#//@ruleset/@logicalVariables.0">
+      <text expression="{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles.">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.modelYear +   + Vehicle.make +   + Vehicle.model +  is on the list of high theft automobiles." expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+            <terms text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+            <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+              <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <logicalVariable entity="Vocabulary.ecore#//Vehicle" ruleStatements="#//@ruleset/@ruleStatements.1 #//@ruleset/@ruleStatements.0">
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/make"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/model"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/modelYear"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/bodyStyle"/>
+      <referencedAttributes attribute="Vocabulary.ecore#//Vehicle/isHighTheft"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" advanced="true" sashWeightAdvancedView="17" sashWeightConditionsIf="34">
+    <actionSection rowCount="50" columnWidthFactor="0.5">
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.isHighTheft">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.2"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.3"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.4"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="50"/>
+    <ruleStatementSection rowCount="51" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="1000" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400">
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.0">
+        <reference external="A0"/>
+        <text external="{Vehicle.make} {Vehicle.model} is not on the list of high theft automobiles.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make +   + Vehicle.model +  is not on the list of high theft automobiles." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.1">
+        <reference external="1:25"/>
+        <text external="{Vehicle.modelYear} {Vehicle.make} {Vehicle.model} is on the list of high theft automobiles.">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.modelYear +   + Vehicle.make +   + Vehicle.model +  is on the list of high theft automobiles." expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+    </ruleStatementSection>
+    <conditionSection rowCount="50" columnWidthFactor="0.5">
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.make">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="Vehicle.model">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model" datatype="String" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList rowHeight="110">
+        <valueSetCell/>
+        <expressionCell external="Vehicle.modelYear.toInteger>=today.year - 5">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.modelYear.toInteger >= today.year - 5" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+    </conditionSection>
+    <ruleSection columnCount="26">
+      <ruleColumnList ruleId="0" columnWidth="100" pRule="#//@ruleset/@rules.0">
+        <conditionValueSetCellList/>
+        <conditionValueSetCellList/>
+        <actionValueSetCellList valueSet="F">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = F" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="1" columnWidth="100" pRule="#//@ruleset/@rules.1">
+        <conditionValueSetCellList valueSet="'Acura'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Acura'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'ILX', 'MDX', 'RLX', 'TLX'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'ILX' or Vehicle.model = 'MDX' or Vehicle.model = 'RLX' or Vehicle.model = 'TLX'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="2" columnWidth="100" pRule="#//@ruleset/@rules.2">
+        <conditionValueSetCellList valueSet="'Alfa Romeo'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Alfa Romeo'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="'Stelvio'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Stelvio'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="3" columnWidth="100" pRule="#//@ruleset/@rules.3">
+        <conditionValueSetCellList valueSet="'Audi'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Audi'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'A5', 'A6', 'A7', 'Q3', 'Q7', 'Q8', 'SQ5'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'A5' or Vehicle.model = 'A6' or Vehicle.model = 'A7' or Vehicle.model = 'Q3' or Vehicle.model = 'Q7' or Vehicle.model = 'Q8' or Vehicle.model = 'SQ5'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="4" columnWidth="100" pRule="#//@ruleset/@rules.4">
+        <conditionValueSetCellList valueSet="'BMW'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'BMW'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'530', '530XE', '540', 'X4', 'X5', 'X6', 'X7'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '530' or Vehicle.model = '530XE' or Vehicle.model = '540' or Vehicle.model = 'X4' or Vehicle.model = 'X5' or Vehicle.model = 'X6' or Vehicle.model = 'X7'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="5" columnWidth="100" pRule="#//@ruleset/@rules.5">
+        <conditionValueSetCellList valueSet="'Cadillac'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Cadillac'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="'Escalade'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Escalade'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="6" columnWidth="100" pRule="#//@ruleset/@rules.6">
+        <conditionValueSetCellList valueSet="'Chevrolet'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Chevrolet'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Camaro', 'Corvette', 'Silverado C1500 (All Versions)', 'Silverado K1500 (All Versions)', 'Silverado K2500 (All Versions)', 'Silverado K3500 (All Versions)', 'Suburban C1500 (All Versions)', 'Suburban K1500 (All Versions)', 'Tahoe'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Camaro' or Vehicle.model = 'Corvette' or Vehicle.model = 'Silverado C1500 (All Versions)' or Vehicle.model = 'Silverado K1500 (All Versions)' or Vehicle.model = 'Silverado K2500 (All Versions)' or Vehicle.model = 'Silverado K3500 (All Versions)' or Vehicle.model = 'Suburban C1500 (All Versions)' or Vehicle.model = 'Suburban K1500 (All Versions)' or Vehicle.model = 'Tahoe'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="7" columnWidth="100" pRule="#//@ruleset/@rules.7">
+        <conditionValueSetCellList valueSet="'Chrysler'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Chrysler'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'300', '300C'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '300' or Vehicle.model = '300C'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="8" columnWidth="100" pRule="#//@ruleset/@rules.8">
+        <conditionValueSetCellList valueSet="'Dodge'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Dodge'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Challenger', 'Charger', 'Durango', 'Journey'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Challenger' or Vehicle.model = 'Charger' or Vehicle.model = 'Durango' or Vehicle.model = 'Journey'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="9" columnWidth="100" pRule="#//@ruleset/@rules.9">
+        <conditionValueSetCellList valueSet="'Ford'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Ford'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Expedition', 'Explorer', 'F150', 'F150 Supercrew', 'F250 Super Duty', 'F350 Super Duty', 'Fusion', 'Mustang'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Expedition' or Vehicle.model = 'Explorer' or Vehicle.model = 'F150' or Vehicle.model = 'F150 Supercrew' or Vehicle.model = 'F250 Super Duty' or Vehicle.model = 'F350 Super Duty' or Vehicle.model = 'Fusion' or Vehicle.model = 'Mustang'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="10" columnWidth="100" pRule="#//@ruleset/@rules.10">
+        <conditionValueSetCellList valueSet="'GMC'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'GMC'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Sierra C1500 (All Versions)', 'Sierra C2500', 'Sierra K1500 (All Versions)', 'Sierra K2500 (All Versions)', 'Sierra K3500 (All Versions)', 'Yukon', 'Yukon XL'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Sierra C1500 (All Versions)' or Vehicle.model = 'Sierra C2500' or Vehicle.model = 'Sierra K1500 (All Versions)' or Vehicle.model = 'Sierra K2500 (All Versions)' or Vehicle.model = 'Sierra K3500 (All Versions)' or Vehicle.model = 'Yukon' or Vehicle.model = 'Yukon XL'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="11" columnWidth="100" pRule="#//@ruleset/@rules.11">
+        <conditionValueSetCellList valueSet="'Honda'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Honda'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="'Accord'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Accord'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="12" columnWidth="100" pRule="#//@ruleset/@rules.12">
+        <conditionValueSetCellList valueSet="'Infiniti'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Infiniti'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Q50', 'Q60', 'QX50', 'QX60', 'QX80'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Q50' or Vehicle.model = 'Q60' or Vehicle.model = 'QX50' or Vehicle.model = 'QX60' or Vehicle.model = 'QX80'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="13" columnWidth="100" pRule="#//@ruleset/@rules.13">
+        <conditionValueSetCellList valueSet="'Jaguar'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Jaguar'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'F-Pace', 'XF'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'F-Pace' or Vehicle.model = 'XF'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="14" columnWidth="100" pRule="#//@ruleset/@rules.14">
+        <conditionValueSetCellList valueSet="'Jeep'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Jeep'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Gladiator', 'Grand Cherokee'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Gladiator' or Vehicle.model = 'Grand Cherokee'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="15" columnWidth="100" pRule="#//@ruleset/@rules.15">
+        <conditionValueSetCellList valueSet="'Kia'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Kia'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Cadenza', 'Optima', 'Stinger'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Cadenza' or Vehicle.model = 'Optima' or Vehicle.model = 'Stinger'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="16" columnWidth="100" pRule="#//@ruleset/@rules.16">
+        <conditionValueSetCellList valueSet="'Land Rover'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Land Rover'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Range Rover', 'Range Rover Evoque', 'Range Rover Sport', 'Range Rover Velar'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Range Rover' or Vehicle.model = 'Range Rover Evoque' or Vehicle.model = 'Range Rover Sport' or Vehicle.model = 'Range Rover Velar'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="17" columnWidth="100" pRule="#//@ruleset/@rules.17">
+        <conditionValueSetCellList valueSet="'Lexus'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Lexus'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'GS 350', 'GX 460', 'RC 350'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'GS 350' or Vehicle.model = 'GX 460' or Vehicle.model = 'RC 350'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="18" columnWidth="100" pRule="#//@ruleset/@rules.18">
+        <conditionValueSetCellList valueSet="'Lincoln'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Lincoln'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'MKZ', 'Navigator'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'MKZ' or Vehicle.model = 'Navigator'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="19" columnWidth="100" pRule="#//@ruleset/@rules.19">
+        <conditionValueSetCellList valueSet="'Mazda'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Mazda'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="'CX-9'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'CX-9'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="20" columnWidth="100" pRule="#//@ruleset/@rules.20">
+        <conditionValueSetCellList valueSet="'Mercedes-Benz'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Mercedes-Benz'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'C', 'CLA', 'CLS', 'E', 'G', 'GLC Coupe', 'GLE Coupe', 'GLS', 'S'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'C' or Vehicle.model = 'CLA' or Vehicle.model = 'CLS' or Vehicle.model = 'E' or Vehicle.model = 'G' or Vehicle.model = 'GLC Coupe' or Vehicle.model = 'GLE Coupe' or Vehicle.model = 'GLS' or Vehicle.model = 'S'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="21" columnWidth="100" pRule="#//@ruleset/@rules.21">
+        <conditionValueSetCellList valueSet="'Mitsubishi'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Mitsubishi'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="'Outlander Sport'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Outlander Sport'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="22" columnWidth="100" pRule="#//@ruleset/@rules.22">
+        <conditionValueSetCellList valueSet="'Nissan'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Nissan'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'370Z', 'Altima', 'Armada', 'Frontier', 'Maxima', 'Pathfinder', 'Titan', 'Titan XD'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '370Z' or Vehicle.model = 'Altima' or Vehicle.model = 'Armada' or Vehicle.model = 'Frontier' or Vehicle.model = 'Maxima' or Vehicle.model = 'Pathfinder' or Vehicle.model = 'Titan' or Vehicle.model = 'Titan XD'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="23" columnWidth="100" pRule="#//@ruleset/@rules.23">
+        <conditionValueSetCellList valueSet="'Porsche'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Porsche'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'Cayenne', 'Macan', 'Panamera'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = 'Cayenne' or Vehicle.model = 'Macan' or Vehicle.model = 'Panamera'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="24" columnWidth="100" pRule="#//@ruleset/@rules.24">
+        <conditionValueSetCellList valueSet="'RAM'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'RAM'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'1500', '1500 Classic', '2500', '3500'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '1500' or Vehicle.model = '1500 Classic' or Vehicle.model = '2500' or Vehicle.model = '3500'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+      <ruleColumnList ruleId="25" columnWidth="100" pRule="#//@ruleset/@rules.25">
+        <conditionValueSetCellList valueSet="'Toyota'">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.make = 'Toyota'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="make" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.make">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="{'4Runner', '86', 'Camry', 'Tacoma Double Cab', 'Tundra (All Versions)'}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.model = '4Runner' or Vehicle.model = '86' or Vehicle.model = 'Camry' or Vehicle.model = 'Tacoma Double Cab' or Vehicle.model = 'Tundra (All Versions)'" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="model" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.model">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <conditionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( Vehicle.modelYear.toInteger >= today.year - 5 ) = true" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="toInteger" datatype="Integer" termtype="METHOD" fulltext="Vehicle.modelYear.toInteger">
+                <parentTerm text="modelYear" datatype="String" termtype="ATTRIBUTE" fulltext="Vehicle.modelYear">
+                  <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </conditionValueSetCellList>
+        <actionValueSetCellList valueSet="T">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Vehicle.isHighTheft = T" datatype="Boolean" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="isHighTheft" datatype="Boolean" termtype="ATTRIBUTE" fulltext="Vehicle.isHighTheft">
+                <parentTerm text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Vehicle" datatype="Vehicle" termtype="ENTITY" fulltext="Vehicle"/>
+            </referencedTermList>
+          </parserOutput>
+        </actionValueSetCellList>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>
