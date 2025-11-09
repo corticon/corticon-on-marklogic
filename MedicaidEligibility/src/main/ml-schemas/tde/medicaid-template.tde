@@ -184,6 +184,24 @@
                 "nullable": true
               },
               {
+                "name": "isBlind",
+                "scalarType": "boolean",
+                "val": "isBlind",
+                "nullable": true
+              },
+              {
+                "name": "isDisabled",
+                "scalarType": "boolean",
+                "val": "isDisabled",
+                "nullable": true
+              },
+               {
+                "name": "isAged",
+                "scalarType": "boolean",
+                "val": "isAged",
+                "nullable": true
+              },
+              {
                 "name": "last",
                 "scalarType": "string",
                 "val": "last",
