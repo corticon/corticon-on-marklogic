@@ -1,210 +1,91 @@
-import { useState } from "react";
-import ExecutionTrace from "./ExecutionTrace";
-import DecisionLog from "./DecisionLog";
+import React from 'react';
 
-export default function HouseholdCard({ row }) {
-  if (!row || typeof row !== "object") return null;
-  const [expanded, setExpanded] = useState(false);
-  const [targetSequence, setTargetSequence] = useState(null);
+const HouseholdCard = ({ row }) => {
+  // Handle different potential data shapes (direct document or pre-processed 'row' prop)
+  const data = row?.payload || row || {};
+  const {
+    householdId,
+    familyName,
+    householdPercentFPL,
+    familySize,
+    stateOfResidence,
+    monthlyIncome,
+    individual = []
+  } = data;
 
-  // Helper: friendly rulesheet name
-  const getRulesheetNameFromPath = (fullPath) => {
-    if (typeof fullPath !== 'string') return '';
-    const parts = fullPath.split('/');
-    const filenameWithExt = parts[parts.length - 1] || '';
-    return filenameWithExt.split('.')[0] || filenameWithExt;
+  // Helper to safely get numeric values
+  const getNumber = (val) => {
+      const num = Number(val);
+      return isNaN(num) ? null : num;
   };
 
-  // Helper: find the latest sequence where an attribute was set
-  const findTraceRef = (attrNames = []) => {
-    try {
-      const changes = row?.metrics?.attributeChanges || [];
-      const matches = changes.filter((c) => attrNames.map(a => String(a).toLowerCase()).includes(String(c?.attributeName || '').toLowerCase()));
-      if (!matches.length) return null;
-      const last = matches.sort((a,b) => (a?.sequence || 0) - (b?.sequence || 0)).pop();
-      return last ? {
-        sequence: last.sequence,
-        rulesheet: getRulesheetNameFromPath(last.rulesheetName),
-        ruleNumber: last.ruleNumber
-      } : null;
-    } catch {
-      return null;
-    }
-  };
+  const fpl = getNumber(householdPercentFPL);
+  const size = getNumber(familySize);
+  const income = getNumber(monthlyIncome);
 
-  const familyName = row.familyName ?? "Unknown Family";
-  const state = row.stateOfResidence ?? "—";
-  const size = row.familySize ?? "—";
-  const income =
-    typeof row.annualIncome === "number"
-      ? `$${row.annualIncome.toLocaleString(undefined, { minimumFractionDigits: 2 })}`
-      : "N/A";
-  const percentFPL =
-    row.householdPercentFPL != null && !Number.isNaN(Number(row.householdPercentFPL))
-      ? Number(row.householdPercentFPL)
-      : null;
-  const fplLabel = percentFPL ? `${percentFPL.toFixed(1)}%` : "N/A";
-  const members = row.members || "—";
-  const primary = row.primaryAssistance || "—";
-  const notes = Array.isArray(row.eligibilityNotes) ? row.eligibilityNotes : [];
-  const hasMessages = Array.isArray(row.decisionLogMessages) && row.decisionLogMessages.length > 0;
-  const hasTraceOrMessages = !!row.metrics || hasMessages;
-
-  const refState = findTraceRef(["stateOfResidence"]);
-  const refSize = findTraceRef(["familySize"]);
-  const refIncome = findTraceRef(["annualIncome"]);
-  const refFpl = findTraceRef(["householdPercentFPL"]);
-
-  // When clicking a trace link, expand the section and scroll to the sequence
-  const jumpToTrace = (sequence) => {
-    if (!sequence) return;
-    setExpanded(true);
-    setTargetSequence(sequence);
-  };
+  // Find primary applicant
+  const applicant = individual.find(ind => ind.relationToApplicant === 'Self') || individual[0];
+  const memberCount = size || individual.length || 'N/A';
 
   // Badge logic
-  let badgeColor = "bg-gray-400";
-  let badgeLabel = "Unknown";
-
-  if (percentFPL != null) {
-    if (percentFPL <= 100) {
-      badgeColor = "bg-green-500";
-      badgeLabel = "Eligible";
-    } else if (percentFPL <= 200) {
-      badgeColor = "bg-yellow-400";
-      badgeLabel = "Borderline";
+  let badgeColor = "bg-gray-100 text-gray-800";
+  let badgeLabel = "Unknown FPL";
+  if (fpl !== null) {
+    if (fpl <= 1.0) {
+      badgeColor = "bg-green-100 text-green-800 border-green-200";
+      badgeLabel = `${(fpl * 100).toFixed(0)}% FPL (Eligible)`;
+    } else if (fpl <= 1.38) {
+        badgeColor = "bg-yellow-100 text-yellow-800 border-yellow-200";
+        badgeLabel = `${(fpl * 100).toFixed(0)}% FPL (Near Limit)`;
     } else {
-      badgeColor = "bg-red-500";
-      badgeLabel = "Over Income";
+      badgeColor = "bg-red-100 text-red-800 border-red-200";
+      badgeLabel = `${(fpl * 100).toFixed(0)}% FPL (Over Income)`;
     }
   }
 
   return (
-    <div className="rounded-2xl shadow-md bg-white border border-gray-200 overflow-hidden mb-8 transition-all duration-200 hover:shadow-lg">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white px-6 py-4 flex justify-between items-center">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-4 hover:shadow-md transition-shadow">
+      <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="text-xl font-semibold flex items-center gap-2">
-            🏠 {familyName} Family
-            <span className="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full">
-              #{row.householdId}
-            </span>
+          <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+            {familyName || 'Unknown'} Household
+            <span className="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">ID: {householdId}</span>
           </h3>
-          <p className="text-sm opacity-90 mt-1">
-            Primary Assistance:{" "}
-            <span className="font-medium">{primary}</span>
-          </p>
         </div>
-        <button
-          className="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition-colors"
-          onClick={() => setExpanded(!expanded)}
-        >
-          {expanded ? "Hide Details" : "View Details"}
-        </button>
+        <span className={`px-3 py-1 text-xs font-semibold rounded-full border ${badgeColor}`}>
+          {badgeLabel}
+        </span>
       </div>
 
-      {/* Summary Grid (spaced and annotated) */}
-      <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-7 text-gray-700 text-sm">
-        <div>
-          <span className="block text-gray-500">State <span className="text-gray-400 cursor-help" title="Declared state of residence for this household.">ⓘ</span></span>
-          <div className="font-semibold">{state}</div>
-          <p className="text-xs text-gray-500 mt-1">Declared state of residence for this household.
-            {refState && (
-              <>
-                {" "}Set by {refState.rulesheet} R{refState.ruleNumber} (seq {refState.sequence}).
-                {" "}<a className="text-blue-600 hover:underline" href={`#trace-seq-${refState.sequence}`} onClick={(e)=>{e.preventDefault(); jumpToTrace(refState.sequence);}}>View in trace</a>
-              </>
-            )}
-          </p>
+      <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 mb-4">
+        <div className="bg-gray-50 p-3 rounded-lg">
+          <span className="block text-xs text-gray-400 uppercase font-semibold mb-1">State</span>
+          <span className="font-medium text-gray-900">{stateOfResidence || 'N/A'}</span>
         </div>
-        <div>
-          <span className="block text-gray-500">Family Size <span className="text-gray-400 cursor-help" title="Number of people used to compute eligibility and FPL.">ⓘ</span></span>
-          <div className="font-semibold">{size}</div>
-          <p className="text-xs text-gray-500 mt-1">Number of people in this household used for eligibility and FPL determination.
-            {refSize && (
-              <>
-                {" "}Set by {refSize.rulesheet} R{refSize.ruleNumber} (seq {refSize.sequence}).
-                {" "}<a className="text-blue-600 hover:underline" href={`#trace-seq-${refSize.sequence}`} onClick={(e)=>{e.preventDefault(); jumpToTrace(refSize.sequence);}}>View in trace</a>
-              </>
-            )}
-          </p>
+        <div className="bg-gray-50 p-3 rounded-lg">
+          <span className="block text-xs text-gray-400 uppercase font-semibold mb-1">Members</span>
+          <span className="font-medium text-gray-900">{memberCount}</span>
         </div>
-        <div>
-          <span className="block text-gray-500">Annual Income <span className="text-gray-400 cursor-help" title="Net household income considered by financial eligibility rules.">ⓘ</span></span>
-          <div className="font-semibold text-green-600">{income}</div>
-          <p className="text-xs text-gray-500 mt-1">Net household income considered by financial eligibility rules.
-            {refIncome && (
-              <>
-                {" "}Set by {refIncome.rulesheet} R{refIncome.ruleNumber} (seq {refIncome.sequence}).
-                {" "}<a className="text-blue-600 hover:underline" href={`#trace-seq-${refIncome.sequence}`} onClick={(e)=>{e.preventDefault(); jumpToTrace(refIncome.sequence);}}>View in trace</a>
-              </>
-            )}
-          </p>
-        </div>
-        <div>
-          <span className="block text-gray-500">% of FPL <span className="text-gray-400 cursor-help" title="Derived ratio of household income to the Federal Poverty Level.">ⓘ</span></span>
-          <div className="font-semibold flex items-center gap-2">
-            {fplLabel}
-            <span className={`text-xs text-white px-2 py-0.5 rounded-full ${badgeColor}`}>
-              {badgeLabel}
-            </span>
-          </div>
-
-          {/* FPL Progress Bar */}
-          <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
-            <div
-              className={`h-2 rounded-full ${badgeColor}`}
-              style={{ width: `${Math.min(percentFPL || 0, 300)}%` }}
-            ></div>
-          </div>
-          <p className="text-xs text-gray-500 mt-1">Derived ratio of household income to the Federal Poverty Level.
-            {refFpl && (
-              <>
-                {" "}Set by {refFpl.rulesheet} R{refFpl.ruleNumber} (seq {refFpl.sequence}).
-                {" "}<a className="text-blue-600 hover:underline" href={`#trace-seq-${refFpl.sequence}`} onClick={(e)=>{e.preventDefault(); jumpToTrace(refFpl.sequence);}}>View in trace</a>
-              </>
-            )}
-          </p>
-        </div>
-
-        <div className="col-span-2 md:col-span-4">
-          <span className="block text-gray-500">Members <span className="text-gray-400 cursor-help" title="Individuals included in the household.">ⓘ</span></span>
-          <div className="font-semibold text-gray-800 bg-gray-50 rounded-md p-3 mt-1">
-            {members}
-          </div>
-          <p className="text-xs text-gray-500 mt-1">Individuals included in the household.</p>
+        <div className="bg-gray-50 p-3 rounded-lg">
+          <span className="block text-xs text-gray-400 uppercase font-semibold mb-1">Monthly Inc.</span>
+          <span className="font-medium text-gray-900">{income !== null ? `$${income.toLocaleString()}` : 'N/A'}</span>
         </div>
       </div>
 
-      {/* Eligibility Section */}
-      {expanded && (
-        <div className="bg-gray-50 border-t border-gray-200 p-6 transition-all duration-300 ease-in-out">
-          <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-            🧾 Eligibility Notes
-          </h4>
-          <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 max-h-48 overflow-y-auto bg-white rounded-lg shadow-inner p-3">
-            {notes.map((note, i) => (
-              <li key={i} className="hover:bg-blue-50 rounded px-1 transition-colors">
-                {note}
-              </li>
-            ))}
-          </ul>
+      {applicant && (
+        <div className="border-t border-gray-100 pt-4">
+          <p className="text-sm text-gray-500 mb-2">Primary Applicant: <span className="font-medium text-gray-900">{applicant.first} {applicant.last}</span></p>
+          <div className="flex flex-wrap gap-2">
+            {applicant.isPregnant && <span className="px-2 py-1 text-xs font-medium bg-pink-50 text-pink-700 rounded-md border border-pink-100">Pregnant</span>}
+            {applicant.isDisabled && <span className="px-2 py-1 text-xs font-medium bg-purple-50 text-purple-700 rounded-md border border-purple-100">Disabled</span>}
+            {applicant.isBlind && <span className="px-2 py-1 text-xs font-medium bg-indigo-50 text-indigo-700 rounded-md border border-indigo-100">Blind</span>}
+            {applicant.age >= 65 && <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md border border-blue-100">Senior ({applicant.age})</span>}
+             {applicant.bornToMedicaidMother && <span className="px-2 py-1 text-xs font-medium bg-teal-50 text-teal-700 rounded-md border border-teal-100">Born to Medicaid Mom</span>}
+          </div>
         </div>
-
-        
-      )}{/* Rule Execution Section */}{expanded && hasTraceOrMessages && (
-        <div className="mt-6 bg-gray-50 border-t pt-4 rounded-lg">
-          <h4 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
-            ⚙️ Rule Execution Trace
-          </h4>
-          <div className="bg-white rounded-lg shadow-inner p-4 space-y-4">
-            <ExecutionTrace metrics={row.metrics} targetSequence={targetSequence} />
-            {hasMessages && (
-              <DecisionLog messages={row.decisionLogMessages} />
-            )}
-          </div>
-          </div>
       )}
     </div>
   );
-}
+};
+
+export default HouseholdCard;

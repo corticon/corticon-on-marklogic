@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path' // <-- Make sure 'path' is imported
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,14 +11,25 @@ export default defineConfig({
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
     }
   },
-  // ADD THIS NEW SECTION
   server: {
+    proxy: {
+      // Proxy API requests to your Node.js express server
+      '/api': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        secure: false,
+      },
+      // Also proxy direct MarkLogic calls if you need them, though /api is better
+      '/v1': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        secure: false,
+      }
+    },
     fs: {
-      // This tells Vite it's OK to serve files from the parent
-      // 'Medicaid Eligibility' directory, which includes ml-fasttrack
       allow: [
         path.resolve(__dirname, '../../'),
-                path.resolve('C:/Users/smeldon/node_modules'),
+        path.resolve('C:/Users/smeldon/node_modules'),
       ]
     }
   }
