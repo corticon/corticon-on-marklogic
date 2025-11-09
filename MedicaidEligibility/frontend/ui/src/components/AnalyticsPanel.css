@@ -84,6 +84,7 @@
 .k-grid {
     border-color: #e2e8f0 !important;
     font-size: 0.875rem;
+    width: 100%;
 }
 .k-grid-header {
     background-color: #f1f5f9 !important; /* Slate-100 */

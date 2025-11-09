@@ -5,9 +5,11 @@
   <constraint name="searchable-text">
     <word>
       <json-property>householdId</json-property>
+      <json-property>familyName</json-property>
       <json-property>first</json-property>
       <json-property>last</json-property>
       <json-property>ssn</json-property>
+      <json-property>stateOfResidence</json-property>
       <json-property>text</json-property>
     </word>
   </constraint>
@@ -74,6 +76,9 @@
   <!-- General search behavior -->
   <search-option>unfiltered</search-option>
   <quality-weight>0</quality-weight>
+
+  <!-- Limit string search to the payload subtree for performance and relevance -->
+  <searchable-expression>/payload</searchable-expression>
 
   <extract-metadata>
     <qname elem-name="householdId" elem-ns=""/>

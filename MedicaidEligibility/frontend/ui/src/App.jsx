@@ -15,8 +15,7 @@ export default function App() {
         host="localhost"
         port="4001"
         scheme="http"
-        basePath=""
-        options="corticonml-options"
+        basePath="/api"
         debug={true}
         initSearch={false}
         disableSearchOnChange={false}

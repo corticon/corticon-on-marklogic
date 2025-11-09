@@ -35,7 +35,7 @@ export default function Dashboard() {
     <div className="dashboard-container">
       {/* Header */}
       <header className="dashboard-header">
-        <h1>Medicaid Eligibility Portal</h1>
+        <h1>Georgia Medicaid Eligibility Portal</h1>
         <nav className="dashboard-tabs">
           {tabs.map((tab) => (
             <button

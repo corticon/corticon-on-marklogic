@@ -25,8 +25,18 @@ const fetchAnalytics = async (type, params = {}) => {
 
 export const getProgramEligibilityStats = () => fetchAnalytics('programEligibilityStats');
 export const getNearMissIncomeStats = () => fetchAnalytics('nearMissIncomeStats');
+export const getNearMissByThreshold = () => fetchAnalytics('nearMissByThreshold');
 export const getRuleFiringStats = () => fetchAnalytics('ruleFiringStats');
 export const getDemographicTrends = () => fetchAnalytics('demographicTrends');
+export const getRuleFiringNearFPL = () => fetchAnalytics('ruleFiringNearFPL');
+export const getDecisionPathBySSN = (ssn) => fetchAnalytics('decisionPathBySSN', { ssn });
+
+// New analytics
+export const getPathwaysFinancialPass = () => fetchAnalytics('pathwaysFinancialPass');
+export const getPathwaysUnderHours = () => fetchAnalytics('pathwaysUnderHours');
+export const getPathwaysNotEnrolledAdults = () => fetchAnalytics('pathwaysNotEnrolledAdults');
+export const getProceduralRootCauses = () => fetchAnalytics('proceduralRootCauses');
+export const getMaternalContinuityCandidates = () => fetchAnalytics('maternalContinuityCandidates');
 
 // --- Ad-hoc SQL via Proxy (if needed for custom exploration) ---
 // This uses the generic proxy in server.js. We send it as JSON to avoid content-type issues,

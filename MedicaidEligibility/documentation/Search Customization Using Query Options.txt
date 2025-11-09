@@ -1,0 +1,1489 @@
+
+docs.progress.com
+Search Customization Using Query Options
+63–81 minutes
+
+When you use the XQuery Search API, REST API, or Java API, you can customize and control your searches using query options. This chapter highlights key query option features. The following topics are covered:
+
+    Introduction
+    Getting the Default Query Options
+    Checking Query Options for Errors
+    Constraint Options
+    Operator Options
+    Return Options
+    Searchable Expression Option
+    Fragment Scope Option
+    Searching Key-Value Metadata Fields
+    Modifying Your Snippet Results
+    Extracting a Portion of Matching Documents
+    Customizing Search Results with a Decorator
+    Other Search Options
+    Query Options Examples
+
+For details on the syntax of each option, see Appendix: Query Options Reference.
+Introduction
+
+Query options enable you to control many aspects of content and values searches, including limiting the scope of a search, customizing the string search grammar, defining sort order, and specifying the contents and format of search results.
+
+MarkLogic Server defines a set of default query options that are applied when you do not include custom query options in a search. You can modify the default query options if you are using the REST or Java API. You can override the default options by defining custom query options and apply them to individual searches.
+
+Query options can be specified in XML for all APIs. The REST and Java APIs also support a JSON representation. XML query options are always expressed as a search:options element in the following namespace:
+
+http://marklogic.com/appservices/search
+
+Most search operations in the XQuery, REST and Java APIs accept optional query options, including the following:
+
+    XQuery: The functions search:search, search:resolve, search:values, and search:parse
+
+    REST: The /search, /values, /qbe services
+
+    Java: Searches performed using the com.marklogic.client.query.QueryManager class.
+
+Getting the Default Query Options
+
+If you do not include any query options in a search operation that accepts them, the default query options are used. You can retrieve the default query options definition using the XQuery or REST APIs.
+
+To retrieve the default query options using XQuery, call search:get-default-options.
+
+To retrieve the default query options using REST, make a GET request to /config/query/default. For details, see the REST Client API Reference.
+Checking Query Options for Errors
+
+Query options can be fairly complex. The XQuery, REST and Java APIs include mechanisms for checking your query options for errors.
+
+In XQuery, use the function search:check-options. This function validates your options and reports any errors it finds. It returns empty if the options are valid. If it finds errors, they are returned in the form of one or more search:report nodes.
+
+The REST API can perform an equivalent check when you persist query options through the /config/query service. The Java API performs this check when you call com.marklogic.client.admin.QueryOptionsManager.writeOptions.
+
+It is a good idea to only use query option validation in development, as it can slow down queries to check the options on every search. You can also set the debug option to true in a search:options node to return the output of search:check-options as part of your response.
+
+A common MarkLogic XQuery design pattern is to add a $debug option to your code that defaults to false, and when true, runs search:check-options or adds the debug option your query options. Set the $debug variable to true for development and false for production.
+Constraint Options
+
+A constraint is a mechanism the Search API and Client APIs use to limit the scope of a search. For example, find a term only when it occurs in the value of a particular XML element or JSON property.
+
+Constraints are designed to take advantage of range indexes, lexicons, and fields that exist in the database, and the structures of documents in the database (for example, element values, attribute values, words, and so on). Constraints are primarily used for the following purposes:
+
+    To provide a way to specify the constraint in a string query. For information on search parsing and grammar, see The Default String Query Grammar.
+    To return information designed to be used in creating facets in an application. For information on facets, see Constrained Searches and Faceted Navigation.
+    To enhance search suggestions. For example, when using search:suggest. For information on search suggestions, see Search Term Completion.
+
+A constraint must have a name, and that name must be unique across all operators and constraints in your query options. The name may not contain whitespace.
+
+You can use a constraint name in a string query with operators such as :, <, and >=. For example, if you define a range constraint named price that limits the scope of the search to an XML element or JSON property named price, then the following query text matches occurrences where the value in that element or property is less than 10:
+
+price < 10
+
+For more details about the search grammar, see Automatic Query Text Parsing and Grammar and The Default String Query Grammar. For more details on defining constraints, see constraint.
+
+Similarly, if your price constraint defines value range buckets with the names under10, 10to20, and 20+, then the following query matches occurrences where the value of the price element or property is in the range of the under10 bucket:
+
+price:under10
+
+For more details on bucketed constraints, see Bucketed Range Constraint Example.
+
+The following table lists the types of constraints you can build with query options. For more details, see constraint in the options reference.
+Constraint 	Description 	cts:query Equivalent for constraint 	Lexicon API Equivalent for Facets
+value 	Constrains on an element value or on an attribute value or on a field value. 	cts:element-value-query, cts:element-attribute-value-query, cts:field-value-query 	No facets for value constraints.
+
+Example value constraint:
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="my-value">
+    <value>
+      <element ns="my-namespace" name="my-localname"/>
+    </value>
+  </constraint>
+</options>
+
+For more details, see Value Constraint Example and value.
+word 	Constrains on a word-query of either element, attribute, or field. 	cts:element-word-query, cts:element-attribute-word-query, cts:field-word-query 	No facets for word constraints.
+
+Example word constraint:
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="name">
+    <word>
+      <element ns="http://authors-r-us.com" name="name"/>
+    </word>
+  </constraint>
+</options>
+
+For more details, see Word Constraint Examples and word in the options reference.
+collection 	Requires the collection lexicon to be enabled in the database. 	cts:collection-query 	cts:collections
+
+Example collection constraint:
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="subject">
+    <collection prefix="/my-collections/"/>
+  </constraint>
+</options>
+
+For more details, see Collection Constraint Example and collection in the options reference.
+range 	Requires the underlying range index to exist in the database. All range constraints are type aware for the element or attribute values or for the field values, and the constraint can optionally include either bucket or computed-bucket elements. For examples, see Bucketed Range Constraint Example, Buckets Example, Computed Buckets Example. and the search:search options node description in the MarkLogic XQuery and XSLT Function Reference. 	The lexicon APIs, such as cts:element-range-query, cts:element-attribute-range-query, cts:path-range-query, and cts:field-range-query 	cts:element-values, cts:element-attribute-   values, cts:values, cts:field-values, cts:element-value-   ranges, cts:element-attribute-   value-ranges, cts:value-ranges, cts:values cts:field-value-ranges
+container 	Restricts qtext to a particular XML element or JSON property. Requires position indexes enabled on the database for the best performancce. 	cts:element-query 	No facets for container constraints.
+Example element-query constraint:
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="sample-element-constraint">
+    <container>
+      <element name="title" ns="http://my/namespace" />
+    </container>
+  </constraint>
+</options>
+
+properties 	Finds matches on the corresponding properties documents. 	cts:properties-fragment-query 	No facets for properties constraints.
+Example properties constraint:
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="sample-property-constraint">
+    <properties />
+  </constraint>
+</options>
+
+geo-attr-pair geo-elem-pair geo-elem geo-path geo-json-propty geo-json-property-pair 	These geospatial constraints find matches on geospatial data. To use as a facet, the <constraint> element requires a <heatmap> child; for details, see Geospatial Constraint Example. 	cts:element-attribute -pair-geospatial-query, cts:element-pair-geospatial-query, cts:element-geospatial-query, cts:element-child-geospatial-query 	cts:element-attribute -pair-geospatial -boxes cts:element-pair -geospatial-boxes cts:element- geospatial-boxes
+Example geo-* constraints:
+
+<options xmlns="http://marklogic.com/appservices/search">
+<constraint name="my-geo-attr-pair">
+	<!-- Uses cts:element-attribute-pair-geospatial-query, and
+	cts:element-attribute-pair-geospatial-boxes for the 
+	heatmap facet.  -->
+  <geo-attr-pair> 
+    <heatmap s="23.2" w="-118.3" n="23.3" e="-118.2" 
+             latdivs="4" londivs="4"/>
+    <facet-option>empties</facet-option> 
+    <parent ns="ns1" name="elem1"/> 
+    <lat ns="ns2" name="attr2"/> 
+    <lon ns="ns3" name="attr3"/>
+  </geo-attr-pair>
+</constraint>
+<constraint name="geo-elem-child">
+  <geo-elem>
+    <parent ns="" name="g-elem-child-parent" />
+    <element ns="" name="g-elem-child-point" />
+  </geo-elem>
+</constraint> 
+</options>
+
+custom 	Create your own type of constraint by implementing your own functions for parsing and for creating facets. For an example, see Creating a Custom Constraint. 	Depends on your custom code implementation 	Depends on your custom code implementation
+
+Constraints are designed to be fast. When they have facets, they must generate fast and accurate counts and distinct values. Therefore the constraints that allow facets require a range index on the element or attribute on which they apply, or require a particular lexicon to exist in the database. Other constraints (value and word constraints) do not require any special indexing, and they cannot be used to create facets.
+
+WhenMarkLogic Server parses a constraint in a query (using search:parse or search:search for example), it looks for the joiner string and then applies the value to the right of the joiner string, parsing the value as a cts:query. If the constraint is not defined in your query options and the value is a single search term, then the joiner string is treated as part of the search term. For example:
+
+search:parse('unrecognized-constraint:hello')
+=> 
+<cts:word-query qtextref="cts:text"
+       xmlns:cts="http://marklogic.com/cts">
+   <cts:text>unrecognized-constraint:hello</cts:text>
+</cts:word-query>
+
+If the constraint is not defined in your query options and the value is quoted text, then the Search API ignores the constraint and the joiner when parsing the query, but saves the original text as an attribute. For example:
+
+search:parse('unrecognized-constraint:"hello world"')
+=>
+<cts:word-query qtextpre="unrecognized-constraint:&quot;"
+     qtextref="cts:text" qtextpost="&quot;"
+     xmlns:cts="http://marklogic.com/cts">
+   <cts:text>hello world</cts:text>
+</cts:word-query>
+
+The following examples show constraints of the following types:
+
+    Value Constraint Example
+    Word Constraint Examples
+    Collection Constraint Example
+    Bucketed Range Constraint Example
+    Exact Match (Unbucketed) Range Constraint Example
+    Geospatial Constraint Example
+
+For an example of a custom constraint, see Creating a Custom Constraint.
+Value Constraint Example
+
+The following query options define two value constraints: one for an element and one for an attribute.
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="my-value">
+    <value>
+      <element ns="my-namespace" name="my-localname"/>
+    </value>
+  </constraint> 
+  <constraint name="my-attribute-value">
+    <value>
+      <attribute ns="" name="my-attribute"/>
+      <element ns="my-namespace" name="my-localname"/>
+    </value>
+  </constraint>
+</options>
+
+Using these constraints, you can use string queries such as the following to use these constraints:
+
+my-value:"This is an element value."
+my-attribute-value:123456
+
+Both parts of the above queries would match the following document:
+
+<my-document xmlns="my-namespace">
+  <my-localname>This is an element value.</my-localname>
+  <my-localname my-attribute="123456"/>
+</my-document>
+
+For more details, see value in the options reference.
+Word Constraint Examples
+
+The following query options define two word constraints: One for the <name/> element in the namespace http://authors-r-us.com and one for the field my-field. one for a cts:element-word-query and one for a cts:field-word-query:
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="name">
+    <word>
+      <element ns="http://authors-r-us.com" name="name"/>
+    </word>
+  </constraint>
+  <constraint name="description">
+    <word>
+        <field name="my-field"/>
+    </word>
+  </constraint>
+</options>
+
+You can create string and structured queries that use these constraints. For example, the following string query uses the name constraint.
+
+name:raymond
+
+When parsed, it becomes a cts:element-word-query:
+
+<cts:element-word-query>
+  <cts:element xmlns:_1="http://authors-r-us.com">
+    _1:name
+  </cts:element>
+  <cts:text>raymond</cts:text>
+</cts:element-word-query>
+
+This query matches the following document (because a cts:word-query("raymond") would match):
+
+<my-document xmlns="http://authors-r-us.com">
+  <name>Raymond Carver</name>
+</my-document>
+
+Similarly, the following string query using the description constraint parses into a cts:field-word-query:
+
+description:author
+
+This query matches the above document if the name element is included in the definition of the field named my-field. For details on fields, see Fields Database Settings in the Administrator's Guide.
+
+For more details, see word in the query options reference.
+
+Word constraints can also be used in structured queries. For example, the following structured query is equivalent to the name:raymond string query:
+
+<search:query xmlns:search="http://marklogic.com/appservices/search">
+  <search:word-constraint-query>
+    <search:constraint-name>name</search:constraint-name>
+    <search:text>raymond</search:text>
+  </search:word-constraint-query>
+</search:query>
+
+For details, see Searching Using Structured Queries.
+Collection Constraint Example
+
+The following query options define a collection constraint, which allows you to constrain your search to documents that are in a specified collection.
+
+You must enable the collection lexicon in the database to use collection constraints. If the collection lexicon is not enabled, an exception is thrown when you use a query with a collection constraint.
+
+If you include a prefix attribute in the definition of a collection constraint, then the collection name is derived from the prefix concatenated with the constraint value.
+
+One use for a collection constraint is to allow faceted navigation based on collections. For example, if you have collections based on subjects (for example, one called history, one called math, and so on), then you can use a collection constraint to narrow the search to one of the subjects.
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="subject">
+    <collection prefix="/my-collections/"/>
+  </constraint>
+</options>
+
+Assuming that all documents in your database have collection URIs that begin with the string /my-collections/ like the following:
+
+/my-collections/math
+/my-collections/economics
+/my-collections/zoology
+
+Then the following query text examples will match documents in the corresponding collections:
+
+subject:math
+subject:economics
+subject:zoology
+
+If the database contains no documents in the specified collection, then the search returns no matches. For information on collections, see Collections.
+
+You can also use collection constraints in a structured query, using collection-constraint-query. For details, see Searching Using Structured Queries.
+Bucketed Range Constraint Example
+
+Range constraints operate on typed element, element attribute, JSON property, field, or path values that have a corresponding range index in the database. Without the correct range index, queries using range constraints throw a runtime exception.
+
+Range constraints can match on either all of the individual values in the constrained scope (element, property, field, etc.), or on ranges of values defined as buckets. You can define two types of buckets in a range constraint specification.
+
+    Use the bucket portion of a range constraint to define a value range in terms of fixed values.
+    Use the computed-bucket portion of a range constraint to define a value range in terms of a dynamic time that is computed at runtime. For more information about computed-bucket range constraints, see Computed Buckets Example.
+
+The following example uses search:parse with query options that define a bucket range constraint. The constraint definition is based on the JSON data from Preparing to Run the Examples, but you can create a similar constraint on XML data.
+
+xquery version "1.0-ml";
+import module namespace search = 
+  "http://marklogic.com/appservices/search"
+  at "/MarkLogic/appservices/search/search.xqy";
+
+search:parse('price:under10', 
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="price">
+    <range type="xs:float" facet="true">
+      <bucket lt="10" name="under10">under $10</bucket>
+      <bucket ge="10" lt="21" name="10to20">$10 to $20</bucket>
+      <bucket ge="21" name="20+">$20+</bucket>
+      <facet-option>limit=10</facet-option>
+      <json-property>/edition/price</json-property>
+    </range>
+  </constraint>
+</options>)
+
+With the given constraint definition, the query text price:under10 parses into the following cts:query:
+
+<cts:and-query xmlns:cts="http://marklogic.com/cts">
+  <cts:json-property-range-query operator="&gt;=">
+    <cts:property>/edition/price</cts:property>
+    <cts:value xsi:type="xs:float"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      10
+    </cts:value>
+  </cts:json-property-range-query>
+  <cts:json-property-range-query operator="&lt;">
+    <cts:property>/edition/price</cts:property>
+    <cts:value xsi:type="xs:float"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      21
+    </cts:value>
+  </cts:json-property-range-query>
+</cts:and-query>
+
+For other range constraint examples, see Buckets Example and Computed Buckets Example, and the following example.
+
+For syntax details, see bucket of the query options appendix.
+Exact Match (Unbucketed) Range Constraint Example
+
+The following example shows an exact match year range constraint. It returns results that match the xs:gYear value 1964 when it is the value of an XML element named nominee, in the namespace http://marklogic.com/wikipedia. The database configuration must include a range index matching the constraint definition.
+
+xquery version "1.0-ml";
+
+import module namespace search = 
+  "http://marklogic.com/appservices/search"
+  at "/MarkLogic/appservices/search/search.xqy";
+
+let $options :=
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="year">
+   <range type="xs:gYear" facet="true">
+   <facet-option>limit=10</facet-option>
+   <attribute ns="" name="year"/>
+   <element ns="http://marklogic.com/wikipedia" 
+            name="nominee"/>
+   </range>
+  </constraint>
+</options>
+return 
+search:search("year:1964", $options)
+
+You can also try out these query options with the Java and REST APIs. For details, see Apply Dynamic Query Options to Document Searches in the Java Application Developer's Guide or Specifying Dynamic Query Options with Combined Query in the REST Application Developer's Guide.
+Geospatial Constraint Example
+
+The following example shows how to use a geospatial constraint to generate geospatial facets in the form of boxes. For details on these options, see Appendix: Query Options Reference. For details on the concept of geospatial facets, see Creating Geospatial Facets.
+
+Suppose the database contains documents of the following form, describing earthquake events:
+
+<event xmlns="http://quakeml.org/xmlns/bed/1.2">
+  <time>2015-03-24T09:39:15.500Z</time>
+  <latitude>36.5305</latitude>
+  <longitude>-98.8456</longitude>
+  <depth>8.72</depth>
+  <mag>3.4</mag>
+  <magType>mb_lg</magType>
+  <id>us10001q5d</id>
+  <place>33km ENE of Mooreland, Oklahoma</place>
+  <type>earthquake</type>
+</event>
+
+If you define a geospatial element pair range index on the /event/latitude and /event/longitude elements, then you can use query options to define an associated constraint that can be used to generate geospatial facets by including a heatmap element in the constraint definition.
+
+The heatmap element defines a region over which to generate facets, along with the number of latitude and longitude divisions to use in sub-divisions the region into boxes. When you perform a search with the constraint in scope, the search response includes a set of search:box elements that give you the frequency of matches in each sub-division. You can use this box data for faceting or heatmap generation.
+
+For example, the following constraint includes a heat map that corresponds very roughly to the continental United States, and divides the region into a set of 20 boxes (5 latitude divisions and 4 longitude divisions):
+
+<constraint name="qgeo">
+  <geo-elem-pair facet="true"> 
+    <parent ns="http://quakeml.org/xmlns/bed/1.2" name="event"/> 
+    <lat ns="http://quakeml.org/xmlns/bed/1.2" name="latitude"/> 
+    <lon ns="http://quakeml.org/xmlns/bed/1.2" name="longitude"/>
+    <heatmap s="24.0" n="49.0" e="-67.0" w="-125.0" 
+             latdivs="5" londivs="4" />
+    <facet-option>gridded</facet-option>
+  </geo-elem-pair>
+</constraint>
+
+If you also define an element range index on /event/mag, then the following search finds earthquakes with a magnitude (mag) greater than 4.0 within the continental US.
+
+xquery version "1.0-ml";
+import module namespace search = "http://marklogic.com/appservices/search" at "/MarkLogic/appservices/search/search.xqy";
+
+let $options :=
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="qgeo">
+    <geo-elem-pair> 
+      <parent ns="http://quakeml.org/xmlns/bed/1.2" name="event"/> 
+      <lat ns="http://quakeml.org/xmlns/bed/1.2" name="latitude"/> 
+      <lon ns="http://quakeml.org/xmlns/bed/1.2" name="longitude"/>
+      <heatmap s="24.0" n="49.0" e="-67.0" w="-125.0" 
+               latdivs="5" londivs="4" />
+      <facet-option>gridded</facet-option>
+    </geo-elem-pair>
+  </constraint>
+  <constraint name="mag">
+    <range type="xs:float" facet="false">
+      <element ns="http://quakeml.org/xmlns/bed/1.2" name="mag"/>
+    </range>
+  </constraint>
+  <return-facets>true</return-facets>
+</options>
+return search:search("mag GT 4", $options)
+
+The search response includes the following frequency count per geographic region, based on the geo constraint in the options:
+
+<search:boxes name="qgeo">
+  <search:box count="3" s="-18.9346" w="-178.4936" 
+              n="-17.8151" e="-174.9279"/>
+  <search:box count="2" s="-48.36" w="-87.3529" 
+              n="7.6115" e="-81.8738"/>
+  <search:box count="8" s="-20.7243" w="-73.0949" 
+              n="6.8852" e="151.9563"/>
+  <search:box count="2" s="36.2665" w="70.65" 
+              n="36.4086" e="140.0085"/>
+  <search:box count="3" s="53.6477" w="160.0923" 
+              n="53.8233" e="161.7353"/>
+</search:boxes>
+
+By default, the returned boxes are the smallest box within each grid box that encompasses all the matched documents. To return boxes corresponding to the grid divisions instead, add <facet-option>gridded</facet-option> to the geo constraint definition. In this example it results in the following boxes:
+
+<search:boxes name="qgeo">
+  <search:box count="3" s="-90" w="-180" n="24" e="-125"/>
+  <search:box count="2" s="-90" w="-96" n="24" e="-81.5"/>
+  <search:box count="8" s="-90" w="-81.5" n="24" e="180"/>
+  <search:box count="2" s="34" w="-81.5" n="39" e="180"/>
+  <search:box count="3" s="44" w="-81.5" n="90" e="180"/>
+</search:boxes>
+
+For an example of expression a geospatial constraint in JSON, see geo-attr-pair and heatmap.
+
+Note that the generated facets will bucket all matched points, even if they're outside the extent of the box defined in the heatmap. If you want to facet only within bounds of the heatmap, then your search results must be similarly constrained.
+
+For example, you could add an additional-query option that constrains the search to the same box as defined by the heatmap using a cts:element-pair-geospatial-query.
+Operator Options
+
+Search operators enable you to define operators in your string query grammar that provide runtime, user-controlled configuration and search choices. A typical search operator might control sorting, thereby allowing the user to specify the sort order directly in a string query or query text. For details, see operator in the query options appendix.
+
+For example, the following options XML defines an operator named sort that enables you to sort by relevance or by date:
+
+<options xmlns="http://marklogic.com/appservices/search">
+ <search:operator name="sort">
+   <search:state name="relevance">
+      <search:sort-order>
+         <search:score/>
+      </search:sort-order>
+   </search:state>
+   <search:state name="date">
+      <search:sort-order direction="descending" type="xs:dateTime">
+         <search:element ns="my-ns" name="date"/>
+      </search:sort-order>
+      <search:sort-order>
+         <search:score/>
+      </search:sort-order>
+   </search:state>
+ </search:operator>
+</options>
+
+This operator definition in the query options allows you to add text like the following to a string query, and MarkLogic Server will parse the string and sort it according to the operator specification.
+
+sort:date
+sort:relevance
+
+Each operator is named, and the name must be unique across all operators and constraints in your query options. When you specify an operator in a string query, you use the name as an operator in the search grammar followed by the apply="constraint" joiner string (a colon character [:] by default). The joiner string joins the operator (or the constraint) with its value. For example, the following query text:
+
+sort:date 
+
+specifies using the operator named sort with a value of date. You can also include operator settings in structured queries, using the operator-state element. For details, see operator-state.
+
+The following figure shows each portion of the operator query text:
+
+For more details about the search grammar, see Automatic Query Text Parsing and Grammar and The Default String Query Grammar.
+
+The search:state element is a child of the search:operator element, and the following options XML elements are allowed as a child of search:state element:
+
+    additional-query
+
+    debug
+
+    forest
+
+    page-length
+
+    quality-weight
+
+    search-option
+
+    searchable-expression
+
+    Due to security and performance considerations, beginning in MarkLogic 9.0-10, the searchable-expression property/element in query options is deprecated. Please see Search API searchable-expression Deprecated in the Release Notes for more information.
+
+    sort-order
+
+    transform-results
+
+Operators use the same syntax as constraints, but control other aspects of the search (for example, the sort order) besides which results are returned.
+Return Options
+
+You can specify a number of options that control what is include in a search response, such as the results returned by the XQuery Search API function search:search, a GET request to the /search service of the REST API, or the Java API method com.marklogic.client.query.QueryManager.search. These include the following boolean options:
+
+    return-aggregates
+
+    return-constraints
+
+    return-facets
+
+    return-frequencies
+
+    return-metrics
+
+    return-plan
+
+    return-qtext
+
+    return-query
+
+    return-results
+
+    return-similar
+
+    return-values
+
+For details on these and other options, see Appendix: Query Options Reference.
+
+Setting one of these options to true includes the specified information in the search:response returned by a search. Setting to false omits the information from the response. For example, the following specifies to return query statistics and facets in the result, but not to return the search hits:
+
+<options xmlns="http://marklogic.com/appservices/search">
+   <return-metrics>true</return-metrics>
+   <return-facets>true</return-facets>
+   <return-results>false</return-results>
+</options>
+
+Only the needed parts of the response are computed, so if you do not return results (as in the above example) or do not return something else, then the work needed to perform that part of the response is not done, and the search runs faster.
+
+For details on each return option, including their default values, see the search:search function documentation in MarkLogic XQuery and XSLT Function Reference.
+Searchable Expression Option
+
+Use the searchable-expression option to specify what expression to search over and what is returned in the search results. The expression corresponds to the first parameter to cts:search, and must be a fully searchable expression. For details on fully searchable expressions, see Fully Searchable Paths and cts:search Operations in Query Performance and Tuning Guide.
+
+Due to security and performance considerations, beginning in MarkLogic 9.0-10, the searchable-expression property/element in query options is deprecated. Please see Search API searchable-expression Deprecated in the Release Notes for more information.
+
+By default, searches apply to the whole database (fn:collection()). In most cases, your searchable-expression should search over fragment roots, although searching below fragment roots is allowed.
+
+The following example shows a searchable expression that searches over both CITATION elements and html elements:
+
+<searchable-expression xmlns:xh="http://www.w3.org/1999/xhtml">
+    /(xh:html | CITATION) 
+</searchable-expression>
+
+If an expression is not fully searchable, it will throw an XDMP-UNSEARCHABLE exception at runtime.
+
+For more details, see searchable-expression in the query options appendix.
+Fragment Scope Option
+
+You can specify a fragment-scope option which controls the fragments over which a search or a constraint operates. A fragment-scope can be either documents or properties. By default, the scope is documents. A fragment-scope of documents searches over documents fragments, and a fragment-scope of properties searches over properties fragments.
+
+There are two types of fragment-scope options: a global fragment scope, which applies to the both the search and any constraints in the search, and a local fragment scope, which applies to a given constraint. A global fragment-scope is specified as a child of <options>, and a local fragment scope is specified as a child of a <term> or a contraint kind (for example, a child of <range>, <value>, or <word>). Any local fragment scope will override the global fragment scope.
+
+A local fragment scope of properties on a range constraint with a global fragment scope of documents allows you to create a facet on data that is in a properties fragment. For example, the following query returns results from documents and a dateTime last-modified facet from the prop:last-modified system property:
+
+xquery version "1.0-ml";
+import module namespace search = "http://marklogic.com/appservices/search"
+     at "/MarkLogic/appservices/search/search.xqy";
+
+search:search("the",
+<options xmlns="http://marklogic.com/appservices/search">
+<fragment-scope>documents</fragment-scope>
+  <constraint name="last-modified">
+    <range type="xs:dateTime">
+      <element ns="http://marklogic.com/xdmp/property"
+               name="last-modified"/>
+      <fragment-scope>properties</fragment-scope>
+    </range>
+  </constraint>
+  <debug>true</debug>
+</options>)
+
+Setting fragment scope in a <term> definition causes term queries to be evaluated in the specified scope. However, the local fragment scope is ignored under the following conditions:
+
+    The <term> definition includes an inline word, value, or range constraint or a reference to another constraint. In this case, the fragment scope of the constraint definition applies.
+
+    The <term> definition specifies a custom term processing function using apply/ns/at. In this case, the custom function controls scope.
+
+For more details, see fragment-scope in the query options appendix.
+Searching Key-Value Metadata Fields
+
+You can associate key-value metadata with a document using the metadata option during document insertion, or using builtin functions such as the xdmp:document-set-metadata XQuer function or the xdmp.documentSetMetadata Server-Side JavaScript function.
+
+To make key-value metadata searchable, you must define a metadata field on the key, as described in Configuring a New Metadata Field in the Administrator's Guide. You might also need to enable field value searches on your database or configure a field range index, depending on the type of query you want to perform.
+
+Once you define a field over a metadata key, you can include that key-value pair in searches using any of the field query capabilities.
+
+The following example defines a constraint named by over a metadata field named author, and then uses the constraint in a string query. The search only matches occurrences of twain in the metadata key-value pair with the key author. It will not match occurrences in document content or under a different key.
+
+xquery version "1.0-ml";
+import module namespace search = 
+  "http://marklogic.com/appservices/search"
+  at "/MarkLogic/appservices/search/search.xqy";
+
+let $options :=
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="by">
+    <word>
+      <field name="author"/>
+    </word>
+  </constraint>
+</options>
+return search:search("by:twain", $options)
+
+For more details, see Metadata Fields in the Administrator's Guide.
+Modifying Your Snippet Results
+
+The transform-results option enables you to specify options for the snippet code for your application. A snippet is the search result blurb (an abbreviated and highlighted summary) that typically comes up in search results. A snippet is created by taking the matching search result node and running it through transformation code. The transformation typically displays the portion of the result you want in your results page, perhaps highlighting the query matches and showing some text around it, often discarding the rest of the result. This section describes the following ways to control and modify the snippet results from the Search API:
+
+    Specifying transform-results Options
+    Specifying Your Own Code in transform-results
+
+Specifying transform-results Options
+
+By default, the Search API has its own code to take search result matches and transform them into snippets used in the search results. By default, the Search API uses the apply="snippet" attribute on the transform-results option. Snippets tend to be very application specific, and the built-in apply="snippet" option has several parameters that you can control with a transform-results options node.
+
+The following is the default transform-results options node:
+
+<transform-results apply="snippet">
+    <per-match-tokens>30</per-match-tokens>
+    <max-matches>4</max-matches>
+    <max-snippet-chars>200</max-snippet-chars>
+    <preferred-matches/>
+</transform-results>
+
+The following table describes the transform-results options when apply="snippet", each of which is configurable at search runtime by specifying your own values for the options. For more details, see transform-results in the query options appendix.
+transform-results Child Element 	Description
+
+per-match-tokens
+
+	Maximum number of tokens (typically words) per matching node that surround the highlighted term(s) in the snippet.
+
+max-matches
+
+	The maximum number of nodes containing a highlighted term that will display in the snippet.
+
+max-snippet-chars
+
+	Limit total snippet size to this many characters.
+
+preferred-matches
+
+	
+
+Specify zero or more XML elements or JSON properties that the snippet algorithm looks in first to find matches. For example, if you want any matches in the TITLE element to take preference, specify TITLE as a preferred element as in the following sample:
+
+<transform-results apply="snippet">
+  <preferred-matches>
+    <element ns="" name="TITLE"/>
+  </preferred-matches>
+</transform-results>
+
+For JSON properties, use a json-property child element or property. For example:
+
+<transform-results apply="snippet">
+  <preferred-matches>
+    <json-property>title</json-property>
+  </preferred-matches>
+</transform-results>
+
+There are also three other built-in snippetting options, which are exposed as attributes on the transform-results options node:
+
+    apply="raw"
+
+    apply="empty-snippet"
+
+    apply="metadata-snippet"
+
+    The apply attribute for the transform-results element is only applicable to the search:search and search:resolve functions; search:snippet always uses the default snippetting option of snippet and ignores anything specified in the apply attribute.
+
+The apply="raw" snippetting option looks as follows:
+
+<transform-results apply="raw" />
+
+The apply="raw" option returns the whole node (with no highlighting) in the search:response output. You can then take the node and do your own transformation on it, or just return it as-is, or whatever else makes sense for your application.
+
+The apply="empty-snippet" snippetting option is as follows:
+
+<transform-results apply="empty-snippet" />
+
+The apply="empty-snippet" option returns no result node, but does return an empty search:snippet element for each search:result. The search:result wrapper element does have the information (for example, the URI and path to the node) needed to access the node and perform your own transformation on the matching search node(s), so you can write your own code outside of the Search API to process the results.
+
+The apply="metadata-snippet" snippeting option is as follows:
+
+<transform-results apply="metadata-snippet">
+  <preferred-matches>
+    <!-- Specify namespace and local name for elements that exist 
+         in properties documents -->
+    <element ns="http://my.namespace" name="my-local-name"/>
+  </preferred-matches>
+</transform-results>
+
+The apply="metadata-snippet" option returns the specified preferred elements from the properties documents. If no <preferred-matches> element is specified, then the metadata-snippet option returns the prop:last-modified element for its snippet, and if the prop:last-modified element does not exist, it returns an empty snippet.
+Specifying Your Own Code in transform-results
+
+If the default snippet code does not meet your application requirements, you can use your own snippet code to use for a given search.
+
+To specify your own snippet code, use the design pattern described in Search Customization Via Options and Extensions. The function you implement must have a signature compatible with the following signature:
+
+declare function search:snippet(
+   $result as node(),
+   $ctsquery as schema-element(cts:query),
+   $options as element(search:transform-results)?
+) as element(search:snippet)
+
+The Search API will pass the function the result node and the cts:query XML representation and your custom function can transform it any way you see fit. An options node that specifies a custom transformation looks as follows:
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <transform-results apply="my-snippet" ns="my-namespace"
+      at="/my-snippet.xqy">
+  </transform-results>
+</options>
+
+You must generate an XML <search:snippet/> element, even when producing snippets for JSON documents. You can embed JSON in your generated snippet as text. If you include a format="json" attribute in your snippet, the REST, Java, and Node.js client APIs will treat the embedded text as JSON and unquote when returning search results as JSON. For example:
+
+declare function my:snippeter(
+   $result as node(),
+   $ctsquery as schema-element(cts:query),
+   $options as element(search:transform-results)?
+) as element(search:snippet) {
+    element search:snippet {
+        attribute format { "json" },
+        text {'{"MY":"CUSTOM SNIPPET"}'}
+    }
+};
+
+You can optionally pass additional information into your custom snippeting function by adding extra children to the transform-results option. The Search API passes the transform-results element into your function, and if you want to use any part of the option, you can write code to parse the option and extract whatever you need from it.
+Extracting a Portion of Matching Documents
+
+This sections explains how to use the extract-document-data option to project selected XML elements, XML attributes, and JSON properties out of documents matched by a search. For more details, see extract-document-data.
+
+By default, a search returns only the search:response result summary. When you use extract-document-data, you can embed selected portions of each matching document in the search results or return the selected portions as documents instead in a search:response.
+
+The projected contents are specified through absolute XPath expressions in extract-document-data and a selected attribute that specifies how to treat the selected content.
+
+For example, suppose your database includes the following documents:
+XML 	JSON
+
+URI: /extract/doc1.xml
+
+<root>
+  <a>foo</a>
+  <body>
+    <target>content</target>
+  </body>
+  <b>bar</b>
+</root>
+
+	
+
+URI: /extract/doc2.json
+{"root": {
+  "a": "foo",
+  "body": { "target":"content" },
+  "b": "bar"
+}}
+
+Then, if you search for content both of the above documents match.
+
+search:search("content")
+
+If you add the following extract-document-data option, the search response includes the projected content in each search result, similar to the way sinippets are returned. Each projection contains only the target element or property specified by the option.
+
+xquery version "1.0-ml";
+import module namespace search = "http://marklogic.com/appservices/search"
+    at "/MarkLogic/appservices/search/search.xqy";
+
+search:search("content",
+  <options xmlns="http://marklogic.com/appservices/search">
+    <extract-document-data>
+      <extract-path>/root/body/target</extract-path>
+    </extract-document-data>
+    <search-option>filtered</search-option>
+  </options>
+)
+
+==>
+
+<search:response snippet-format="snippet" total="2" start="1" ...>
+  <search:result index="1" uri="/extract/doc1.xml" 
+       path="fn:doc(&quot;/extract/doc1.xml&quot;)" ...>
+    <search:snippet>...</search:snippet>
+    <search:extracted context="fn:doc(&quot;/extract/doc1.xml&quot;)">
+      <target>content</target>
+    </search:extracted>
+  </search:result>
+  <search:result index="2" uri="/extract/doc2.json" 
+       path="fn:doc(&quot;/extract/doc2.json&quot;)" ...>
+    <search:snippet>...</search:snippet>
+    <search:extracted format="json" kind="object" 
+        context="fn:doc("/extract/doc2.json")">
+      {"target":"content"}
+    </search:extracted>
+  </search:result>
+  ...
+</search:response>
+
+Using extract-document-data with search:resolve has a similar effect. However, if you use the option with search:resolve-nodes, you get the projected content as sparse documents instead of a search:response. For example:
+
+xquery version "1.0-ml";
+import module namespace search = "http://marklogic.com/appservices/search"
+    at "/MarkLogic/appservices/search/search.xqy";
+
+search:resolve-nodes(
+  search:parse("content"),
+  <options xmlns="http://marklogic.com/appservices/search">
+    <extract-document-data>
+      <extract-path>/root/body/target</extract-path>
+    </extract-document-data>
+    <search-option>filtered</search-option>
+  </options>
+)
+
+==>
+
+(
+  <?xml version="1.0" encoding="UTF-8"?>
+  <search:extracted context="fn:doc(&quot;/extract/doc1.xml&quot;)"
+      xmlns:search="http://marklogic.com/appservices/search">
+    <target>content</target>
+  </search:extracted>,
+
+  {"context":"fn:doc(\"/extract/doc2.json\")",    "extracted":[{"target":"content"}]}
+)
+
+You can specify multiple extract-path elements. For paths to XML elements and attributes, namespaces in scope on the search:options (or search:search for a combined query) can be used for namespace prefix bindings on the path expressions.
+
+For performance and security reasons, the path expression in extract-path is limited to a subset of XPath. For details, see The extract-document-data Query Option in the XQuery and XSLT Reference Guide.
+
+Use the selected attribute to specify how to use the content selected by extract-path in the returned documents. You can set the attribute to include (default), include-with-ancestors, exclude, or all. If you choose anything except include, the output for each match is a sparse representation of the original document instead of a document with an extracted element or JSON property; see the examples in the table below.
+
+The table below demonstrates how extract-document-data/@selected affects the content extracted from the two sample documents.
+selected 	XML 	JSON
+
+include
+
+	
+
+<target>content</target>
+
+	
+
+{"target":"content"}
+
+include-with-ancestors
+
+	
+
+<root>
+  <body>
+    <target>content</target>
+  </body>
+</root>
+
+	
+
+{"root":{
+  "body":{
+    "target":"content"
+  }
+}}
+
+exclude
+
+	
+
+<root>
+  <a>foo</a>
+  <body/>
+  <b>bar</b>
+</root>
+
+	
+
+{"root":{
+  "a":"foo",
+  "body":{},
+  "b":"bar"
+}}
+
+all
+
+	
+
+<root>
+  <a>foo</a>
+  <body>
+    <target>content</target>
+  </body>
+  <b>bar</b>
+</root>
+
+	
+
+{"root":{
+  "a":"foo",
+  "body":{
+    "target":"content"
+  },
+  "b":"bar"
+}}
+
+When selected is include or include-with-ancestors and no content for a given search result is matched by the extract-path expressions, an extracted-none placeholder is returned to preserve the presence of the document in the result list. For example:
+
+<search:extracted-none
+  context="fn:doc("/extract/doc1.xml&")" ... />
+
+{ "context":"fn:doc(\"/extract/doc2.json\")",
+  "extracted-none":null}
+
+The Node.js Client API supports extract-document-data through the queryBuilder.extract method. By default, DatabaseClient.documents.query is a multi-document read, so it returns the extracted content as individual documents. You can request a search result summary instead, including the extracted content by using queryBuilder.withOptions({categories: 'none'}). For details, see Extracting a Portion of Each Matching Document in the Node.js Application Developer's Guide.
+
+The Java Client API supports extract-document-data via the QueryManager.search and DocumentManager.search interfaces. For details on embedding extracted content in the search results, see Extracting a Portion of Matching Documents in the Java Application Developer's Guide. For details on retrieving extracted content in document form, see Extracting a Portion of Each Matching Document in the Java Application Developer's Guide.
+
+When you use extract-document-data with the REST Client API /v1/search service, whether the extracted content is returned in the search response or as separate documents depends on the Accept header. A multi-document read returns the extracted content as documents. A simple search returns the extracted content in the search response. For details, see Extracting a Portion of Each Matching Document in the REST Application Developer's Guide.
+Customizing Search Results with a Decorator
+
+This section describes how to implement a custom search result decorator function to add extra information to the search results for your application. The following topics are covered:
+
+    Understanding Search Result Decorators
+    Writing a Custom Search Result Decorator
+    Installing a Custom Search Result Decorator
+    Using a Custom Search Result Decorator
+
+Understanding Search Result Decorators
+
+When you perform a query, MarkLogic Server returns a <search:response/> containing a <search:result> for each document or fragment that satisfies your query. You can use a search result decorator to add additional information to the each <search:result/>, without changing the basic structure or default contents.
+
+For example, the MarkLogic REST API uses an internal result decorator to add href, mimetype, and format attributes to search results. The following output shows the extended information added by the REST API default decorator:
+
+<search:response snippet-format="snippet" total="1" ...>
+  <search:result ...
+      href="/v1/documents?uri=/docs/example.xml" 
+      mimetype="text/xml" format="xml">
+  ...
+  </search:result>
+</search:response>
+
+Applications using the XQuery Search API can use custom result decorators to similarly add attributes and elements to a <search:result/>.
+
+Users of the REST API, Java, or Node.js Client API should use search result transformations to modify search results, rather than result decorators. It is possible to override the builtin REST API result decorator, but it is not recommended. If you use a custom result decorator in a Client API context, it completely replaces the default decorator that adds href, mimetype, and format data to results. Also, any data added by a decorator is returned as serialized XML, even when the client requests results in JSON.
+
+To create and use a search result decorator, do the following:
+
+    Write an XQuery function that conforms to the decorator interface.
+
+    Install your function in the modules database or modules directory associated with your App Server.
+
+    Instruct MarkLogic Server to use your function by specifying it in a result-decorator query option that you supply with your search.
+
+The rest of this section covers these steps in detail.
+Writing a Custom Search Result Decorator
+
+To create a custom decorator, implement an XQuery function that conforms to the following interface:
+
+declare function your-name($uri as xs:string) as node()*
+
+The $uri input parameter is the URI of a document containing search matches. The nodes returned by your function become attributes or child nodes of the search:result element on whose behalf it is called.
+
+Your result decorator should always produce XML, even when working with JSON documents or producing output for a client expecting JSON search results.
+
+The following example is a custom decorator function that returns the same information as the default REST API decorator (href, mimetype, and format), with the attribute names changed so you can see them in use. The example also adds a <my-elem/> element to the search results.
+
+xquery version "1.0-ml";
+
+module namespace my-lib = "http://marklogic.com/example/my-lib";
+
+declare function my-lib:decorator($uri as xs:string) as node()*
+{
+  let $format   := xdmp:uri-format($uri)
+  let $mimetype := xdmp:uri-content-type($uri)
+  return (
+    attribute my-href { concat("/documents/are/here?uri=", $uri) },
+ 
+    if (empty($mimetype)) then ()
+    else attribute my-mimetype {$mimetype},
+ 
+    if (empty($format)) then ()
+    else attribute my-format { $format }
+
+    element my-elem { "Extra Goodness" }
+  )
+};
+
+To use your function, install it as a module in your App Server, and then specify it in a result-decorator query option. For details, see Installing a Custom Search Result Decorator and Using a Custom Search Result Decorator.
+Installing a Custom Search Result Decorator
+
+Install the XQuery library module containing your decorator function in the modules database or under the filesystem root associated with your App Server.
+
+For example, running the following query in Query Console loads an XQuery module into the modules database with the URI /my.domain/decorator.xqy, assuming you select the modules database as the Content Source in Query Console:
+
+xquery version "1.0-ml";
+xdmp:document-load(
+  "/space/rest/decorator.xqy",
+  <options xmlns="xdmp:document-load">
+    <uri>/my.domain/decorator.xqy</uri>
+  </options>)
+
+If you use the REST API or Java API, install the module in the modules database associated with your REST API instace.
+Using a Custom Search Result Decorator
+
+To use a custom search result decorator, specify it in a result-decorator query option that is included with your query.
+
+For example, if you install the custom decorator from Writing a Custom Search Result Decorator as /my.domain/decorator.xqy, then you can reference it in query options as follows:
+
+<options xmlns="http://marklogic.com/appservices/search">
+  <result-decorator apply="decorator"
+      ns="http://marklogic.com/example/my-lib"
+      at="/my.domain/decorator.xqy"/>
+</options>
+
+The following example uses the above query options in a search:
+
+xquery version "1.0-ml";
+import module namespace search =
+  "http://marklogic.com/appservices/search"
+     at "/MarkLogic/appservices/search/search.xqy";
+
+search:search(
+  "cat AND dog",
+  <options xmlns="http://marklogic.com/appservices/search">
+    <result-decorator apply="decorator"
+        ns="http://marklogic.com/example/my-lib"
+        at="/my.domain/decorator.xqy" />
+  </options>
+)
+
+The decorator adds the my-href, my-mimetype, and my-format attributes and the my-elem element to the search results, similar to the following:
+
+<search:response ...>
+  <search:result index="1" uri="/docs/example.xml" 
+       path="fn:doc(&quot;/docs/example.xml&quot;)" ...
+       my-href="/documents/are/here?uri=/docs/example.xml" 
+       my-mimetype="text/xml" my-format="xml">
+    <my-elem>Extra Goodness!</my-elem>
+    ...
+  </search:result>
+</search:response>
+
+Other Search Options
+
+There are many other options in the Search API, including additional-query (an additional cts:query combined as an and-query to the active query in your search), term-option (pass any of the cts:query options such as case-sensitive to your cts:query), and others. For a complete list, see Appendix: Query Options Reference.
+Query Options Examples
+
+This section includes the following additional query options examples:
+
+    Example: Values and Tuples Query Options
+    Example: Field Constraint Query Options
+    Example: Collection Constraint Query Options
+    Example: Path Range Index Constraint Query Options
+    Example: Element Attribute Range Constraint Query Options
+    Example: Geospatial Constraint Query Options
+
+Example: Values and Tuples Query Options
+
+This examples demonstrates how to create and use a values or tuples query option. For more details, see values and tuples in the query options appendix.
+
+This example sets up the following configurations:
+
+    A values tuple /v1/values/pop, which gets the values from the element range index from xs:QName("popularity") (in no namespace), and is typed as an xs:int.
+
+    A values tuple /v1/values/score, which gets the values from the element range index from a QName with namespace "http://test.aggr.com" and local name "score", typed as an xs:decimal.
+
+    A tuple /v1/values/pop-rate-tups, which combines the range index from from xs:QName("popularity") (in no namespace), and typed as an xs:int, and the range index from a QName with namespace "http://test.aggr.com" and local name "score", typed as an xs:decimal.
+
+Format 	Options
+XML 	
+
+<search:options
+  xmlns:search="http://marklogic.com/appservices/search">
+  <search:values name="pop-aggr">
+    <search:range type="xs:int">
+      <search:element ns="" name="popularity"/> 
+    </search:range> 
+  </search:values> 
+  <search:values name="score-aggr"> 
+    <search:range type="xs:decimal"> 
+      <search:element ns="http://test.aggr.com" name="score"/>
+    </search:range> 
+  </search:values> 
+  <search:tuples name="pop-rate-tups"> 
+    <search:range type="xs:int"> 
+      <search:element ns="" name="popularity"/> 
+    </search:range> 
+    <search:range type="xs:int"> 
+      <search:element ns="http://test.tups.com" name="rate"/>
+    </search:range> 
+  </search:tuples> 
+</search:options>
+
+JSON 	
+
+{ "options": {
+    "values": [ {
+      "name": "pop-aggr",
+      "range": {
+        "type": "xs:int",
+        "element": {
+           "ns": "",
+           "name": "popularity"
+        }
+      }
+    },
+    {
+      "name": "score-aggr",
+      "range": {
+        "type": "xs:decimal",
+        "element": {
+          "ns": "http://test.aggr.com",
+          "name": "score"
+        }
+      }
+    } ],
+    "tuples": [ {
+      "name": "pop-rate-tups",
+      "range": [
+         {
+           "type": "xs:int",
+           "element": {
+             "ns": "",
+             "name": "popularity"
+           }
+         },
+         {
+           "type": "xs:int",
+           "element": {
+             "ns": "http://test.tups.com",
+             "name": "rate"
+           }
+         }
+       ]
+    } ]
+} }
+
+Example: Field Constraint Query Options
+
+This example constructs a simple options node that sets up just one constraint, based on the field named "bbqtext". It creates a word constraint, therefore when you search for
+
+summary:"hot dog"
+
+It constrains the search to documents that have the phrase "hot dog" in the field called "bbqtext".
+Format 	Options
+XML 	
+
+<search:options
+    xmlns:search="http://marklogic.com/appservices/search">
+    <search:constraint name="summary">
+      <search:word>
+        <search:field name="bbqtext"/>
+      </search:word>
+    </search:constraint>
+</search:options>
+
+JSON 	
+
+{ "options": {
+    "constraint": [ {
+      "name": "summary",
+      "word": {
+        "field": { "name": "bbqtext" }
+      }
+    } ]
+} }
+
+For more details, see constraint in the query options appendix.
+Example: Collection Constraint Query Options
+
+The query options in this example do the following:
+
+    Sets flags that modify the search results (return-metrics and return-qtext).
+
+    Specifies a builtin transform-results function that will return raw document search results.
+
+    Defines a collection constraint that uses the collection URIs.
+
+The collection constraint named "coll" uses the collection URIs with "http://test.com" stripped off.
+Format 	Options
+XML 	
+
+<search:options
+    xmlns:search="http://marklogic.com/appservices/search">
+  <search:debug>true</search:debug>
+  <search:constraint name="coll">
+    <search:collection prefix="http://test.com"/> 
+  </search:constraint>
+  <search:return-metrics>false</search:return-metrics>
+  <search:return-qtext>false</search:return-qtext>
+  <search:transform-results apply="raw">
+    <search:preferred-matches/>
+  </search:transform-results>
+</search:options>
+
+JSON 	
+
+{ "options": {
+    "debug": true,
+    "constraint": [ {
+      "name": "coll",
+      "collection": { "prefix": "http://test.com" }
+    } ],
+    "return-metrics": false,
+    "return-qtext": false,
+    "transform-results": {
+      "apply": "raw",
+      "preferred-matches": ""
+    }
+} }
+
+For more details, see collection in the query options appendix.
+Example: Path Range Index Constraint Query Options
+
+This example shows how to configure a constraint with a path range index. With this in place, searching for:
+
+pindex:low
+
+Searches for values less than 5 from the nodes at /Employee/fn (in no namespace). It is a string range index, faceted, scoped to documents, with a nice looking unicode label. The facet values are returned with any search.
+Format 	Options
+XML 	
+
+<search:options
+    xmlns:search="http://marklogic.com/appservices/search">
+  <search:constraint name="pindex">
+    <search:range type="xs:string" facet="true" 
+       collation="http://marklogic.com/collation/">
+      <search:path-index>/Employee/fn</search:path-index>
+      <search:fragment-scope>documents</search:fragment-scope>
+      <search:bucket name="low" ge="5">0 to 5</search:bucket>
+      <search:bucket name="medium" lt="10" ge="5"
+         >5 to 10</search:bucket>
+      <search:bucket name="high" lt="15" ge="10"
+         >10 to 15</search:bucket>
+    </search:range>
+  </search:constraint>
+</search:options>
+
+JSON 	
+
+{ "options": {
+    "constraint": [ {
+      "name": "pindex",
+      "range": {
+        "type": "xs:string",
+        "facet": true,
+        "collation": "http://marklogic.com/collation/",
+        "path-index": { "text": "/Employee/fn" },
+        "fragment-scope": "documents",
+        "bucket": [
+          {
+            "name": "low",
+            "lt": "5",
+            "label": "0 to 5"
+          },
+          {
+            "name": "medium",
+            "lt": "10",
+            "ge": "5",
+            "label": "5 to 10"
+          },
+          {
+            "name": "high",
+            "lt": "15",
+            "ge": "10",
+            "label": "10 to 15"
+          }
+        ]
+      }
+  } ]
+} }
+
+Example: Element Attribute Range Constraint Query Options
+
+This example shows an element attribute range index, with computed buckets. When you search, the facets will be filled out depending on the values of {http://example.com}entry/@date.
+Format 	Options
+XML 	
+
+<search:options
+    xmlns:search="http://marklogic.com/appservices/search">
+  <search:constraint name="date">
+    <search:range type="xs:dateTime" facet="true"> 
+      <search:attribute ns="" name="date"/> 
+      <search:element ns="http://example.com" name="entry"/>
+      <search:fragment-scope>documents</search:fragment-scope>
+      <search:computed-bucket name="older" lt="-P1Y" 
+        anchor="start-of-year">Older</search:computed-bucket>
+      <search:computed-bucket name="year" lt="P1Y" ge="P0Y" 
+        anchor="start-of-year">This Year</search:computed-bucket>
+      <search:computed-bucket name="month" lt="P0M" ge="P1M" 
+        anchor="start-of-month">This Month</search:computed-bucket>
+      <search:computed-bucket name="today" lt="P0D" ge="P1D" 
+        anchor="start-of-day">Today</search:computed-bucket>
+      <search:computed-bucket name="future" ge="P0D" 
+        anchor="now">Future</search:computed-bucket>
+    </search:range>
+  </search:constraint>
+</search:options>
+
+JSON 	
+
+{ "options": {
+    "constraint": [ {
+      "name": "date",
+      "range": {
+        "type": "xs:dateTime",
+        "facet": true,
+        "attribute": {
+          "ns": "",
+          "name": "date"
+        },
+        "element": {
+          "ns": "http://example.com",
+          "name": "entry"
+        },
+        "fragment-scope": "documents",
+        "computed-bucket": [
+          {
+            "name": "older",
+            "lt": "-P1Y",
+            "anchor": "start-of-year",
+            "label": "Older"
+          },
+          {
+            "name": "year",
+            "lt": "P1Y",
+            "ge": "P0Y",
+            "anchor": "start-of-year",
+            "label": "This Year"
+          },
+          {
+            "name": "month",
+            "lt": "P0M",
+            "ge": "P1M",
+            "anchor": "start-of-month",
+            "label": "This Month"
+          },
+          {
+            "name": "today",
+            "lt": "P0D",
+            "ge": "P1D",
+            "anchor": "start-of-day",
+            "label": "Today"
+          },
+          {
+            "name": "future",
+            "ge": "P0D",
+            "anchor": "now",
+            "label": "Future"
+          }
+        ]
+}}]}}
+
+Example: Geospatial Constraint Query Options
+
+This example shows geospatial constraint query options. In addition to having a search results configuration setting (page-length), this sets up three geospatial constraints and three element constraints.
+Format 	Options
+XML 	
+
+<search:options
+    xmlns:search="http://marklogic.com/appservices/search">
+  <search:debug>true</search:debug>
+  <search:return-metrics>false</search:return-metrics>
+  <search:page-length>25</search:page-length>
+  <search:constraint name="geo-elem">
+    <search:geo-elem>
+      <search:element ns="" name="g-elem-point"/> 
+    </search:geo-elem> 
+    </search:constraint> 
+    <search:constraint name="geo-elem-pair"> 
+      <search:geo-elem-pair> 
+        <search:lat ns="" name="lat"/> 
+        <search:lon ns="" name="long"/> 
+        <search:parent ns="" name="g-elem-pair"/>
+    </search:geo-elem-pair> 
+  </search:constraint> 
+  <search:constraint name="geo-attr-pair"> 
+    <search:geo-attr-pair> 
+      <search:lat ns="" name="lat"/> 
+      <search:lon ns="" name="long"/> 
+      <search:parent ns="" name="g-attr-pair"/> 
+    </search:geo-attr-pair> 
+  </search:constraint>
+</search:options>
+
+JSON 	
+
+{ "options": {
+    "debug": true,
+    "return-metrics": false,
+    "page-length": 25,
+    "constraint": [
+      { "name": "geo-elem",
+        "geo-elem": {
+          "element": {
+            "ns": "",
+            "name": "g-elem-point"
+          }
+        }
+      },
+      { "name": "geo-elem-pair",
+        "geo-elem-pair": {
+          "lat": {
+            "ns": "",
+            "name": "lat"
+          },
+          "lon": {
+            "ns": "",
+            "name": "long"
+          },
+          "parent": {
+            "ns": "",
+            "name": "g-elem-pair"
+          }
+        }
+      },
+      { "name": "geo-attr-pair",
+        "geo-attr-pair": {
+          "lat": {
+            "ns": "",
+            "name": "lat"
+          },
+          "lon": {
+            "ns": "",
+            "name": "long"
+          },
+          "parent": {
+            "ns": "",
+            "name": "g-attr-pair"
+          }
+        }
+      }
+    ]
+} }
+

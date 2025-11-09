@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useMarkLogicContext } from "ml-fasttrack";
 import HouseholdCard from "./HouseholdCard";
 
@@ -6,6 +6,29 @@ export default function HouseholdSearch() {
   const context = useMarkLogicContext();
   const { setQtext, searchResponse, loading, error } = context;
   const [query, setQuery] = useState("");
+
+  // Lightweight debug logging to help isolate 500s
+  useEffect(() => {
+    const count = searchResponse?.results?.length ?? 0;
+    if (loading) {
+      console.log("[UI] Search loading… qtext:", query);
+    } else {
+      console.log("[UI] Search finished. results=", count);
+    }
+    if (count > 0) {
+      // Log a tiny preview of the first hit for shape validation
+      try {
+        const first = searchResponse.results[0];
+        console.debug("[UI] First result keys:", Object.keys(first || {}));
+      } catch {}
+    }
+  }, [loading, searchResponse]);
+
+  useEffect(() => {
+    if (error) {
+      console.error("[UI] Search error:", error);
+    }
+  }, [error]);
 
   const handleSearch = () => {
     if (!query.trim()) return;

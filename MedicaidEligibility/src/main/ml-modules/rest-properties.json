@@ -1,6 +1,6 @@
 {
   "debug" : false,
-  "validate-queries" : true,
+  "validate-queries" : false,
   "document-transform-all" : false,
-  "validate-options" : true
+  "validate-options" : false
 }
