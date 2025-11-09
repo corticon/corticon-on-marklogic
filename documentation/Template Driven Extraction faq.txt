@@ -1,0 +1,322 @@
+
+developer.marklogic.com
+Template Driven Extraction FAQs - MarkLogic Community
+18–23 minutes
+What is Template Driven Extraction?
+
+Template Driven Extraction (TDE) lets you create a mapping (or lens) from parts of your documents to indexed rows (for querying via SQL/Optic) and/or triples (for querying via SPARQL/Optic).
+
+To use TDE:
+
+    Create a Template: an XML or JSON document that defines the mappings
+    Validate the Template: tde:validate()
+    Check the Template does what you expect: tde:node-data-extract()
+    Insert the Template: tde:insert-template()
+    Examine the resulting relational view: tde:get-view()
+    Query with SQL, SPARQL, or Optic
+
+Is there a UI/IDE to help me create and validate/test Templates?
+
+Not in 9.0-1.1. It’s on the Product Management team’s radar. If you’d like to communicate your thoughts to the PM team, you can go through your Account Executive or write to community-requests@marklogic.com.
+
+Note that Entity Services will generate Templates given a model. Many people will use Entity Services as their starting point, where a Template is just an artifact of the model.
+How is this way of creating relational views better than creating a range index on each column and defining a view over those indexes?
+
+    It’s much easier and simpler. We heard that people struggled to create range index views. With TDE all you need to do is create a Template and insert it.
+    The index behind TDE views is the triple index, not range indexes. We heard that people hit a memory limit when they created many columns (and therefore many range indexes) in the same database – the limit was hundreds, and people wanted to create tens of thousands. Now there is no effective limit to the number of columns you can create in a database.
+    It’s much easier to create a Template that deals with repeating elements correctly. With range index views, repeating elements (representing multiple rows in a single document) were problematic.
+
+What’s the best starting point if I want to try out TDE?
+
+Go through the step-by-step tutorial with examples that you can run in Query Console.
+How do I create a view?
+
+There is no CREATE VIEW action. When a Template is inserted, if the view doesn’t exist then it’s created.
+What should I set as my context?
+
+The context element plays two important roles:
+
+    It serves as the context for XPaths in the <var> elements
+    It scopes the documents that the Template is applied to at index time (see “How can I make sure the Template applies to only a few documents?”)
+
+For #1 above, it’s important that the path in the context element ends with something other than a wildcard.
+
+    You may use predicates in the path.
+    You may not use “/”, “/.”, “*”, or “/*” as the entire path.
+    We recommend not using wildcards (“*”) in the context path, especially as the final step, for performance reasons.
+    We recommend using collection scoping in addition to a restrictive context path for performance reasons.
+
+If you have documents with repeating elements that represent more than one row, it’s often useful to set the context to what would be the “primary key” of the rows you’re extracting.
+
+Note that you can begin a path in <val> with “..”, so the context doesn’t need to be the root of the tree you’re extracting from.
+How can I make sure the Template applies to only a few documents?
+
+Your Template will only be applied to documents that contain some path matching the <context> element. You can further scope the effect of your Template by adding collection and/or directory scope.
+
+We recommend using collection scoping, to avoid unintentionally indexing some data, and also to make indexing more efficient.
+Where is the Template stored?
+
+The Template is stored in the Schemas database, with a special collection. It’s visible via e.g. Query Console.
+
+Note: you can make a Template active (that is, make it take part in indexing) by adding it to your Schemas database using xdmp:document-insert() with the appropriate collection. However, we recommend you use the helper function tde:insert() – it’s simpler, and it validates the Template on insert, so you know only valid Templates exist in your Schemas database.
+How do I delete a Template?
+
+You can delete a Template using xdmp:document-delete().
+
+Before deleting, you should disable the Template and wait for reindexing to complete, since the indexer makes use of the contents of the disabled Template to do proper cleanup. If you delete the Template without disabling, you may be left with some wasted space. See Deleting Templates in the Application Developer’s Guide.
+Does every Template apply to both JSON and XML documents in the database?
+
+Every Template potentially applies to every document. But, since the semantics of paths vary subtlely between XML and JSON, we recommend you write a separate Template for each (one for XML and one for JSON) and control them via collections and collection scoping.
+How does TDE interact with Element Level Security?
+
+It’s important to note that when you protect some information with MarkLogic built-in security – role-based document-level security or the new (in MarkLogic 9) Element-Level Security – users that don’t have access to that information via document queries cannot access it via any method. That includes projecting the data out with Templates into rows or triples and querying with SQL or SPARQL or Optic.
+
+That said, security over rows and triples from Templates may be more restrictive than you expect – that is, there may be some information that you expect a user to be able to access from SQL or SPARQL or Optic which in fact he cannot.
+
+The triple index (which underlies both triples and rows) does not implement ELS. So if any part of a row or triple that a Template wants to project is protected via ELS, that row or triple will not be visible, and so no unauthorized user will see that row or triple.
+
+There’s an exception when the security at the document-level is stronger than the ELS security. In that case the Template will cause the row or triple to be indexed, and user access will be governed by document-level security.
+
+See Document Level Security and Indexing for definition of “stronger”. See also the TDE section of the Security Guide.
+What if I want to apply a template to JSON documents that don’t have a root node?
+
+Note that an XPath in a <var> element of the Template may go higher in the tree than the context node. So, set the context to a high-in-the-tree property such as /id and reference the rest of the properties using ../caller, ../customer and so on.
+Can I do transformations on document values before they get to the index?
+
+You can do some limited transformations over values in a document as you project them into the index. For example, you can find the day, month, and year at separate paths; concatenate them; and cast the result to a date. This is limited by the data, functions, and language available to you (see below).
+What functions can I use in the element?
+
+Generally, any built-in MarkLogic function that is side-effect-free. See Template Dialect and Data Transformation Functions for a definitive list.
+What data can I access in the <val> element?
+
+Any data in the current document and its metadata. So for example you can call xdmp:node-uri() to access the database URI of this document.
+What’s the language of the <val> element?
+
+A subset of XQuery. See Template Dialect and Data Transformation Functions for a description of the “Template dialect”. The dialect does not include loops, but it does include conditional expressions, so you could write a <val> that populates a cell or triple-part with some default value.
+Can I call JavaScript functions inside the <val> element of a Template?
+
+No. The Template dialect is a subset of XQuery.
+What’s valid inside the context element of a Template?
+
+Any *indexable path expression* is valid inside the context element. *indexable path expression* is described at Understanding Path Range Indexes.
+*indexable path expression* is defined normatively by the BNF at Grammar for Index Path Expressions (which you can see and navigate graphically using https://www.bottlecaps.de/rr/ui).
+
+To test whether some path expression is an indexable path expression, use cts:valid-index-path().
+Can I have one view that gets populated by more than one Template/document shape?
+
+Yes! You can insert two Templates that populate the same view, just by specifying the same schema name and view name. For example, if I have some documents with the customer ID at /customer/ID and others with the customer ID at /record/cust_ID, create two Templates with the same schema name and view name but with different column definitions. Manage which Templates apply to which documents via the context element or, better, via collection scoping.
+
+See the TDE tutorial for an example.
+Can more than one Template apply to the same document?
+
+Yes! For each document, every Template with a matching context element and directory/collection scope will apply.
+How should I manage overlapping templates?
+
+Once you get beyond your first Template, you may create Templates that overlap – you can create many Templates that apply to the same document (because the context is the same or overlapping); and you can create many Templates that populate the same view (because they apply to documents of different shapes).
+Many Templates apply to one document
+
+In the examples at the TDE tutorial, you’ll see two Templates with the context “/match”, so both Templates will be applied to each of the sample documents. But one Template looks for an ID at the <id> child of <match> (which doesn’t exist in all documents) and another looks for an ID at the id attribute of >match< (which doesn’t exist in all documents). Why don’t you get any errors? Because you specified in the Template that the Template processor should not throw an error if some cell in some column could not be computed – rather, you told it to just ignore the row for that cell and carry on. You did that by adding <invalid-values>ignore</invalid-values> to the definition of each column. If you had specified <invalid-values>reject</invalid-values> for the column id, the Templates processor would have thrown an error and stopped re-indexing when it couldn’t find a value for id. Reject is the default behavior.
+Many Templates populate the same view
+
+In the examples at the TDE tutorial, both Templates populate the view soccer.matches. In these examples, both Templates specify all columns of that view. If you create a new Template that specifies only some of those columns, it will create rows with cells in the missing columns set to NULL. For that to work, the missing columns must be defined as nullable in all Templates.
+
+Similarly, if you create a new Template that specifies columns that are not mentioned in other Templates for the same view, then all Templates must either define those columns as nullable (which requires you to peek into the future when creating Templates) or must define the view as <view-layout>sparse</view-layout>. <view-layout>sparse</view-layout> says “I don’t know what new columns I may specify for this view in future Templates. Allow future Templates to define new columns, and behave as if I had defined those columns as nullable in this Template.”
+
+Summary: when you create a Template that defines a view, if you want to be able to create Templates in the future that define a different set of columns than the current (first) Template, then you must:
+
+    Define the view as <view-layout>sparse</view-layout> in all Templates for that view. The default for view-layout is identical, which means that all Templates for that view must define an identical set of columns.
+    If there are any columns in the first Template that may not be defined in future Templates, those columns must be defined as <nullable>true</nullable> in the first Template.
+    If there any columns not defined in the first Template that will be defined in a future Template, those columns must be defined as <nullable>true</nullable> in the future Template.
+
+Can I create a Template to extract and index RDF/XML? JSON-LD?
+
+TDE is a general solution to the challenge of extracting triples and rows from parts of documents. It doesn’t entirely cover wither RDF/XML or JSON-LD.
+
+However, if you know how the RDF/XML or JSON-LD will be presented (i.e. if you know your input won’t use every possible syntax) you may be able to create a Template.
+
+Try this for RDF/XML:
+
+Plain text
+
+Copy to clipboard
+
+Open code in new window
+
+EnlighterJS 3 Syntax Highlighter
+
+<template xmlns="https://marklogic.com/xdmp/tde">
+
+<collections>
+
+<collection>RDFXML</collection>
+
+<collection>dbpedia</collection>
+
+</collections>
+
+<path-namespaces>
+
+<path-namespace>
+
+<prefix>rdf</prefix>
+
+<namespace-uri>https://www.w3.org/1999/02/22-rdf-syntax-ns#</namespace-uri>
+
+</path-namespace>
+
+<path-namespace>
+
+<prefix>si</prefix>
+
+<namespace-uri>https://www.w3schools.com/rdf/</namespace-uri>
+
+</path-namespace>
+
+</path-namespaces>
+
+<context>/rdf:RDF/rdf:Description/*</context>
+
+<triples>
+
+<triple>
+
+<subject>
+
+<val>sem:iri(../@rdf:about)</val>
+
+</subject>
+
+<predicate>
+
+<val>sem:iri( xs:string( fn:node-name(.) ) )</val>
+
+<invalid-values>reject</invalid-values>
+
+</predicate>
+
+<object>
+
+<val>sem:iri(.)</val>
+
+</object>
+
+</triple>
+
+</triples>
+
+</template>
+
+<template xmlns="https://marklogic.com/xdmp/tde"> <collections> <collection>RDFXML</collection> <collection>dbpedia</collection> </collections> <path-namespaces> <path-namespace> <prefix>rdf</prefix> <namespace-uri>https://www.w3.org/1999/02/22-rdf-syntax-ns#</namespace-uri> </path-namespace> <path-namespace> <prefix>si</prefix> <namespace-uri>https://www.w3schools.com/rdf/</namespace-uri> </path-namespace> </path-namespaces> <context>/rdf:RDF/rdf:Description/*</context> <triples> <triple> <subject> <val>sem:iri(../@rdf:about)</val> </subject> <predicate> <val>sem:iri( xs:string( fn:node-name(.) ) )</val> <invalid-values>reject</invalid-values> </predicate> <object> <val>sem:iri(.)</val> </object> </triple> </triples> </template>
+
+<template xmlns="https://marklogic.com/xdmp/tde">
+  <collections>
+    <collection>RDFXML</collection>
+    <collection>dbpedia</collection>
+  </collections>
+  <path-namespaces>
+    <path-namespace>
+      <prefix>rdf</prefix>
+      <namespace-uri>https://www.w3.org/1999/02/22-rdf-syntax-ns#</namespace-uri>
+    </path-namespace>
+    <path-namespace>
+      <prefix>si</prefix>
+      <namespace-uri>https://www.w3schools.com/rdf/</namespace-uri>
+    </path-namespace>
+  </path-namespaces>
+  <context>/rdf:RDF/rdf:Description/*</context>
+  <triples>
+    <triple>
+      <subject>
+        <val>sem:iri(../@rdf:about)</val>
+      </subject>
+      <predicate>
+        <val>sem:iri( xs:string( fn:node-name(.) ) )</val> 
+        <invalid-values>reject</invalid-values>
+      </predicate>
+      <object> 
+        <val>sem:iri(.)</val>
+      </object>
+    </triple>
+  </triples>
+</template>
+
+When extracting triples, is there a way to define PREFIXes?
+
+There isn’t a mechanism for handling PREFIXes specifically, but the <var> element can be used to store values to save you some typing in the Template. Set a <var> for your PREFIX value, then concatenate them to attach the PREFIX to the postfix to form an IRI. See the second example in the TDE tutorial.
+Does redaction work with Templates, so I can see redacted content in my BI tool?
+
+Redaction is designed to work on an export of the data. If you want BI tool users to see a redacted view of your data, you should export that data with redaction rules; import the redacted version; and create a Template to work against the redacted copy.
+Is there a limit to the number of Templates you can define?
+
+No. But keep in mind that Templates are applied at indexing time, so more Templates means more expensive ingestion.
+Is there a limit to the number of columns you can define in each Template?
+
+No. But keep in mind that more columns means more expensive queries. For best performance, keep the number of columns to a couple of dozen per view.
+When I query triples, I get some strange triples that support rows in my relational view. Is that intended?
+
+The underlying index for rows is the triple index. Each cell is indexed as a triple under-the-covers – the subject is the view/row; the predicate is the column; and the object is the cell value. All these row-related triples are available to SPARQL, and you’ll see them if you do a SELECT * with no restrictions.
+
+We recommend that you never do a SELECT * with no restrictions!
+
+You should manage triples in collections/named graphs, so every query should include at least a collection/named graph restriction.
+What happens if a document contains some but not all paths required to create a row?
+
+It depends on the following settings in your Template:
+
+    <invalid-values> = “ignore” or “reject”
+    <nullable> = “true” or “false”
+    <default> may specify a default value
+
+It also depends on the reason the path cannot be mapped to a cell. The value at that path may be “Invalid” (such as a string that cannot be cast to an integer); or it may simply be “Missing” (the path doesn’t exist in this document). Here’s the effect:
+Invalid Values 	nullability 	Default 	Invalid Input 	Missing Input
+ignore 	nullable 	no default 	skip cell 	skip cell
+		default 	default 	default
+	non-nullable 	no default 	skip row 	skip row
+		default 	default 	default
+reject 	nullable 	no default 	rejected 	skip cell
+		default 	rejected 	default
+	non-nullable 	no default 	rejected 	rejected
+		default 	rejected 	rejected
+
+See Columns in the SQL Data Modeling Guide.
+How do Templates get applied?
+
+A Template is in scope if it’s valid, sits in the Schemas database, belongs to the TDE collection (https://marklogic.com/xdmp/tde), and is not disabled.
+
+Each Template that’s in scope will get applied to every document that matches the Template’s collection and directory scoping, and has a path that matches the Template’s context element, on insert and update (and delete).
+
+Note: inserting a new Template may cause large scale re-indexing!
+
+Before inserting and enabling a Template, test it (using e.g. tde:node-data-extract()).
+
+For best reindexing and ingestion performance, scope the Template using a restrictive <context> and/or collection and directory scoping.
+Is there a way to tell which Templates triggered a reindex, and what is being reindexed?
+
+Plain text
+
+Copy to clipboard
+
+Open code in new window
+
+EnlighterJS 3 Syntax Highlighter
+
+xdmp:forest-counts(
+
+xdmp:forest("Documents"),
+
+("reindex-tde-templates", "reindex-deleted-tde-templates")
+
+)
+
+xdmp:forest-counts( xdmp:forest("Documents"), ("reindex-tde-templates", "reindex-deleted-tde-templates") )
+
+xdmp:forest-counts(
+  xdmp:forest("Documents"),
+  ("reindex-tde-templates", "reindex-deleted-tde-templates")
+)
+
+Explore the documentation on how to get started with Template Driven Extraction in the Application Developer’s Guide.
+
+Explore all the resources related to Template Driven Extraction (TDE), and learn more about how it can be used in MarkLogic.
+
+Use your development skills to integrate data from silos to create an operational data hub in this hands-on course.

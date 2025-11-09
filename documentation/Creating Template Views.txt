@@ -1,0 +1,1267 @@
+Creating Template Views
+
+    Last Updated: November 6, 202525 minute read
+
+        MarkLogic Server
+        Version 12.0
+        Documentation
+
+MarkLogic allows you to configure a template view. Each template specifies how different parts of a document can be projected as columns of a row in a view. These views can then be queried using SQL from a server-side program with xdmp:sql, mlsql, or ODBC. Template views are a simple, powerful way to specify a relational lens over documents, making parts of your document data accessible through SQL.
+
+You can also query that view server-side using the Optic API, which is a fluent JavaScript and XQuery interface with the ability to perform joins and aggregates on views over documents. The Optic API gives developers idiomatic JavaScript and XQuery access to relational operations over rows, combined with rich document search. The Optic API is described in the Optic API for Multi-Model Data Access in Develop Server-Side Applications.
+
+This section describes how to configure template views to model your document data for access as rows. Template views can be configured using the TDE API described in Validating and Inserting a Template.
+
+The focus of this section is on the template elements that are specific to creating views. The Template Driven Extraction (TDE) section in Develop Server-Side Applications describes the template elements that are common to all types of data-extraction templates.
+Indexing Views and Columns
+
+Views generated using TDE templates are materialized at indexing time. These materialized views are then indexed for fast retrieval. For large datasets, this indexing may take some time to complete. Changes to an existing view like adding/removing columns, or changing datatype or collation, should be planned accordingly during off-peak hours. Until the reindex completes, the view may be unsearchable or incomplete depending on the reindexing setting (See: Availability of Columns During a Database Reindex Operation).
+
+Views and columns can also be marked as "virtual". Virtual views are useful for supporting ad hoc queries and data exploration on large data sets where query needs are not known up front or are frequently changing. Unlike materialized views, virtual views are immediately searchable upon configuration. The extracted values are not persisted to disk, so they do not require additional storage. Column values are extracted at query time rather than at write time, so queries against virtual views may be slower than queries against materialized views. However, the query engine uses a number of techniques to leverage the universal index where possible to make the queries run as fast as possible.
+
+Views may be declared virtual using viewVirtual property or the view-virtual element. Each column may be declared virtual using the virtual property or element, separately. A view can have a mix of virtual and materialized columns. Regardless of the virtual setting, these views can be searched using SQL, the Optic API, or the /v1/rows REST API endpoint.
+Note:
+
+`virtual` and `view-virtual` only affects views and columns. Triples extracted using TDE templates are persisted.
+Comparison of materialized, virtual, and mixed views
+
+This table summarizes the key differences between materialized, virtual, and mixed views:
+
+Materialized View
+	
+
+Virtual View
+	
+
+Mixed View
+
+By default, the view is accessible only after reindexing completes. See Availability of Columns During a Database Reindex Operation.
+	View is accessible after configuration. 	
+
+View is accessible after configuration.
+
+By default, materialized columns are accessible only after reindexing completes. See Availability of Columns During a Database Reindex Operation. Virtual columns are accessible after configuration.
+Data is extracted during indexing and persisted as triples. 	Data is extracted during query. No persistence. 	
+
+Materialized columns are extracted during indexing and persisted as triples.
+
+Virtual columns are extracted during query and are not persisted.
+
+Using view-virtual and virtual settings as factors, views can be categorized in three ways, materialized, virtual, or mixed:
+view-virtual 	virtual 	Category
+false or omitted 	false or omitted (all columns) 	Materialized
+true 	true or omitted (all columns) 	Virtual
+false or omitted 	true(one or more columns) 	Mixed
+true 	false(one or more columns) 	Mixed
+Template View Elements
+
+A template view contains elements described in Template Elements. This section will focus on the rows element or property that configures a template view.
+
+A template view contains these elements and their child elements:
+XML 	JSON
+
+<template
+    xmlns="http://marklogic.com/xdmp/tde"
+  >
+  <context>...</context>
+  <description>...</description>
+  <enabled>...</enabled>
+  <collections>...</collections>
+  <directories>...</directories>
+  <path-namespaces>...</path-namespaces>
+  <vars>...</vars>
+  <rows>...</rows>
+</template>    
+
+	
+
+{
+  "template": {
+    "context": "...",
+    "description": "...",
+    "enabled": ...
+    "collections": [...],
+    "directories": [...],
+    "pathNamespaces": [...],
+    "vars": [...]
+    "rows":[...]
+  }
+}
+
+Row
+XML 	JSON
+
+<template
+    xmlns="http://marklogic.com/xdmp/tde"
+  >
+  <context>...</context>
+  ...
+  <rows>
+    <row>
+      <schema-name>...</schema-name>
+      <view-name>...</view-name>
+      <view-layout>...</view-layout>
+      <view-virtual>...</view-virtual>
+      <columns>
+        <column>...</column>
+      </columns>
+    </row>
+  </rows>
+</template>  
+
+	
+
+{
+  "template": {
+    "context": "...",
+    ...
+    "rows":[
+      {
+        "schemaName":"...",
+        "viewName":"...",
+        "viewLayout":"...",
+        "viewVirtual":...,
+        "columns":[{
+          ...
+        }]
+      }
+    ]
+  }
+}
+
+This table describes each element or property that may be configured for a row:
+XML 	JSON 	Description
+schema-name 	schemaName 	
+
+Required.
+
+A string value that helps differentiate between views of the same name. If you are using range views along with your template views, then this value cannot be used in your range views.
+view-layout 	viewLayout 	
+
+Optional. Defaults to identical.
+
+If the value is identical, then the view declaration must be consistent in all row configurations with the same schemaName and viewName. All columns are present across all row configurations.
+
+If the value is sparse, then the view declaration may be different between row configurations with the same schemaName and viewName. This configuration is useful when you have nullable columns depending on context. All non-nullable columns must be present across all row configurations.
+
+Regardless of view-layout configuration, columns of the same name must have the same column configuration apart from val, default, and invalid-values across all row configurations.
+
+See Creating Views from Multiple Templates for an example.
+view-name 	viewName 	
+
+Required.
+
+A string value that identifies the target view. Rows constructed using the extracted data are accessible using this view.
+view-virtual 	viewVirtual 	
+
+Optional. Defaults to false.
+
+A boolean value that specifies whether the content extraction happens during reindexing or query time.
+
+If the value is false, then content extraction happens during reindexing. The view may be unavailable until reindexing completes, depending on column configuration. See Availability of Columns During a Database Reindex Operation. Extracted content is then persisted as part of the row index.
+
+If the value is true, then content extraction happens during query time. The view is available immediately upon configuration. Extracted content is never persisted. Search on virtual views is potentially slower compared to search on materialized views.
+columns 	columns 	
+
+Required.
+
+A sequence of column descriptions and mappings as described in Columns.
+Columns
+XML 	JSON
+
+<columns>
+  <column>
+    <name>...</name>
+    <scalar-type>...</scalar-type>
+    <val>...</val>
+    <virtual></virtual>
+    <nullable></nullable>
+    <permissions>
+      <role-name>...</role-name>
+    </permissions>
+    <default>...</default>
+    <invalid-values>...</invalid-values>
+    <reindexing>...</reindexing>
+    <collation>...</collation>
+    <dimension>...</dimension>
+    <ann-compression>...</ann-compression>
+    <ann-distance>...</ann-distance>
+    <ann-indexed>...</ann-indexed>
+  </column>
+</columns>
+
+	
+
+{
+  "columns":[
+    {
+      "name":"...",
+      "scalarType":"...",
+      "val":"...",
+      "nullable":false,
+      "permissions":[
+        "..."
+      ]
+      "default":"...",
+      "invalidValues":"...",
+      "reindexing":"...",
+      "collation":"...",
+      "dimension":"...",
+      "annCompression":"...",
+      "annDistance":"...",
+      "annIndexed":"...",
+    }
+  ]
+}
+
+This table describes each element or property that may be configured for a column:
+XML 	JSON 	Description
+name 	name 	
+
+Required.
+
+A string value that identifies this column. A column is uniquely identifiable by its schema, view, and column names.
+scalar-type 	scalarType 	
+
+Required.
+
+The column's SQL datatype. The result of the val expression is automatically casted to the specified scalar type. Users do not have to explicitly create the result in the target datatype. See Type Casting in Develop Server-Side Applications.
+val 	val 	
+
+Required.
+
+Identifies the data to be extracted from XML elements or JSON properties by means of path expressions. Path expressions are based on XPath, which is described in XPath Quick Reference in the XQuery and XSLT Reference Guide and Traversing JSON Documents Using XPath in Develop Server-Side Applications.
+
+Transformations may also be used as part of the value for val as described in Template Dialect and Data Transformation Functions. For example: <val>fn:concat(col1, ' ', col2, $var1)</val>
+virtual 	virtual 	
+
+Optional. Defaults to parent row’s viewVirtual configuration.
+
+The element virtual specifies if the content extraction happens during reindexing or query time.
+
+If the value is false, then the evaluation of val requires indexing. This column may be unavailable until the indexing completes, depending on reindexing configuration. See Availability of Columns During a Database Reindex Operation. Extracted content is then persisted as part of the row index.
+
+If the value is true, then the content of column is extracted during query time. The column is available immediately upon configuration. Extracted content is never persisted. Search on virtual columns is potentially slower compared to search on materialized columns.
+nullable 	nullable 	
+
+Optional. Defaults to false.
+
+If the value is true, then a row can exist even if the result of val is empty or invalid.
+
+If the value is false, then a row may not exist if the result of val is empty or invalid.
+
+See Views and Non-Conforming Documents for a detailed explanation on how nullable applies.
+permissions 	permissions 	
+
+Optional. Defaults to template permissions.
+
+A permissions element that adds more restrictions to access this column. Columns with additional permissions should are recommended to have nullable set to true. Otherwise, the entire row is restricted by these additional permissions
+
+See Security on Views for more information on how permissions control access to columns..
+default 	default 	
+
+Optional.
+
+A value returned for the column if the result of val is null. See Default and nullable columns for more information on how default applies.
+invalid-values 	invalidValues 	
+
+Optional. Defaults to reject.
+
+invalidValues controls the behavior when the result of val cannot be cast to the configured scalarType. If virtual is set to true, then this setting must be ignore.
+
+If the value is reject, then the server rejects insertion of new documents that would get indexed by this view. Existing documents will not get indexed by this view.
+
+If the value is ignore, then the server allows insertion of new documents that would get indexed by this view. Existing documents will get indexed by this view.
+
+See Views and Non-Conforming Documents for a detailed explanation on how invalidValues applies.
+reindexing 	reindexing 	
+
+Optional. Defaults to hidden.
+
+Controls whether a column is visible or hidden while being reindexed.
+
+If the value is visible, then the column is still accessible during reindexing.
+
+If the value is hidden, then the column IS not accessible until reindexing has finished.
+
+See Availability of Columns During a Database Reindex Operation.
+collation 	collation 	
+
+Optional. Defaults to root collation (http://marklogic.com/collation/).
+
+A value that identifies the handling of strings as described in Collations in the Develop Search Applications.
+dimension 	dimension 	
+
+Required when scalarType is set to vector and annIndexed is set to true.
+
+Controls the size of valid vectors for this column. This element or property is required for this column to be indexed and optimized for use of op.annTopK(). When omitted, vectors of any dimension are allowed for this column.
+ann-compression 	annCompression 	
+
+Optional. Defaults to 0.5.
+
+A floating point value between 0.0 and 1.0. Determines the size of the dimensionally-reduced vectors that are stored in the ANN index. Higher values cause bigger indexes and slower searches, but may give more accurate results.
+ann-distance 	annDistance 	
+
+Optional. Defaults to cosine. Accepts only cosine
+ann-indexed 	annIndexed 	
+
+Optional. Defaults to true when dimension is configured, false when dimension is omitted.
+
+Controls indexing of the configured vector column.
+
+If the value is true, then the extracted values are pre-processed for efficiency. If annDistance is also set to cosine, then the extracted values are normalized. See vec.normalize().
+
+If the value is false, then all other ANN-related configurations are ignored.
+
+Configuring a column with dimension not set and annIndexed set to true throws an error.
+Note:
+
+Any change in column configuration apart from setting virtual to true will trigger a reindex of affected documents.
+Views and Non-Conforming Documents
+
+For simplicity, this section assumes that the configured context matches a single element or property within a document. If your context matches multiple values, then wherever you see "document," think "context element or property."
+
+Documents may be added before or after template creation. In either scenario, there may be documents that do not conform with the TDE column configuration. The settings discussed in this section define the rules on how to identify, when to identify and how to handle non-conforming documents.
+How to identify a non-conforming document
+
+Given this column configuration ...
+
+  <column>
+    <val>instance/Product/price</val>
+    <nullable>false</nullable>
+    <scalar-type>decimal</scalar-type>
+    ...
+  </column>
+
+... where
+
+    val specifies how data is extracted and projected as a value of the column.
+
+    nullable specifies whether this column is allowed to have no value, or if a valid value is required.
+
+    scalar-type specifies the type casting to be enforced for this column. The result of val must be castable to this data type to be considered valid.
+
+... any document without a price element or property at the specified path, or without a value that can be cast to decimal is considered as a non-conforming document.
+When to identify a non-conforming document
+
+Identifying non-conforming documents is possible only when data is extracted. The virtual setting specifies when data is extracted. For columns with "virtual": false, the val, scalar-type, and nullable settings are enforced during indexing. For new documents, indexing happens before the transaction commits. For existing documents, index time happens during reindexing.
+
+A setting of "virtual": true indicates that the val, scalar-type, and nullable settings are enforced at access time during the query. Access time is defined as the specific step during which a column is needed to resolve a query. So, for this query ...
+
+op.fromView('acme', 'products')
+  .where(op.gt(op.col('quantity'), 1))
+  .select(['name', 'quantity'])
+  .result()
+
+... a document without a price element, or with a price element with an invalid value, is included in the result. The price column is never accessed. The column's settings are never enforced. The document is not identified as non-conforming. See Virtual Views and Non-Conforming Documents for further explanation.
+How to handle non-conforming documents
+
+Set invalidValues to one of these values to specify what MarkLogic Server does when encountering a non-conforming document:
+
+    ignore: MarkLogic Server silently skips nonconforming documents during data extraction.
+
+Note:
+
+You must set `invalidValues` to `ignore` if `virtual` is set to `true`.
+
+    reject: MarkLogic Server throws an error. For incoming non-conforming documents, this error prevents the documents from being written. For existing documents, this error causes them to be skipped during data extraction but does not delete the documents.
+
+To record this error in the system error log, set the Group’s "file log level" to debug before you configure the template. See Understanding the Log Levels in Administrate MarkLogic Server.
+
+This table summarizes the behavior for each setting:
+invalidValues
+(column setting) 	Existing document 	New Document
+reject 	skip row but log error if "file log error" = debug 	reject
+ignore 	skip row 	allow
+Nullable columns and non-conforming documents
+
+The previous subsection assumes nullable is set to false (default). If nullable is set to true, then invalidValues handling is relaxed for certain scenarios. The behavior is different for a missing value and an invalid value.
+
+Missing means that the result of val is an empty sequence. Commonly, the provided path expression targets an element or property that is not included in the document, or that the JSON property has a null value. An empty XML element is considered an empty string, but an empty string is not considered missing.
+
+An invalid value means that the target element or property of the configured path expression in val exists in the document, but the extracted value cannot be type-casted into the configured scalarType.
+
+This table shows these behaviors along with the previous ones:
+invalidValues
+(column setting) 	Evaluated data 	Existing document 	New document
+reject 	missing 	null column 	allow
+reject 	invalid 	skip row but log error if "file log error" = debug 	reject
+ignore 	missing or invalid 	null column 	allow
+Default and nullable columns
+
+A column’s default value can further enhance the behavior when nullable is set to true such that the previously "null column" will be replaced with the configured value for default. The configured default is ignored if nullable is set to false.
+
+This table highlights this change:
+invalidValues
+(column setting) 	Evaluated data 	Existing document 	New document
+reject 	missing 	default value 	allow
+reject 	invalid 	skip row but log error if "file log error" = debug 	reject
+ignore 	missing or invalid 	default value 	allow
+Example Workspace on Non-conforming Documents
+
+To better highlight the behavior discussed, we can run some code in Query Console. We begin by creating documents in the Documents database:
+
+declareUpdate()
+
+xdmp.documentInsert(
+  "/missing.json", 
+  {
+    "content" : {
+      "label": "missing"
+    }
+  }
+) 
+
+xdmp.documentInsert(
+  "/invalid.json", 
+  {
+    "content" : {
+      "label": "invalid",
+      "count": "one"
+    }
+  }
+) 
+
+xdmp.documentInsert(
+  "/valid.json", 
+  {
+    "content" : {
+      "label": "valid",
+      "count": 1
+    }
+  }
+)
+
+We then configure the template using this query:
+
+'use strict';
+declareUpdate();
+
+const tde = require("/MarkLogic/tde.xqy");
+
+let template = xdmp.toJSON({
+  "template": {
+    "description": "template to check non-conforming documents",
+    "context": "/content",
+    "rows": [
+      {
+        "schemaName": "acme",
+        "viewName": "test",
+        "columns": [
+          {
+            "name": "label",
+            "scalarType": "string",
+            "val": "label"
+          },
+          {
+            "name": "count",
+            "scalarType": "int",
+            "val": "count"
+          }
+        ]
+      }
+    ]
+  }
+})
+tde.templateInsert("Template.json", template)
+
+We can then run this SQL statement to test the result after reindexing completes:
+
+select * 
+from test
+
+At this time, the column count is not nullable (default when nullable is omitted). So, the previous query results only in a row containing label=valid.
+
+Additionally, the column count is set to reject invalid values (default when invalidValues is omitted). So, trying to re-create documents /missing.json and /invalid.json fails.
+
+We can modify the template so that count has nullable set to true:
+
+{
+  "name": "count",
+  "scalarType": "int",
+  "val": "count",
+  "nullable": true
+}
+
+If we re-run our SQL select statement, then our result includes a row with label=missing. Notice that the value for column count is null.
+
+Additionally, trying to re-create the document for /missing.json now succeeds. But trying to re-create the document for /invalid.json fails.
+
+We can modify the template so that count has default set to -9:
+
+{
+  "name": "count",
+  "scalarType": "int",
+  "val": "count",
+  "nullable": true,
+  "default": "-9"
+}
+
+The value for default has to be a string even if the scalarType is int.
+
+If we re-run our SQL select statement, then our result includes a row with label=missing. But instead of null, the value for column count is -9.
+
+We can modify the template so that count has invalidValues set to ignore:
+
+{
+  "name": "count",
+  "scalarType": "int",
+  "val": "count",
+  "nullable": true,
+  "default": "-9",
+  "invalidValues": "ignore"
+}
+
+If we re-run our SQL select statement, then our result includes a row with label=invalid with the value for column count set to -9.
+
+Additionally, trying to re-create all documents now succeeds.
+Summary of handling non-conforming documents
+
+This table summarizes all the non-conforming document scenarios:
+Column Setting 	Evaluated data 	document
+invalidValues 	nullable 	default 	existing 	new
+reject 	false 	n/a 	missing or invalid 	skip row but log error if "file log error" = debug 	reject
+true 	not set 	missing 	null column 	allow
+invalid 	skip row but log error if "file log error" = debug 	reject
+set 	missing 	default value 	allow
+invalid 	skip row but log error if "file log error" = debug 	reject
+ignore 	false 	n/a 	missing or invalid 	skip row 	allow
+true 	not set 	null column
+set 	default value
+Virtual Views and Non-Conforming Documents
+
+As described in When to identify a non-conforming document, enforcement of nullable and invalid-values happens when the involved column is accessed. So, if a nullable column is never referenced as part of the query, then a document may be included as part of the result set even if it would have been considered a non-conforming document when all columns are referenced.
+
+Given this row configuration...
+
+{
+  ...
+  "schemaName":"acme",
+  "viewName":"employee",
+  "viewVirtual": true,
+  "columns":[
+  {
+    "name":"firstName",
+    "val":"firstName",
+    ...
+  }, {
+    "name":"lastName",
+    "val":"lastName",
+    ...
+  }, {
+    "name":"middleInitial",
+    "val":"middleInitial",
+    "nullable": false
+    ...
+  }, {
+    "name":"dateOfBirth",
+    "val":"dateOfBirth",
+    "scalarType": "date"
+    ...
+
+... and this data...
+/employee/1.json 	/employee/2.json
+{ "Employee": { "firstName": "John", "lastName": "Doe", "dateOfBirth": "1981-07-23", ... 	{ "Employee": { "firstName": "Jane", "middleInitial": "K", "lastName": "Wade", "dateOfBirth": "n/a", ...
+middleInitial is missing 	dateOfBirth cannot be casted to xs:date
+
+... this table describes how each query behaves:
+Query 	Result 	Description
+
+select firstName, lastName
+  from employee
+
+	Rows from both documents are returned. 	neither middleInitial or dateOfBirth is referenced. nothing to enforce.
+
+select firstName, middleInitial
+  from employee
+
+	Only the row from /employee/2.json is returned. 	middleInitial is configured as non-nullable. /employee/1.json becomes an invalid row.
+
+select firstName, dateOfBirth
+  from employee
+
+	Only the row from /employee/1.json is returned. 	dateOfBirth is configured as date. /employee/2.json becomes an invalid row.
+
+select *
+  from employee
+
+	Empty 	middleInitial or dateOfBirth are referenced implicitly. Both documents become non-conforming.
+
+If these columns are purely for data projection, then configuring nullable:true for these columns would help bypass these rules. See Default and nullable columns to understand how default applies. However, using virtual columns configured with a default as part of your search constraint means that this column cannot be used to identify candidate documents to speed up the overall search.
+Mixed-Views and Non-Conforming Documents
+
+As described in Comparison of materialized, virtual, and mixed views, virtual columns are immediately available upon configuration, and their values are extracted at query time. But materialized columns are available either only after reindex completes (by default), or immediately if configured with reindexing set to visible. So, a non-conforming document that was included as part of the result set before reindexing completes may be excluded after.
+
+Given a column configuration like this...
+
+"columns":[
+  {
+    "val":"alliance",
+    "scalarType":"string",
+    "nullable": false,
+    "reindexing": "hidden",
+    ...
+  }, {
+    "val":"weapons",
+    "scalarType":"string",
+    "virtual": true,
+    ...
+  }
+
+... and this document...
+
+{
+  "character": {
+    "name": "hermit",
+    "alliance": null,
+    "weapon": "staff",
+    ...
+  }
+}
+
+... this query...
+
+op.fromView('acme', 'characters')
+  .result()
+
+... includes the previous document as part of the result set upon TDE configuration. However, this same query excludes this result when reindex completes.
+Defining View Scope
+
+The scope of a TDE view is constrained by collections, directories, and the parent context of the row.
+
+For details on configuring the scope of a TDE view, see Collections, Directories and Context in the "Template Driven Extraction (TDE)" section in Develop Server-Side Applications.
+Security on Views
+
+Template views inherit the permissions configured on the template document. When configured by a non-admin user, one of these roles is required to access the template view:
+
+    tde-admin
+    tde-view
+    Other roles with read capability configured for the template document itself.
+
+Users without any of these roles will get an error of SQL-TABLENOTFOUND.
+Note:
+
+A user with only the admin role assigned cannot access a view with permissions configured. A view without any permissions can be accessed only by users with the admin role assigned.
+
+A view can be defined using multiple templates, see Creating Views from Multiple Templates. Each template can then be configured with different permissions. For example, template1.json could be configured with student + read, while template2.xml could be configured with teacher + read. Users assigned with either the student or teacher role may access the view.
+
+Access to the rows of a view is further restricted by the permissions on the source document. Given that a document has permission set to rest-reader + read, a user must be assigned both the rest-reader and tde-view role to access the row extracted from the document. Users without the rest-reader role will only see an empty view.
+
+Access to columns of a row is further restricted by the permissions configured for that column. If a column is configured with "permissions":["custom"], a user must be assigned all of the custom, rest-reader and tde-view roles to access the column. Users without the custom role, will see a row without the restricted column.
+Note:
+
+Column permissions prevent access to only the column as part of the view. Data will continue to be extracted based on the row configuration. If virtual is set to false, then the extracted data is still persisted as a triple. So, it can still be accessed through SPARQL or cts.triples().
+
+Access to a column's value is further restricted by any configured element level security on the target of the path expression. See Element Level Security in Secure MarkLogic Server. If the target of the path expression is protected using pii-reader, then users without the pii-reader role will see a column with a null value. However, this works only for virtual views. For materialized views, the entire row is skipped. Any filter on columns is converted to the equivalent cts.query(). See Leveraging the Universal Index to Support Search Across Virtual Columns. This also means that a corresponding query roleset is needed. See Query Rolesets in Secure MarkLogic Server. If the query roleset is not configured, then the column value cannot be referenced as part of the constraints. If the path expression for column cost is protected and no query roleset for the path is configured, then queries that use cost as constraint will always return an empty result set.
+Example Workspace on View Security
+
+To better highlight the behavior discussed, we can run some code in Query Console. We begin by creating documents in the Documents database:
+
+'use strict';
+declareUpdate()
+xdmp.documentInsert(
+  '/products/flipflops.json',
+  {
+    'product': {
+      'label': 'flip flops',
+      'count': 20,
+      'cost': 1.99,
+      'price': 2.49
+    }
+  },
+  {
+    permissions : [ xdmp.permission('rest-reader', 'read') ]
+  }
+)
+
+We then configure our custom role:
+
+'use strict';
+const sec = require('/MarkLogic/security.xqy');
+
+xdmp.invokeFunction(
+  function(){
+    declareUpdate(); 
+
+    sec.createRole(
+      "custom",
+      "to be used for column permissions",
+      [],
+      [],
+      []
+    )
+  },
+  {
+    "database" : xdmp.securityDatabase()
+  }
+)
+
+Then create our test users:
+
+'use strict';
+const sec = require('/MarkLogic/security.xqy');
+
+xdmp.invokeFunction(
+  function(){
+    declareUpdate(); 
+
+    sec.createUser(
+      "tde-rest-custom-pii-user", 
+      "user that is able to see entire view", 
+      "password", 
+      ["tde-view", "rest-reader", "custom", "pii-reader"], 
+      [], 
+      []
+    )
+    
+    sec.createUser(
+      "tde-rest-custom-user", 
+      "user that is able to see entire view", 
+      "password", 
+      ["tde-view", "rest-reader", "custom"], 
+      [], 
+      []
+    )
+    
+    sec.createUser(
+      "tde-rest-user", 
+      "user that is able to see the view but not a column", 
+      "password", 
+      ["tde-view", "rest-reader"], 
+      [], 
+      []
+    )
+    
+    sec.createUser(
+      "tde-user", 
+      "user that is able to see the view but not a row", 
+      "password", 
+      ["tde-view"], 
+      [], 
+      []
+    )
+  },
+  {
+    "database" : xdmp.securityDatabase()
+  }
+)
+
+Finally, we configure our template:
+
+'use strict';
+declareUpdate();
+
+const tde = require("/MarkLogic/tde.xqy");
+
+let template = xdmp.toJSON({
+  "template": {
+    "description": "test column access",
+    "context": "/product",
+    "rows": [
+      {
+        "schemaName": "acme",
+        "viewName": "products",
+        "viewVirtual": true,
+        "columns": [
+          {
+            "name": "label",
+            "scalarType": "string",
+            "val": "label"
+          },
+          {
+            "name": "count",
+            "scalarType": "int",
+            "val": "count"
+          },
+          {
+            "name": "cost",
+            "scalarType": "float",
+            "val": "cost",
+            "nullable": true
+          },
+          {
+            "name": "price",
+            "scalarType": "float",
+            "val": "price",
+            "nullable": true,
+            "permissions": ["custom"]
+          }
+        ]
+      }
+    ]
+  }
+})
+tde.templateInsert("products.json", template, xdmp.permission('tde-view', 'read'))
+
+We can then use this query to test access to our view:
+
+'use strict';
+
+xdmp.invokeFunction(
+  function(){
+    const op = require('/MarkLogic/optic');
+
+    return op.fromView('acme', 'products')
+       .result();
+  }, {
+    "userId": xdmp.user("tde-user")
+  }
+)
+
+This table describes the behavior for each user:
+User 	Result
+tde-rest-custom-pii-user 	Able to access the view and see the row with all columns visible.
+tde-rest-custom-user 	Able to access the view and see the row with all columns visible.
+tde-rest-user 	Able to access the view and see the row but the price column is not included.
+tde-user 	Able to access the view without any rows.
+admin-only user 	Error with SQL-TABLENOTFOUND.
+
+We can modify our setup to configure a protected path on cost.
+
+'use strict';
+const sec = require('/MarkLogic/security.xqy');
+
+xdmp.invokeFunction(
+  function(){
+    declareUpdate(); 
+    sec.protectPath("cost", null, xdmp.permission("pii-reader", "read", "element"))
+  },
+  {
+    "database" : xdmp.securityDatabase()
+  }
+)
+
+Re-running our query to access the view results in an empty result set, regardless of user.
+
+We can then modify our view to become virtual:
+
+"schemaName": "acme",
+"viewName": "products",
+"viewVirtual": true,
+
+This table describes the behavior for each user:
+User 	Result
+tde-rest-custom-pii-user 	Able to access the view and see the row with all columns visible.
+tde-rest-custom-user 	Able to access the view and see the row but cost is set to null.
+tde-rest-user 	Able to access the view and see the row but the price column is not included and cost is set to null.
+tde-user 	Able to access the view without any rows.
+admin-only user 	Error with SQL-TABLENOTFOUND.
+
+We modify our query to highlight the importance of query rolesets:
+
+'use strict';
+
+xdmp.invokeFunction(
+  function(){
+    const op = require('/MarkLogic/optic');
+
+    return op.fromView('acme', 'products')
+       .where(op.ge(op.col('cost'), 1))
+       .result();
+  }, {
+    "userId": xdmp.user("tde-rest-custom-pii-user")
+  }
+)
+
+This new query results in an empty result set -- even for a user assigned the pii-reader role.
+
+The query roleset can be configured using this query:
+
+'use strict';
+const sec = require('/MarkLogic/security.xqy');
+
+xdmp.invokeFunction(
+  function(){
+    declareUpdate(); 
+    sec.addQueryRolesets(sec.queryRolesets(sec.queryRoleset("pii-reader")))
+  },
+  {
+    "database" : xdmp.securityDatabase()
+  }
+)
+
+After this change, only the tde-rest-custom-pii-user user is able to search using the cost field. The rest of the users always have an empty result if the column cost is used as filter.
+Creating Views from Multiple Templates
+
+You can create a single view from multiple templates. These queries create two documents meant for a single view, Publications:
+
+XQuery
+
+let $med :=
+<Citation Status="Completed">
+  <ID>69152893</ID>
+  <PMID>5717905</PMID>
+  <Article>
+    <Journal>
+      <ISSN>0043-5341</ISSN>
+      <JournalIssue>
+        <Volume>118</Volume>
+        <Issue>49</Issue>
+        <PubDate>
+          <Year>1968</Year>
+          <Month>12</Month>
+          <Day>7</Day>
+        </PubDate>
+      </JournalIssue>
+    </Journal>
+    <ArticleTitle>
+       The Influence of Calcium on Cholesterol in Human Serum
+    </ArticleTitle>
+    <AuthorList>
+      <Author>
+        <LastName>Doe</LastName>
+        <ForeName>John</ForeName>
+      </Author>
+      <Author>
+        <LastName>Smith</LastName>
+        <ForeName>Jane</ForeName>
+      </Author>
+    </AuthorList>
+  </Article>
+</Citation>
+
+return xdmp:document-insert("med1.xml", $med)
+
+Javascript
+
+declareUpdate();
+
+xdmp.documentInsert(
+  "med2.json",
+  {
+    "Journal": {
+      "Issue": 103,
+      "Title": "Bone Density Studies",
+      "Date": "8/1/2009",
+      "Author": "John Simson" 
+    }
+  }
+)
+
+Those two documents require two different templates to extract rows for the same view. Each template needs different context values, along with a different value for val for each column. For example, the Title column would be populated with the value of the <ArticleTitle> element in the med1.xml file and the Title property in the med2.json file.
+
+This query creates a TDE template to handle the XML document. The context and column's val follows the structure of the XML document:
+
+xquery version "1.0-ml";
+import module namespace tde = "http://marklogic.com/xdmp/tde" 
+        at "/MarkLogic/tde.xqy";
+
+let $ClinicalView :=
+<template xmlns="http://marklogic.com/xdmp/tde">
+  <description>populates patients' data</description>
+  <context>/Citation/Article</context>
+  <rows>
+    <row>
+      <schema-name>Medical</schema-name>
+      <view-name>Publications</view-name>
+      <view-layout>sparse</view-layout>
+      <columns>
+        <column>
+          <name>ISSN</name>
+          <scalar-type>string</scalar-type>
+          <val>Journal/ISSN</val>
+          <nullable>true</nullable>
+        </column>
+        <column>
+          <name>Title</name>
+          <scalar-type>string</scalar-type>
+          <val>ArticleTitle</val>
+        </column>
+        <column>
+          <name>Volume</name>
+          <scalar-type>string</scalar-type>
+          <val>Journal/JournalIssue/Volume</val>
+        </column>
+        <column>
+          <name>Date</name>
+          <scalar-type>string</scalar-type>
+          <val>Journal/JournalIssue/PubDate/Month||'/'
+             ||Journal/JournalIssue/PubDate/Day||'/'
+             ||Journal/JournalIssue/PubDate/Year</val>          
+          <nullable>true</nullable>
+        </column>
+      </columns>
+    </row>
+  </rows>
+</template>
+return tde:template-insert("Template.xml", $ClinicalView)
+
+This query creates a TDE template to handle the JSON document. The context and column's val follow the structure of the JSON document:
+
+declareUpdate();
+
+var tde = require("/MarkLogic/tde.xqy");
+
+var ClinicalView = xdmp.toJSON({
+  "template": {
+    "description": "populates patients' data",
+    "context": "/Journal",
+    "rows": [
+      {
+        "schemaName": "Medical",
+        "viewName": "Publications",
+        "viewLayout": "sparse",
+        "columns": [
+          [
+            {
+              "name": "Volume",
+              "scalarType": "string",
+              "val": "Issue"
+            },
+            {
+              "name": "Title",
+              "scalarType": "string",
+              "val": "Title"
+            },
+            {
+              "name": "Date",
+              "scalarType": "string",
+              "val": "Date",
+              "nullable": true
+            },
+            {
+              "name": "Author",
+              "scalarType": "string",
+              "val": "Author",
+              "nullable": true
+            }
+          ]
+        ]
+      }
+    ]
+  }
+});
+
+tde.templateInsert("Template2.json", ClinicalView);
+
+Note these configurations for both templates:
+
+    view-layout / viewLayout is set to sparse for both of them. See viewLayout
+    Columns of the same name have the same scalarType, nullable, and so on in both templates. But they differ in value for val.
+    Columns that are not present in the other template are configured with nullable set to true.
+
+The view can then be accessed with this SQL statement:
+
+select * FROM Medical.Publications
+
+The results should look like this:
+ISSN 	
+Title 	
+Volume 	
+Date 	
+Author
+null 	
+Bone Density Studies 	
+103 	
+8/1/2009 	
+John Simson
+0043-5341 	
+The Influence of Calcium on Cholesterol in Human Serum 	
+118 	
+12/7/1968 	
+null
+Availability of Columns During a Database Reindex Operation
+
+This section is applicable only to materialized columns. Virtual columns are always available and are not restricted by any reindex operation.
+
+A column’s accessibility can be considered either offline or online. Accessibility is defined as being able to use that column as part of a query, join, or sort and being part of the row definition.
+
+Columns with reindexing set to hidden are considered offline until reindexing completes. These events can make a column offline:
+
+    Any change to a column’s configuration; for example, changing the configuration of val, collation, dimension, and so on.
+
+    Any change to the enclosing or parent template’s context, directories, collections, var or TDE template permissions.
+
+Columns with reindexing set to visible remain online despite the previous events. But these events make the column offline, regardless of reindexing configuration:
+
+    column is removed from the row configuration.
+
+    row configuration is removed from the TDE template.
+
+    Enclosing or parent template is disabled or deleted.
+
+If all columns of a row are offline, then the entire view becomes offline. Any attempt to access the view is expected to fail with a SQL-TABLEREINDEXING error until reindexing completes. If any column is online, then the view is accessible. However, only the online columns are accessible. Any explicit reference to offline columns results in a SQL-NOCOLUMN error.
+
+Any change in TDE template configuration causing a column to become offline triggers a reindex.
+
+Deleting a template does not trigger a reindex. See Deleting Templates in the "Template Driven Extraction (TDE)" section of Develop Server-Side Applications.
+
+Rules regarding nullable still apply. See Views and Non-Conforming Documents for more information.
+Leveraging the Universal Index to Support Search Across Virtual Columns
+
+As described in Comparison of materialized, virtual, and mixed views, data for virtual columns is never persisted to disk. For virtual columns, the search for matching documents can be divided into three steps:
+
+    Identifying candidate documents.
+
+    Filtering the candidates.
+
+    Extracting data.
+
+Identifying candidate documents
+
+The Optic API engine uses various template configurations and query constraints to reduce the number of documents to be filtered. This strategy helps reduce storage I/O, speeding the search.
+TDE Template
+
+The value(s) for directories reference(s) the URI lexicon to include only documents whose URI begins with one of the configured value(s).
+
+The value(s) for collections reference(s) the collection lexicon to include only documents with given collection(s).
+
+The value for context uses the universal index to find XML elements or JSON properties that are part of the given path expression.
+
+The value for val uses the universal index to find XML elements or JSON properties that are part of the given path expression. If any of these conditions is true, then this column cannot be used to identify candidates:
+
+    the path expression includes a function like /data().
+    the column is configured with "nullable": true.
+    the column is configured with a value for default.
+
+Query Constraints
+
+These constraints in a query along with the value that they are compared to can also be used to reduce the number of candidates to be filtered:
+
+op.fromView("acme", "products")
+  .where(op.eq(op.col("brand"), 'acme'))
+
+String comparisons are able to identify XML and JSON documents that contain the given element or property name along with the expected value using the universal index:
+
+op.fromView("acme", "products")
+  .where(op.eq(op.col("active"), true))
+
+Non-string comparisons are able to identify only JSON documents using the universal index:
+
+op.fromView("acme", "products")
+  .where(op.ge(op.col("price"), 9)) 
+
+Values of XML elements are treated as strings.
+
+To identify XML documents with the given element name and non-string value, a range index for that element is required.
+
+Range comparisons require range indexes to be able to identify JSON and XML documents as candidates.
+
+Configure appropriate range indexes to minimize the number of candidates.
+Monitoring Query Efficiency
+
+Data for virtual views is never persisted, and the constraints need to be evaluated for each query execution. As discussed in Identifying candidate documents, filter out false positives as much as possible. To observe the effects of your template configuration and constraints in your query, you need to enable a specific trace event: Optic Virtual TDE Debug Fragment Count. You can then see log entries in {PORT}_ErrorLog.txt like these:
+
+2025-07-11 15:09:30.847 Info: [Event:id=Optic Virtual TDE Debug Fragment Count] [
+  {
+    "databaseFragmentCount": 8,
+    "sessionKey": "371307799289567188",
+    "type": "generalInfo",
+    "viewIRI": "http://marklogic.com/view/acme/base"
+  },
+  {
+    "constrainingQueryCount": 1,
+    "fragmentsInScope": 6,
+    "fragmentsInScopeChange": -2,
+    "queryFound": true,
+    "queryHash": "6013961757958342495",
+    "type": "contextQuery"
+  },
+...
+
+    This log snippet was formatted for easier reading.
+
+    "type": "generalInfo" provides a base count for the number of documents (fragments) in your database.
+
+    Other entries provide an estimate of how much this base count is reduced when applying a particular filter.
+
+    This template’s context reduced the number of documents to be filtered by 2. Use this trace event to check how effective your configured range indexes are with regards to your virtual views.
+
+Note:
+
+Only enable this trace event in a non-production environment because it can severely impact performance.
+Filtering
+
+The list of candidates includes false positives. The filtering step compares actual values on the provided context and constraints to remove false positives from the list of matching documents. Continuing with our previous scenario, given this query ...
+
+op.fromView("acme", "products")
+  .where(op.ge(op.col("price"), 9))
+
+... the matching document is read, and the corresponding value for the column price is compared against the provided constraint (9). A similar process is applied for all constraints as part of the entire pipeline or SQL statement.
+
+This step is performed before any sorting or pagination is involved.
+Note:
+
+If you have dedicated hosts acting as d-nodes, then allocate additional expanded tree cache (ETC) to accommodate this filtering.
+
+Documents that contribute multiple rows can be severely affected by this step. Given this template ...
+
+{
+  "template":{
+  "description":"a view on book sequences",
+  "context":"/book/sections/sequence",
+  "rows":[ {
+    "schemaName":"acme",
+    "viewName":"sequences",
+    "viewVirtual": true,
+    "columns":[
+      {
+        "name":"section",
+        "scalarType":"long",
+        ...
+      }, {
+        "name":"sequence",
+        "scalarType":"long",
+        ...
+      }
+
+... and this data ...
+
+{
+  "book": {
+    "sections": [{
+      "section": 1,
+      "sequence": [{
+        "sequence": 1,
+        ...
+      }, {
+        "sequence": 2,
+        ...
+      }]
+    }, {
+      "section": 2,
+      "sequence": [{
+        "sequence": 3,
+        ...
+      }, {
+        "sequence": 4,
+        ...
+      }]
+    }]
+  }
+}
+
+... this query ...
+
+SELECT * 
+FROM acme.sequences
+WHERE section = 1 
+and sequence = 4
+
+... needs to open and read the document above, only to return an empty result set.
+Data Extraction
+
+Building the actual row by extracting referenced data is the last step. It happens before any sorting or pagination on virtual columns.
+
+Enforcing the rules on non-conforming documents happens only at this point. See Virtual Views and Non-Conforming Documents and Mixed-Views and Non-Conforming Documents.
+Note:
+
+Virtual columns are never persisted and require a slower process to acquire. So, virtual columns are not suitable as conditions for table joins.
+Concerns and Considerations
+Element Level Security
+
+Virtual views on documents with Element Level Security in scope perform slower than documents without Element Level Security in scope.
+Switching between materialized and virtual views
+
+Views and columns can be toggled between materialized and virtual:
+
+    Switching from virtual to materialized: Reindexing is required before the toggled view or column becomes available.
+    Switching from materialized to virtual:
+        TDE created in MarkLogic 12: Reindexing is not required.
+        TDE created prior to MarkLogic 12: Reindexing is required only the first time it is switched.
+
+Effects of Document Fragmentation
+
+By default, an entire document is considered a single fragment. Though not usually recommended, this default can be changed by adjusting the fragmentation strategy for a particular database. See Fragments in Administrate MarkLogic Server.
+
+Materialized views/columns do not support fragmented documents as the TDE templates only have one fragment in scope while processing. Depending on the way the template is written, the rows index will not be populated correctly for fragmented documents. However, because virtual views/columns fetch complete documents when extracting values, they do behave as expected with fragmented documents. Though virtual views/columns do work with fragmented documents, document fragmentation is not recommended in most circumstances due to its complex behavior and interaction with other features in MarkLogic.

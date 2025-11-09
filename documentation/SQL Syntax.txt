@@ -1,0 +1,467 @@
+
+docs.progress.com
+SQL Syntax
+21–27 minutes
+
+In general, MarkLogic supports the syntax from the SQL92 standard. This chapter describes some of the SQL syntax that are unique to MarkLogic Server.
+
+    Supported SQL Statements, Functions and Types
+    System Tables
+    System Columns __content and __docid
+    Calling Built-in Functions from SQL
+    ORDER BY Keyword
+    GROUPING SETS Keyword
+    CUBE Keyword
+    ROLLUP Keyword
+    GROUPING() Function
+    MATCH Operator
+    SET/SHOW Statements
+    Read-only SHOW Parameters
+    Best Practices and Performance Considerations
+
+Supported SQL Statements, Functions and Types
+
+This section describes the SQL statements and functions supported in MarkLogic. The topics are:
+
+    Supported Statements
+    Supported Functions
+    Supported Types
+
+Supported Statements
+
+MarkLogic SQL does not support updates, so only the SQL statements in the following table are supported.
+SQL Statement 	Notes
+EXPLAIN 	Produces an execution plan, as described in Execution Plan.
+SELECT 	The following SELECT options are not supported: BLOB types and correlated subqueries containing a GROUP BY.
+Supported Functions
+
+MarkLogic supports the SQL functions in the SQL92 standard. In addition, MarkLogic supports SQL functions that are not part of the SQL92 standard, as shown in the table below. The SQL functions are listed along with the MarkLogic builtin functions that support them. The syntax for the SQL function is the same as that of the respective builtin function.
+
+You can also call any MarkLogic builtin function in a SQL query, as described in Calling Built-in Functions from SQL.
+SQL Function 	MarkLogic Built-in
+acos 	math:acos
+ascii 	fn:string-to-codepoints
+asin 	math:asin
+atan 	math:atan
+atan2 	math:atan2
+bit-length 	sql:bit-length
+ceiling 	fn:ceiling
+char 	fn:codepoints-to-string
+character-length 	fn:string-length
+char-length 	fn:string-length
+concat 	fn:concat
+cos 	math:cos
+cot 	math:cot
+current-date 	fn:current-date
+current-time 	fn:current-time
+current-timestamp 	fn:current-dateTime
+current-user 	fn:get-current-user
+curdate 	fn:current-date
+curtime 	fn:current-time
+datepart 	sql:datepart
+datediff 	sql:datediff
+dateadd 	sql:dateadd
+day 	sql:day
+dayname 	sql:dayname
+dayofmonth 	sql:day
+dayofweek 	sql:weekday
+dayofyear 	sql:yearday
+degrees 	math:degrees
+exp 	math:exp
+floor 	fn:floor
+hour 	sql:hours
+initcap 	xdmp:initcap
+insert 	sql:insert
+left 	sql:left
+length 	fn:string-length
+localtime 	fn:current-time
+localtimestamp 	fn:current-dateTime
+locate 	xdmp:position
+log 	math:log
+log10 	math:log10
+minute 	sql:minutes
+mod 	math:fmod
+month 	sql:month
+monthname 	sql:monthname
+now 	fn:current-time
+octet-length 	sql:octet-length
+pi 	math:pi
+position 	xdmp:position
+power 	math:pow
+quarter 	sql:quarter
+radians 	math:radians
+rand 	sql:rand
+random 	sql:rand
+repeat 	sql:repeat
+right 	sql:right
+sign 	sql:sign
+sin 	math:sin
+second 	sql:seconds
+session-user 	fn:get-current-user
+space 	sql:space
+sqrt 	math:sqrt
+strpos 	xdmp:position
+substring 	fn:substring
+tan 	math:tan
+timestampadd 	sql:timestampadd
+timestampdiff 	sql:timestampdiff
+truncate 	math:trunc
+trunc 	math:trunc
+user 	xdmp:get-current-user
+week 	sql:week
+year 	sql:year
+Supported Types
+
+The table below lists all of the supported SQL types in MarkLogic, along with the mapping from the SQL types to XML Schema (or MarkLogic) types. MarkLogic also supports a number of SQL type that go beyond those supported by the SQL92 standard, as well as some vendor specific types.
+
+Limits on datatypes are not enforced. For example, if you enter DECIMAL(p,s), the precision and scale are ignored.
+SQL Type 	XML Schema Type 	Range Index (Scalar) Type 	Notes
+CHAR(ACTER) 	xs:string 		Fixed length unenforced. CHARACTER SET must be "UTF-8" if specified.
+CHAR(ACTER) VARYING / VARCHAR / TEXT 	xs:string 	string, anyURI 	Maximum length unenforced. CHARACTER SET must be "UTF-8" if specified.
+NATIONAL CHAR(ACTER) / NCHAR 	xs:string 		Fixed length not enforced.
+NATIONAL CHAR(ACTER) VARYING / NCHAR VARYING / NVARCHAR 	xs:string 		Maximum length not enforced.
+NUMERIC / DEC(IMAL) 	xs:decimal 	decimal 	Precision and scale not enforced.
+INT(EGER) / MEDIUMINT / INT4 	xs:int 	int 	
+UNSIGNED INT(EGER) / UNSIGNED MEDIUMINT / UNSIGNED INT4 	xs:unsignedInt 	unsignedInt 	
+TINYINT / INT1 	xs:byte 		
+UNSIGNED TINYINT / UNSIGNED INT1 	xs:unsignedByte 		
+SMALLINT / INT2 	xs:short 		
+UNSIGNED SMALLINT / UNSIGNED INT2 	xs:unsignedShort 		
+BIGINT / INT8 	xs:long 	long 	
+UNSIGNED BIGINT / UNSIGNED INT8 	xs:unsignedLong 	unsignedLong 	
+FLOAT(X) with X<24 / REAL 	xs:float 	float 	
+FLOAT(X) with 24<=X<=52 / DOUBLE (PRECISION) 	xs:double 	double 	
+BOOLEAN 	xs:boolean 		Not in SQL92
+DATE 	xs:date 	date 	DATE does not support a timezone
+TIME 	xs:time 	time 	
+TIMESTAMP 	xs:dateTime 	dateTime, gYearMonth, gYear, gMonth, gDay 	Oracle converts the g* datatypes to TIMESTAMP WITH TIMEZONE
+INTERVAL YEAR / INTERVAL MONTH / INTERVAL YEAR TO MONTH 	xs:yearMonthDuration 	yearMonthDuration 	For INTERVAL types with only year and/or month specified.
+INTERVAL DAY / INTERVAL HOUR / INTERVAL DAY TO SECOND etc. 	xs:dayTimeDuration 	dayTimeDuration 	For INTERVAL types with only day / hour / minute / second specified
+INTERVAL 	xs:duration 		For all other INTERVAL types
+System Tables
+
+Data dictionaries consists of a series of tables that are created in the SYS schema. These system tables are listed in the table below.
+System Table 	Description
+sys_schemas 	Lists all of the available schemas.
+sys_tables 	Lists all of the available tables.
+sys_columns 	Lists all of the available columns.
+sys_functions 	Lists all of the available functions.
+sys_collations 	Lists all of the available collations.
+sys_uris 	Lists all the document URIs in the database. This provides access to the URI lexicon.
+sys_collections 	Lists all the collections in the database. This provides access to the collection lexicon.
+
+To see the full contents of a system table, do a select *. For example:
+
+select * from sys_tables
+
+System Columns __content and __docid
+
+Each view has two system columns:
+Column Name 	Description
+__docid 	Identifies the fragment ID of each document that matches the view(s).
+__content 	Returns the content of document that matches the view(s).
+
+The __docid and __content system columns are preceded by two underscores.
+
+For example: The following returns the fragment ID for each document that matches the employees view:
+
+select __docid from employees
+
+The following returns the contents of each document that matches the employees view:
+
+select __content from employees
+
+Calling Built-in Functions from SQL
+
+You can call MarkLogic built-in functions from inside a SELECT statement, as long as the parameter types match the column types. You cannot call aggregate functions from SQL.
+
+The following are some examples of the use of MarkLogic functions in SQl statements:
+
+Provide the version of MarkLogic Server and hardware information:
+
+select xdmp_version(), xdmp_platform(), xdmp_architecture()
+
+Trace the performance of a query:
+
+select xdmp_elapsed_time, t1.this, t2.that from t1, t2
+    where t1.key=t2.ref group by t1.this
+
+Do some trigonometry:
+
+select math_cos(EmployeeID) from employees
+
+Do some geospatial:
+
+select cts_distance(town.center, building.location) from town, building
+
+Return the first five values of the FirstName column, starting with the third character:
+
+select fn_substring(FirstName,3) from employees limit 5 
+
+ORDER BY Keyword
+
+MarkLogic supports the ORDER BY keyword supported in SQL standard 2003, rather than sql92.
+
+When you include an ORDER BY in SQL queries, such as ORDER BY column_A desc nulls first, you are also able to specify where to put the nulls, either at the beginning (NULLS FIRST) or at the bottom (NULLS LAST). If you don't specify the nulls ordering, the default behavior is NULLS LAST, putting all the nulls at the bottom, which is often the most efficient option.
+
+If you want the default behavior to place nulls as the smallest value (the default before 9.0-9) enable the trace event:
+
+Optic Nulls Smallest On
+
+GROUPING SETS Keyword
+
+MarkLogic supports the GROUPING SETS keyword supported in SQL99.
+
+GROUP BY GROUPING SETS allows the calculation of multiple group bys in a single pass, by allowing you to specify multiple sets of grouping columns. For example:
+
+SELECT    A.id,B.name,COUNT(*)
+FROM     Table_1 AS A, Table_2 as B
+WHERE    A.number = B.number
+GROUP BY GROUPING SETS (A.id,(A.id,B.name));
+
+In this example, the GROUP BY clause determines the first requirement - groups of IDs - by grouping the A.ID values from the TABLE_1 Table. It then determines the second requirement - number of IDs by ID and NAME - by grouping the A.ID values from TABLE_1 with the B.NAME values from TABLE_2.
+
+A of () (called grand total in the SQL Standard) is equivalent to grouping the entire result Table.
+CUBE Keyword
+
+The CUBE keyword is a simpler way to specify particular sets of grouping columns.
+
+Here are two examples comparing the CUBE and GROUPING SETS keywords:
+
+Using the CUBE keyword:
+
+select A, B, C, count(*) from Table
+group by cube(A, B, C)
+
+Using the GROUPING SETS keyword:
+
+select A, B, C, count(*) from Table
+group by grouping sets(
+
+  (A, B, C),
+  (A, B),
+  (A, C),
+  (B, C),
+  (A),
+  (B),
+  (C),
+  ()
+ )
+
+ROLLUP Keyword
+
+The ROLLUP keyword is a simpler way to specify particular sets of grouping columns. Here are two examples comparing the ROLLUP and GROUPING SETS keywords:
+
+Using the ROLLUP keyword:
+
+select A, B, C, count(*) from Table
+group by rollup(A, B, C)
+
+Using the GROUPING SETS keyword:
+
+select A, B, C, count(*) from Table
+group by grouping sets(
+  (A, B, C),
+  (A, B),
+  (A),
+  ()
+)
+
+GROUPING() Function
+
+The grouping() function is an aggregate function that accepts a single column as a parameter and returns 1 if the column is aggregated (not a grouping column), and 0 otherwise. This aggregate function can be used as a reliable way to determine which grouping set the row represents.
+MATCH Operator
+
+The MATCH operates differently on range views and template views. You can MATCH column names when using range views, but not template views. You can MATCH on tables created by both range and template views.
+
+When the MATCH operator is used with range views, column names are bound to their corresponding index references and searchable fields are bound to their field names. When the MATCH operator is applied to individual columns, all names are unbound, as it doesn't make sense to constrain searches against one index to the values of another. These queries are executed in unfiltered mode.
+
+The search expression following the MATCH operator must be contained inside single quotes.
+
+Field names, like view and schema names, are treated as case-insensitive for the purposes of duplicate detection and lookup.
+Search Grammar
+
+The following table lists the search grammar that can be used by the MATCH operator.
+Type 	Token
+Wildcards* 	? % *
+Boolean Operators 	AND, OR, NOT, NOT_IN, NEAR/integer
+Comparison Operators 	EQ, NE, LT, LE, GT, GE
+Name Binding** 	<field_name>:<value>, <column_name>:<value>
+
+* To use wildcards in a search expression, you must enable trailing wildcard searches and word lexicons (codepoint collation) on your database.
+
+** Searches are constrained to the named field or column values. The field or column text must have the correct case. For example, 'Position:Manager' is not the same as 'position:Manager'. Because you cannot specify fields in a template view, you cannot MATCH on field names.
+Examples
+
+The following queries will work on both range views and template views:
+
+SELECT * FROM employees WHERE employees MATCH 'Manager'
+
+SELECT * FROM employees WHERE employees MATCH 'J*'
+
+SELECT employeeid, firstname, lastname, position FROM employees 
+    WHERE employees MATCH 'Steve OR John OR Goodall'
+
+SELECT employeeid, firstname, lastname, position FROM employees 
+    WHERE employees MATCH 'Steve AND Manager'
+
+SELECT * from employees WHERE firstname MATCH 'John OR Jane' 
+    AND lastname MATCH 'Lead'
+
+The following queries will work on range views only:
+
+SELECT * FROM employees WHERE employees MATCH 'position:Manager'
+
+SELECT firstname, lastname FROM employees WHERE employees 
+    MATCH 'employeeid LE 3'
+
+SELECT employeeid, firstname, lastname, position FROM employees 
+    WHERE firstname MATCH 'Steve OR John OR Goodall'
+
+SELECT * FROM employees WHERE employees MATCH 'firstname:J*'
+
+SET/SHOW Statements
+
+The MarkLogic ODBC driver supports Postgres SET and SHOW run-time configuration parameters, as well as some parameters that are specific to MarkLogic Server. These parameters only work when accessing MarkLogic through an ODBC driver, as is the case with mlsql. They do not work when accessing MarkLogic through xdmp:sql or the Query Console.
+
+For details on the Postgres parameters, see:
+
+    http://www.postgresql.org/docs/9.1/static/sql-set.html
+
+    http://www.postgresql.org/docs/9.1/static/sql-show.html
+
+All SET parameters are good for the duration of the SQL session in which they are set. Some parameters are read-only and can only be specified by the SHOW statement. These are described in Read-only SHOW Parameters.
+
+All SET string values must be specified in single quotes (SET parameter 'value').
+timezone or time zone
+
+Sets the timezone offset to that for the given timezone name. The standard permitted formats and keywords can be used.
+
+For example, to set the timezone to UTC, enter:
+
+SET timezone 'UTC'
+
+statement_timeout
+
+Sets the timeout for statement execution (milliseconds).
+
+For example:
+
+SET statement_timeout 5000
+
+lc_messages
+
+Sets the locale for error messages.
+
+For example:
+
+SET lc_messages 'en_US'
+
+lc_collate
+
+Sets the default collation in the dynamic environment.
+
+The form we will see from the Postgres client is:
+
+SET lc_collate 'en_US.utf8'
+
+This maps to the collation: http://marklogic.com/collation/en_US
+
+You can also specify a full collation string:
+
+SET lc_collation 'http://marklogic.com/collation/en_US/S1/MO'
+
+lc_numeric
+
+Sets the locale for formatting numeric values.
+
+For example:
+
+set lc_numeric 'de_DE'
+
+lc_time
+
+Sets the locale for formatting date/time values.
+
+For example:
+
+set lc_time 'en_US.UTF-8'
+
+DateType
+
+Sets the output format for dates.
+
+For example:
+
+SET DateType 'ISO'
+
+extra_float_digits
+
+Sets the number of digits displayed for floating point types.
+
+For example:
+
+SET extra_float_digits 2
+
+client_encoding or NAMES
+
+Declares the encoding of data coming from the client.
+
+For example:
+
+SET client_encoding 'UTF8'
+
+SET NAMES is the standard syntax for the same thing.
+
+SET NAMES 'UTF8'
+
+coordinate_system
+
+Set the default coordinate system for geospatial operations.
+
+For example:
+
+SET coordinate_system 'wgs84/double'
+
+For more details, see The Governing Coordinate System and Controlling Coordinate System and Precision in the Search Developer's Guide.
+SCHEMA or search_path
+
+Sets the default schema referenced by names in SQL statements.
+
+For example:
+
+SET search_path 'main'
+
+mls_default_xquery
+
+Set the default XQuery version.
+
+For example:
+
+SET mls_default_xquery '1.0-ml'
+
+mls_redundant_check
+
+Enable or disable the redundant check on normal (on full-text) query constraints on rows. Value is 1 (enable) or 0 (disable). The default is 0.
+
+For example:
+
+SET mls_redundant_check 1; 
+SELECT title, year FROM songs WHERE year=1991;
+
+Read-only SHOW Parameters
+
+The following parameters can be obtained via the SHOW statement but they are read-only and cannot be set via the SET statement.
+Parameter 	Description
+ALL 	Return values for all the variables with descriptions (columns=name, setting, description).
+lc_ctype 	Return the locale for character classifications. For us this is fixed at zxx.utf8.
+max_function_args 	The limit on the number of function arguments. This will be the value of SQLITE_MAX_FUNCTION_ARG, by default 127.
+max_identifier_length 	The limit on the length of a name. This will be fixed at 64.
+max_index_keys 	The limit on the number of keys in an index. This will be the value of SQLITE_MAX_COLUMN, by default 2000.
+integer_datetimes 	Whether the server supports 64-bit date/time values. Fixed at 1.
+server_encoding 	The encoding the server uses. Fixed at UTF-8.
+server_version 	The version of MarkLogic Server.
+server_version_num 	The version of the server expressed as a single integer.
+Best Practices and Performance Considerations
+
+MarkLogic SQL does not have a default/implicit limit for the rows returned. Queries that return large result sets, such as tens of thousands of rows, may perform poorly. Should you experience performance problems it is a best practice to page the results using the LIMIT statement.

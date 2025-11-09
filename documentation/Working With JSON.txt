@@ -1,0 +1,1771 @@
+
+docs.progress.com
+Working With JSON
+63–80 minutes
+
+This chapter describes how to work with JSON in MarkLogic Server, and includes the following sections:
+
+    JSON, XML, and MarkLogic
+    How MarkLogic Represents JSON Documents
+    Traversing JSON Documents Using XPath
+    Creating Indexes and Lexicons Over JSON Documents
+    How Field Queries Differ Between JSON and XML
+    Representing Geospatial, Temporal, and Semantic Data
+    Serialization of Large Integer Values
+    Character Set Restrictions
+    Document Properties
+    Working With JSON in XQuery
+    Working With JSON in Server-Side JavaScript
+    Converting JSON to XML and XML to JSON
+    Low-Level JSON XQuery APIs and Primitive Types
+    Loading JSON Documents
+
+JSON, XML, and MarkLogic
+
+JSON (JavaScript Object Notation) is a data-interchange format originally designed to pass data to and from JavaScript. It is often necessary for a web application to pass data back and forth between the application and a server (such as MarkLogic Server), and JSON is a popular format for doing so. JSON, like XML, is designed to be both machine- and human-readable. For more details about JSON, see json.org.
+
+MarkLogic Server supports JSON documents. You can use JSON to store documents or to deliver results to a client, whether or not the data started out as JSON. The following are some highlights of the MarkLogic JSON support:
+
+    You can perform document operations and searches on JSON documents within MarkLogic Server using JavaScript, XQuery, or XSLT. You can perform document operations and searches on JSON documents from client applications using the Node.js, Java, and REST Client APIs.
+
+    The client APIs all have options to return data as JSON, making it easy for client-side application developers to interact with data from MarkLogic.
+
+    The REST Client API and the REST Management API accept both JSON and XML input. For example, you can specify queries and configuration information in either format.
+
+    The MarkLogic client APIs provide full support for loading and querying JSON documents. This allows for fine-grained access to the JSON documents, as well as the ability to search and facet on JSON content.
+
+    You can easily transform data from JSON to XML or from XML to JSON. There is a rich set of APIs to do these transformations with a large amount of flexibility as to the specification of the transformed XML and/or the specification of the transformed JSON. The supporting low-level APIs are built into MarkLogic Server, allowing for extremely fast transformations.
+
+How MarkLogic Represents JSON Documents
+
+MarkLogic Server models JSON documents as a tree of nodes, rooted at a document node. Understanding this model will help you understand how to address JSON data using XPath and how to perform node tests. When you work with JSON documents in JavaScript, you can often handle the contents like a JavaScript object, but you still need to be aware of the differences between a document and an object.
+
+For a JSON document, the nodes below the document node represent JSON objects, arrays, and text, number, boolean, and null values. Only JSON documents contain object, array, number, boolean, and null node types.
+
+For example, the following picture shows a JSON object and its tree representation when stored in the database as a JSON document. (If the object were an in-memory construct rather than a document, the root document node would not be present.)
+
+The name of a node is the name of the innermost JSON property name. For example, in the node tree above, "property2" is the name of both the array node and each of the array member nodes.
+
+fn:node-name(fn:doc($uri)/property2/array-node()) ==> "property2"
+fn:node-name(fn:doc($uri)/property2[1]) ==> "property2"
+
+Nodes which do not have an enclosing property are unnamed nodes. For example, the following array node has no name, so neither do its members. Therefore, when you try to get the name of the node in XQuery using fn:node-name, an empty sequence is returned.
+
+let $node := array-node { 1, 2 }
+return fn:node-name($node//number-node[. eq 1])
+==> an empty sequence
+
+Traversing JSON Documents Using XPath
+
+This section describes how to access parts of a JSON document or node using XPath. You can use XPath on JSON data anywhere you can use it on XML data, including from JavaScript and XQuery code.
+
+The following topics are covered:
+
+    What is XPath?
+    Exploring the XPath Examples
+    Selecting Nodes and Node Values
+    Node Test Operators
+    Selecting Arrays and Array Members
+
+What is XPath?
+
+XPath is an expression language originally designed for addressing nodes in an XML data structure. In MarkLogic Server, you can use XPath to traverse JSON as well as XML. You can use XPath expressions for constructing queries, creating indexes, defining fields, and selecting nodes in a JSON document.
+
+XPath is defined in the following specification:
+
+http://www.w3.org/TR/xpath20/#id-sequence-expressions
+
+For more details, see XPath Quick Reference in the XQuery and XSLT Reference Guide.
+Exploring the XPath Examples
+
+XPath expressions can be used in many different contexts, including explicit node traversal, query construction, and index configuration. As such, many of the XPath examples in this chapter include just an XPath expression, with no execution context.
+
+If you want to use node traversal to explore what is selected by an XPath expression, you can use one of the following patterns as a template in Query Console:
+Language 	Template
+XQuery 	
+
+xquery version "1.0-ml";
+let $node := xdmp:unquote(json_literal)
+return xdmp:describe($node/xpath_expr)
+
+Server-Side JavaScript 	
+
+const node = xdmp.toJSON(jsObject);
+xdmp.describe(node.xpath(xpathExpr));
+
+The results are wrapped in a call to xdmp:describe in XQuery and xdmp.describe in JavaScript to clearly illustrate the result type, independent of Query Console formatting.
+
+Note that in XQuery you can apply an XPath expression directly to a node, but in JavaScript, you must use the Node.xpath method. For example, $node/a vs. node.xpath('/a/b'). Note also that the xpath method returns a Sequence in JavaScript, so you may need to iterate over the results when using this method in your application.
+
+For example, if you want to explore what happens if you apply the XPath expression /a to a JSON node that contains the data {"a": 1}, then you can run one following examples in Query Console:
+Language 	Template
+XQuery 	
+
+xquery version "1.0-ml";
+let $node := xdmp:unquote('{"a": 1}')
+return xdmp:describe($node/a)
+
+Server-Side JavaScript 	
+
+const node = xdmp.toJSON({a: 1});
+xdmp.describe(node.xpath('/a'));
+
+Selecting Nodes and Node Values
+
+In most cases, an XPath expression selects one or more nodes. Use data() to access the value of the node. For example, contrast the following XPath expressions. If you have a JSON object node containing { "a" : 1 }, then first expression selects the number node with name a, and the second expression selects the value of the node.
+
+(: XQuery :)
+$node/a ==> number-node { 1 }
+$node/a/data() ==> 1
+
+// JavaScript
+node.xpath('/a') ==> number-node { 1 }
+node.xpath('/a/data()') ==> 1
+
+You can use node test operators to limit selected nodes by node type or by node type and name; for details, see Node Test Operators.
+
+A JSON array is treated like a sequence by default when accessed with XPath. For details, see Selecting Arrays and Array Members.
+
+Assume the following JSON object node is in a variable named $node.
+
+{ "a": {
+    "b": "value",
+    "c1": 1,
+    "c2": 2,
+    "d": null,
+    "e": {
+      "f": true,
+      "g": ["v1", "v2", "v3"]
+    }
+} } 
+
+Then the table below demonstrates what node is selected by of several XPath expressions applied to the object. You can try these examples in Query Console using the pattern described in Exploring the XPath Examples.
+XPath Expression 	Result
+
+$node/a/b
+
+	
+
+"value"
+
+$node/a/c1
+
+	
+
+A number node named "c1" with value 1:
+
+number-node{ 1 }
+
+$node/a/c1/data()
+
+	
+
+1
+
+$node/a/d
+
+	
+
+null-node { }
+
+$node/a/e/f
+
+	
+
+boolean-node{ fn:true() }
+
+$node/a/e/f/data()
+
+	
+
+true
+
+$node/a/e/g
+
+	
+
+A sequence containing 3 values:
+
+("v1", "v2", "v3")
+
+$node/a/e/g[2]
+
+	
+
+"v2"
+
+$node/a[c1=1]
+
+	
+
+An object node equivalent to the following JSON:
+
+{
+  "b": "value,
+  "c1": 1,
+  "c2": 2,
+...
+}
+
+Node Test Operators
+
+You can constrain node selection by node type using the following node test operators.
+
+    object-node()
+
+    array-node()
+
+    number-node()
+
+    boolean-node()
+
+    null-node()
+
+    text()
+
+All node test operators accept an optional string parameter for specifying a JSON property name. For example, the following expression matches any boolean node named a:
+
+boolean-node("a")
+
+Assume the following JSON object is in the in-memory object $node.
+
+{ "a": {
+    "b": "value",
+    "c1": 1,
+    "c2": 2,
+    "d": null,
+    "e": {
+      "f": true,
+      "g": ["v1", "v2", "v3"]
+    }
+} } 
+
+Then following table contains several examples of XPath expressions using node test operators. You can try these examples in Query Console using the pattern described in Exploring the XPath Examples.
+XPath Expression 	Result
+
+$node//number-node()
+
+$node/a/number-node()
+
+	
+
+A sequence containing two number nodes, one named "c1" and one named "c2":
+
+(number-node{1}, number-node{2})
+
+$node//number-node()/data()
+
+	
+
+A sequence containing 2 numbers:
+
+(1,2)
+
+$node/a/number-node("c2")
+
+	
+
+The number node named "c2":
+
+number-node{2}
+
+$node//text()
+
+	
+
+("value", "v1", "v2", "v3")
+
+$node/a/text("b")
+
+	
+
+"value"
+
+$node//object-node()
+
+	
+
+A sequence of object nodes equivalent to the following JSON objects:
+
+{"a": {"b": "value", ... } }
+{"b": "value", "c1": 1, ...}
+{"f": true, "g": ["v1", "v2", "v3"]}
+
+$node/a/e/array-node("g")
+
+	
+
+An array node equivalent to the following JSON array:
+
+[ "s1", "s2", "s3" ]
+
+$node//node("g")
+
+	
+
+An array node, plus a text node for each item in the array.
+
+[ "s1", "s2", "s3" ]
+"s1"
+"s2"
+"s3"
+
+Selecting Arrays and Array Members
+
+References to arrays in XPath expressions are treated as sequences by default. This means that nested arrays are flattened by default, so [1, 2, [3, 4]] is treated as [1, 2, 3, 4] and the [] operator returns sequence member values.
+
+To access an array as an array rather than a sequence, use the array-node() operator. To access an item in an array rather than the associated node, use the data() operator.
+
+Note:
+
+Unlike native JavaScript arrays, sequence (array) indices in XPath expressions begin with 1, rather than 0. That is, an XPath expression such as /someArray[1] addresses the first item in a JSON array.
+
+Note that the descendant-or-self axis (//) can select both the array node and the array items if you are not explicit about the node type. For example, given a document of the following form:
+
+{ "a" : [ 1, 2] }
+
+The XPath expression //node("a") selects both the array node and two number nodes for the item values 1 and 2.
+
+Assume the following JSON object is in the in-memory object $node.
+
+{
+  "a": [ 1, 2 ],
+  "b": [ 3, 4, [ 5, 6 ] ],
+  "c": [
+    { "c1": "cv1" },
+    { "c2": "cv2" }
+  ]
+} 
+
+Then following table contains examples of XPath expressions accessing arrays and array members. You can try these examples in Query Console using the pattern described in Exploring the XPath Examples.
+XPath Expression 	Result
+
+$node/a
+
+	
+
+A sequence of number nodes:
+
+(number-node{1}, number-node{2})
+
+$node/a/data()
+
+	
+
+A sequence of numbers:
+
+(1, 2)
+
+$node/array-node("a")
+
+	
+
+An array-node with number nodes children, equivalent to the following JSON array:
+
+[1, 2]
+
+$node/node("a")
+
+	
+
+An array-node with number nodes children, equivalent to the following JSON array:
+
+[1, 2]
+
+$node//node("a")
+
+	
+
+A sequence of nodes consisting of an array node, and a number node for each item in "a".
+
+$node/a[1]
+
+	
+
+number-node{1}
+
+$node/a[1]/data()
+
+	
+
+1
+
+$node/b/data()
+
+	
+
+A sequence of numbers. The inner array is flattened when the value is converted to a sequence.
+
+(3, 4, 5, 6)
+
+$node/array-node("b")
+
+	
+
+All array nodes with name "b". Equivalent to the following JSON array:
+
+[3, 4, [5, 6]]
+
+$node/array-node("b")/array-node()
+
+	
+
+All array nodes contained inside the array named "b". Equivalent to the following JSON array:
+
+[5, 6]
+
+$node/b[3]
+
+	
+
+number-node{5}
+
+$node/c
+
+	
+
+An object node equivalent to the following JSON object:
+
+( {"c1": "cv1"}, {"c2": "cv2"} )
+
+$node/c[1]
+
+	
+
+An object node equivalent to the following JSON:
+
+{ "c1": "cv1" }
+
+$node//array-node()/number-node()[data()=2]
+
+	
+
+All number nodes with the value 2 that are children of an array node.
+
+number-node{2}
+
+$node//array-node()[number-node()/data()=2]
+
+	
+
+All array nodes that contain a number node with a value of 2.
+
+[1, 2]
+
+$node//array-node()[./node()/text() = "cv2"]
+
+	
+
+All array nodes that contain a member with a text value of "cv2".
+
+[ {"c1": "cv1"}, {"c2": "cv2"} ]
+
+Creating Indexes and Lexicons Over JSON Documents
+
+You can create path, range, and field indexes on JSON documents. For purposes of indexing, a JSON property (name-value pair) is roughly equivalent to an XML element. For example, to create a JSON property range index, use the APIs and interfaces for creating an XML element range index.
+
+Indexing for JSON documents differs from that of XML documents in the following ways:
+
+    JSON string values are represented as text nodes and indexed as text, just like XML text nodes. However, JSON number, boolean, and null values are indexed separately, rather than being indexed as text.
+
+    Each JSON array member value is considered a value of the associated property. For example, a document containing {"a":[1,2]} matches a value query for a property "a" with a value of 1 and a value query for a property "a" with a value of 2.
+
+    You cannot define fragment roots for JSON documents.
+
+    You cannot define a phrase-through or a phrase-around on JSON documents.
+
+    You can switch languages within a JSON document (see Language Support in JSON), but the default-language option on xdmp:document-load (XQuery) or xdmp.documentLoad (JavaScript) is ignored when loading JSON documents.
+    No string value is defined for a JSON object node. This means that field value and field range queries do not traverse into object nodes. For details, see How Field Queries Differ Between JSON and XML.
+
+For more details, see Range Indexes and Lexicons in Administrate MarkLogic Server.
+How Field Queries Differ Between JSON and XML
+
+Field word queries work the same way on both XML and JSON, but field value queries and field range queries behave differently for JSON than for XML due to the indexing differences described in Creating Indexes and Lexicons Over JSON Documents.
+
+A complex XML node has a string value for indexing purposes that is the concatenation of the text nodes of all its descendant nodes. There is no equivalent string value for a JSON object node.
+
+For example, in XML, a field value query for John Smith matches the following document if the field is defined on the path /name and excludes middle. The value of the field for the following document is John Smith because of the concatenation of the included text nodes.
+
+<name>
+  <first>John</first>
+  <middle>NMI</middle>
+  <last>Smith</last>
+<name>
+
+You cannot construct a field that behaves the same way for JSON because there is no concatenation. The same field over the following JSON document has values John and Smith, not John Smith.
+
+{ "name": {
+    "first": "John",
+    "middle": "NMI",
+    "last": "Smith"
+}
+
+Also, field value and field range queries do not traverse into JSON object nodes. For example, if a path field named myField is defined for the path /a/b, then the following query matches the document my.json:
+
+xdmp:document-insert("my.json", 
+  xdmp:unquote('{"a": {"b": "value"}}'));
+cts:search(fn:doc(), cts:field-value-query("myField", "value"));
+
+However, the following query will not match my.json because /a/b is an object node ({"c":"example"}), not a string value.
+
+xdmp:document-insert("my.json", 
+  xdmp:unquote('{"a": {"b": {"c": "value"}}}'));
+cts:search(fn:doc(), cts:field-value-query("myField", "value"));
+
+To learn more about fields, see Overview of Fields in Administrate MarkLogic Server.
+Representing Geospatial, Temporal, and Semantic Data
+
+To take advantage of MarkLogic Server support for geospatial, temporal, and semantic data in JSON documents, you must represent the data in specific ways.
+
+    Geospatial Data
+    Date and Time Data
+    Semantic Data
+
+Geospatial Data
+
+Geospatial data represents a set of latitude and longitude coordinates defining a point or region. You can define indexes and perform queries on geospatial values. Your geospatial data must use one of the coordinate systems recognized by MarkLogic.
+
+A point can be represented in the following ways in JSON:
+
+    The coordinates in a GeoJSON object; see http://geojson.org. For example: {"geometry": {"type": "Point", "coordinates": [37.52, 122.25]}}
+
+    A JSON property whose value is an array of numbers, where the first 2 members represent the latitude and longitude (or vice versa) and all other members are ignored. For example, the value of the coordinates property of the following object:{"location": {"desc": "somewhere", "coordinates": [37.52, 122.25]}}
+
+    A pair of JSON properties, one whose value represents latitude, and the other whose value represents the longitude. For example: {"lat": 37.52, "lon": 122.25}
+
+    A string containing two numbers separated by a space. For example, "37.52 122.25.
+
+You can create indexes on geospatial data in JSON documents, and you can search geospatial data using queries such as cts:json-property-geospatial-query, cts:json-property-child-geospatial-query, cts:json-property-pair-geospatial-query, and cts:path-geospatial-query (or their JavaScript equivalents). The Node.js, Java, and REST Client APIs support similar queries.
+
+Only 2D points are supported.
+
+Note that GeoJSON regions all have the same structure (a type and a coordinates property). Only the type property differentiates between kinds of regions, such as points vs. polygons. Therefore, when defining indexes for GeoJSON data, we recommend you use a geospatial path range index that includes a predicate on type in the path expression.
+
+For example, to define an index that covers only GeoJSON points ("type": "Point"), you can use a path expressions similar to the following when defining the index. Then, search using cts:path-geospatial-query or the equivalent structured query (see geo-path-query in the Search Developer's Guide).
+
+/whatever/geometry[type="Point"]/array-node("coordinates")
+
+Date and Time Data
+
+MarkLogic Server uses date, time, and dateTime data types in features such as Temporal Data Management, Tiered Storage, and range indexes.
+
+A JSON string value in a recognized date-time format can be used in the same contexts as the equivalent text in XML. MarkLogic Server recognizes the date and time formats defined by the XML Schema, based on ISO-8601 conventions. For details, see the following document:
+
+http://www.w3.org/TR/xmlschema-2/#isoformats
+
+To create range indexes on a temporal data type, the data must be stored in your JSON documents as string values in the ISO-8601 standard XSD date format. For example, if your JSON documents contain data of the following form:
+
+{ "theDate" : "2014-04-21T13:00:01Z" }
+
+Then you can define an element range index on theDate with dateTime as the element type, and perform queries on the theDate that take advantage of temporal data characteristics, rather than just treating the data as a string.
+Semantic Data
+
+You can load semantic triples into the database in any of the formats described in Supported RDF Triple Formats in the Semantic Graph Developer's Guide, including RDF/JSON.
+
+An embedded triple in a JSON document is indexed if it is in the following format:
+
+{ "triple": {
+    "subject": IRI_STRING,
+    "predicate": IRI_STRING,
+    "object": STRING_PRESENTATION_OF_RDF_VALUE
+} }
+
+For example:
+
+{ 
+  "my" : "data",
+  "triple" : {
+    "subject": "http://example.org/ns/dir/js",
+    "predicate": "http://xmlns.com/foaf/0.1/firstname",
+    "object": {"value": "John", "datatype": "xs:string"}
+  }
+}
+
+For more details, see Loading Semantic Triples in the Semantic Graph Developer's Guide.
+Character Set Restrictions
+
+You cannot use any characters in a JSON document that are forbidden characters in XML 1.1. The following characters are forbidden:
+
+    0x0
+
+    0xD800 - 0xDFFF
+
+    0xFFFE, 0xFFFF, and characters above 0x10FFF
+
+Document Properties
+
+A JSON document can have a document property fragment, but the document properties must be in XML.
+Serialization of Large Integer Values
+
+MarkLogic can represent integer values larger than JSON supports. For example, the xs:unsignedLong XSD type includes values that cannot be expressed as an integer in JSON.
+
+When MarkLogic serializes an xs:unsignedLong value that is too large for JSON to represent, the value is serialized as a string. Otherwise, the value is serialized as a number. This means that the same operation can result in either a string value or a number, depending on the input.
+
+For example, the following code produces a JSON object with one property value that is a number and one property value that is a string:
+
+xquery version "1.0-ml";
+object-node {
+  "notTooBig": 1111111111111,
+  "tooBig":11111111111111111
+}
+
+The object node created by this code looks like the following, where "notTooBig" is a number node and "tooBig" is a text node.
+
+{"notTooBig":1111111111111, "tooBig":"11111111111111111"}
+
+Code that works with serialized JSON data that may contain large numbers must account for this possibility.
+Working With JSON in XQuery
+
+This section provides tips and examples for working with JSON documents using XQuery. The following topics are covered:
+
+    Constructing JSON Nodes
+    Building a JSON Object from a Map
+    Interaction With fn:data
+    JSON Document Operations
+    Example: Updating JSON Documents
+    Searching JSON Documents
+
+Interfaces are also available to work with JSON documents using Java, JavaScript, and REST. See the following guides for details:
+
+    JavaScript Reference Guide
+
+    Develop Using Node.js
+
+    Develop Using Java
+
+    Develop Using the REST API
+
+Constructing JSON Nodes
+
+The following element constructors are available for building JSON objects and lists:
+
+    object-node
+
+    array-node
+
+    number-node
+
+    boolean-node
+
+    null-node
+
+    text
+
+Each constructor creates a JSON node. Constructors can be nested inside one another to build arbitrarily complex structures. JSON property names and values can be literals or XQuery expressions.
+
+The table below provides several examples of JSON constructor expressions, along with the corresponding serialized JSON.
+JSON 	Constructor Expression(s)
+
+{ "key": "value" }
+
+	
+
+object-node { "key" : "value" }
+
+{ "key" : 42 }
+
+	
+
+object-node {"key" : 42 }
+object-node { "key" : number-node { 42 } }
+
+{ "key" : true }
+
+	
+
+object-node { "key" : fn:true() }
+object-node { "key" : boolean-node { "true" } }
+
+{ "key" : null }
+
+	
+
+object-node { "key" : null-node { } }
+
+{ "key" : {
+    "child1" : "one",
+    "child2" : "two"
+} }
+
+	
+
+object-node { 
+  "key" : object-node { 
+      "child1" : "one",
+      "child2" : "two"
+    }
+}
+
+{ "key" : [1, 2, 3] }
+
+	
+
+object-node { "key" : array-node { 1, 2, 3 } }
+
+{ "date" : "06/24/14"
+
+	
+
+object-node { 
+  "date" : 
+    fn:format-date(
+      fn:current-date(),"[M01]/[D01]/[Y01]")
+}
+
+You can also create JSON nodes from string using xdmp:unquote. For example, the following creates a JSON document that contains {"a": "b"}.
+
+xdmp:document-insert("my.json", xdmp:unquote('{"a": "b"}'))
+
+You can also create a JSON document node using xdmp:to-json, which accepts as input all the nodes types you can create with a constructor, as well as a map:map representation of name-value pairs. For details, see Building a JSON Object from a Map and Low-Level JSON XQuery APIs and Primitive Types.
+
+xquery version "1.0-ml";
+let $object := json:object()
+let $array := json:to-array((1, 2, "three"))
+let $dummy := (
+  map:put($object, "name", "value"), 
+  map:put($object, "an-array", $array))
+return xdmp:to-json($object)
+==> {"name":"value", "an-array": [1,2,"three"]}
+
+Building a JSON Object from a Map
+
+You can create a JSON document with a JSON object root node by building up a map:map and then applying xdmp:to-json to the map. You might find this approach easier than using the JSON node constructors in some contexts.
+
+For example, the following code creates a document node that contains a JSON object with one property with atomic type (a), one property with array type (b), and one property with object-node type:
+
+xquery version "1.0-ml";
+let $map := map:map()
+let $_ := $map => map:with('a', 1)
+               => map:with('b', (2,3,4))
+               => map:with('c', map:map() => map:with('c1', 'one')
+                                          => map:with('c2', 'two'))
+return xdmp:to-json($map)
+
+This code produces the following JSON document node:
+
+{ "a":1,
+  "b":[2, 3, 4], 
+  "c":{"c1":"one", "c2":"two"}
+}
+
+A json:object is a special type of map:map that represents a JSON object. You can combine map operations and json:* functions. The following example uses both json:* functions such as json:object and json:to-array and map:map operations like map:with.
+
+xquery version "1.0-ml";
+let $object := json:object()
+let $array := json:to-array((1, 2, "three"))
+let $_ := (
+  map:put($object, "name", "value"), 
+  map:put($object, "an-array", $array))
+return xdmp:to-json($object)
+
+This code produces the following JSON document node:
+
+{"name":"value", "an-array": [1,2,"three"]}
+
+To use JSON node constructors instead, see Constructing JSON Nodes.
+Interaction With fn:data
+
+Calling fn:data on a JSON node representing an atomic type such as a number-node, boolean-node, text-node, or null-node returns the value. Calling fn:data on an object-node or array-node returns the XML representation of that node type, such as a <json:object/> or <json:array/> element, respectively.
+Example Call 	Result
+
+fn:data(
+  object-node {"a": "b"}
+)
+
+	
+
+<json:object ...
+    xmlns:json="http://marklogic.com/xdmp/json">
+  <json:entry key="a">
+    <json:value>b</json:value>
+  </json:entry>
+</json:object>
+
+fn:data(
+  array-node {(1,2)}
+)
+
+	
+
+<json:array ...
+    xmlns:json="http://marklogic.com/xdmp/json">
+  <json:value xsi:type="xs:integer">1</json:value>
+  <json:value xsi:type="xs:integer">2</json:value>
+</json:array>
+
+fn:data(
+  number-node { 1 }
+)
+
+	
+
+1
+
+fn:data(
+  boolean-node { true }
+)
+
+	
+
+true
+
+fn:data(
+  null-node { }
+)
+
+	
+
+()
+
+You can probe this behavior using a query similar to the following in Query Console:
+
+xquery version "1.0-ml";
+xdmp:describe(
+  fn:data(
+    array-node {(1,2)}
+))
+
+In the above example, the fn:data call is wrapped in xdmp:describe to more accurately represent the in-memory type. If you omit the xdmp:describe wrapper, serialization of the value for display purposes can obscure the type. For example, the array example returns [1,2] if you remove the xdmp:describe wrapper, rather than a <json:array/> node.
+JSON Document Operations
+
+Create, read, update and delete JSON documents using the same functions you use for other document types, including the following builtin functions:
+
+    xdmp:document-insert
+
+    xdmp:document-load
+
+    xdmp:document-delete
+
+    xdmp:node-replace
+
+    xdmp:node-insert-child
+
+    xdmp:node-insert-before
+
+Use the node constructors to build JSON nodes programmatically; for details, see Constructing JSON Nodes.
+
+Note:
+
+A node to be inserted into an object node must have a name. A node to be inserted in an array node can be unnamed.
+
+Use xdmp:unquote to convert serialized JSON into a node for insertion into the database. For example:
+
+xquery version "1.0-ml";
+let $node := xdmp:unquote('{"name" : "value"}')
+return xdmp:document-insert("/example/my.json", $node)
+
+Similar document operations are available through the Java, JavaScript, and REST APIs. You can also use the mlcp command line tool for loading JSON documents into the database.
+Example: Updating JSON Documents
+
+The table below provides examples of updating JSON documents using xdmp:node-replace, xdmp:node-insert, xdmp:node-insert-before, and xdmp:node-insert-after. Similar capabilities are available through other language interfaces, such as JavaScript, Java, and REST.
+
+The table below contains several examples of updating a JSON document.
+Update Operation 	Results
+
+Replace a string value in a name-value pair.
+
+xdmp:node-replace(
+  fn:doc("my.json")/a/b,
+  text { "NEW" }
+)
+
+	Before 	
+
+{"a":{"b":"OLD"}}
+
+After 	
+
+{"a":{"b":"NEW"}}
+
+Replace a string value in an array.
+
+xdmp:node-replace(
+  fn:doc("my.json")/a[2],
+  text { "NEW" }
+)
+
+	Before 	
+
+{"a": ["v1","OLD","v3"] }
+
+After 	
+
+{"a": ["v1", "NEW", "v3"] }
+
+Insert an object.
+
+xdmp:node-insert-child(
+  fn:doc("my.json")/a,
+  object-node {"c": "NEW" }/c
+)
+
+	Before 	
+
+{"a": {"b":"val"} }
+
+After 	
+
+{ "a": {"b":"val","c":"NEW"} }
+
+Insert an array member.
+
+xdmp:node-insert-child(
+  fn:doc("my.json")/array-node("a"),
+  text { "NEW" }
+)
+
+	Before 	
+
+{ "a": ["v1", "v2"] }
+
+After 	
+
+{ "a": ["v1", "v2", "NEW"] }
+
+Insert an object before another node.
+
+xdmp:node-insert-before(
+  fn:doc("my.json")/a/b,
+  object-node { "c": "NEW" }/c
+)
+
+	Before 	
+
+{ "a": {"b":"val"} }
+
+After 	
+
+{ "a": {"c":"NEW","b":"val"} }
+
+Insert an array member before another member.
+
+xdmp:node-insert-before(
+  fn:doc("my.json")/a[2],
+  text { "NEW" }
+)
+
+	Before 	
+
+{ "a": ["v1", "v2"] }
+
+After 	
+
+{ "a": ["v1", "NEW", "v2"] }
+
+Insert an object after another node.
+
+xdmp:node-insert-after(
+  fn:doc("my.json")/a/b,
+  object-node { "c": "NEW" }/c
+)
+
+	Before 	
+
+{ "a": {"b":"val"} }
+
+After 	
+
+{ "a": {"b":"val","c":"NEW"} }
+
+Insert an array member after another member.
+
+xdmp:node-insert-after(
+  fn:doc("my.json")/a[2],
+  text { "NEW" })
+
+	Before 	
+
+{ "a": ["v1", "v2"] }
+
+After 	
+
+{ "a": ["v1", "v2", "NEW"] }
+
+Notice that when inserting one object into another, you must pass the named object node to the node operation. That is, if inserting a node of the form object-node {"c": "NEW"} you cannot pass that expression directly into an operation like xdmp:node-insert-child. Rather, you must pass in the associated named node, object-node {"c": "NEW"}/c.
+
+For example, assuming fn:doc("my.json")/a/b targets a object node, then the following generates an XDMP-CHILDUNNAMED error:
+
+xdmp:node-insert-after(
+  fn:doc("my.json")/a/b,
+  object-node { "c": "NEW" }
+)
+
+Searching JSON Documents
+
+Searches generally behave the same way for both JSON and XML content, except for any exceptions noted here. This section covers the following search related topics:
+
+    Available cts Query Functions
+    cts Query Serialization
+
+You can also search JSON documents with string query, structured query, and QBE through the client APIs. For details, see the following references:
+
+    Search Developer's Guide
+
+    Develop Using Node.js
+
+    Develop Using Java
+
+    MarkLogic REST API Reference
+
+Available cts Query Functions
+
+A name-value pair in a JSON document is called a property. You can perform CTS queries on JSON properties using the following query constructors and cts:search:
+
+    cts:json-property-word-query
+
+    cts:json-property-value-query
+
+    cts:json-property-range-query
+
+    cts:json-property-scope-query
+
+    cts:json-property-geospatial-query
+
+    cts:json-property-child-geospatial-query
+
+    cts:json-property-pair-geospatial-query
+
+You can also use the following lexicon functions:
+
+    cts:json-property-words
+
+    cts:json-property-word-match
+
+    cts:values
+
+    cts:value-match
+
+Constructors for JSON index references are also available, such as cts:json-property-reference.
+
+The Search API and MarkLogic client APIs (REST, Java, Node.js) also support queries on JSON documents using string and structured queries and QBE. For details, see the following:
+
+    Querying Documents and Metadata in the Develop Using Node.js
+    Searching in the Develop Using Java
+
+    Search Developer's Guide
+    Using and Configuring Query Features in the Develop Using the REST API
+
+When creating indexes and lexicons on JSON documents, use the interfaces for creating indexes and lexicons on XML elements. For details, see Creating Indexes and Lexicons Over JSON Documents.
+cts Query Serialization
+
+A CTS query can be serialized as either XML or JSON. The proper form is chosen based on the parent node and the calling language.
+
+If the parent node is an XML element node, the query is serialized as XML. If the parent node is a JSON object or array node, the query is serialized as JSON. Otherwise, a query is serialized based on the calling language. That is, as JSON when called from JavaScript and as XML otherwise.
+
+If the value of a JSON query property is an array and the array is empty, the property is omitted from the serialized query. If the value of a property is an array containing only one item, it is still serialized as an array.
+Working With JSON in Server-Side JavaScript
+
+When you access a JSON document in the database from Server-Side JavaScript, you get an immutable document object. We recommend you manipulate JSON documents in Server-Side JavaScript as JavaScript objects or arrays.
+
+MarkLogic provides a toObject method on JSON document nodes for easy conversion from a JSON node to its natural JavaScript representation. However, you still need to be aware of the document model described in How MarkLogic Represents JSON Documents.
+
+See the following topics for more detail:
+
+    Constructing JSON Nodes in JavaScript
+    Updating JSON Documents from JavaScript
+    Read-Only Access to JSON Document Contents
+    Using Node Update Functions on JSON Documents
+
+Constructing JSON Nodes in JavaScript
+
+Use the NodeBuilder interface when you need to programmatically construct a JSON node. You must use the NodeBuilder interface to construct text, number, boolean, and null nodes. For example:
+
+// construct a number node
+const nb = new NodeBuilder();
+nb.addNumber(42).toNode();
+
+// construct a text node
+const nb = new NodeBuilder();
+nb.addText('someString').toNode();
+
+Using a NodeBuilder is optional when passing a JSON object node or array node into a function that expects a node because MarkLogic implicitly converts native JavaScript object and array parameter values into JSON object nodes and array nodes. For example:
+
+// Create a JSON document from a native JavaScript object
+declareUpdate();
+const nb = new NodeBuilder();
+xdmp.documentInsert('some.json', {a: 1, b: 2});
+
+// Create a JSON document from a native JavaScript array
+declareUpdate();
+const nb = new NodeBuilder();
+xdmp.documentInsert('some.json', [1,2,3]);
+
+// Create a JSON document from a constructed object node
+declareUpdate();
+const nb = new NodeBuilder();
+xdmp.documentInsert('some.json', nb.addNode({a: 10, b: 20}).toNode());
+
+For more details on programmatically constructing nodes, see NodeBuilder API in the JavaScript Reference Guide.
+Updating JSON Documents from JavaScript
+
+To make changes to a JSON document whose root node is a JSON object node or array node, convert the immutable document node into its mutable JavaScript representation using the following technique.
+
+    Use the toObject method of the document node to convert it into an in-memory JavaScript representation.
+
+    Apply your changes to the JavaScript object or array.
+
+    Update the JSON document using the JavaScript object or array.
+
+The following example applies the toObject technique to a document with an object node root. The example inserts, updates, and deletes JSON properties on a mutable object, and then updates the original document using xdmp.nodeReplace.
+
+declareUpdate();
+
+// assume my.json contains {a: 1, b: 2, c: 3}
+
+const doc = cts.doc('my.json');
+let obj = doc.toObject();           // create mutable representation
+
+obj.d = 4;                          // insert a new property
+obj.a = 10;                         // update a property
+delete obj.b;                       // delete a property
+
+xdmp.nodeReplace(doc, obj);
+
+// resulting document contains {a: 10, c: 3, d: 4}
+
+The example uses xdmp.nodeReplace rather than xdmp.documentInsert to update the original document because xdmp.nodeReplace preserves document metadata such as collections and permissions. However, you can use whatever update/insert function meets the needs of your application.
+
+You can use this technique even when the root node of the document is not an object node. The following example applies the same toObject technique to update a document with an array node as its root.
+
+declareUpdate();
+
+// assume myArr.json contains [1,2,3]
+
+const doc = cts.doc('myArr.json');
+let arr = doc.toObject();
+arr[1] = 20;
+xdmp.nodeReplace(doc, arr);
+
+// Result: [1, 20, 3]
+
+If you attempt to modify a JSON document node without converting it to its mutable JavaScript representation using toObject, you will get an error. For example, the following code would produce an error because it attempts to change the value of a property named a on the immutable document node:
+
+declareUpdate();
+
+const doc = cts.doc('my.json');
+doc.a = 10;                       // error because doc is immutable
+
+Read-Only Access to JSON Document Contents
+
+We recommend you use the technique described in Updating JSON Documents from JavaScript to work with JSON document contents from Server-Side JavaScript. That is, use the toObject method to first convert the document node into its logical native JavaScript representation so that you can manipulate it in a natural way. For example:
+
+// assume my.json contains an object node of the form {"child": 1}
+const doc = cts.doc('my.json');
+const obj = doc.toObject();           // convert to a JavaScript object
+
+console.log('The value of child is: ' + obj.child);
+
+This technique applies even if the root node of the document is not an object node. For example, the following code retrieves the first item from a JSON document whose root node is an array node:
+
+// assume arr.json contains an array node of the form [1,2,3]
+const doc = cts.doc('arr.json');
+'The first array item value is: ' + doc.toObject()[0];
+
+The following example uses a JSON document whose root node is a number node:
+
+// assume num.json contains a number with the value 42
+const doc = cts.doc('num.json');
+'The answer is: ' + (doc.toObject() + 5)
+
+If you cannot read the entire document into memory for some reason, you can also access its contents through the document node root property. For example:
+
+const docNode = cts.doc('my.json');
+console.log('The value of child is: ' + docNode.root.child);
+
+However, using toObject is the recommended approach.
+
+For more details, see Document Object in the JavaScript Reference Guide.
+Using Node Update Functions on JSON Documents
+
+In most cases, you can use the technique described Updating JSON Documents from JavaScript to modify JSON documents from Server-Side JavaScript. If you cannot use that technique for some reason, MarkLogic provides the following functions for updating individual nodes within a JSON or XML document.
+
+    xdmp.nodeReplace
+
+    xdmp.nodeInsertChild
+
+    xdmp.nodeInsertBefore
+
+    xdmp.nodeInsertAfter
+
+    xdmp.nodeDelete
+
+You can only use the insert and replace functions in contexts in which you can construct a suitable node to insert or replace. For example, inserting or updating array items, or updating the value of an existing JSON property.
+
+You cannot construct a node that represents just a JSON property, so you cannot use xdmp.nodeInsertAfter, xdmp.nodeInsertChild, or xdmp.nodeInsertBefore to insert a new JSON property into an object node. Instead, use the technique described in Updating JSON Documents from JavaScript.
+
+To replace the value of an array node, you must address the array node, not one of the array items. For example, use a path expression with an array-node or node expression in its leaf step. For more details, see Selecting Arrays and Array Members.
+
+Keep the following points in mind when passing new or replacement nodes into the update functions. For more details, see Constructing JSON Nodes in JavaScript.
+
+    You are not required to programmatically construct object and array nodes because MarkLogic implicitly converts a native JavaScript object or array into its corresponding JSON node during parameter passing.
+
+    Any other node type must be constructed. For example, use a NodeBuilder to create a number, boolean, text, or null node.
+
+The following examples illustrate using the node update functions on JSON documents. For more information on using XPath on JSON documents, see Traversing JSON Documents Using XPath.
+
+// Replace a non-array node with an object node
+xdmp.nodeReplace(someDoc.xpath('/target'), {my: 'NewValue'});
+
+// Replace a non-array node with an array node
+xdmp.nodeReplace(someDoc.xpath('/target'), [10,20,30]);
+
+// Replace a non-array node with a constructed node (here, a text node)
+xdmp.nodeReplace(someDoc.xpath('/target'), 
+  new NodeBuilder().addText('newValue').toNode());
+
+// Replace an array node with another array node
+xdmp.nodeReplace(someDoc.xpath('/array-node("target")'), [10,20,30]);
+
+// Replace the first item in an array with a number
+xdmp.nodeReplace(someDoc.xpath('/target[1]'), 
+  new NodeBuilder().addNumber(42).toNode());
+
+// Insert a new item after the first item in an array
+xdmp.nodeInsertAfter(someDoc.xpath('/target[1]'), 
+  new NodeBuilder().addNumber(11).toNode());
+
+// Insert a new item before the first item in an array
+xdmp.nodeInsertAfter(someDoc.xpath('/target[1]'), 
+  new NodeBuilder().addNumber(10).toNode());
+
+// Insert a new item at the end of an array
+xdmp.nodeInsertAfter(someDoc.xpath('/array-node("target")'), 
+  new NodeBuilder().addNumber(20).toNode());
+
+// Delete a non-array node
+xdmp.nodeDelete(someDoc.xpath('/target'));
+
+// Delete an array node
+xdmp.nodeDelete(someDoc.xpath('/array-node("target")'));
+
+Converting JSON to XML and XML to JSON
+
+You can use MarkLogic APIs to seamlessly and efficiently convert a JSON document to XML and vice-versa without losing any semantic meaning. This section describes how to perform these conversions and includes the following parts:
+
+The JSON XQuery library module converts documents to and from JSON and XML. To ensure fast transformations, it uses the underlying low-level APIs described in Low-Level JSON XQuery APIs and Primitive Types. This section describes how to use the XQuery library and includes the following parts:
+
+    Conversion Philosophy
+    Functions for Converting Between XML and JSON
+    Understanding the Configuration Strategies For Custom Transformations
+    Example: Conversion Using Basic Strategy
+    Example: Conversion Using Full Strategy
+    Example: Conversion Using Custom Strategy
+
+Conversion Philosophy
+
+To understand how the JSON conversion features in MarkLogic work, it is useful to understand the following goals that MarkLogic considered when designing the conversion:
+
+    Make it easy and fast to perform simple conversions using default conversion parameters.
+
+    Make it possible to do custom conversions, allowing custom JSON and/or custom XML as either output or input.
+
+    Enable both fast key/value lookup and fine-grained search on JSON documents.
+
+    Make it possible to perform semantically lossless conversions.
+
+Because of these goals, the defaults are set up to make conversion both fast and easy. Custom conversion is possible, but will take a little more effort.
+Functions for Converting Between XML and JSON
+
+The main function to convert from JSON to XML is:
+
+    XQuery: json:transform-from-json
+
+    Server-Side JavaScript: json.transformFromJson
+
+The main function to convert from XML to JSON is:
+
+    XQuery: json:transform-to-json
+
+    Server-Side JavaScript: json.transformToJson
+
+For examples, see the following sections:
+
+    Example: Conversion Using Basic Strategy
+    Example: Conversion Using Full Strategy
+    Example: Conversion Using Custom Strategy
+
+Understanding the Configuration Strategies For Custom Transformations
+
+There are three strategies available for JSON conversion:
+
+    basic
+
+    full
+
+    custom
+
+A strategy is a piece of configuration that tells the JSON conversion library how you want the conversion to behave. The basic conversion strategy is designed for conversions that start in JSON, and then get converted back and forth between JSON, XML, and back to JSON again. The full strategy is designed for conversion that starts in XML, and then converts to JSON and back to XML again. The custom strategy allows you to customize the JSON and/or XML output.
+
+To use any strategy except the basic strategy, you can set and check the configuration options using the following functions:
+
+    json:config (XQuery) or json.config (Server-Side JavaScript)
+
+    json:check-config
+
+    XQuery: json:config and json:check-config
+
+    Server-Side JavaScript: json.config and json.checkConfig
+
+For the custom strategy, you can tailer the conversion to your requirements. For details on the properties you can set to control the transformation, see json:config in the MarkLogic XQuery and XSLT Function Reference.
+Example: Conversion Using Basic Strategy
+
+The following uses the basic (which is the default) strategy for transforming a JSON string to XML and then back to JSON. You can also pass in a JSON object or array node.
+
+xquery version '1.0-ml';
+import module namespace json = "http://marklogic.com/xdmp/json"
+    at "/MarkLogic/json/json.xqy";
+
+declare variable $j :=  '{
+    "blah":"first value",
+    "second Key":["first item","second item",null,"third item",false],
+    "thirdKey":3,
+    "fourthKey":{"subKey":"sub value", 
+                 "boolKey" : true, "empty" : null }
+    ,"fifthKey": null,
+    "sixthKey" : []
+}'  ;
+
+let $x := json:transform-from-json( $j ) 
+let $jx := json:transform-to-json( $x )
+return ($x, $jx)
+=>
+<json type="object" xmlns="http://marklogic.com/xdmp/json/basic">
+  <blah type="string">first value</blah>
+  <second_20_Key type="array">
+    <item type="string">first item</item>
+    <item type="string">second item</item>
+    <item type="null"/>
+    <item type="string">third item</item>
+    <item type="boolean">false</item>
+  </second_20_Key>
+  <thirdKey type="number">3</thirdKey>
+  <fourthKey type="object">
+    <subKey type="string">sub value</subKey>
+    <boolKey type="boolean">true</boolKey>
+    <empty type="null"/>
+  </fourthKey>
+  <fifthKey type="null"/>
+  <sixthKey type="array"/>
+</json>
+{"blah":"first value", 
+ "second Key":["first item","second item",null,"third item",false],
+ "thirdKey":3, 
+ "fourthKey":{"subKey":"sub value", "boolKey":true, "empty":null},
+ "fifthKey":null, "sixthKey":[]}
+
+Example: Conversion Using Full Strategy
+
+The following uses the full strategy for transforming a XML element to a JSON string. The full strategy outputs a JSON string with properties named in a consistent way. To transform the XML into a JSON object node instead of a string, use json:transform-to-json-object.
+
+Suppose the database contains the following XML document with the URI booklist.xml:
+
+<BOOKLIST>
+ <BOOKS>
+  <ITEM CAT="MMP">
+   <TITLE>Pride and Prejudice</TITLE>
+   <AUTHOR>Jane Austen</AUTHOR>      
+   <PUBLISHER>Modern Library</PUBLISHER>
+    <PUB-DATE>2002-12-31</PUB-DATE>
+    <LANGUAGE>English</LANGUAGE>
+    <PRICE>4.95</PRICE>
+    <QUANTITY>187</QUANTITY>
+    <ISBN>0679601686</ISBN>
+    <PAGES>352</PAGES>
+    <DIMENSIONS UNIT="in">8.3 5.7 1.1</DIMENSIONS>
+    <WEIGHT UNIT="oz">6.1</WEIGHT>
+  </ITEM>
+ </BOOKS>
+</BOOKLIST>
+
+Then the following code converts the contents from XML to JSON and back again.
+Language 	Example
+XQuery 	
+
+xquery version "1.0-ml";
+import module namespace json = "http://marklogic.com/xdmp/json"
+    at "/MarkLogic/json/json.xqy";
+
+let $c := json:config("full")
+            => map:with("whitespace", "ignore"),
+    $j := json:transform-to-json(fn:doc("booklist.xml", $c),
+    $xj := json:transform-from-json($j,$c)
+return ($j, $xj)
+
+JavaScript 	
+
+const json = require('/MarkLogic/json/json.xqy');
+
+let config = json.config('full');
+config.whitespace = 'ignore';
+
+const j = json.transformToJson(cts.doc('booklist.xml'), config);
+const xj = json.transformFromJson(j, config);
+[j, xj]
+
+The example produces the following output:
+
+{"BOOKLIST": { "_children": [
+  {"BOOKS": { "_children": [ {
+    "ITEM": {
+      "_attributes": { "CAT": "MMP" },
+      "_children": [
+        {"TITLE": { "_children": [ "Pride and Prejudice" ] } },
+        {"AUTHOR": { "_children": [ "Jane Austen" ] } },
+        {"PUBLISHER": { "_children": [ "Modern Library" ] } },
+        {"PUB-DATE": { "_children": [ "2002-12-31" ] } },
+        {"LANGUAGE": { "_children": [ "English" ] } },
+        {"PRICE": { "_children": [ "4.95" ] } },
+        {"QUANTITY": { "_children": [ "187" ] } },
+        {"ISBN": { "_children": [ "0679601686" ] } },
+        {"PAGES": { "_children": [ "352" ] } },
+        {"DIMENSIONS": {
+          "_attributes": { "UNIT": "in" },
+          "_children": [ "8.3 5.7 1.1" ]
+        }},
+        {"WEIGHT": { 
+          "_attributes": { "UNIT": "oz" },
+          "_children": [ "6.1" ]
+        }
+}]}}]}}]}}
+<BOOKLIST>
+  <BOOKS>
+    <ITEM CAT="MMP">
+      <TITLE>Pride and Prejudice</TITLE>
+      <AUTHOR>Jane Austen</AUTHOR>
+      <PUBLISHER>Modern Library</PUBLISHER>
+      <PUB-DATE>2002-12-31</PUB-DATE>
+      <LANGUAGE>English</LANGUAGE>
+      <PRICE>4.95</PRICE>
+      <QUANTITY>187</QUANTITY>
+      <ISBN>0679601686</ISBN>
+      <PAGES>352</PAGES>
+      <DIMENSIONS UNIT="in">8.3 5.7 1.1</DIMENSIONS>
+      <WEIGHT UNIT="oz">6.1</WEIGHT>
+    </ITEM>
+  </BOOKS>
+</BOOKLIST>
+
+Example: Conversion Using Custom Strategy
+
+The following uses the custom strategy to carefully control both directions of the conversion. The example converts a Search API XML options node into JSON and back again. The REST Client API uses a similar approach to transform options nodes back and forth between XML and JSON.
+
+The following code is an XQuery example. The equivalent Server-Side JavaScript example follows.
+
+xquery version "1.0-ml";
+import module namespace json = "http://marklogic.com/xdmp/json"
+    at "/MarkLogic/json/json.xqy";
+
+declare namespace search="http://marklogic.com/appservices/search"  ;
+declare variable $doc := 
+<search:options xmlns:search="http://marklogic.com/appservices/search">
+  <search:constraint name="decade">
+    <search:range facet="true" type="xs:gYear">
+      <search:bucket ge="1970" lt="1980" name="1970s">1970s</search:bucket>
+      <search:bucket ge="1980" lt="1990" name="1980s">1980s</search:bucket>
+      <search:bucket ge="1990" lt="2000" name="1990s">1990s</search:bucket>
+      <search:bucket ge="2000" name="2000s">2000s</search:bucket>
+      <search:facet-option>limit=10</search:facet-option>
+      <search:attribute ns="" name="year"/>
+      <search:element ns="http://marklogic.com/wikipedia" name="nominee"/>
+    </search:range>
+  </search:constraint>
+</search:options>
+ ;
+    
+let $c := json:config("custom")
+          => map:with("whitespace", "ignore")
+          => map:with("array-element-names", xs:QName("search:bucket"))
+          => map:with("attribute-names",
+                    ("facet","type","ge","lt","name","ns" ))
+          => map:with("text-value", "label")
+          => map:with("camel-case", fn:true())
+          => map:with("element-namespace",
+                      "http://marklogic.com/appservices/search")
+let $j := json:transform-to-json($doc ,$c)
+let $x := json:transform-from-json($j,$c) 
+return ($j, $x)
+
+The following code is a Server-Side JavaScript example.
+
+'use strict';
+const json = require('/MarkLogic/json/json.xqy');
+
+const doc = fn.head(xdmp.unquote(
+`<search:options xmlns:search="http://marklogic.com/appservices/search">
+  <search:constraint name="decade">
+    <search:range facet="true" type="xs:gYear">
+      <search:bucket ge="1970" lt="1980" name="1970s">1970s</search:bucket>
+      <search:bucket ge="1980" lt="1990" name="1980s">1980s</search:bucket>
+      <search:bucket ge="1990" lt="2000" name="1990s">1990s</search:bucket>
+      <search:bucket ge="2000" name="2000s">2000s</search:bucket>
+      <search:facet-option>limit=10</search:facet-option>
+      <search:attribute ns="" name="year"/>
+      <search:element ns="http://marklogic.com/wikipedia" name="nominee"/>
+    </search:range>
+  </search:constraint>
+</search:options>`
+)) ;
+    
+let config = json.config('custom');
+config['whitespace'] = 'ignore';
+config['array-element-names'] = Sequence.from([
+  fn.QName('http://marklogic.com/appservices/search', 'search:bucket')
+]);
+config['attribute-names'] = Sequence.from([
+  'facet', 'type', 'ge', 'lt', 'name', 'ns'
+]);
+config['text-value'] = 'label';
+config['camel-case'] = true;
+config['element-namespace'] = 'http://marklogic.com/appservices/search';
+
+let j = json.transformToJson(doc ,config);
+let x = json.transformFromJson(j,config);
+[j, x]
+
+The examples produce the following output:
+
+{"options":
+ {"constraint":
+  {"name":"decade", 
+   "range":{"facet":true, "type":"xs:gYear", 
+     "bucket":[{"ge":"1970", "lt":"1980", "name":"1970s",
+       "label":"1970s"},
+    {"ge":"1980", "lt":"1990", "name":"1980s","label":"1980s"},
+    {"ge":"1990", "lt":"2000", "name":"1990s", "label":"1990s"},
+    {"ge":"2000", "name":"2000s", "label":"2000s"}],
+    "facetOption":"limit=10", 
+    "attribute":{"ns":"", "name":"year"},
+    "element":{"ns":"http:\/\/marklogic.com\/wikipedia",
+       "name":"nominee"}
+}}}}
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="decade">
+    <range facet="true" type="xs:gYear">
+      <bucket ge="1970" lt="1980" name="1970s">1970s</bucket>
+      <bucket ge="1980" lt="1990" name="1980s">1980s</bucket>
+      <bucket ge="1990" lt="2000" name="1990s">1990s</bucket>
+      <bucket ge="2000" name="2000s">2000s</bucket>
+      <facet-option>limit=10</facet-option>
+      <attribute ns="" name="year"/>
+      <element ns="http://marklogic.com/wikipedia" name="nominee"/>
+    </range>
+  </constraint>
+</options>
+
+Low-Level JSON XQuery APIs and Primitive Types
+
+There are several JSON APIs that are built into MarkLogic Server, as well as several primitive XQuery/XML types to help convert back and forth between XML and JSON. The APIs do the heavy work of converting between an XQuery/XML data model and a JSON data model. The higher-level JSON library module functions use these lower-level APIs. If you use the JSON library module, you will likely not need to use the low-level APIs.
+
+This section covers the following topics:
+
+    Available Functions and Primitive Types
+    Example: Serializing to a JSON Node
+    Example: Parsing a JSON Node into a List of Items
+
+Available Functions and Primitive Types
+
+There are two APIs devoted to serialization of JSON properties: one to serialize XQuery to JSON, and one to read a JSON string and create an XQuery data model from that string:
+
+    xdmp:to-json
+
+    xdmp:from-json
+
+These APIs make the data available to XQuery as a map, and serialize the XML data as a JSON string. Most XQuery types are serialized to JSON in a way that they can be round-tripped (serialized to JSON and parsed from JSON back into a series of items in the XQuery data model) without any loss, but some types will not round-trip without loss. For example, an xs:dateTime value will serialize to a JSON string, but that same string would have to be cast back into an xs:dateTime value in XQuery in order for it to be equivalent to its original. The high-level API can take care of most of those problems.
+
+There are also a set of low-level APIs that are extensions to the XML data model, allowing lossless data translations for things such as arrays and sequences of sequences, neither of which exists in the XML data model. The following functions support these data model translations:
+
+    json:array
+
+    json:array-pop
+
+    json:array-push
+
+    json:array-resize
+
+    json:array-values
+
+    json:object
+
+    json:object-define
+
+    json:set-item-at
+
+    json:subarray
+
+    json:to-array
+
+Additionally, there are primitive XQuery types that extend the XQuery/XML data model to specify a JSON object (json:object), a JSON array (json:array), and a type to make it easy to serialize an xs:string to a JSON string when passed to xdmp:to-json (json:unquotedString).
+
+To further improve performance of the transformations to and from JSON, the following built-ins are used to translate strings to XML NCNames:
+
+    xdmp:decode-from-NCName
+
+    xdmp:encode-for-NCName
+
+The low-level JSON APIs, supporting XQuery functions, and primitive types are the building blocks to make efficient and useful applications that consume and or produce JSON. While these APIs are used for JSON translation to and from XML, they are at a lower level and can be used for any kind of data translation. But most applications will not need the low-level APIs; instead use the XQuery library API (and the REST and Java Client APIs that are built on top of the it), described in Converting JSON to XML and XML to JSON.
+
+For the signatures and description of each function, see the MarkLogic XQuery and XSLT Function Reference.
+Example: Serializing to a JSON Node
+
+The following code returns a JSON array node that includes a map, a string, and an integer.
+
+let $map := map:map()
+let $put := map:put($map, "some-prop", 45683)
+let $string := "this is a string"
+let $int := 123
+return
+xdmp:to-json(($map, $string, $int))
+
+(: 
+returns:
+[{"some-prop":45683}, "this is a string", 123]
+:)
+
+For details on maps, see Using the map Functions to Create Name-Value Maps.
+Example: Parsing a JSON Node into a List of Items
+
+Consider the following, which is the inverse of the previous example:
+
+let $json := 
+  xdmp:unquote('[{"some-prop":45683}, "this is a string", 123]')
+return
+xdmp:from-json($json)
+
+This returns the following items:
+
+json:array(
+<json:array xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:json="http://marklogic.com/xdmp/json">
+ <json:value>
+  <json:object>
+   <json:entry key="some-prop">
+    <json:value xsi:type="xs:integer">45683
+    </json:value>
+   </json:entry>
+  </json:object>
+ </json:value>
+ <json:value xsi:type="xs:string">this is a string
+ </json:value>
+ <json:value xsi:type="xs:integer">123</json:value>
+</json:array>)
+
+Note that what is shown above is the serialization of the json:array XML element. You can also use some or all of the items in the XML data model. For example, consider the following, which adds to the json:object based on the other values (and prints out the resulting JSON string):
+
+xquery version "1.0-ml";
+let $json := 
+  xdmp:unquote('[{"some-prop":45683}, "this is a string", 123]')
+let $items := xdmp:from-json($json)
+let $put := map:put($items[1], xs:string($items[3]), $items[2])
+return
+($items[1], xdmp:to-json($items[1]))
+(: returns the following json:array and JSON string:
+json:object(
+<json:object xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:json="http://marklogic.com/xdmp/json">
+  <entry key="some-prop">
+    <json:value xsi:type="xs:integer">45683</json:value>
+  </entry>
+  <entry key="123">
+    <json:value xsi:type="xs:string">this is a string</json:value>
+  </entry>
+</json:object>)
+{"some-prop":45683, "123":"this is a string"}
+
+This query uses the map functions to modify the first json:object
+in the json:array.
+:)
+
+In the above query, the first item ($items[1]) returned from the xdmp:from-json call is a json:array, and the you can use the map functions to modify the json:array, and the query then returns the modified json:array. You can treat a json:array like a map, as the main difference is that the json:array is ordered and the map:map is not. For details on maps, see Using the map Functions to Create Name-Value Maps.
+Loading JSON Documents
+
+This section provides examples of loading JSON documents using a variety of MarkLogic tools and interfaces. The following topics are covered:
+
+    Loading JSON Document Using mlcp
+    Loading JSON Documents Using the Java Client API
+    Loading JSON Documents Using the Node.js Client API
+    Loading JSON Using the REST Client API
+
+Loading JSON Document Using mlcp
+
+You can ingest JSON documents with mlcp just as you can XML, binary, and text documents. If the file extension is .json, MarkLogic automatically recognizes the content as JSON.
+
+For details, see Loading Content Using MarkLogic Content Pump in the Loading Content Into MarkLogic Server Guide.
+Loading JSON Documents Using the Java Client API
+
+The Java Client API enables you to interact with MarkLogic Server from a Java application. For details, see the Develop Using Java.
+
+Use the class com.marklogic.client.document.DocumentManager to create a JSON document in a Java application. The input data can come from any source supported by the Java Client API handle interfaces, including a file, a string, or from Jackson. For details, see Document Creation in the Develop Using Java.
+
+You can also use the Java Client API to create JSON documents that represent POJO domain objects. For details, see POJO Data Binding Interface in the Develop Using Java.
+Loading JSON Documents Using the Node.js Client API
+
+The Node.js Client API enables you to handle JSON data in your client-side code as JavaScript objects. You can create a JSON document in the database directly from such objects, using the DatabaseClient.documents interface.
+
+For details, see Loading Documents into the Database in the Develop Using Node.js.
+Loading JSON Using the REST Client API
+
+You can load JSON documents into MarkLogic Server using REST Client API. The following example shows how to use the REST Client API to load a JSON document in MarkLogic.
+
+Consider a JSON file names test.json with the following contents:
+
+{
+"key1":"value1",
+"key2":{
+        "a":"value2a", 
+        "b":"value2b"
+       }
+}
+
+Run the following curl command to use the documents endpoint to create a JSON document:
+
+curl --anyauth --user user:password -T ./test.json -D - \
+  -H "Content-type: application/json" \
+  http://my-server:5432/v1/documents?uri=/test/keys.json
+
+The document is created and the endpoint returns the following:
+
+HTTP/1.1 100 Continue
+
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Digest realm="public", qop="auth",
+  nonce="b4475e81fe81b6c672a5
+  d105f4d8662a", opaque="de72dcbdfb532a0e"
+Server: MarkLogic
+Content-Type: text/xml; charset=UTF-8
+Content-Length: 211
+Connection: close
+
+HTTP/1.1 100 Continue
+
+HTTP/1.1 201 Document Created
+Location: /test/keys.json
+Server: MarkLogic
+Content-Length: 0
+Connection: close
+
+You can then retrieve the document from the REST Client API as follows:
+
+$ curl --anyauth --user admin:password -X GET -D - \
+  http://my-server:5432/v1/documents?uri=/test/keys.json
+==>
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Digest realm="public", qop="auth",
+  nonce="2aaee5a1d206cbb1b894
+  e9f9140c11cc", opaque="1dfded750d326fd9"
+Server: MarkLogic
+Content-Type: text/xml; charset=UTF-8
+Content-Length: 211
+Connection: close
+
+HTTP/1.1 200 Document Retrieved
+vnd.marklogic.document-format: json
+Content-type: application/json
+Server: MarkLogic
+Content-Length: 56
+Connection: close
+
+{"key1":"value1", "key2":{"a":"value2a", "b":"value2b"}}
+
+For details about the REST Client API, see Develop Using the REST API.

@@ -10,227 +10,112 @@
     "templates": [
       {
         "context": "payload",
+        "vars": [
+          { "name": "HH", "val": "householdId" }
+        ],
         "rows": [
           {
             "schemaName": "household",
             "viewName": "household",
+            "viewVirtual": true,
             "columns": [
-              { "name": "householdId",         "scalarType": "integer", "val": "householdId",             "nullable": true },
+              { "name": "householdId",         "scalarType": "string",  "val": "householdId",             "nullable": true },
               { "name": "familyName",          "scalarType": "string",  "val": "familyName",              "nullable": true },
               { "name": "size",                "scalarType": "integer", "val": "familySize",              "nullable": true },
               { "name": "annualIncome",        "scalarType": "decimal", "val": "annualIncome",            "nullable": true },
               { "name": "state",               "scalarType": "string",  "val": "(stateOfResidence, individual/stateOfResidence)[1]",        "nullable": true },
-              { "name": "householdPercentFPL", "scalarType": "decimal", "val": "householdPercentFPL",     "nullable": true }
+              { "name": "householdPercentFPL", "scalarType": "decimal", "val": "householdPercentFPL",     "nullable": true },
+              { "name": "povertyGuideline",    "scalarType": "decimal", "val": "(povertyGuideline, FPLValue)[1]", "nullable": true }
+            ]
+          }
+        ],
+        "templates": [
+          {
+            "context": "individual/*",
+            "vars": [
+              { "name": "SSN", "val": "ssn" }
+            ],
+            "rows": [
+              {
+                "schemaName": "household",
+                "viewName": "individual",
+                "viewVirtual": true,
+                "columns": [
+                  { "name": "householdId",       "scalarType": "string",  "val": "$HH", "nullable": true },
+                  { "name": "first",             "scalarType": "string",  "val": "first",                   "nullable": true },
+                  { "name": "last",              "scalarType": "string",  "val": "last",                    "nullable": true },
+                  { "name": "ssn",               "scalarType": "string",  "val": "$SSN",                    "nullable": true },
+                  { "name": "age",               "scalarType": "integer", "val": "age",                     "nullable": true },
+                  { "name": "relationToApplicant","scalarType": "string",  "val": "relationToApplicant",     "nullable": true },
+                  { "name": "citizenshipStatus", "scalarType": "string",  "val": "citizenshipStatus",       "nullable": true },
+                  { "name": "employmentStatus",  "scalarType": "string",  "val": "employmentStatus",        "nullable": true },
+                  { "name": "ageAtLeast65",      "scalarType": "boolean", "val": "ageAtLeast65",            "nullable": true },
+                  { "name": "isDisabledOrBlind", "scalarType": "boolean", "val": "isDisabledOrBlind",       "nullable": true },
+                  { "name": "isABDPopulation",   "scalarType": "boolean", "val": "isABDPopulation",         "nullable": true }
+                ]
+              }
+            ],
+            "templates": [
+              {
+                "context": "classOfAssistance/*",
+                "rows": [
+                  {
+                    "schemaName": "household",
+                    "viewName": "classOfAssistance",
+                    "viewVirtual": true,
+                    "columns": [
+                      { "name": "householdId",        "scalarType": "string",  "val": "$HH",       "nullable": true },
+                      { "name": "individual_ssn",     "scalarType": "string",  "val": "$SSN",      "nullable": true },
+                      { "name": "name",               "scalarType": "string",  "val": "name",       "nullable": true },
+                      { "name": "group",              "scalarType": "string",  "val": "group",      "nullable": true },
+                      { "name": "priorityForGroup",   "scalarType": "integer", "val": "priorityForGroup", "nullable": true },
+                      { "name": "incomeThreshold",    "scalarType": "decimal", "val": "incomeThreshold",  "nullable": true },
+                      { "name": "resourceThreshold",  "scalarType": "decimal", "val": "resourceThreshold", "nullable": true },
+                      { "name": "incomeTestPassed",   "scalarType": "boolean", "val": "incomeTestPassed",   "nullable": true },
+                      { "name": "eligibleViaPath",    "scalarType": "boolean", "val": "eligibleViaPath",    "nullable": true },
+                      { "name": "resourceTestPassed", "scalarType": "boolean", "val": "resourceTestPassed",  "nullable": true }
+                    ]
+                  }
+                ]
+              },
+              {
+                "context": "eligibilityNote/*",
+                "rows": [
+                  {
+                    "schemaName": "household",
+                    "viewName": "eligibilityNote",
+                    "viewVirtual": true,
+                    "columns": [
+                      { "name": "householdId",   "scalarType": "string",  "val": "$HH",   "nullable": true },
+                      { "name": "individual_ssn","scalarType": "string",  "val": "$SSN",  "nullable": true },
+                      { "name": "text",          "scalarType": "string",  "val": "text",  "nullable": true },
+                      { "name": "eligibilityNoteText", "scalarType": "string",  "val": "text", "nullable": true }
+                    ]
+                  }
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "context": "payload/individual",
+        "context": "payload/corticon/Metrics/attributeChanges/*",
+        "vars": [
+          { "name": "HH",  "val": "/payload/householdId" }
+        ],
         "rows": [
           {
             "schemaName": "household",
-            "viewName": "individual",
+            "viewName": "attributeChanges",
+            "viewVirtual": true,
             "columns": [
-              { "name": "householdId",       "scalarType": "integer", "val": "../householdId", "nullable": true },
-              { "name": "first",             "scalarType": "string",  "val": "first",                   "nullable": true },
-              { "name": "last",              "scalarType": "string",  "val": "last",                    "nullable": true },
-              { "name": "ssn",               "scalarType": "string",  "val": "ssn",                     "nullable": true },
-              { "name": "age",               "scalarType": "integer", "val": "age",                     "nullable": true },
-              { "name": "relationToApplicant","scalarType": "string",  "val": "relationToApplicant",     "nullable": true },
-              { "name": "citizenshipStatus", "scalarType": "string",  "val": "citizenshipStatus",       "nullable": true },
-              { "name": "employmentStatus",  "scalarType": "string",  "val": "employmentStatus",        "nullable": true }
-            ]
-          }
-        ]
-      },
-      {
-        "context": "payload/individual/eligibilityNote",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "eligibilityNote",
-            "columns": [
-              { "name": "householdId", "scalarType": "integer", "val": "../../householdId", "nullable": true },
-              { "name": "text",        "scalarType": "string",  "val": "text",                         "nullable": true }
-            ]
-          }
-        ]
-      },
-      {
-        "context": "payload/individual/classOfAssistance",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "classOfAssistance",
-            "columns": [
-              { "name": "householdId",        "scalarType": "integer", "val": "../../householdId", "nullable": true },
-              { "name": "individual_ssn",     "scalarType": "string",  "val": "../ssn",                      "nullable": true },
-              { "name": "name",               "scalarType": "string",  "val": "name",                         "nullable": true },
-              { "name": "group",              "scalarType": "string",  "val": "group",                        "nullable": true },
-              { "name": "priorityForGroup",   "scalarType": "integer", "val": "priorityForGroup",             "nullable": true },
-              { "name": "incomeThreshold",    "scalarType": "decimal", "val": "incomeThreshold",              "nullable": true },
-              { "name": "resourceThreshold",  "scalarType": "decimal", "val": "resourceThreshold",            "nullable": true },
-              { "name": "incomeTestPassed",   "scalarType": "boolean", "val": "incomeTestPassed",             "nullable": true },
-              { "name": "eligibleViaPath",    "scalarType": "boolean", "val": "eligibleViaPath",              "nullable": true },
-              { "name": "resourceTestPassed", "scalarType": "boolean", "val": "resourceTestPassed",           "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/execution/messages/message",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMessage",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",               "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                  "nullable": true },
-              { "name": "severity",      "scalarType": "string",  "val": "severity",                    "nullable": true },
-              { "name": "text",          "scalarType": "string",  "val": "text",                        "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/messages/message",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMessage",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",               "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                  "nullable": true },
-              { "name": "severity",      "scalarType": "string",  "val": "severity",                    "nullable": true },
-              { "name": "text",          "scalarType": "string",  "val": "text",                        "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/execution/Metrics/attributeChanges/*",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMetricAttribute",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",                 "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                    "nullable": true },
-              { "name": "entityName",    "scalarType": "string",  "val": "entityName",                    "nullable": true },
-              { "name": "attributeName", "scalarType": "string",  "val": "attributeName",                 "nullable": true },
-              { "name": "afterValue",    "scalarType": "string",  "val": "afterValue",                    "nullable": true },
-              { "name": "sequence",      "scalarType": "integer", "val": "sequence",                      "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/execution/Metrics/entityChanges/*",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMetricEntity",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",                 "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                    "nullable": true },
-              { "name": "entityName",    "scalarType": "string",  "val": "entityName",                    "nullable": true },
-              { "name": "action",        "scalarType": "string",  "val": "action",                        "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/execution/Metrics/associationChanges/*",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMetricAssociation",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",                 "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                    "nullable": true },
-              { "name": "association",   "scalarType": "string",  "val": "association",                   "nullable": true },
-              { "name": "action",        "scalarType": "string",  "val": "action",                        "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/messages/message",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMessage",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",               "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                  "nullable": true },
-              { "name": "severity",      "scalarType": "string",  "val": "severity",                    "nullable": true },
-              { "name": "text",          "scalarType": "string",  "val": "text",                        "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/Metrics/attributeChanges/*",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMetricAttribute",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",                 "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                    "nullable": true },
-              { "name": "entityName",    "scalarType": "string",  "val": "entityName",                    "nullable": true },
-              { "name": "attributeName", "scalarType": "string",  "val": "attributeName",                 "nullable": true },
-              { "name": "afterValue",    "scalarType": "string",  "val": "afterValue",                    "nullable": true },
-              { "name": "sequence",      "scalarType": "integer", "val": "sequence",                      "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/Metrics/entityChanges/*",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMetricEntity",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",                 "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                    "nullable": true },
-              { "name": "entityName",    "scalarType": "string",  "val": "entityName",                    "nullable": true },
-              { "name": "action",        "scalarType": "string",  "val": "action",                        "nullable": true }
-            ]
-          }
-        ]
-      }
-      ,
-      {
-        "context": "corticon/Metrics/associationChanges/*",
-        "rows": [
-          {
-            "schemaName": "household",
-            "viewName": "ruleMetricAssociation",
-            "columns": [
-              { "name": "householdId",   "scalarType": "integer", "val": "../../../../payload/householdId", "nullable": true },
-              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",                 "nullable": true },
-              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",                    "nullable": true },
-              { "name": "association",   "scalarType": "string",  "val": "association",                   "nullable": true },
-              { "name": "action",        "scalarType": "string",  "val": "action",                        "nullable": true }
+              { "name": "householdId",   "scalarType": "string",  "val": "$HH", "nullable": true },
+              { "name": "rulesheetName", "scalarType": "string",  "val": "rulesheetName",  "nullable": true },
+              { "name": "ruleNumber",    "scalarType": "string",  "val": "ruleNumber",     "nullable": true },
+              { "name": "entityName",    "scalarType": "string",  "val": "entityName",     "nullable": true },
+              { "name": "attributeName", "scalarType": "string",  "val": "attributeName",  "nullable": true },
+              { "name": "afterValue",    "scalarType": "string",  "val": "afterValue",     "nullable": true },
+              { "name": "sequence",      "scalarType": "integer", "val": "sequence",       "nullable": true }
             ]
           }
         ]

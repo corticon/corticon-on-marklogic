@@ -25,6 +25,11 @@ function normalizeNumericStrings(node) {
     const out = {};
     for (const k in node) {
       const v = node[k];
+      // Preserve identifiers as strings even if numeric
+      if (k === 'householdId' || k === 'ssn') {
+        out[k] = typeof v === 'string' ? v : String(v);
+        continue;
+      }
       if (typeof v === 'string' && /^-?\d+(\.\d+)?$/.test(v)) out[k] = Number(v);
       else out[k] = normalizeNumericStrings(v);
     }

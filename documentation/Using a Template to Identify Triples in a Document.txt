@@ -1,0 +1,574 @@
+
+docs.progress.com
+Using a Template to Identify Triples in a Document
+19–24 minutes
+
+You can define a template to identify data to be indexed as triples in an existing document. Documents with any type of data that you want to represent as triples can be indexed using a template. The triples identified by the template are similar to unmanaged triples, sometimes called embedded triples.
+
+Once you have indexed these triples, you can query them in all the same ways you can query unmanaged triples; with SPARQL, with xdmp.sparql(), with combination queries, with the new Optic API, and with cts:triple-range-query. For more about working with these triples, see Unmanaged Triples. For a more complete discussion of creating and using templates, see Template Driven Extraction (TDE) in the Application Developer's Guide.
+
+This chapter covers the following topics:
+
+    Creating a Template
+    Template Elements
+    Examples
+    Triples Generated With TDE and SQL
+
+Creating a Template
+
+Here is an example of a simple template to identify triples. It includes a definition for a namespace and context for the template. It contains descriptions for the subject, object, predicate of the triples, and data mappings for the values:
+
+<template xmlns="http://marklogic.com/xdmp/tde">
+  <context>/article/topic</context>
+    <vars>
+      <var>
+        <name>EX</name>
+        <val>"http://example.org/ex#"</val>
+      </var>
+    </vars>
+    <triples>
+     <triple>
+      <subject>
+        <val>sem:iri( $EX || who )</val>
+      </subject>
+      <predicate>
+        <val>sem:iri( $EX || what )</val>
+      </predicate>
+      <object>
+        <val>xs:string( $EX || where )</val>
+      </object>
+    </triple>
+   </triples>
+  </template>
+
+For triples, the subject and predicate descriptions must have a value of sem:iri. Here the template incorporates using vars as a short-hand, to save typing when you specify IRIs. When creating templates to identify triples, you can specify the types of values that you extract using a subset of XQuery language expressions. See Template Dialect and Data Transformation Functions in the Application Developer's Guide for more information.
+
+Triples identified using templates cannot be modified directly or modified as triples (for example, using SPARQL Update). You can disable and then delete a template so that the triples no longer exist, or you can modify the underlying document data to modify the triple.
+
+Security for templates can be controlled by setting protected collections. See Security on TDE Documents in the Application Developer's Guide.
+Template Elements
+
+A template contains the following elements and their child elements:
+Element 	Description
+
+context
+
+	The lookup node that is used for template activation and data extraction. See Context in the Application Developer's Guide for more details.
+
+description
+
+	Optional description of the template.
+
+collections
+  collection
+  collections-and
+    collection
+
+	
+
+Optional collection scopes. Multiple collection scopes can be ORed or ANDed.
+
+A <collections> section is a top level OR of a sequence of:
+
+    <collection> that scope the template to a specific collection.
+    <collections-and> that contains a sequence of <collection> that are ANDed together.
+
+See Collections in the Application Developer's Guide for more details.
+
+directories
+  directory
+
+	Optional directory scopes. Multiple directory scopes are ORed together.
+
+vars
+  var
+
+	
+
+Optional intermediate variables extracted at the current context level.
+
+This element can be used as a short hand for IRIs (prefixes) in triples. See Variables in the Application Developer's Guide for more details.
+
+triples
+  triple
+    subject
+      val
+      invalid-values
+    predicate
+      val
+      invalid-values
+    object
+      val
+      invalid-values
+
+	
+
+These elements are used for triple-extraction templates.
+
+triples contains a sequence of triple extraction descriptions. Each triple description defines the data mapping for the subject, predicate and object.
+
+An extracted triples graph cannot be specified through the template. The graph is implicitly defined by the document's collection similar to embedded triples.
+
+templates
+  template
+
+	Optional sequence of sub-templates. For details, see Creating Views from Multiple Templates and Creating Views from Nested Templates in the SQL Data Modeling Guide.
+
+path-namespaces
+  path-namespace
+
+	Optional sequence of namespace bindings. See path-namespaces in the Application Developer's Guide for more details.
+
+enabled
+
+	A boolean that specifies whether the template is enabled (true) or disabled (false). The default value is true.
+
+The context, vars, and triples elements identify XQuery elements or JSON properties by means of path expressions. The var element can be used to specify a prefix for elements in the triple.
+
+For example:
+
+<vars>
+ <var>
+   <name>ex</name>
+   <val>"http://example.org/ex#"</val>
+ </var>
+</vars>
+
+Path expressions are based on XPath, which is described in XPath Quick Reference in the XQuery and XSLT Reference Guide and Traversing JSON Documents Using XPath in the Application Developer's Guide.
+Reindexing Triggered by Templates
+
+When adding or modifying a triple template, reindexing is triggered and the triples extracted by the template are available as soon as they start to appear in the triple index. Note that only documents matching the context element, and the directory and collection scopes will be re-indexed, so choose these carefully to avoid unnecessary (re)indexing work.
+
+    For a new template, triples appear in the index as documents are indexed.
+
+    For modified templates (and until reindexing is complete), there could be a mix of existing triples extracted with the previous version of the template (for the documents that haven't been reindexed yet) along with new triples extracted by the newer version of the template (for those documents that have been reindexed).
+
+Examples
+
+This section contains examples of different ways that you can validate and use templates to identify triples in documents.
+
+    Validate and Insert a Template
+    Validate and Insert in One Step
+    Use a JSON Template
+    Identify Potential Triples
+
+Validate and Insert a Template
+
+For this example, insert this document into the Documents database using the Query Console. This document is used as the source of the triples.
+
+xdmp:document-insert("APNews.xml",
+<article>
+ <info>APNewswire - Nixon went to China</info>
+ <triples-context>
+  <confidence>80</confidence>
+  <published>2011-10-14</published>
+  <source>AP News</source>
+ </triples-context>
+ <topic>
+  <who>Nixon</who>
+  <what>wentTo</what>
+  <where>China</where>
+  </topic>
+ <body>
+  In 1974, Richard Nixon went to China. 
+ </body>
+</article>
+)
+
+Using the Query Console, we will validate this template (APtemplate.xml) and then insert it into a collection called http://marklogic.com/xdmp/tde in the Schemas database. First validate the template:
+
+let $t1 :=
+<template xmlns="http://marklogic.com/xdmp/tde">
+  <context>/article/topic</context>
+    <vars>
+      <var>
+        <name>EX</name>
+        <val>"http://example.org/ex#"</val>
+      </var>
+    </vars>
+  <triples>
+    <triple>
+      <subject>
+        <val>sem:iri( $EX || who)</val>
+      </subject>
+      <predicate>
+        <val>sem:iri( $EX || what)</val>
+      </predicate>
+      <object>
+        <val>xs:string( $EX || where)</val>
+      </object>
+    </triple>
+  </triples>
+  </template>
+
+return tde:validate($t1)
+=>
+<map:map xmlns:map="http://marklogic.com/xdmp/map" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <map:entry key="valid">
+    <map:value xsi:type="xs:boolean">true
+    </map:value>
+  </map:entry>
+</map:map>
+
+Next insert the valid template. Use tde:template-insert. This takes care of putting the template into the Schemas database and into the correct collection:
+
+xquery version "1.0-ml"; 
+import module namespace tde = "http://marklogic.com/xdmp/tde" 
+  at "/MarkLogic/tde.xqy";
+
+let $t1 :=
+<template xmlns="http://marklogic.com/xdmp/tde">
+  <context>/article/topic</context>
+    <vars>
+      <var>
+        <name>EX</name>
+        <val>"http://example.org/ex#"</val>
+      </var>
+    </vars>
+  <triples>
+    <triple>
+      <subject>
+        <val>sem:iri( $EX || who)</val>
+      </subject>
+      <predicate>
+        <val>sem:iri( $EX || what)</val>
+      </predicate>
+      <object>
+        <val>xs:string( $EX || where)</val>
+      </object>
+    </triple>
+  </triples>
+  </template>
+
+return tde:template-insert(
+"APtemplate.xml",$t1, (), "http://marklogic.com/xdmp/tde")
+
+When you use the template, content in the document will be indexed as a triple. The triple is not added to the original document. To see the triple, run this query in Query Console:
+
+tde:node-data-extract(fn:doc("APNews.xml"));
+
+This returns the name of the document and the content that was indexed as a triple.
+
+=>
+{"APNews.xml": [
+ {
+  "triple": {
+   "subject": "http://example.org/ex#Nixon", 
+   "predicate": "http://example.org/ex#wentTo", 
+   "object": {
+    "datatype": "http://www.w3.org/2001/XMLSchema#string", 
+    "value": "http://example.org/ex#China"
+   }
+  }
+ }
+]}
+
+Use this SPARQL query to verify that the triple is in the triple index:
+
+SELECT ?country
+WHERE {
+  <http://example.org/ex#Nixon> <http://example.org/ex#wentTo>
+  ?country
+}
+
+=> China
+
+Validate and Insert in One Step
+
+The next example uses tde:template-insert to both validate and insert the template into the Schemas database associated with this content database in one step. For this example, we'll insert a document described in Unmanaged Triples.
+
+The following code inserts the document into the Documents database in a SAR collection:
+
+xquery version "1.0-ml";
+xdmp:document-insert("SAR_report.xml",
+<SAR>
+ <title>Suspicious vehicle...Suspicious vehicle near airport</title>
+  <date>2015-11-12Z</date>
+  <type>observation/surveillance</type>
+  <threat>
+   <type>suspicious activity</type>
+    <category>suspicious vehicle</category>
+  </threat>
+  <location>
+    <lat>37.497075</lat>
+    <long>-122.363319</long>
+  </location>
+  <description>A blue van with license plate ABC 123 was observed parked behind the airport sign...
+    <sem:triple>
+      <sem:subject>IRIID</sem:subject>
+      <sem:predicate>isa</sem:predicate>
+       <sem:object datatype="http://www.w3.org/2001/XMLSchema#string">license-plate</sem:object>
+    </sem:triple>
+    <sem:triple>
+      <sem:subject>IRIID</sem:subject>
+      <sem:predicate>value</sem:predicate>
+      <sem:object datatype="http://www.w3.org/2001/XMLSchema#string">ABC 123</sem:object>
+    </sem:triple>
+  </description>
+</SAR>,(),
+"SAR")
+
+This document already has two embedded triples. Now let us identify another triple describing the date and type of threat described in the report. We will create a template to identify the triple and insert it using tde:template-insert, which validates the template and then inserts it into the Schemas database.
+
+xquery version "1.0-ml"; 
+import module namespace tde = "http://marklogic.com/xdmp/tde" 
+  at "/MarkLogic/tde.xqy";
+
+let $template :=
+<template xmlns="http://marklogic.com/xdmp/tde">
+  <context>/SAR</context>
+    <triples>
+    <triple>
+      <subject>
+        <val>sem:iri(threat/type)</val>
+      </subject>
+      <predicate>
+        <val>sem:iri("http://example.org/on-date")</val>
+      </predicate>
+      <object>
+        <val>xs:date(date)</val>
+      </object>
+    </triple>
+    </triples>
+</template>
+return tde:template-insert("SARtemplate.xml", $template)
+
+To see the new triple, run this query using tde:node-data-extract in Query Console:
+
+tde:node-data-extract(fn:doc("SAR_report.xml"));
+
+=>
+{
+ "SAR_report.xml": [
+  {
+   "triple": {
+    "subject": "suspicious activity", 
+    "predicate": "http://example.org/on-date", 
+    "object": {
+      "datatype": "http://www.w3.org/2001/XMLSchema#date", 
+      "value": "2015-11-12Z"
+    }
+   }
+  }
+ ]
+}
+
+To see all the triples in this document, run this SPARQL query restricted to the SAR collection, in the Query Console:
+
+SELECT *
+FROM <SAR>
+WHERE {
+  ?s ?p ?o
+}
+
+This returns all of the triples in the SAR_report.xml document:
+
+s                            p                            o         
+<suspicious activity>    <http://example.org/on-date>  2014-11-12Z"^^xs:date
+<IRIID>                  <isa>                         <license-plate>
+<IRIID>                  <value>                       <ABC 123>
+
+Use a JSON Template
+
+You can use a JSON template to identify triples in a JSON document.
+
+Any template (XML or JSON) will extract triples from any document (XML or JSON).
+
+Insert this document into the Documents database:
+
+declareUpdate();
+xdmp.documentInsert("/medlineCitation.json", ({
+   "MedlineCitation": {
+    "Status": "Completed",
+    "MedlineID": 69152893,
+    "PMID": 5717905,
+    "Article": {
+      "Journal": {
+        "ISSN": "0043-5341"
+      },
+      "ArticleTitle": "[On the influence of calcium ... on cholesterol in human serum]",
+      "AuthorList": {
+        "Author": [
+          {
+            "LastName": "Doe",
+            "ForeName": "John"
+          },
+          {
+            "LastName": "Smith",
+            "ForeName": "Jane"
+          }
+        ]
+      }
+    }, "collections" : "http://marklogic.com/xdmp/tde"}
+}));
+
+Now validate and insert a JSON template. The tde.templateInsert command validates the template and inserts it into the Schemas database.
+
+declareUpdate();
+var tde = require ("/MarkLogic/tde.xqy");
+
+var template = xdmp.toJSON({
+  "template":{
+    "context":"/MedlineCitation/Article",
+    "vars":[
+      {
+        "name":"prefix1",
+        "val":"\"http://marklogic.com/example/\""
+      }
+    ],
+    "triples":[{
+        "subject":{
+        "val":"sem:iri($prefix1||'person/'||AuthorList/Author[1] \
+                    /ForeName||'_'||AuthorList/Author[1]/LastName)"},
+        "predicate":{
+          "val":"sem:iri(($prefix1||'authored'))"},
+        "object":{
+          "val":"xs:string(Journal/ISSN)"}
+         }     
+        ] }});
+ 
+tde.templateInsert("medlineTemplate.json", template);
+
+// After validating the template, this inserts template into the Schemas 
+database as medlineTemplate.json
+
+Run this query against the Documents database in the Query Console. This query identifies the first author in the document in the form of a triple:
+
+tde.nodeDataExtract([fn.doc("/medlineCitation.json")]);
+=>
+{
+ "/medlineCitation.json": [
+  {
+  "triple": {
+    "subject": "http://marklogic.com/example/person/John_Doe", 
+    "predicate": "http://marklogic.com/example/authored", 
+    "object": {
+      "datatype": "http://www.w3.org/2001/XMLSchema#string", 
+      "value": "0043-5341"
+    }
+   }
+  }
+ ]
+}
+
+The nodeDataExtract command is a helper utility to show you how the template view looks. Normally you would run a SQL or SPARQL query against the generated view.
+
+This template only extracts the first author's name along with the ISSN number. You can change the [1] to a [2] in the template to extract the second author's name.
+Identify Potential Triples
+
+This next example includes both the document and the template used to identify two triples as part of one query that you can paste into Query Console. The tde:node-data-extract is a helping function to show you what would be indexed if you did insert this document and template.
+
+let $doc1 :=
+<MedlineCitation Status="Completed">
+  <MedlineID>69152893</MedlineID>
+  <PMID>5717905</PMID>
+  <Article>
+    <Journal>
+      <ISSN>0043-5341</ISSN>
+      <JournalIssue>
+        <Volume>118</Volume>
+        <Issue>49</Issue>
+        <PubDate>
+          <Year>1968</Year>
+          <Month>Dec</Month>
+          <Day>7</Day>
+        </PubDate>
+      </JournalIssue>
+    </Journal>
+    <ArticleTitle>[On the influence of calcium ... on cholesterol in human serum]</ArticleTitle>
+    <AuthorList>
+      <Author>
+        <LastName>Doe</LastName>
+        <ForeName>John</ForeName>
+      </Author>
+      <Author>
+        <LastName>Smith</LastName>
+        <ForeName>Jane</ForeName>
+      </Author>
+    </AuthorList>
+  </Article>
+</MedlineCitation>
+
+let $template1 :=
+<template xmlns="http://marklogic.com/xdmp/tde">
+  <context>/MedlineCitation/Article/AuthorList/Author</context>
+  <triples>
+    <triple>
+      <subject>
+        <val>sem:iri(concat(ForeName,' ',LastName))</val>
+      </subject>
+      <predicate>
+        <val>sem:iri('authored')</val>
+      </predicate>
+      <object>
+        <val>xs:string(../../ArticleTitle)</val>
+      </object>
+    </triple>
+  </triples>
+</template>
+
+return tde:node-data-extract (($doc1), ($template1))
+
+This query returns the two triples that would be added to the triple index in JSON format:
+
+{
+ "document1": [
+   {
+   "triple": {
+   "subject": "John Doe", 
+   "predicate": "authored", 
+   "object": {
+     "value": "[On the influence of calcium ... on cholesterol in human serum]"
+    }
+   }
+  },
+  {
+   "triple": {
+   "subject": "Jane Smith", 
+   "predicate": "authored", 
+   "object": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#string", 
+     "value": "[On the influence of calcium ... on cholesterol in human serum]"
+    }
+   }
+  }
+ ]
+}
+
+These triples in this example have not been added to the triple index, but you can see how the template works and what triples would be indexed if you inserted the document and template.
+
+The graph for these triples cannot be specified through the template. The graph is implicitly defined by the document's collection, similar to embedded triples.
+Triples Generated With TDE and SQL
+
+Some TDE views created for SQL will generate index entries that are present, visible, and usable as triples due to the underlying implementation of SQL using the triples index. Those triples may then appear in SPARQL query results.
+
+These triples have very distinctive subject and predicate URIs, so as long as a SPARQL query includes some subject or some predicate filter, the triples generated by a row template will not appear in your results.
+
+This is an example of a triple generated from a row template:
+
+<http://marklogic.com/row/09CA32CBA69361E5/8FD41B78E884B48E>
+  <http://marklogic.com/column/id/81C579F95CEA957B>
+  "George Washington"
+
+Some SPARQL operations where these row triples may appear include:
+
+    A SPARQL query for show me all triples. When you are initially trying out SPARQL, you might load 10 triples and run this SPARQL query:
+
+    SELECT * 
+    WHERE { 
+       ?s ?p ?o } 
+
+    For performance reasons, do not run this query on any database with numerous triples because the query will return all of the triples in the database.
+
+    A SPARQL query to count all triples. This is similar to the preceding query, and would also access all of the triples in the database.
+
+    A SPARQL query to show me all distinct predicates. This is another common way to explore your triples data.
+
+    To avoid seeing row triples returned as part of these queries, insert and query triples from a named graph, or include a subject or predicate filter to exclude the row triples.
+
+A best practice is to insert triples into a named graph and query from that graph.
+
+For more information about using the Optic API with triples for server-side queries see Querying Triples with the Optic API, the op:from-triples or op.fromTriples functions, and Data Access Functions and Optic API for Multi-Model Data Access in the Application Developer's Guide. For information about using the Optic API for client-side queries, see Queries Using Optic API and Optic Java API for Relational Operations in the Java Application Developer's Guide. Also see /REST/client/row-management in the Client API reference and the row manager and rows endpoint in the REST Application Developer's Guide.
+
+For information about using templates with SQL content, see Creating Template Views in the SQL Data Modeling Guide.

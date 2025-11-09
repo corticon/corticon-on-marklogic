@@ -1,0 +1,1005 @@
+Template Driven Extraction (TDE)
+
+    Last Updated: November 6, 202513 minute read
+
+        MarkLogic Server
+        Version 12.0
+        Documentation
+
+Template Driven Extraction (TDE) enables you to define a relational lens over your document data, so you can query parts of your data using SQL or the Optic API. TDE templates let you specify which parts of documents make up rows in a view. You can also use templates to define a semantic lens, specifying which values from a document make up triples in the triple index.
+
+TDE enables you to generate rows and triples from ingested documents based on configured TDE templates that describe the following:
+
+    The input data to match
+
+    The data transformations that apply to the matched data
+
+    The final data projections
+
+TDE enables you to access the data in your documents in several ways, without changing the documents themselves. A relational lens is useful when you want to let SQL-savvy users access your data and when users want to create reports and visualizations using tools that communicate using SQL. It is also useful when you want to join entities and perform aggregates across documents. A semantic lens is useful when your documents contain some data that is naturally represented and queried as triples, using SPARQL.
+
+TDE serves the following purposes:
+
+    SQL support / Relational search. TDE allows the user to map parts of an XML or JSON document into SQL rows. With a TDE template instance, users can create different rows and describe how each column in a row is constructed using the extracted data from a document. For details, see Creating Template Views in Relational Data Modeling with MarkLogic Server.
+
+    Custom Embedded Triple Extraction. TDE enables users to ingest triples that do not follow the sem:triple schema. A user can define many triple projections in a single template, where each projection specifies the different parts of a document that are mapped to subjects, predicates or objects. For details, see Using a Template to Identify Triples in a Document in Understand Semantic Graphs.
+
+    Entity Services Data Models. For details, see Creating and Managing Models in the Entity Services Developer's Guide.
+
+TDE data is also used by the Optic API, as described in Optic API for Multi-Model Data Access.
+
+This section contains these topics:
+
+    Security on TDE Template Documents
+    TDE Template View Elements
+    TDE Template XPath
+    TDE Template Dialect and Data Transformation Functions
+    Creating Nested TDE Templates
+    Validating a TDE Template
+    Inserting a TDE Template
+
+Security on TDE Template Documents
+
+A TDE template document must be configured with the collection http://marklogic.com/xdmp/tde in the corresponding schema database. This collection is a protected collection that only users with the tde-admin or admin role can configure. A user with the tde-admin role will automatically apply the role's default permissions to the TDE template document:
+
+    tde-admin + read
+
+    tde-admin + update
+
+    tde-view + read
+
+Users must have at least the tde-view role to view the configured TDE template documents.
+
+Set additional permissions on the TDE template documents to further restrict access to them.
+
+These permissions are then assigned to the rows and triples extracted using the TDE template. Access to these rows and triples require being assigned one of these roles. Users without these roles, including users assigned only the admin role, will not be able to access any of the information extracted using this TDE template.
+
+A TDE template configured by a user with only the admin role will result in a TDE template document without any document permissions. Rows and triples extracted using the TDE template are only accessible to users with the admin role.
+
+See Security on Views for more information about the effects of TDE template document permissions on views.
+TDE Template View Elements
+
+A template contains the elements and child elements shown in this table:
+XML 	JSON 	Description
+
+<description>...</description>
+
+	
+
+"description" : "..."
+
+	
+
+Optional.
+
+Description of TDE template.
+
+<enabled>...</enabled>
+
+	
+
+"enabled" : "..."
+
+	
+
+Optional. Defaults to true.
+
+A boolean element that specifies whether TDE template is enabled (`true`) or disabled (`false`).
+
+Before deleting a TDE template document, disable the TDE template.
+
+<collections>
+  <collection>...</collection>
+  <collections-and>
+    <collection>...</collection>
+  </collections-and>
+</collections>
+
+	
+
+"collections": [
+  "...",
+  {
+    "collectionsAnd": [
+      "..."
+    ]
+  }
+]
+
+	
+
+Optional.
+
+Add a document collection to reduce the scope of a TDE template.
+
+Multiple collections can be ORed or ANDed.
+
+See Collections.
+
+<directories>
+  <directory>/.../</directory>
+</directories>
+
+	
+
+"directories": [
+  "/.../"
+]
+
+	
+
+Optional.
+
+Add a document URI directory to reduce the scope of a TDE template.
+
+Multiple directories can be ORed or ANDed.
+
+See Directories.
+
+<path-namespaces>
+  <path-namespace>
+    <prefix>...</prefix>
+    <namespace-uri>...</namespace-uri>
+  </path-namespace>
+</path-namespaces>
+
+	
+
+"pathNamespace":[
+  {
+    "prefix":"...",
+    "namespaceUri":"..."
+  }
+]
+
+	
+
+Optional.
+
+A sequence of namespace bindings.
+
+See path-namespaces.
+
+<context>...</context>
+
+	
+
+"context": "..."
+
+	
+
+Required.
+
+The lookup node that is used for TDE template activation and data extraction.
+
+See Context.
+
+<vars>
+  <var>
+    <name>...</name>
+    <val>...</val>
+  </var>
+</vars>
+
+	
+
+"vars":[
+  {
+    "name":"...",
+    "val":"..."
+  }
+]
+
+	
+
+Optional.
+
+Intermediate variables extracted at the current context level.
+
+See Variables.
+
+<triples>
+  <triple>...</triple>
+</triples>
+
+	
+
+"triples":[
+  {...}
+]
+
+	
+
+Optional.
+
+These elements are used for triple-extraction TDE templates. See Using a Template to Identify Triples in a Document in Understand Semantic Graphs.
+
+An extracted triple's graph cannot be specified through TDE template. The graph is implicitly defined by the document's collection similar to embedded triples.
+
+<rows>
+  <row>...</row>
+</rows>
+
+	
+
+"rows":[
+  { ...  }
+]
+
+	
+
+Optional.
+
+A sequence of row descriptions and mappings. See Row in Relational Data Modeling with MarkLogic Server.
+
+<templates>
+  <template>...</template>
+</templates>
+
+	
+
+"templates":[
+  { ... }
+]
+
+	
+
+Optional.
+
+A sequence of sub-templates. See Creating Nested Templates.
+
+You can use tde:template-batch-insert() to insert multiple templates created by means of the element.
+
+context and vars identify XQuery elements or JSON properties by means of path expressions. Path expressions are based on XPath, which is described in Traversing JSON Documents Using XPath, and in XPath Quick Reference in the XQuery and XSLT Reference Guide.
+Collections
+
+<collections> reduces the scope of TDE template to documents that have the configured collections. Direct child properties or elements of <collections> are ORed together, while direct child properties or elements of <collections-and> are ANDed together. This table provides an example of how collections may be configured:
+Condition 	XML 	JSON
+
+col1 OR col2
+
+	
+
+<collections>
+  <collection>col1</collection>
+  <collection>col2</collection>
+</collections>
+
+	
+
+"collections": [
+  "col1",
+  "col2"
+]
+
+col1 OR (col2 AND col3)
+
+	
+
+<collections>
+  <collection>col1</collection>
+  <collections-and>
+    <collection>col2</collection>
+    <collection>col3</collection>
+  </collections-and>
+</collections>
+
+	
+
+"collections": [
+  "col1",
+  {
+    "collectionsAnd": [
+      "col1",
+      "col2"
+    ]
+  }
+]
+
+(col1 AND col2) OR (col3 AND col4)
+
+	
+
+<collections>
+  <collections-and>
+    <collection>col1</collection>
+    <collection>col2</collection>
+  </collections-and>
+  <collections-and>
+    <collection>col3</collection>
+    <collection>col4</collection>
+  </collections-and>
+</collections>
+
+	
+
+"collections": [
+  {
+    "collectionsAnd": [
+      "col1",
+      "col2"
+    ]
+  }, {
+    "collectionsAnd": [
+      "col3",
+      "col4"
+    ]
+  }
+]
+
+col1 AND (col2 OR col3)
+
+
+Not directly possible, but col1 can be distributed like this:
+
+(col1 AND col2) OR (col1 AND col3)
+
+	
+
+<collections>
+  <collections-and>
+    <collection>col1</collection>
+    <collection>col2</collection>
+  </collections-and>
+  <collections-and>
+    <collection>col1</collection>
+    <collection>col3</collection>
+  </collections-and>
+</collections>
+
+	
+
+"collections": [
+  {
+    "collectionsAnd": [
+      "col1",
+      "col2"
+    ]
+  }, {
+    "collectionsAnd": [
+      "col1",
+      "col3"
+    ]
+  }
+]
+
+Directories
+
+<directories> reduces the scope of TDE template to documents that have the configured directory. Direct child properties or elements of <directories> are ORed together. The listed directories behave the same way as cts:directory-query with the option infinity, rendering these examples equivalent.:
+CTS 	XML 	JSON
+
+cts.directoryQuery(
+  ['/1/', '/2/'],
+  'infinity'
+)
+
+	
+
+<directories>
+  <directory>/1/</directory>
+  <directory>/2/</directory>
+</directories>
+
+	
+
+"directories": [
+  "/1/", "/2/"
+]
+
+path-namespaces
+
+<path-namespaces> define namespace prefixes to be used across the rest of the TDE template. The target content to be extracted from the document is referenced using XPath expressions. These expressions may contain namespace prefixes that need to be defined using this TDE template element or property.
+
+Each entry under this element or property must contain these child properties or elements:
+
+    <prefix>: the namespace prefix.
+
+    <namespace-uri>: the namespace URI.
+
+This table shows an example of a <path-namespace> configuration and use:
+Use 	XML 	JSON
+
+"context": "/wb:Compound"
+
+	
+
+<path-namespaces>
+  <path-namespace>
+    <prefix>wb</prefix>
+    <namespace-uri>http://marklogic.com/wb</namespace-uri>
+  </path-namespace>
+</path-namespaces>
+
+	
+
+"pathNamespace":[
+  {
+    "prefix":"wb",
+    "namespaceUri":"http://marklogic.com/wb"
+  }
+]
+
+A template's <path-namespaces> is different from the database setting as described in Defining Namespace Prefixes Used in Path Range Indexes and Fields. TDE templates are stored in the corresponding schema database, while the database setting is configured on the content database. The content database setting is not available when the TDE template is parsed and validated. Additionally, a schema database may be used by multiple content databases, each of which may have a different translation of a given namespace prefix.
+Context
+
+The context tag defines the lookup node that is used for TDE template activation and data extraction. Path expressions occurring inside vars, rows, or triples are relative to the context element of their parent TDE template. The context defines an anchor in the XML/JSON tree where data is collected by walking up and down the tree relative to the anchor. Any indexable path expression is valid in the context element; therefore, predicates are allowed. The context element of a sub-template is relative to the context element of its parent TDE template.
+
+It is important to understand that context defines the node from which to extract the configured rows and triples. Depending on the configured <context>, a single document may project multiple rows. Given this document ...
+
+<order>
+  <order-num>10663</order-num>
+  <order-date>2017-01-15</order-date>
+  <items>
+    <item>
+      <product>SpeedPro Ultimate</product>
+      <price>999</price>
+      <quantity>1</quantity>
+    </item>
+    <item>
+      <product>Ladies Racer Helmet</product>
+      <price>115</price>
+      <quantity>1</quantity>
+    </item>
+  </items>
+</order>
+
+... this table describes the number of times each rows and triples entry will be evaluated for the document:
+XML 	JSON 	Count
+
+<context>/order</context>
+
+	
+
+"context":"/order"
+
+	1
+
+<context>/order/items/item</context>
+
+	
+
+"context":"/order/items/item"
+
+	2
+
+In the second <context>, you can still extract <order-num> using the parent axis (..):
+XML 	JSON
+
+<context>/order/items/item</context>
+<rows>
+  <row>
+    <columns>
+      <column>
+        ...
+        <val>../../order-num</val>
+      </column>
+
+	
+
+"context":"/order/items/item",
+"rows":[
+  {
+    "columns":[{
+      ...
+      "val": "../../order-num"
+    }]
+  }
+]
+
+Note:
+
+The context can be any path validated by cts:valid-tde-context(). It may contain wildcards, such as '*', but, for performance reasons, do not use wildcards unless their value outweighs the performance costs. It is best to use collection or directory scoping when wildcards are used in the context.
+Variables
+
+Variables are intermediate data projections that may be needed for data transformation in other parts of TDE template. These variables are defined under <var> elements. The expression inside the val code is relative to the context element of the current TDE template in which the var is defined. The projected value can then be referenced using ${var_name}. Variables can also reference other variables as shown in this table:
+XML 	JSON
+
+<template xmlns="http://marklogic.com/xdmp/tde">
+  <context>/Citation</context>
+  <vars>
+    <var>
+      <name>ID</name>     
+      <val>../ID</val>
+    </var>
+    <var>
+      <name>labeledID</name>
+      <val>fn:concat('ID: ', $ID)</val>
+    </var>
+  </vars>
+  <rows>
+    <row>
+      <columns>
+         <column>
+            <val>$labeledID</val>
+         </column>
+
+	
+
+{
+  "context": "/Citation",
+  "vars": [
+    {
+      "name": "ID",
+      "val": "../ID"
+    }, {
+      "name": "labeledID",
+      "val": "fn:concat('ID: ', $ID)"
+    },
+    "rows": [
+      "columns": [
+        {
+          "val": "$labeledID"
+        }
+      ]
+    ]
+  ]
+}
+
+Variables do not have scalar-type configured. The extracted value may be used for both triples and columns (under rows). Data typing is configured and enforced at the column level.
+
+See Template Dialect and Data Transformation Functions for the types of expressions allowed in val.
+TDE Template XPath
+
+Below is the complete grammar for the Restricted XPath, including all the supported constructs.
+
+RestrictedPathExpr ::= "/" |(PathExpr)* (("/" | "//") LeafExpr Predicates) 
+                     | SpecialFunctionExpr
+SpecialFunctionExpr::= ( "fn:doc(" ArgsExpr ")" )
+                     | ( "xdmp:document-properties(" ArgsExpr ")" )
+                     | ( "xdmp:document-locks(" ArgsExpr ")" )
+LeafExpr           ::= "(" UnionExpr ")" | LeafStep
+PathExpr           ::= ("/" RelativePathExpr?) | ("//" RelativePathExpr) 
+                     | RelativePathExpr
+RelativePathExpr   ::= UnionExpr | "(" UnionExpr ")"
+UnionExpr          ::= GeneralStepExpr ("|" GeneralStepExpr)*
+GeneralStepExpr    ::= ("/" | "//")? StepExpr (("./" | ".//")? StepExpr)*
+StepExpr           ::= ForwardStep Predicates
+ForwardStep        ::= (ForwardAxis AbbreviatedForwardStep) 
+                     | AbbreviatedForwardStep
+AbbreviatedForwardStep ::= "." | ("@" NameTest) | NameTest | KindTest
+LeafStep           ::= ("@"QName) | QName
+NameTest           ::= QName | Wildcard
+Wildcard           ::= "*" | "<" NCName ":" "*" ">" | "<" "*" ":" NCName ">"
+QName              ::= PrefixedName | UnprefixedName
+PrefixedName       ::= Prefix ":" LocalPart
+UnprefixedName     ::= LocalPart
+Prefix             ::= NCName
+LocalPart          ::= NCName
+NCName             ::= Name - (Char* ":" Char*)/* An XML Name, minus the ":" */
+Name               ::= NameStartChar (NameChar)*
+
+Predicates         ::= Predicate*
+Predicate          ::= PredicateExpr | "[" Digit+ "]"
+Digit              ::= [0-9]
+PredicateExpr      ::= "[" PredicateExpr "and" PredicateExpr "]"
+                     | "[" PredicateExpr "or" PredicateExpr  "]"
+                     | "[" ComparisonExpr "]" | "[" FunctionExpr "]"
+ComparisonExpr     ::= RelativePathExpr GeneralComp SequenceExpr 
+                     | RelativePathExpr ValueComp Literal 
+                     | PathExpr
+FunctionExpr       ::= FunctionCall GeneralComp SequenceExpr 
+                     | FunctionCall ValueComp Literal 
+                     | FunctionCall
+GeneralComp        ::= "=" | "!=" | "<" | "<=" | ">" | ">="
+ValueComp          ::= "eq" | "ne" | "lt" | "le" | "gt" | "ge"
+SequenceExpr       ::= Literal+
+Literal            ::= NumericLiteral | StringLiteral
+
+KindTest           ::= ElementTest
+                     | AttributeTest
+                     | CommentTest
+                     | TextTest
+                     | ArrayNodeTest
+                     | ObjectNodeTest
+                     | BooleanNodeTest
+                     | NumberNodeTest
+                     | NullNodeTest
+                     | AnyKindTest
+                     | DocumentTest
+                     | SchemaElementTest
+                     | SchemaAttributeTest
+                     | PITest
+TextTest           ::= "text" "(" ")"
+CommentTest        ::= "comment" "(" ")"
+AttributeTest       := "attribute" "(" (QNameOrWildcard ("," QName)?)? ")"
+ElementTest        ::= "element" "(" (QNameOrWildcard ("," QName "?"?)?)? ")"
+
+ArrayNodeTest      ::= "array-node" "(" NCName? ")"
+ObjectNodeTest     ::= "object-node" "(" NCName? ")"
+BooleanNodeTest    ::= "boolean-node" "(" ")"
+NumberNodeTest     ::= "number-node" "(" ")"
+NullNodeTest       ::= "null-node" "(" ")"
+AnyKindTest        ::= "node" "(" ")"
+DocumentTest       ::= "document-node" "(" (ElementTest | SchemaElementTest)
+                                             ? ")"
+SchemaElementTest  ::= "schema-element" "(" QName ")"
+SchemaAttributeTest::= "schema-attribute" "(" QName ")"
+PITest             ::= "processing-instruction" "( "(NCName | StringLiteral)
+                                                    ? ")"
+QNameOrWildcard    ::= QName | "*"
+
+TDE Template Dialect and Data Transformation Functions
+
+TDE Templates support an XQuery dialect containing only a subset of XQuery functions.
+
+The TDE template dialect supports the following types of expressions described in the Expressions section of the An XML Query Language specification:
+
+    Path Expressions
+
+    Sequence Expressions
+
+    Arithmetic Expressions
+
+    Comparison Expressions
+
+    Logical Expressions
+
+    Conditional Expressions
+
+    Expressions on SequenceTypes
+
+More complex operations like looping, FLWOR statements, iterations, and XML construction are not supported within the dialect. The property axis property:: is also not supported.
+
+These sections describe the supported XQuery functions:
+
+    Date and Time Functions
+    Logical Functions and Data validation
+    String Functions
+    Type Casting Functions
+    Mathematical Functions
+    Hashing Functions
+    Graph Functions
+    Geospatial Functions
+    Vector Functions
+    Miscellaneous Functions
+
+Note:
+
+Templates support only XQuery functions. JavaScript functions are not supported.
+Date and Time Functions
+fn:adjust-date-to-timezone() 	fn:adjust-dateTime-to-timezone() 	fn:adjust-time-to-timezone() 	fn:current-date()
+fn:current-dateTime() 	fn:current-time() 	fn:day-from-date() 	fn:day-from-dateTime()
+fn:days-from-duration() 	fn:format-date() 	fn:format-dateTime() 	fn:format-time()
+fn:hours-from-dateTime() 	fn:hours-from-duration() 	fn:hours-from-time() 	fn:implicit-timezone()
+fn:minutes-from-dateTime() 	fn:minutes-from-duration() 	fn:minutes-from-time() 	fn:month-from-date()
+fn:month-from-dateTime() 	fn:months-from-duration() 	fn:seconds-from-dateTime() 	fn:seconds-from-duration()
+fn:seconds-from-time() 	fn:timezone-from-date() 	fn:timezone-from-dateTime() 	fn:timezone-from-time()
+fn:year-from-date() 	fn:year-from-dateTime() 	fn:years-from-duration() 	sql:dateadd()
+sql:datediff() 	sql:datepart() 	sql:day() 	sql:dayname()
+sql:hours() 	sql:minutes() 	sql:month() 	sql:monthname()
+sql:quarter() 	sql:seconds() 	sql:timestampadd() 	sql:timestampdiff()
+sql:week() 	sql:weekday() 	sql:year() 	sql:yearday()
+xdmp:dayname-from-date() 	xdmp:parse-dateTime() 	xdmp:parse-yymmdd() 	xdmp:quarter-from-date()
+xdmp:week-from-date() 	xdmp:weekday-from-date() 	xdmp:yearday-from-date() 	
+Logical Functions and Data validation
+fn:boolean() 	fn:empty() 	fn:exists() 	fn:false()
+fn:not() 	fn:true() 	sql:ifnull() 	sql:nullif()
+sql:glob() 	xdmp:castable-as() 		
+String Functions
+fn:codepoint-equal() 	fn:codepoints-to-string() 	fn:compare() 	fn:concat()
+fn:contains() 	fn:encode-for-uri() 	fn:ends-with() 	fn:escape-html-uri()
+fn:escape-uri() 	fn:format-number() 	fn:insert-before() 	fn:iri-to-uri()
+fn:last() 	fn:lower-case() 	fn:matches() 	fn:normalize-space()
+fn:normalize-unicode() 	fn:position() 	fn:remove() 	fn:replace()
+fn:reverse() 	fn:starts-with() 	fn:string() 	fn:string-join()
+fn:string-length() 	fn:string-to-codepoints() 	fn:subsequence() 	fn:substring()
+fn:substring-after() 	fn:substring-before() 	fn:tokenize() 	fn:translate()
+fn:upper-case() 	sql:difference() 	sql:insert() 	sql:instr()
+sql:left() 	sql:like() 	sql:ltrim() 	sql:octet-length()
+sql:repeat() 	sql:right() 	sql:rtrim() 	sql:soundex()
+sql:space() 	sql:strpos() 	sql:trim() 	xdmp:diacritic-less()
+xdmp:initcap() 			
+Type Casting Functions
+xs:anyURI 	xs:base64Binary 	xs:boolean 	xs:byte
+xs:date 	xs:dateTime 	xs:dayTimeDuration 	xs:decimal
+xs:double 	xs:duration 	xs:float 	xs:gDay
+xs:gMonth 	xs:gMonthDay 	xs:gYear 	xs:gYearMonth
+xs:hexBinary 	xs:int 	xs:integer 	xs:language
+xs:long 	xs:Name 	xs:NCName 	xs:negativeInteger
+xs:NMTOKEN 	xs:nonNegativeInteger 	xs:nonPositiveInteger 	xs:normalizedString
+xs:numeric 	xs:positiveInteger 	xs:QName 	xs:short
+xs:string 	xs:time 	xs:token 	xs:unsignedByte
+xs:unsignedInt 	xs:unsignedLong 	xs:unsignedShort 	xs:untypedAtomic
+xs:yearMonthDuration 			
+Mathematical Functions
+fn:abs() 	fn:avg() 	fn:ceiling() 	fn:count()
+fn:floor() 	fn:max() 	fn:min() 	fn:round()
+fn:round-half-to-even() 	fn:sum() 	math:acos() 	math:asin()
+math:atan() 	math:atan2() 	math:ceil() 	math:cos()
+math:cosh() 	math:cot() 	math:degrees() 	math:exp()
+math:fabs() 	math:floor() 	math:fmod() 	math:frexp()
+math:ldexp() 	math:log() 	math:log10() 	math:modf()
+math:pi() 	math:pow() 	math:radians() 	math:sin()
+math:sinh() 	math:sqrt() 	math:tan() 	math:tanh()
+math:trunc() 	sql:rand() 	sql:sign() 	
+Hashing Functions
+xdmp:hash32() 	xdmp:hash64() 	xdmp:hmac-md5() 	xdmp:hmac-sha1()
+xdmp:hmac-sha256() 	xdmp:hmac-sha512() 	xdmp:md5() 	xdmp:sha1()
+xdmp:sha256() 	xdmp:sha384() 	xdmp:sha512() 	
+Graph Functions
+rdf:langString() 	rdf:langString-language() 	sem:bnode() 	sem:datatype()
+sem:invalid() 	sem:invalid-datatype() 	sem:iri() 	sem:iri-to-QName()
+sem:lang() 	sem:QName-to-iri() 	sem:sameTerm() 	sem:typed-literal()
+sem:unknown() 	sem:unknown-datatype() 	sem:uuid() 	sem:uuid-string()
+Geospatial Functions
+cts:box() 	cts:box-east() 	cts:box-north() 	cts:box-south()
+cts:box-west() 	cts:circle() 	cts:circle-center() 	cts:circle-radius()
+cts:complex-polygon() 	cts:complex-polygon-inner() 	cts:complex-polygon-outer() 	cts:distance()
+cts:linestring() 	cts:linestring-vertices() 	cts:parse-wkt() 	cts:point()
+cts:point-latitude() 	cts:point-longitude() 	cts:polygon() 	cts:polygon-vertices()
+cts:to-wkt() 	geo:approx-center() 	geo:box-polygon() 	geo:circle-polygon()
+geo:contains() 	geo:covered-by() 	geo:covers() 	geo:crosses()
+geo:disjoint() 	geo:equals() 	geo:intersects() 	geo:overlaps()
+geo:parse-wkb() 	geo:touches() 	geo:within() 	
+Vector Functions
+vec:add() 	vec:base64-decode() 	vec:base64-encode() 	vec:cosine()
+vec:cosine-distance() 	vec:dimension() 	vec:dot-product() 	vec:euclidean-distance()
+vec:get() 	vec:magnitude() 	vec:normalize() 	vec:subtract()
+vec:subvector() 	vec:vector() 	vec:vector-score() 	
+Miscellaneous Functions
+cts:quality() 	fn:base-uri() 	fn:data() 	fn:document-uri()
+fn:generate-id() 	fn:head() 	fn:lang() 	fn:local-name()
+fn:name() 	fn:namespace-uri() 	fn:namespace-uri-for-prefix() 	fn:node-name()
+fn:number() 	fn:resolve-QName() 	fn:root() 	fn:tail()
+sql:bit-length() 	sql:bucket() 	sql:collatedString-collation() 	xdmp:node-collections()
+xdmp:node-kind() 	xdmp:node-metadata() 	xdmp:node-metadata-value() 	xdmp:node-permissions()
+xdmp:node-uri() 	xdmp:path() 	xdmp:resolve-uri() 	xdmp:type()
+Creating Nested TDE Templates
+
+You can nest TDE template configurations in one TDE template document. This example shows how to nest three TDE templates so that each child template is within the context of its parent templat. There is no limit to the nesting of TDE templates.
+
+XML
+
+<template xmlns="http://marklogic.com/xdmp/tde">
+  <context>/Citation</context>
+  ...
+  <templates>
+    <template>
+      <!-- Nested child TDE template -->
+      <!-- context path relative to the parent context: /Citation -->
+      <context>Article/Journal/JournalIssue</context>
+      ...
+      <templates>
+        <template>
+        <!-- Nested child TDE template -->
+        <!-- context path relative to the parent context:
+              Article/Journal/JournalIssue -->
+        <context>PubDate</context>
+
+JSON
+
+{
+  "template": {
+    "context": "/Citation",
+    ...
+    "templates": [
+      {
+        // Nested child TDE template 
+        // context path relative to the parent context: /Citation
+        "context": "Article/Journal/JournalIssue",
+        ...
+        "templates": [
+          {
+            // Nested child TDE template
+            // context path relative to the parent context:
+            //    Article/Journal/JournalIssue
+            "context": "PubDate",
+
+Each TDE template can have its own vars, rows, triples and path-namespaces configurations--all anchored on the local context.
+Validating a TDE Template
+
+Always validate the TDE template before inserting the TDE template document into a schema database. To validate a TDE template, use tde:validate() like this:
+
+JavaScript
+
+'use strict';
+
+const tde = require("/MarkLogic/tde.xqy");
+
+let viewTemplate = xdmp.toJSON({
+  "template": {
+    ...
+  }
+})
+
+tde.validate([viewTemplate])
+
+XQuery
+
+xquery version "1.0-ml";
+
+import module namespace tde = "http://marklogic.com/xdmp/tde" 
+  at "/MarkLogic/tde.xqy";
+
+let $viewTemplate :=
+  <template xmlns="http://marklogic.com/xdmp/tde">
+    ...
+  </template>
+return tde:validate($viewTemplate)
+
+The function call returns this response:
+XQuery 	SJS
+
+<map:map
+    xmlns:map="http://marklogic.com/xdmp/map"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  >
+  <map:entry key="valid">
+    <map:value xsi:type="xs:boolean">true</map:value>
+  </map:entry>
+</map:map>
+
+	
+
+{
+  "valid":true
+}
+
+Note:
+
+Do not use xdmp:validate() to validate your TDE template because it may miss validation steps specific to TDE templates.
+
+After confirming that the TDE template is valid, insert it into the content database's schema database.
+Inserting a TDE Template
+
+You must have the tde-admin role and the any-uri execute privilege to create TDE templates.
+
+MarkLogic Server expects the TDE template to be stored in the schema database configured for your content database. So, for best performance, configure a dedicated schema database for your content database. TDE templates trigger extraction for all documents that match the configured collections, directories, and context. So, using the same schema database (for example, Schemas) for multiple content databases may result in unexpected indexing behavior on the content databases.
+
+tde:template-insert() is a convenience function executed on the content database to complete these tasks:
+
+    Validate the TDE template.
+    Insert the TDE template document into the schema database.
+    Assign the http://marklogic.com/xdmp/tde collection to the TDE template document.
+    Assign the permissions to the TDE template document.
+    Trigger a database reindex.
+
+tde:template-batch-insert() inserts multiple TDE templates.
+
+JavaScript
+
+'use strict';
+
+declareUpdate();
+
+const tde = require("/MarkLogic/tde.xqy");
+
+let viewTemplate = xdmp.toJSON({
+  "template": {
+    ...
+  }
+})
+tde.templateInsert(
+  "Template.json",
+  viewTemplate
+)
+
+XQuery
+
+xquery version "1.0-ml";
+
+import module namespace tde = "http://marklogic.com/xdmp/tde" 
+  at "/MarkLogic/tde.xqy";
+
+let $viewTemplate :=
+  <template xmlns="http://marklogic.com/xdmp/tde">
+    ...
+  </template>
+
+return tde:template-insert(
+  "Template.xml",
+  $viewTemplate
+)
+
+You can also insert a TDE template document into the schema database with any document-insertion method as long as you also assign the http://marklogic.com/xdmp/tde collection to the TDE template document.
+
+JavaScript
+
+'use strict';
+
+let viewTemplate = xdmp.toJSON({
+  "template": {
+    ...
+  }
+})
+
+xdmp.invokeFunction(
+  function(){
+    declareUpdate();
+
+    xdmp.documentInsert(
+      "Template.json", 
+      viewTemplate, 
+      {
+        "collections" : "http://marklogic.com/xdmp/tde"
+      }
+    )
+  }, {
+    "database": xdmp.schemaDatabase()
+  }
+)
+
+XQuery
+
+xquery version "1.0-ml";
+
+let $viewTemplate :=
+  <template xmlns="http://marklogic.com/xdmp/tde">
+    ...
+  </template>
+return xdmp:invoke-function(
+  function(){
+    xdmp:document-insert(
+      "Template.xml",
+      $viewTemplate,
+      map:map()
+        => map:with("collections", ("http://marklogic.com/xdmp/tde"))
+    )
+  }
+  ,
+  map:map()
+    => map:with("database", xdmp:schema-database())
+)
+
+Note:
+
+When a TDE template document is inserted, only those document fragments affected by the TDE template are reindexed.
+Enabling and Disabling TDE Templates
+
+A template can be enabled or disabled by setting its <enabled> flag to either true or false.
+
+This example shows how to disable a TDE template by setting its <enabled> flag to false:
+
+JavaScript
+
+'use strict';
+
+declareUpdate();
+
+const tde = require("/MarkLogic/tde.xqy");
+
+let viewTemplate = xdmp.toJSON({
+  "template": {
+    "enabled": false,
+    ...
+  }
+})
+tde.templateInsert(
+  "Template.json",
+  viewTemplate
+)
+
+XQuery
+
+xquery version "1.0-ml";
+
+import module namespace tde = "http://marklogic.com/xdmp/tde" 
+  at "/MarkLogic/tde.xqy";
+
+let $viewTemplate :=
+  <template xmlns="http://marklogic.com/xdmp/tde">
+    <enabled>false</enabled>
+    ...
+  </template>
+return tde:template-insert(
+  "Template.xml",
+  $viewTemplate
+)
+
+Data extraction and reindexing starts automatically whenever a TDE template is enabled or disabled.
+Deleting TDE Templates
+
+Note:
+
+Disable the TDE template before deleting the TDE template document.
+
+Data extracted by TDE templates, based on both configured rows and triples, are stored as special triples in your content database. These triples are not reflected in the database status page as part of the document or fragment count.
+
+Removing a TDE template by directly deleting the TDE template document in the corresponding schemas database immediately removes access to any configured view. However, the extracted data remains accessible using SPARQL, the REST API (/v1/graphs/sparql), and functions like cts:triples() until a reindex is triggered and completed.
+
+These actions cause a reindex:
+
+    Re-adding a TDE template with the same value for context.
+
+    Manually triggering a reindex through the Admin Interface, the Management API, or the Management REST API.

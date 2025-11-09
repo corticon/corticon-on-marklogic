@@ -1,0 +1,1336 @@
+{
+    "payload": {
+        "familyName": "Syseland",
+        "householdId": 719,
+        "individual": [
+            {
+                "bornToMedicaidMother": false,
+                "citizenshipStatus": "refugee",
+                "dateOfBirth": "1974-03-15",
+                "employmentStatus": "retired",
+                "enrolledInPathwaysProgram": false,
+                "excludedCOLAIncreases": 50.5,
+                "first": "Edeline",
+                "hcbsWaiverEnrollment": "CCSP",
+                "incurredMedicalExpenses": 731.16,
+                "institutionalStayDays": 11,
+                "isMedicareEntitled": true,
+                "isPregnant": false,
+                "last": "Syseland",
+                "lostEligibilityDueToIncomeChange": false,
+                "lostSSIDueToCOLA": false,
+                "lostSSIDueToSSATitleIIBenefit": false,
+                "maritalStatus": "divorced",
+                "medicarePartAEnrolled": false,
+                "medicarePartBEnrolled": false,
+                "medicarePartDEnrolled": true,
+                "monthlyIncome": 319.67,
+                "pregnantWithinLast12Months": false,
+                "qualifyingActivity": [
+                    {
+                        "hrsPerMonth": 3,
+                        "type": "Parent and Legal Guardian of a Child under the Age of Six (6)"
+                    },
+                    {
+                        "hrsPerMonth": 18,
+                        "type": "Job Readiness Programs"
+                    },
+                    {
+                        "hrsPerMonth": 7,
+                        "type": "Employment"
+                    }
+                ],
+                "receivesExtraHelpPartD": false,
+                "receivesMedicarePremiumAssistance": false,
+                "receivesSSABenefitsType": "disabledWidowRecord",
+                "relationToApplicant": "stepChild",
+                "relationToDeceasedWageEarner": "cousin",
+                "ssaDisabilityStatus": "blind",
+                "ssn": "853-92-2888",
+                "stateOfResidence": "GA",
+                "wasMedicaidRecipient": true,
+                "wasSSIRecipient": true,
+                "age": 51,
+                "isResidentGA": true,
+                "isCitizenOrQualifiedResident": true,
+                "hasValidSSN": true,
+                "isDisabledOrBlind": true,
+                "requiresInstitutionalCare": true,
+                "isDependentChild": true,
+                "entitledToSSABenefitsBasedOnOther": true,
+                "isHCBSWaiverParticipant": true,
+                "isABDPopulation": true,
+                "isSpecialPopulation": true,
+                "classOfAssistance": [
+                    {
+                        "name": "Supplemental Security Income (SSI) Medicaid",
+                        "incomeThreshold": 16432.5,
+                        "resourceTestPassed": true,
+                        "incomeTestPassed": true,
+                        "group": "SSI and SSI-Derived",
+                        "priorityForGroup": 1
+                    },
+                    {
+                        "name": "Hospital",
+                        "incomeThreshold": 49297.5,
+                        "resourceThreshold": 2000,
+                        "incomeTestPassed": true,
+                        "group": "Institutional & Waiver-Based",
+                        "priorityForGroup": 3
+                    },
+                    {
+                        "name": "ABD Medically Needy",
+                        "incomeTestPassed": true,
+                        "resourceTestPassed": true
+                    }
+                ],
+                "eligibilityNote": [
+                    {
+                        "text": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  Supplemental Security Income (SSI) Medicaid"
+                    },
+                    {
+                        "text": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  Hospital"
+                    },
+                    {
+                        "text": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  ABD Medically Needy"
+                    },
+                    {
+                        "text": "Syseland family has 1 members, is under federal poverty line if their net household income is less than 15650"
+                    },
+                    {
+                        "text": "Syseland family has a net household income which is 24.511437699680511182 % of the federal poverty level."
+                    },
+                    {
+                        "text": "Income threshold for the Supplemental Security Income (SSI) Medicaid class of assistance is 16432.5 ."
+                    },
+                    {
+                        "text": "Income threshold for the Hospital class of assistance is 49297.5 . Resource limit is $2000."
+                    },
+                    {
+                        "text": "Edeline Syseland's household has net annual income of $3836.04, which meets requisite income limit for the Supplemental Security Income (SSI) Medicaid class of assistance for households of their size, $16432.5."
+                    },
+                    {
+                        "text": "Edeline Syseland's household has net annual income of $3836.04, which meets requisite income limit for the Hospital class of assistance for households of their size, $49297.5."
+                    }
+                ]
+            }
+        ],
+        "stateOfResidence": "GA",
+        "annualIncome": 3836.04,
+        "monthlyIncome": 319.67,
+        "familySize": 1,
+        "FPLValue": 15650,
+        "householdPercentFPL": 0.245114376996805,
+        "corticon": {
+            "messages": {
+                "message": []
+            },
+            "Metrics": {
+                "attributeChanges": [
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Initialization.ers",
+                        "ruleNumber": "A0",
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "age",
+                        "afterValue": 51,
+                        "sequence": 1
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Initialization.ers",
+                        "ruleNumber": "B0",
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "annualIncome",
+                        "afterValue": 3836.04,
+                        "sequence": 2
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Initialization.ers",
+                        "ruleNumber": "C0",
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "monthlyIncome",
+                        "afterValue": 319.67,
+                        "sequence": 3
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Initialization.ers",
+                        "ruleNumber": "D0",
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "familySize",
+                        "afterValue": 1,
+                        "sequence": 4
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isResidentGA",
+                        "afterValue": true,
+                        "sequence": 5
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 2,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isCitizenOrQualifiedResident",
+                        "afterValue": true,
+                        "sequence": 6
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "hasValidSSN",
+                        "afterValue": true,
+                        "sequence": 7
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 6,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isDisabledOrBlind",
+                        "afterValue": true,
+                        "sequence": 8
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 9,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "requiresInstitutionalCare",
+                        "afterValue": true,
+                        "sequence": 9
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 14,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isDependentChild",
+                        "afterValue": true,
+                        "sequence": 10
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 17,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "entitledToSSABenefitsBasedOnOther",
+                        "afterValue": true,
+                        "sequence": 11
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 19,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isHCBSWaiverParticipant",
+                        "afterValue": true,
+                        "sequence": 12
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 23,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isABDPopulation",
+                        "afterValue": true,
+                        "sequence": 13
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 27,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isSpecialPopulation",
+                        "afterValue": true,
+                        "sequence": 14
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "name",
+                        "afterValue": "Supplemental Security Income (SSI) Medicaid",
+                        "sequence": 15
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "EligibilityNote_id_1",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  Supplemental Security Income (SSI) Medicaid",
+                        "sequence": 18
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "name",
+                        "afterValue": "Hospital",
+                        "sequence": 21
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "entityCorticonId": "EligibilityNote_id_2",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  Hospital",
+                        "sequence": 24
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "entityCorticonId": "ClassOfAssistance_id_3",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "name",
+                        "afterValue": "ABD Medically Needy",
+                        "sequence": 27
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "entityCorticonId": "EligibilityNote_id_3",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  ABD Medically Needy",
+                        "sequence": 30
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "FPLValue",
+                        "afterValue": 15650,
+                        "sequence": 33
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "B0",
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "householdPercentFPL",
+                        "afterValue": 0.245114376996805,
+                        "sequence": 34
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "C0",
+                        "entityCorticonId": "EligibilityNote_id_4",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Syseland family has 1 members, is under federal poverty line if their net household income is less than 15650",
+                        "sequence": 35
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "D0",
+                        "entityCorticonId": "EligibilityNote_id_5",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Syseland family has a net household income which is 24.511437699680511182 % of the federal poverty level.",
+                        "sequence": 38
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeThreshold",
+                        "afterValue": 16432.5,
+                        "sequence": 41
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "EligibilityNote_id_6",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Income threshold for the Supplemental Security Income (SSI) Medicaid class of assistance is 16432.5 .",
+                        "sequence": 42
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeThreshold",
+                        "afterValue": 49297.5,
+                        "sequence": 45
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "resourceThreshold",
+                        "afterValue": 2000,
+                        "sequence": 46
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "entityCorticonId": "EligibilityNote_id_7",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Income threshold for the Hospital class of assistance is 49297.5 . Resource limit is $2000.",
+                        "sequence": 47
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 5,
+                        "entityCorticonId": "ClassOfAssistance_id_3",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeTestPassed",
+                        "afterValue": true,
+                        "sequence": 50
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 6,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "resourceTestPassed",
+                        "afterValue": true,
+                        "sequence": 51
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 6,
+                        "entityCorticonId": "ClassOfAssistance_id_3",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "resourceTestPassed",
+                        "afterValue": true,
+                        "sequence": 52
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeTestPassed",
+                        "afterValue": true,
+                        "sequence": 53
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "EligibilityNote_id_8",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland's household has net annual income of $3836.04, which meets requisite income limit for the Supplemental Security Income (SSI) Medicaid class of assistance for households of their size, $16432.5.",
+                        "sequence": 54
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeTestPassed",
+                        "afterValue": true,
+                        "sequence": 57
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "EligibilityNote_id_9",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland's household has net annual income of $3836.04, which meets requisite income limit for the Hospital class of assistance for households of their size, $49297.5.",
+                        "sequence": 58
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Group Prioritization.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "group",
+                        "afterValue": "SSI and SSI-Derived",
+                        "sequence": 61
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Group Prioritization.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "priorityForGroup",
+                        "afterValue": 1,
+                        "sequence": 62
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Group Prioritization.ers",
+                        "ruleNumber": 11,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "group",
+                        "afterValue": "Institutional & Waiver-Based",
+                        "sequence": 63
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Group Prioritization.ers",
+                        "ruleNumber": 11,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "priorityForGroup",
+                        "afterValue": 3,
+                        "sequence": 64
+                    }
+                ],
+                "associationChanges": [
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "classOfAssistance",
+                        "targetEntityName": "ClassOfAssistance",
+                        "targetEntityCorticonId": "ClassOfAssistance_id_1",
+                        "action": "Add",
+                        "sequence": 17
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_1",
+                        "action": "Add",
+                        "sequence": 20
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "classOfAssistance",
+                        "targetEntityName": "ClassOfAssistance",
+                        "targetEntityCorticonId": "ClassOfAssistance_id_2",
+                        "action": "Add",
+                        "sequence": 23
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_2",
+                        "action": "Add",
+                        "sequence": 26
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "classOfAssistance",
+                        "targetEntityName": "ClassOfAssistance",
+                        "targetEntityCorticonId": "ClassOfAssistance_id_3",
+                        "action": "Add",
+                        "sequence": 29
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_3",
+                        "action": "Add",
+                        "sequence": 32
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "C0",
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_4",
+                        "action": "Add",
+                        "sequence": 37
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "D0",
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_5",
+                        "action": "Add",
+                        "sequence": 40
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 1,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_6",
+                        "action": "Add",
+                        "sequence": 44
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_7",
+                        "action": "Add",
+                        "sequence": 49
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_8",
+                        "action": "Add",
+                        "sequence": 56
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_9",
+                        "action": "Add",
+                        "sequence": 60
+                    }
+                ],
+                "entityChanges": [
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "entityName": "ClassOfAssistance",
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "action": "New",
+                        "sequence": 16
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_1",
+                        "action": "New",
+                        "sequence": 19
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "entityName": "ClassOfAssistance",
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "action": "New",
+                        "sequence": 22
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_2",
+                        "action": "New",
+                        "sequence": 25
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "entityName": "ClassOfAssistance",
+                        "entityCorticonId": "ClassOfAssistance_id_3",
+                        "action": "New",
+                        "sequence": 28
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_3",
+                        "action": "New",
+                        "sequence": 31
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "C0",
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_4",
+                        "action": "New",
+                        "sequence": 36
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "D0",
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_5",
+                        "action": "New",
+                        "sequence": 39
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 1,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_6",
+                        "action": "New",
+                        "sequence": 43
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_7",
+                        "action": "New",
+                        "sequence": 48
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_8",
+                        "action": "New",
+                        "sequence": 55
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_9",
+                        "action": "New",
+                        "sequence": 59
+                    }
+                ]
+            },
+            "timestamp": "2025-11-09T16:13:28.479Z",
+            "status": "success"
+        }
+    },
+    "corticon": {
+        "execution": {
+            "messages": {
+                "message": []
+            },
+            "Metrics": {
+                "attributeChanges": [
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Initialization.ers",
+                        "ruleNumber": "A0",
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "age",
+                        "afterValue": 51,
+                        "sequence": 1
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Initialization.ers",
+                        "ruleNumber": "B0",
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "annualIncome",
+                        "afterValue": 3836.04,
+                        "sequence": 2
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Initialization.ers",
+                        "ruleNumber": "C0",
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "monthlyIncome",
+                        "afterValue": 319.67,
+                        "sequence": 3
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Initialization.ers",
+                        "ruleNumber": "D0",
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "familySize",
+                        "afterValue": 1,
+                        "sequence": 4
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isResidentGA",
+                        "afterValue": true,
+                        "sequence": 5
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 2,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isCitizenOrQualifiedResident",
+                        "afterValue": true,
+                        "sequence": 6
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "hasValidSSN",
+                        "afterValue": true,
+                        "sequence": 7
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 6,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isDisabledOrBlind",
+                        "afterValue": true,
+                        "sequence": 8
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 9,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "requiresInstitutionalCare",
+                        "afterValue": true,
+                        "sequence": 9
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 14,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isDependentChild",
+                        "afterValue": true,
+                        "sequence": 10
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 17,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "entitledToSSABenefitsBasedOnOther",
+                        "afterValue": true,
+                        "sequence": 11
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 19,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isHCBSWaiverParticipant",
+                        "afterValue": true,
+                        "sequence": 12
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 23,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isABDPopulation",
+                        "afterValue": true,
+                        "sequence": 13
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/Derived Eligibility Flags.ers",
+                        "ruleNumber": 27,
+                        "entityCorticonId": "Individual_id_1",
+                        "entityName": "Individual",
+                        "attributeName": "isSpecialPopulation",
+                        "afterValue": true,
+                        "sequence": 14
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "name",
+                        "afterValue": "Supplemental Security Income (SSI) Medicaid",
+                        "sequence": 15
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "EligibilityNote_id_1",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  Supplemental Security Income (SSI) Medicaid",
+                        "sequence": 18
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "name",
+                        "afterValue": "Hospital",
+                        "sequence": 21
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "entityCorticonId": "EligibilityNote_id_2",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  Hospital",
+                        "sequence": 24
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "entityCorticonId": "ClassOfAssistance_id_3",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "name",
+                        "afterValue": "ABD Medically Needy",
+                        "sequence": 27
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "entityCorticonId": "EligibilityNote_id_3",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland meets non financial eligibility criteria for the class of assistance -  ABD Medically Needy",
+                        "sequence": 30
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "FPLValue",
+                        "afterValue": 15650,
+                        "sequence": 33
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "B0",
+                        "entityCorticonId": "Household_id_1",
+                        "entityName": "Household",
+                        "attributeName": "householdPercentFPL",
+                        "afterValue": 0.245114376996805,
+                        "sequence": 34
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "C0",
+                        "entityCorticonId": "EligibilityNote_id_4",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Syseland family has 1 members, is under federal poverty line if their net household income is less than 15650",
+                        "sequence": 35
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "D0",
+                        "entityCorticonId": "EligibilityNote_id_5",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Syseland family has a net household income which is 24.511437699680511182 % of the federal poverty level.",
+                        "sequence": 38
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeThreshold",
+                        "afterValue": 16432.5,
+                        "sequence": 41
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "EligibilityNote_id_6",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Income threshold for the Supplemental Security Income (SSI) Medicaid class of assistance is 16432.5 .",
+                        "sequence": 42
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeThreshold",
+                        "afterValue": 49297.5,
+                        "sequence": 45
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "resourceThreshold",
+                        "afterValue": 2000,
+                        "sequence": 46
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "entityCorticonId": "EligibilityNote_id_7",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Income threshold for the Hospital class of assistance is 49297.5 . Resource limit is $2000.",
+                        "sequence": 47
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 5,
+                        "entityCorticonId": "ClassOfAssistance_id_3",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeTestPassed",
+                        "afterValue": true,
+                        "sequence": 50
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 6,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "resourceTestPassed",
+                        "afterValue": true,
+                        "sequence": 51
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 6,
+                        "entityCorticonId": "ClassOfAssistance_id_3",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "resourceTestPassed",
+                        "afterValue": true,
+                        "sequence": 52
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeTestPassed",
+                        "afterValue": true,
+                        "sequence": 53
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "EligibilityNote_id_8",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland's household has net annual income of $3836.04, which meets requisite income limit for the Supplemental Security Income (SSI) Medicaid class of assistance for households of their size, $16432.5.",
+                        "sequence": 54
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "incomeTestPassed",
+                        "afterValue": true,
+                        "sequence": 57
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityCorticonId": "EligibilityNote_id_9",
+                        "entityName": "EligibilityNote",
+                        "attributeName": "text",
+                        "afterValue": "Edeline Syseland's household has net annual income of $3836.04, which meets requisite income limit for the Hospital class of assistance for households of their size, $49297.5.",
+                        "sequence": 58
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Group Prioritization.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "group",
+                        "afterValue": "SSI and SSI-Derived",
+                        "sequence": 61
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Group Prioritization.ers",
+                        "ruleNumber": 1,
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "priorityForGroup",
+                        "afterValue": 1,
+                        "sequence": 62
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Group Prioritization.ers",
+                        "ruleNumber": 11,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "group",
+                        "afterValue": "Institutional & Waiver-Based",
+                        "sequence": 63
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Group Prioritization.ers",
+                        "ruleNumber": 11,
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "entityName": "ClassOfAssistance",
+                        "attributeName": "priorityForGroup",
+                        "afterValue": 3,
+                        "sequence": 64
+                    }
+                ],
+                "associationChanges": [
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "classOfAssistance",
+                        "targetEntityName": "ClassOfAssistance",
+                        "targetEntityCorticonId": "ClassOfAssistance_id_1",
+                        "action": "Add",
+                        "sequence": 17
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_1",
+                        "action": "Add",
+                        "sequence": 20
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "classOfAssistance",
+                        "targetEntityName": "ClassOfAssistance",
+                        "targetEntityCorticonId": "ClassOfAssistance_id_2",
+                        "action": "Add",
+                        "sequence": 23
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_2",
+                        "action": "Add",
+                        "sequence": 26
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "classOfAssistance",
+                        "targetEntityName": "ClassOfAssistance",
+                        "targetEntityCorticonId": "ClassOfAssistance_id_3",
+                        "action": "Add",
+                        "sequence": 29
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_3",
+                        "action": "Add",
+                        "sequence": 32
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "C0",
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_4",
+                        "action": "Add",
+                        "sequence": 37
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "D0",
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_5",
+                        "action": "Add",
+                        "sequence": 40
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 1,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_6",
+                        "action": "Add",
+                        "sequence": 44
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_7",
+                        "action": "Add",
+                        "sequence": 49
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_8",
+                        "action": "Add",
+                        "sequence": 56
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "sourceEntityName": "Individual",
+                        "sourceEntityCorticonId": "Individual_id_1",
+                        "associationRoleName": "eligibilityNote",
+                        "targetEntityName": "EligibilityNote",
+                        "targetEntityCorticonId": "EligibilityNote_id_9",
+                        "action": "Add",
+                        "sequence": 60
+                    }
+                ],
+                "entityChanges": [
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "entityName": "ClassOfAssistance",
+                        "entityCorticonId": "ClassOfAssistance_id_1",
+                        "action": "New",
+                        "sequence": 16
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 1,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_1",
+                        "action": "New",
+                        "sequence": 19
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "entityName": "ClassOfAssistance",
+                        "entityCorticonId": "ClassOfAssistance_id_2",
+                        "action": "New",
+                        "sequence": 22
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 13,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_2",
+                        "action": "New",
+                        "sequence": 25
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "entityName": "ClassOfAssistance",
+                        "entityCorticonId": "ClassOfAssistance_id_3",
+                        "action": "New",
+                        "sequence": 28
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Non Financial Criteria/ClassOfAssistance.ers",
+                        "ruleNumber": 20,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_3",
+                        "action": "New",
+                        "sequence": 31
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "C0",
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_4",
+                        "action": "New",
+                        "sequence": 36
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/FPL.ers",
+                        "ruleNumber": "D0",
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_5",
+                        "action": "New",
+                        "sequence": 39
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 1,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_6",
+                        "action": "New",
+                        "sequence": 43
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Aged, Blind, and Disabled (ABD) Groups.ers",
+                        "ruleNumber": 14,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_7",
+                        "action": "New",
+                        "sequence": 48
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_8",
+                        "action": "New",
+                        "sequence": 55
+                    },
+                    {
+                        "rulesheetName": "file:/C:/Users/smeldon/Workspaces/Corticon.js/2.4/Georgia Medicaid Eligibility/Financial Criteria/Financial Eligibility.ers",
+                        "ruleNumber": 3,
+                        "entityName": "EligibilityNote",
+                        "entityCorticonId": "EligibilityNote_id_9",
+                        "action": "New",
+                        "sequence": 59
+                    }
+                ]
+            },
+            "timestamp": "2025-11-09T16:13:28.479Z",
+            "status": "success"
+        },
+        "inputPayloadUri": "/input/medicaid/719.json",
+        "timestamp": "2025-11-09T11:13:28.4684747-05:00",
+        "enrichmentVersion": "2.0"
+    }
+}
