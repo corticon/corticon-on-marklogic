@@ -86,9 +86,11 @@
   <!-- 🟩 CHANGE #1: Use apply="raw" so full JSON docs are returned, not just snippets -->
   <transform-results apply="raw"/>
 
-  <!-- 🟩 CHANGE #2: Ensure full payload is included in results -->
+  <!-- 🟩 CHANGE #2: Ensure payload and corticon nodes are included in results -->
   <extract-document-data selected="include">
     <extract-path>/payload</extract-path>
+    <extract-path>/corticon</extract-path>
+    <extract-path>/payload/corticon</extract-path>
   </extract-document-data>
 
   <!-- Sorting options -->

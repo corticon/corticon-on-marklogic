@@ -18,14 +18,12 @@ export default function Dashboard() {
 
   const tabs = [
     { id: "search", label: "🔎 Search" },
-    { id: "map", label: "🗺️ Map" },
     { id: "chat", label: "💬 Chatbot" },
   ];
 
   const renderContent = () => {
     switch (activeTab) {
-      case "map":
-        return <HouseholdsByState />;
+
       case "chat":
         return <ChatbotPanel />;
       default:

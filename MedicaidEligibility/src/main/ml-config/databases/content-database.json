@@ -83,6 +83,39 @@
       "collation": "http://marklogic.com/collation/codepoint",
       "range-value-positions": false,
       "invalid-values": "reject"
-    }
+    },
+    {
+  "scalar-type": "decimal",
+  "path-expression": "/payload/annualIncome",
+  "range-value-positions": false,
+  "invalid-values": "ignore"
+},
+{
+  "scalar-type": "string",
+  "path-expression": "/payload/individual/eligibilityNote/text",
+  "collation": "http://marklogic.com/collation/",
+  "range-value-positions": false,
+  "invalid-values": "ignore"
+},
+{
+  "scalar-type": "string",
+  "path-expression": "/payload/individual/classOfAssistance/incomeTestPassed",
+  "collation": "http://marklogic.com/collation/codepoint",
+  "range-value-positions": false,
+  "invalid-values": "ignore"
+},
+{
+  "scalar-type": "string",
+  "path-expression": "/payload/individual/classOfAssistance/resourceTestPassed",
+  "collation": "http://marklogic.com/collation/codepoint",
+  "range-value-positions": false,
+  "invalid-values": "ignore"
+},
+{
+  "scalar-type": "int",
+  "path-expression": "/payload/individual/classOfAssistance/priorityForGroup",
+  "range-value-positions": false,
+  "invalid-values": "ignore"
+}
   ]
 }

@@ -17,7 +17,11 @@ export default function HouseholdSearch() {
     const results = searchResponse?.results || [];
     return results
       .map((r) => {
-        const p = r?.extracted?.content?.[0]?.payload;
+        // Prefer extracted nodes; fall back to full content
+        const extracted = r?.extracted?.content?.[0] || null;
+        const full = Array.isArray(r?.content) ? r?.content?.[0] : r?.content;
+        const doc = extracted || full || {};
+        const p = doc?.payload;
         if (!p) return null;
 
         const members = p.individual
@@ -27,18 +31,37 @@ export default function HouseholdSearch() {
 
         const primary = p.individual?.[0]?.classOfAssistance?.[0]?.name || "";
         const notes = p.individual?.[0]?.eligibilityNote?.map((n) => n.text) || [];
+        // Extract Corticon execution metadata (support both shapes and fall back to full doc)
+        const corticonNode = doc?.corticon || p?.corticon || {};
+        const metrics =
+          corticonNode?.execution?.Metrics || // some docs
+          corticonNode?.Metrics || // others (common in your data)
+          null;
+        const rawMessages =
+          (corticonNode?.execution?.messages?.message || corticonNode?.messages?.message || []);
+        const decisionLogMessages = Array.isArray(rawMessages)
+          ? rawMessages.map((m) => ({
+              severity: m?.severity ?? "Info",
+              rule: m?.ruleNumber ?? m?.rule ?? "",
+              ruleSheet: m?.rulesheetName ?? m?.ruleSheet ?? "",
+              text: m?.text ?? "",
+            }))
+          : [];
 
-        return {
-          familyName: p.familyName,
-          householdId: p.householdId,
-          stateOfResidence: p.stateOfResidence,
-          familySize: p.familySize,
-          annualIncome: p.annualIncome,
-          householdPercentFPL: p.householdPercentFPL,
-          members,
-          primaryAssistance: primary,
-          eligibilityNotes: notes,
-        };
+return {
+  familyName: p.familyName,
+  householdId: p.householdId,
+  stateOfResidence: p.stateOfResidence,
+  familySize: p.familySize,
+  annualIncome: p.annualIncome,
+  householdPercentFPL: p.householdPercentFPL,
+  members,
+  primaryAssistance: primary,
+  eligibilityNotes: notes,
+  metrics,
+  decisionLogMessages,
+};
+
       })
       .filter(Boolean);
   }, [searchResponse]);
@@ -71,10 +94,8 @@ export default function HouseholdSearch() {
         </h2>
       )}
 
-      {/* 👇 Updated display logic for welcome, empty, and results */}
       <div>
         {searchResponse?.results == null ? (
-          // 👇 Show this before any search has happened
           <div className="text-gray-600 text-center mt-10">
             <h2 className="text-xl font-semibold mb-2">
               Welcome to the Medicaid Eligibility Dashboard
@@ -84,12 +105,8 @@ export default function HouseholdSearch() {
             </p>
           </div>
         ) : items.length === 0 ? (
-          // 👇 Show when a search returned nothing
-          <p className="text-gray-500 mt-6 text-center">
-            No matching results found.
-          </p>
+          <p className="text-gray-500 mt-6 text-center">No matching results found.</p>
         ) : (
-          // 👇 Show when there are results
           items.map((row, i) => <HouseholdCard key={i} row={row} />)
         )}
       </div>
