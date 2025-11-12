@@ -57,12 +57,6 @@ Thumbs.db
 *.pdf
 *.docx
 *.ffs_db
-*_File_List.txt
-
 # Ignore any file or directory containing 'mockaroo' (case-safe)
 *[Mm]ockaroo*/
 *[Mm]ockaroo*
-
-# Ignore any file or directory containing 'decisionservice' or 'DecisionService'
-*[Dd]ecision[Ss]ervice*/
-*[Dd]ecision[Ss]ervice*

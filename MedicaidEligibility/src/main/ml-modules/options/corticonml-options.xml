@@ -78,7 +78,7 @@
   <quality-weight>0</quality-weight>
 
   <!-- Limit string search to the payload subtree for performance and relevance -->
-  <searchable-expression>/payload</searchable-expression>
+  <!-- <searchable-expression>/payload</searchable-expression> -->
 
   <extract-metadata>
     <qname elem-name="householdId" elem-ns=""/>
@@ -92,11 +92,11 @@
   <transform-results apply="raw"/>
 
   <!-- 🟩 CHANGE #2: Ensure payload and corticon nodes are included in results -->
-  <extract-document-data selected="include">
+  <!-- <extract-document-data selected="include">
     <extract-path>/payload</extract-path>
     <extract-path>/corticon</extract-path>
     <extract-path>/payload/corticon</extract-path>
-  </extract-document-data>
+  </extract-document-data> -->
 
   <!-- Sorting options -->
   <operator name="sort">
