@@ -1,16 +1,71 @@
-# React + Vite
+# Medicaid Eligibility Analytics Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React-based frontend that provides an interactive dashboard for visualizing and analyzing the results of the automated Medicaid eligibility decisions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Business Value: From Raw Data to Actionable Insights
 
-## React Compiler
+While the backend system provides the automation, the true business value is realized when you can analyze the results of those decisions. This dashboard demonstrates how to build a simple but powerful analytics interface on top of the data stored in MarkLogic.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+It allows users to:
 
-## Expanding the ESLint configuration
+*   **Visualize Key Metrics:** See a high-level overview of the applicant population, including eligibility rates and demographic breakdowns.
+*   **Explore Individual Decisions:** Drill down into specific households to understand the factors that led to their eligibility determination.
+*   **Identify Trends and Anomalies:** Use the data to spot trends, identify potential data quality issues, and gain a deeper understanding of the applicant pool.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Prerequisites
+
+*   **Node.js** (LTS version recommended)
+*   The **MarkLogic backend** for the Medicaid Eligibility demo must be deployed and running.
+
+---
+
+## How to Run the Frontend
+
+### 1. Install Dependencies
+
+Navigate to this directory in your terminal and run the following command to install the necessary packages:
+
+```bash
+npm install
+```
+
+### 2. Configure the Backend Proxy
+
+This React application communicates with the MarkLogic backend via a lightweight Node.js proxy to avoid CORS issues during development.
+
+1.  Open the `vite.config.js` file in this directory.
+2.  Locate the `proxy` configuration section.
+3.  Update the `target` property to point to the host and port of your MarkLogic REST API server (by default, this is `http://localhost:8004`).
+
+```javascript
+// vite.config.js
+export default defineConfig({
+  // ...
+  server: {
+    proxy: {
+      '/v1': {
+        target: 'http://localhost:8004', // <-- Make sure this matches your MarkLogic REST port
+        changeOrigin: true,
+      },
+    },
+  },
+});
+```
+
+### 3. Start the Development Server
+
+Run the following command to start the Vite development server:
+
+```bash
+npm run dev
+```
+
+This will launch the application in your web browser, typically at `http://localhost:5173`.
+
+### 4. Explore the Dashboard
+
+Once the application is running, it will automatically query the MarkLogic backend and display the analytics dashboard. You can then interact with the various components to explore the data.
