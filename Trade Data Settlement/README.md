@@ -37,6 +37,14 @@ The project is designed to showcase a simple, yet powerful, data processing work
 *   **Corticon.js Studio 2.3 or higher** (to view the rules, or to re-bundle the decision service)
 *   A command-line tool capable of making HTTP requests, such as **cURL**.
 
+---
+
+## Before You Start
+
+- Ensure MarkLogic 12 is running and you have admin credentials.
+- Verify `gradle -v` works and `gradle.properties` has the right host/port/user/pass (default REST port `8004`).
+- Confirm `src/main/ml-modules/ext/decisionServiceBundle.js` exists (compiled Corticon service).
+
 ### 1. Configure Your MarkLogic Connection
 
 Before deploying, you need to set your MarkLogic connection details.
@@ -114,3 +122,15 @@ curl --location --request PUT 'http://localhost:8004/v1/documents?uri=/data/ledg
 ```
 
 If the request is successful, you can then view the document in MarkLogic (e.g., through the Query Console) and see that it has been enriched with the output from the decision service.
+
+---
+
+## Notable Files
+
+- `src/main/ml-config/triggers/corticonTrigger.json` — Trigger that watches `http://example.com/data/ledger` and invokes an SJS module.
+- `src/main/ml-modules/ext/marklogic.trigger.sample.sjs` — Trigger module that calls the Corticon decision bundle and writes enriched output.
+- `src/main/ml-modules/ext/decisionServiceBundle.js` — Compiled Corticon.js rules bundle used by the trigger.
+- `src/main/ml-schemas/tde/corticon.tde` — TDE to expose messages and attribute changes for analytics.
+- `src/main/ml-modules/options/corticonml-options.xml` — Search options and resource registration.
+- `src/main/ml-modules/rest-properties.json` — REST API properties.
+- `gradle.properties` — MarkLogic connection defaults (host, REST port, admin user/pass).

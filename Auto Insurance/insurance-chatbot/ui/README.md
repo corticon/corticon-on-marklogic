@@ -33,27 +33,17 @@ Navigate to this directory in your terminal and run the following command to ins
 npm install
 ```
 
-### 2. Configure the Backend Proxy
+### 2. Configure Connection to the Middle Tier
 
-This React application communicates with the MarkLogic backend via a lightweight Node.js proxy to avoid CORS issues during development.
+This UI talks to the Node middle‑tier (not directly to MarkLogic) using environment variables.
 
-1.  Open the `vite.config.js` file in this directory.
-2.  Locate the `proxy` configuration section.
-3.  Update the `target` property to point to the host and port of your MarkLogic REST API server (by default, this is `http://localhost:8004`).
+1. Ensure the middle‑tier is running (see `Auto Insurance/insurance-chatbot/README.md`). Default port is `4004`.
+2. Create a `.env` in this folder with:
 
-```javascript
-// vite.config.js
-export default defineConfig({
-  // ...
-  server: {
-    proxy: {
-      '/v1': {
-        target: 'http://localhost:8004', // <-- Make sure this matches your MarkLogic REST port
-        changeOrigin: true,
-      },
-    },
-  },
-});
+```ini
+VITE_ML_HOST=localhost
+VITE_ML_PORT=4004
+VITE_ML_OPTIONS=corticonml-options
 ```
 
 ### 3. Start the Development Server
@@ -69,3 +59,21 @@ This will launch the application in your web browser, typically at `http://local
 ### 4. Explore the Dashboard
 
 Once the application is running, you can use the search bar to find and explore the policies that have been processed by the MarkLogic backend. You can then navigate through the different tabs to see the policy details, the decision log, and the execution trace.
+
+---
+
+## Before You Start
+
+- Backend is deployed and has at least one enriched policy under `/data/policy/`.
+- Middle‑tier server is running on `http://localhost:4004` (or set `VITE_ML_PORT`).
+- Node.js (LTS) is installed and `npm install` completes without errors.
+
+---
+
+## Notable Files
+
+- `src/api/marklogicService.js` — Uses `VITE_ML_HOST`/`VITE_ML_PORT` to call the middle‑tier (`/v1` proxy, custom resources, chat).
+- `src/components/DecisionLog.jsx` — Human-readable decision messages from Corticon output.
+- `src/components/ExecutionTrace.jsx` — Detailed rule execution trace visualization.
+- `src/components/PolicyDetails.jsx` — Summarized, enriched policy view.
+- `src/App.jsx` — Top-level layout and routing.

@@ -33,28 +33,17 @@ Navigate to this directory in your terminal and run the following command to ins
 npm install
 ```
 
-### 2. Configure the Backend Proxy
+### 2. Configure Connection to the Middle Tier
 
-This React application communicates with the MarkLogic backend via a lightweight Node.js proxy to avoid CORS issues during development.
+This UI talks to a Node server in `MedicaidEligibility/frontend/server.js`, which provides `/api` analytics and can proxy `/v1` to MarkLogic.
 
-1.  Open the `vite.config.js` file in this directory.
-2.  Locate the `proxy` configuration section.
-3.  Update the `target` property to point to the host and port of your MarkLogic REST API server (by default, this is `http://localhost:8004`).
+1. Start the Node server from `MedicaidEligibility/frontend`:
 
-```javascript
-// vite.config.js
-export default defineConfig({
-  // ...
-  server: {
-    proxy: {
-      '/v1': {
-        target: 'http://localhost:8004', // <-- Make sure this matches your MarkLogic REST port
-        changeOrigin: true,
-      },
-    },
-  },
-});
+```bash
+node server.js
 ```
+
+2. The Vite dev server already proxies `/api` and `/v1` to `http://localhost:4001` (see `vite.config.js`). If you change the Node server port, update the targets there.
 
 ### 3. Start the Development Server
 
@@ -69,3 +58,19 @@ This will launch the application in your web browser, typically at `http://local
 ### 4. Explore the Dashboard
 
 Once the application is running, it will automatically query the MarkLogic backend and display the analytics dashboard. You can then interact with the various components to explore the data.
+
+---
+
+## Before You Start
+
+- Backend is deployed and enriched documents exist under `/data/medicaid/`.
+- Node analytics server is running at `http://localhost:4001`.
+- Node.js (LTS) is installed and `npm install` completes.
+
+---
+
+## Notable Files
+
+- `vite.config.js` — Dev proxy to the Node analytics server (`/api`, `/v1` → `http://localhost:4001`).
+- `src/index.css`, `src/index.html`, `src/main.jsx` — App bootstrap files.
+- `src/components/*` — Visualizations and analytics components.

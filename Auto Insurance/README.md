@@ -96,3 +96,47 @@ To get this demo up and running, please follow the step-by-step instructions in 
 
 1.  **[Set up the MarkLogic Backend](./mlCorticonAutoInsurance/README.md)**
 2.  **[Run the React Frontend](./insurance-chatbot/ui/README.md)**
+
+---
+
+## Before You Start
+
+- MarkLogic 12 is running locally and you have admin credentials.
+- Java 11+ and Gradle are installed (`gradle -v` works).
+- Node.js (LTS) is installed for the UI.
+- Port 8004 is available or matches `mlRestPort` in backend `gradle.properties`.
+
+---
+
+## Repo Layout & Notable Files
+
+- Backend: `Auto Insurance/mlCorticonAutoInsurance`
+  - `gradle.properties` — MarkLogic connection and REST port (default 8004).
+  - `src/main/ml-config/triggers/autoInsuranceTrigger.json` — Trigger watching `http://example.com/data/policy-input` that calls the SJS module.
+  - `src/main/ml-modules/ext/autoInsuranceTrigger.sjs` — Executes the Corticon decision bundle and writes enriched docs to `/data/policy/{applicationId}.json`.
+  - `src/main/ml-modules/ext/decisionServiceBundle.js` — The compiled Corticon.js decision service.
+  - `src/main/ml-schemas/tde/simple.tde` — TDE template to expose relational views for analytics.
+  - `src/main/ml-modules/services/corticonml-options.sjs` — REST resource used by the UI for policy queries.
+  - `src/main/ml-modules/options/corticonml-options.xml` — Registers the REST resource.
+
+- Rules authoring: `Auto Insurance/rule-project`
+  - `Automobile Insurance/*` — Corticon vocabulary, rulesheets, and ruleflow used to produce the decision bundle.
+  - `decisionServiceSchema.json` — Data shape for the decision service.
+
+- UI: `Auto Insurance/insurance-chatbot/ui`
+  - `vite.config.js` — Dev proxy to the MarkLogic REST API.
+  - `src/api/marklogicService.js` — Calls backend endpoints to fetch policies and analytics data.
+  - `src/components/*` — Explainability and policy views (DecisionLog, ExecutionTrace, etc.).
+
+- Optional middle tier: `Auto Insurance/insurance-chatbot`
+  - `src/server.js` — Express server with a chatbot endpoint that can enrich responses using policy data from MarkLogic.
+  - `package.json` — `npm start` to run the middle tier if you choose to use it.
+
+---
+
+## Quick Start (Summary)
+
+1) Deploy backend: `cd "Auto Insurance/mlCorticonAutoInsurance" && gradle mlDeploy`
+2) Load a policy into `http://example.com/data/policy-input` (see backend README for a cURL example).
+3) Start UI: `cd "Auto Insurance/insurance-chatbot/ui" && npm install && npm run dev`
+4) Explore policies and explainability in the dashboard.

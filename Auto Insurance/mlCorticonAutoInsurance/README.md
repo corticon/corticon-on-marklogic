@@ -13,6 +13,15 @@ Before starting, ensure you have the following software installed and configured
 
 ---
 
+## Before You Start
+
+- Ensure MarkLogic 12 is running and you have admin credentials.
+- Confirm Gradle works: `gradle -v`.
+- Review `gradle.properties` for host/port/credentials. Default REST port is `8004`.
+- Confirm `src/main/ml-modules/ext/decisionServiceBundle.js` exists; this is the compiled Corticon decision service.
+
+---
+
 ## 🚀 How to Deploy the Backend
 
 ### 1. Configure Your MarkLogic Connection
@@ -59,3 +68,18 @@ curl --location --request PUT 'http://localhost:8004/v1/documents?uri=/data/poli
 ```
 
 After the PUT completes, look for an enriched document at a URI like `/data/policy/APP-123.json`.
+
+---
+
+## Notable Files
+
+- `src/main/ml-config/triggers/autoInsuranceTrigger.json` — Trigger definition; watches the `http://example.com/data/policy-input` collection and calls the SJS module after document creation.
+- `src/main/ml-modules/ext/autoInsuranceTrigger.sjs` — Trigger module that executes the Corticon decision service and writes an enriched envelope to `/data/policy/`.
+- `src/main/ml-modules/ext/decisionServiceBundle.js` — Compiled Corticon.js rules bundle invoked by the trigger (`decisionService.execute`).
+- `src/main/ml-schemas/tde/simple.tde` — Template Driven Extraction for analytics over enriched documents.
+- `src/main/ml-modules/services/corticonml-options.sjs` — REST resource for fetching policies used by the UI.
+- `src/main/ml-modules/options/corticonml-options.xml` — Registers the resource and search options.
+- `src/main/ml-modules/rest-properties.json` — REST API properties.
+- `src/main/ml-config/security/*` — Roles and users (`corticonml-reader`, `corticonml-writer`, `corticonml-admin`).
+- `src/main/ml-config/servers/rest-api-server.json` — REST server configuration.
+- `src/main/ml-config/servers/odbc-server.json` — Optional ODBC/SQL access.
