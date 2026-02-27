@@ -1,0 +1,186 @@
+<!-- Eligibility Pathways/chatbot-ui/public/index.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eligibility Pathways Chatbot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+      <div class="grain"></div>
+    </div>
+
+    <div class="page">
+      <header class="hero">
+        <div class="hero-text">
+          <div class="eyebrow">
+            <img
+              src="Powered%20by%20Progress%20Data%20Platform%20Badge%20-%20White.png"
+              alt="Powered by Progress Data Platform Badge"
+            />
+          </div>
+          <h1>Georgia Medicaid and CHIP Eligibility Assistant</h1>
+          <p class="lede">
+            Ask about programs, households, and trace-driven eligibility determinations.
+          </p>
+          <div class="status" id="status">Ready to query eligibility output.</div>
+        </div>
+        <div class="hero-card">
+          <div class="card-title">Try a sample query</div>
+          <div class="chips">
+            <button class="chip" type="button" data-query="Nursing Home">Nursing Home</button>
+            <button class="chip" type="button" data-query="Medicaid">Medicaid</button>
+            <button class="chip" type="button" data-query="SSI Medicaid">SSI Medicaid</button>
+            <button class="chip" type="button" data-query="Family Medicaid Medically Needy">
+              Family Medicaid Medically Needy
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <nav class="tabs">
+        <button id="tabChat" class="tab active" type="button">Household Assistant</button>
+        <button id="tabAnalytics" class="tab" type="button">Program Insights</button>
+      </nav>
+
+      <main class="layout">
+        <!-- CHAT TAB -->
+        <section id="chatTab" class="tab-panel active">
+          <section class="panel conversation">
+            <div id="messages" class="messages">
+              <div class="message assistant">
+                <div class="label">Assistant</div>
+                <div class="bubble">
+                  Ask about eligibility decisions, or use the filters to explain ineligibility for a specific
+                  person and program. Tip: you can ask “Justham household …” and the backend can filter by family.
+                </div>
+              </div>
+            </div>
+
+            <form id="chat-form" class="composer">
+              <div class="controls">
+                <label for="modeSelect">Answer style:</label>
+                <select id="modeSelect">
+                  <option value="narrative" selected>Narrative (plain language)</option>
+                  <option value="trace">Trace explanation (with rules)</option>
+                  <option value="verbatim">Verbatim (MarkLogic output)</option>
+                </select>
+              </div>
+
+              <div id="promptButtons" class="prompt-buttons"></div>
+
+              <textarea
+                id="query"
+                name="query"
+                rows="3"
+                placeholder="Ask: Explain the classes of assistance evaluated for the Justham household, and what each member was assigned to."
+              ></textarea>
+
+              <div class="actions">
+                <button type="submit" id="send">Send</button>
+                <span class="hint">Shift+Enter for a new line</span>
+              </div>
+            </form>
+          </section>
+
+          <aside class="panel filters">
+            <div class="filters-header">
+              <h2>Trace-aware filters</h2>
+              <p>Use these to explain ineligibility for a specific person and program.</p>
+            </div>
+
+            <div class="field">
+              <label for="householdId">Household ID</label>
+              <input id="householdId" name="householdId" placeholder="100" />
+            </div>
+
+            <!-- NEW -->
+            <div class="field">
+              <label for="familyName">Family name (optional)</label>
+              <input id="familyName" name="familyName" placeholder="Justham" />
+            </div>
+
+            <div class="field">
+              <label for="personName">Person name</label>
+              <input id="personName" name="personName" placeholder="Brockie Justham" />
+            </div>
+
+            <div class="field">
+              <label for="programName">Program name</label>
+              <input id="programName" name="programName" placeholder="Nursing Home" />
+            </div>
+
+            <details class="advanced">
+              <summary>More filters</summary>
+              <div class="field">
+                <label for="personId">Person ID</label>
+                <input id="personId" name="personId" placeholder="346" />
+              </div>
+              <div class="field">
+                <label for="programId">Program ID</label>
+                <input id="programId" name="programId" placeholder="384" />
+              </div>
+              <div class="field">
+                <label for="personSsn">Person SSN</label>
+                <input id="personSsn" name="personSsn" placeholder="999-45-6789" />
+              </div>
+            </details>
+
+            <div class="note">
+              Tip: Provide household ID (or family name), a person, and a program name to get trace-backed
+              ineligibility details.
+            </div>
+
+            <div class="debug">
+              <div class="debug-header">
+                <span>Debug log</span>
+                <button id="clear-log" type="button">Clear</button>
+              </div>
+              <pre id="debug-log">Console output will appear here.</pre>
+            </div>
+          </aside>
+        </section>
+
+        <!-- ANALYTICS TAB -->
+        <section id="analyticsTab" class="tab-panel">
+          <div class="panel analytics-panel">
+            <div class="analytics-header">
+              <h2>Program Insights</h2>
+              <p>Population-level analytics with drilldown to trace-backed household explanations.</p>
+              <div class="analytics-status" id="analyticsStatus">Not loaded yet.</div>
+            </div>
+
+            <div class="analytics-grid">
+              <section class="card">
+                <h3>Top Selected Coverage</h3>
+                <div id="selectedCoaList"></div>
+              </section>
+
+              <section class="card">
+                <h3>Top Ineligibility Flags (Trace)</h3>
+                <div id="ineligibilityFlagsList"></div>
+              </section>
+
+              <section class="card analytics-wide">
+                <h3 id="examplesHeader" style="display: none;">Examples</h3>
+                <div id="examplesList"></div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

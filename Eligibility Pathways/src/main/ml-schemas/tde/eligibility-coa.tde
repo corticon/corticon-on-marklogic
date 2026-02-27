@@ -1,0 +1,53 @@
+{
+  "template": {
+    "description": "Eligibility Pathways - COA outcomes (split-docs)",
+    "context": "/",
+    "collections": ["http://example.com/data/eligibility-output"],
+    "templates": [
+      {
+        "context": "application/household/person",
+        "vars": [
+          { "name": "HH", "val": "/householdId" },
+          { "name": "FAM", "val": "/familyName" },
+          { "name": "FIRST", "val": "first" },
+          { "name": "LAST", "val": "last" }
+        ],
+        "templates": [
+          {
+            "context": "classOfAssistance",
+            "rows": [
+              {
+                "schemaName": "eligibility",
+                "viewName": "coa",
+                "viewLayout": "sparse",
+                "columns": [
+                  { "name": "householdId", "scalarType": "string", "val": "$HH", "nullable": true },
+                  { "name": "familyName", "scalarType": "string", "val": "$FAM", "nullable": true },
+
+                  { "name": "personFirst", "scalarType": "string", "val": "$FIRST", "nullable": true },
+                  { "name": "personLast", "scalarType": "string", "val": "$LAST", "nullable": true },
+
+                  { "name": "policyKey", "scalarType": "string", "val": "policyKey", "nullable": true },
+                  { "name": "name", "scalarType": "string", "val": "name", "nullable": true },
+                  { "name": "programFamily", "scalarType": "string", "val": "programFamily", "nullable": true },
+                  { "name": "groupName", "scalarType": "string", "val": "group", "nullable": true },
+
+                  { "name": "eligibleViaPath", "scalarType": "boolean", "val": "eligibleViaPath", "nullable": true },
+                  { "name": "nonFinancialCriteriaMet", "scalarType": "boolean", "val": "nonFinancialCriteriaMet", "nullable": true },
+                  { "name": "isSelected", "scalarType": "boolean", "val": "isSelected", "nullable": true },
+                  { "name": "incomeIneligible", "scalarType": "boolean", "val": "incomeIneligible", "nullable": true },
+                  { "name": "blanketIneligible", "scalarType": "boolean", "val": "blanketIneligible", "nullable": true },
+
+                  { "name": "globalPriority", "scalarType": "integer", "val": "globalPriority", "nullable": true },
+                  { "name": "priorityForGroup", "scalarType": "integer", "val": "priorityForGroup", "nullable": true },
+                  { "name": "groupRank", "scalarType": "integer", "val": "groupRank", "nullable": true },
+                  { "name": "incomeThreshold", "scalarType": "decimal", "val": "incomeThreshold", "nullable": true }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "template": {
+    "collections": [
+      "corticon-results",
+      "fraud-detection",
+      "decision-audit"
+    ],
+    "context": "/",
+    "rows": [
+      {
+        "schemaName": "corticon",
+        "viewName": "decision_output",
+        "columns": [
+          { "name": "request_id", "scalarType": "string", "val": "payload/claim/claim_id", "nullable": true },
+          { "name": "patient_id", "scalarType": "string", "val": "payload/claim/patient_id", "nullable": true },
+          { "name": "practitioner_npi", "scalarType": "string", "val": "payload/claim/practitioner_npi", "nullable": true },
+          { "name": "claim_total", "scalarType": "decimal", "val": "payload/claim/claim_total", "nullable": true },
+          { "name": "decision_status", "scalarType": "string", "val": "corticon/status", "nullable": true }
+        ]
+      }
+    ],
+    "templates": [
+      {
+        "context": "/corticon/entities/Alert",
+        "rows": [
+          {
+            "schemaName": "corticon",
+            "viewName": "alerts",
+            "columns": [
+              { "name": "alert_id", "scalarType": "integer", "val": "id", "nullable": true },
+              { "name": "alert_code", "scalarType": "string", "val": "code", "nullable": true },
+              { "name": "decision", "scalarType": "string", "val": "decision", "nullable": true },
+              { "name": "severity", "scalarType": "string", "val": "severity", "nullable": true },
+              { "name": "confidence", "scalarType": "decimal", "val": "confidence", "nullable": true }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,29 @@
+﻿plugins {
+  id "com.marklogic.ml-gradle" version "6.1.0"
+}
+
+task set_ml_rest_authentication(type: com.marklogic.gradle.task.MarkLogicTask) {
+  doFirst {
+    println ""
+    println "Setting app server authentication to '${project.getProperty("ml_rest_authentication")}'..."
+
+    def client = mlAppConfig.newDatabaseClient()
+    def script = '''
+      const admin = require("/MarkLogic/admin.xqy");
+      const config = admin.getConfiguration();
+      const groupId = admin.groupGetId(config, "Default");
+      admin.saveConfigurationWithoutRestart(
+        admin.appserverSetAuthentication(
+          config,
+          admin.appserverGetId(config, groupId, "''' + project.getProperty("mlAppName") + '''"),
+          "''' + project.getProperty("ml_rest_authentication") + '''"
+        )
+      );
+      'done'
+    '''
+    client.newServerEval().javascript(script).evalAs(String.class)
+  }
+}
+
+mlDeploy.finalizedBy set_ml_rest_authentication
+mlDeployRestApis.finalizedBy set_ml_rest_authentication

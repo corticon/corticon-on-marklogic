@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<options xmlns="http://marklogic.com/appservices/search">
+  <constraint name="collection">
+    <collection facet="false"/>
+  </constraint>
+  <constraint name="householdId">
+    <range type="xs:string" facet="true">
+      <path-index>/payload/householdId</path-index>
+    </range>
+  </constraint>
+  <constraint name="state">
+    <range type="xs:string" facet="true">
+      <path-index>/payload/state</path-index>
+    </range>
+  </constraint>
+  <constraint name="individualLast">
+    <range type="xs:string" facet="true">
+      <path-index>/payload/individual/last</path-index>
+    </range>
+  </constraint>
+  <constraint name="individualSSN">
+    <range type="xs:string" facet="true">
+      <path-index>/payload/individual/ssn</path-index>
+    </range>
+  </constraint>
+  <constraint name="populationGroup">
+    <range type="xs:string" facet="true">
+      <path-index>/payload/individual/population/group</path-index>
+    </range>
+  </constraint>
+  <constraint name="annualIncome">
+    <range type="xs:decimal" facet="true">
+      <path-index>/payload/annualIncome</path-index>
+    </range>
+  </constraint>
+  <constraint name="householdPercentFPL">
+    <range type="xs:decimal" facet="true">
+      <path-index>/payload/householdPercentFPL</path-index>
+    </range>
+  </constraint>
+  <constraint name="age">
+    <range type="xs:int" facet="true">
+      <path-index>/payload/individual/age</path-index>
+    </range>
+  </constraint>
+  <return-facets>true</return-facets>
+  <transform-results apply="empty-snippet"/>
+  <constraint name="householdIdPayload">
+  <range type="xs:string" facet="true">
+    <path-index>/payload/household/householdId</path-index>
+  </range>
+</constraint>
+
+<constraint name="familyName">
+  <range type="xs:string" facet="true">
+    <path-index>/payload/household/familyName</path-index>
+  </range>
+</constraint>
+
+<constraint name="personLast">
+  <range type="xs:string" facet="true">
+    <path-index>/payload/household/person/last</path-index>
+  </range>
+</constraint>
+
+</options>

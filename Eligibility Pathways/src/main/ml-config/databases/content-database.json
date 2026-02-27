@@ -1,0 +1,81 @@
+{
+  "database-name": "%%DATABASE%%",
+  "schema-database": "%%SCHEMAS_DATABASE%%",
+  "triggers-database": "%%TRIGGERS_DATABASE%%",
+  "range-path-index": [
+    {
+  "scalar-type": "string",
+  "path-expression": "/payload/household/householdId",
+  "collation": "http://marklogic.com/collation/codepoint",
+  "range-value-positions": false,
+  "invalid-values": "ignore"
+},
+{
+  "scalar-type": "string",
+  "path-expression": "/payload/household/familyName",
+  "collation": "http://marklogic.com/collation/codepoint",
+  "range-value-positions": false,
+  "invalid-values": "ignore"
+},
+{
+  "scalar-type": "string",
+  "path-expression": "/payload/household/person/last",
+  "collation": "http://marklogic.com/collation/codepoint",
+  "range-value-positions": false,
+  "invalid-values": "ignore"
+},
+    {
+      "scalar-type": "string",
+      "path-expression": "/payload/householdId",
+      "collation": "http://marklogic.com/collation/codepoint",
+      "range-value-positions": false,
+      "invalid-values": "ignore"
+    },
+    {
+      "scalar-type": "string",
+      "path-expression": "/payload/state",
+      "collation": "http://marklogic.com/collation/codepoint",
+      "range-value-positions": false,
+      "invalid-values": "ignore"
+    },
+    {
+      "scalar-type": "string",
+      "path-expression": "/payload/individual/ssn",
+      "collation": "http://marklogic.com/collation/codepoint",
+      "range-value-positions": false,
+      "invalid-values": "ignore"
+    },
+    {
+      "scalar-type": "string",
+      "path-expression": "/payload/individual/last",
+      "collation": "http://marklogic.com/collation/codepoint",
+      "range-value-positions": false,
+      "invalid-values": "ignore"
+    },
+    {
+      "scalar-type": "int",
+      "path-expression": "/payload/individual/age",
+      "range-value-positions": false,
+      "invalid-values": "ignore"
+    },
+    {
+      "scalar-type": "string",
+      "path-expression": "/payload/individual/population/group",
+      "collation": "http://marklogic.com/collation/codepoint",
+      "range-value-positions": false,
+      "invalid-values": "ignore"
+    },
+    {
+      "scalar-type": "decimal",
+      "path-expression": "/payload/annualIncome",
+      "range-value-positions": false,
+      "invalid-values": "ignore"
+    },
+    {
+      "scalar-type": "decimal",
+      "path-expression": "/payload/householdPercentFPL",
+      "range-value-positions": false,
+      "invalid-values": "ignore"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "template": {
+    "description": "Eligibility Pathways TDE",
+    "context": "/payload",
+    "collections": [
+      "http://example.com/data/eligibility-output"
+    ],
+    "rows": [
+      {
+        "schemaName": "eligibility",
+        "viewName": "household",
+        "viewLayout": "sparse",
+        "columns": [
+          { "name": "householdId", "scalarType": "string", "val": "householdId", "nullable": true },
+          { "name": "state", "scalarType": "string", "val": "state", "nullable": true },
+          { "name": "size", "scalarType": "integer", "val": "size", "nullable": true },
+          { "name": "annualIncome", "scalarType": "decimal", "val": "annualIncome", "nullable": true },
+          { "name": "povertyGuideline", "scalarType": "decimal", "val": "povertyGuideline", "nullable": true },
+          { "name": "householdPercentFPL", "scalarType": "decimal", "val": "householdPercentFPL", "nullable": true },
+          { "name": "inputPayloadUri", "scalarType": "string", "val": "inputPayloadUri", "nullable": true },
+          { "name": "timestamp", "scalarType": "string", "val": "timestamp", "nullable": true },
+          { "name": "enrichmentVersion", "scalarType": "string", "val": "enrichmentVersion", "nullable": true }
+        ]
+      }
+    ],
+    "templates": [
+      {
+        "context": "individual",
+        "vars": [
+          { "name": "HH", "val": "/payload/householdId" },
+          { "name": "SSN", "val": "ssn" }
+        ],
+        "rows": [
+          {
+            "schemaName": "eligibility",
+            "viewName": "individual",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "householdId", "scalarType": "string", "val": "$HH", "nullable": true },
+              { "name": "ssn", "scalarType": "string", "val": "ssn", "nullable": true },
+              { "name": "first", "scalarType": "string", "val": "first", "nullable": true },
+              { "name": "last", "scalarType": "string", "val": "last", "nullable": true },
+              { "name": "dob", "scalarType": "string", "val": "dob", "nullable": true },
+              { "name": "age", "scalarType": "integer", "val": "age", "nullable": true },
+              { "name": "monthlyIncome", "scalarType": "decimal", "val": "monthlyIncome", "nullable": true },
+              { "name": "disabled", "scalarType": "boolean", "val": "disabled", "nullable": true },
+              { "name": "pregnant", "scalarType": "boolean", "val": "pregnant", "nullable": true },
+              { "name": "usCitizen", "scalarType": "boolean", "val": "usCitizen", "nullable": true },
+              { "name": "isParentOrCaretaker", "scalarType": "boolean", "val": "isParentOrCaretaker", "nullable": true }
+            ]
+          }
+        ],
+        "templates": [
+          {
+            "context": "population",
+            "vars": [
+              { "name": "HH_NESTED", "val": "/payload/householdId" },
+              { "name": "SSN_NESTED", "val": "../ssn" }
+            ],
+            "rows": [
+              {
+                "schemaName": "eligibility",
+                "viewName": "population",
+                "viewLayout": "sparse",
+                "columns": [
+                  { "name": "householdId", "scalarType": "string", "val": "$HH_NESTED", "nullable": true },
+                  { "name": "individual_ssn", "scalarType": "string", "val": "$SSN_NESTED", "nullable": true },
+                  { "name": "groupName", "scalarType": "string", "val": "group", "nullable": true },
+                  { "name": "magiGroup", "scalarType": "string", "val": "magiGroup", "nullable": true },
+                  { "name": "magiIncomePercent", "scalarType": "decimal", "val": "magiIncomePercent", "nullable": true },
+                  { "name": "fundingSource", "scalarType": "string", "val": "fundingSource", "nullable": true },
+                  { "name": "favorability", "scalarType": "integer", "val": "favorability", "nullable": true },
+                  { "name": "incomeIneligible", "scalarType": "boolean", "val": "incomeIneligible", "nullable": true }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "corticon/messages/message",
+        "vars": [
+          { "name": "HH_MSG", "val": "/payload/householdId" }
+        ],
+        "rows": [
+          {
+            "schemaName": "eligibility",
+            "viewName": "messages",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "householdId", "scalarType": "string", "val": "$HH_MSG", "nullable": true },
+              { "name": "severity", "scalarType": "string", "val": "severity", "nullable": true },
+              { "name": "text", "scalarType": "string", "val": "text", "nullable": true },
+              { "name": "ruleSheet", "scalarType": "string", "val": "ruleSheet", "nullable": true },
+              { "name": "rule", "scalarType": "string", "val": "rule", "nullable": true }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "corticon/Metrics/attributeChanges",
+        "vars": [
+          { "name": "HH_TRACE", "val": "/payload/householdId" }
+        ],
+        "rows": [
+          {
+            "schemaName": "eligibility",
+            "viewName": "attributeChanges",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "householdId", "scalarType": "string", "val": "$HH_TRACE", "nullable": true },
+              { "name": "rulesheetName", "scalarType": "string", "val": "rulesheetName", "nullable": true },
+              { "name": "ruleNumber", "scalarType": "string", "val": "ruleNumber", "nullable": true },
+              { "name": "entityName", "scalarType": "string", "val": "entityName", "nullable": true },
+              { "name": "attributeName", "scalarType": "string", "val": "attributeName", "nullable": true },
+              { "name": "afterValue", "scalarType": "string", "val": "fn:string(afterValue)", "nullable": true },
+              { "name": "sequence", "scalarType": "integer", "val": "sequence", "nullable": true }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
