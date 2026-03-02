@@ -1,0 +1,6 @@
+{
+  "role-name": "%%mlAppName%%-internal",
+  "description": "Internal role for amping/invoke use cases",
+  "role": ["%%mlAppName%%-writer"]
+}
+

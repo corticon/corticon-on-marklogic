@@ -9,7 +9,7 @@ This project contains the MarkLogic backend components for the Auto Insurance de
 Before starting, ensure you have the following software installed and configured:
 
 *   **MarkLogic 12+**
-*   **Java 11+** and **Gradle**
+*   **Java 17+** and **Gradle 8+**
 
 ---
 
@@ -83,3 +83,12 @@ After the PUT completes, look for an enriched document at a URI like `/data/poli
 - `src/main/ml-config/security/*` — Roles and users (`corticonml-reader`, `corticonml-writer`, `corticonml-admin`).
 - `src/main/ml-config/servers/rest-api-server.json` — REST server configuration.
 - `src/main/ml-config/servers/odbc-server.json` — Optional ODBC/SQL access.
+
+---
+
+## Template Reference
+
+For a generic baseline project structure and deployment approach, see:
+
+1. `../../decision-ledger-accelerator-template/README.md`
+2. `../../decision-ledger-accelerator-template/marklogic/README.md`

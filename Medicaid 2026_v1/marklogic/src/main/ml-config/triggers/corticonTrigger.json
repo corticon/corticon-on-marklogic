@@ -1,0 +1,21 @@
+{
+  "name": "corticonTrigger",
+  "description": "Optional trigger-based Corticon execution",
+  "event": {
+    "data-event": {
+      "collection-scope": {
+        "uri": "%%collectionPrefix%%_input"
+      },
+      "document-content": {
+        "update-kind": "create"
+      },
+      "when": "post-commit"
+    }
+  },
+  "module": "ext/corticonTrigger.sjs",
+  "module-db": "%%MODULES_DATABASE%%",
+  "module-root": "/",
+  "enabled": false,
+  "recursive": false,
+  "task-priority": "normal"
+}

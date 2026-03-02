@@ -102,7 +102,7 @@ To get this demo up and running, please follow the step-by-step instructions in 
 ## Before You Start
 
 - MarkLogic 12 is running locally and you have admin credentials.
-- Java 11+ and Gradle are installed (`gradle -v` works).
+- Java 17+ and Gradle 8+ are installed (`gradle -v` works).
 - Node.js (LTS) is installed for the UI.
 - Port 8004 is available or matches `mlRestPort` in backend `gradle.properties`.
 
@@ -140,3 +140,13 @@ To get this demo up and running, please follow the step-by-step instructions in 
 2) Load a policy into `http://example.com/data/policy-input` (see backend README for a cURL example).
 3) Start UI: `cd "Auto Insurance/insurance-chatbot/ui" && npm install && npm run dev`
 4) Explore policies and explainability in the dashboard.
+
+---
+
+## Template Reference
+
+For reusable, domain-neutral starter guidance (MarkLogic scaffolding, process-and-enrich pattern, and FastTrack bootstrap), see:
+
+1. `../decision-ledger-accelerator-template/README.md`
+2. `../decision-ledger-accelerator-template/marklogic/README.md`
+3. `../decision-ledger-accelerator-template/ui-fasttrack/README.md`

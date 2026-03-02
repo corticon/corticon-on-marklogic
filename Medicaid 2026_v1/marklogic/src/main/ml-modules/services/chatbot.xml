@@ -1,0 +1,19 @@
+<resource xmlns="http://marklogic.com/rest-api">
+  <title>chatbot</title>
+  <description>Support chatbot middleware endpoint for Medicaid eligibility case lookup and analytics context</description>
+  <methods>
+    <method name="get">
+      <response>
+        <representation media-type="application/json"/>
+      </response>
+    </method>
+    <method name="post">
+      <request>
+        <representation media-type="application/json"/>
+      </request>
+      <response>
+        <representation media-type="application/json"/>
+      </response>
+    </method>
+  </methods>
+</resource>

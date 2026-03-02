@@ -1,0 +1,68 @@
+<options xmlns="http://marklogic.com/appservices/search">
+  <search-option>unfiltered</search-option>
+  <search-option>score-zero</search-option>
+  <quality-weight>0</quality-weight>
+  <return-facets>true</return-facets>
+  <return-metrics>true</return-metrics>
+  <return-query>true</return-query>
+  <return-results>true</return-results>
+  <transform-results apply="empty-snippet"/>
+
+  <extract-document-data selected="include">
+    <extract-path>/householdId</extract-path>
+    <extract-path>/state</extract-path>
+    <extract-path>/_decisionLedger/correlationId</extract-path>
+    <extract-path>/_decisionLedger/outputPayloadUri</extract-path>
+    <extract-path>/person/fullName</extract-path>
+    <extract-path>/person/age</extract-path>
+    <extract-path>/person/ageCategory</extract-path>
+    <extract-path>/person/population/type</extract-path>
+    <extract-path>/person/eligibilityPathway/pathway</extract-path>
+    <extract-path>/person/eligibilityPathway/programCode</extract-path>
+    <extract-path>/person/eligibilityPathway/assignedPathwayType</extract-path>
+    <extract-path>/person/eligibilityPathway/determination/eligibility</extract-path>
+    <extract-path>/person/eligibilityPathway/determination/reasonCode</extract-path>
+  </extract-document-data>
+
+  <constraint name="state">
+    <value>
+      <json-property>state</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="programCode">
+    <value>
+      <json-property>programCode</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="assignedPathwayType">
+    <value>
+      <json-property>assignedPathwayType</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="eligibility">
+    <value>
+      <json-property>eligibility</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="reasonCode">
+    <value>
+      <json-property>reasonCode</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="populationType">
+    <value>
+      <json-property>type</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+</options>

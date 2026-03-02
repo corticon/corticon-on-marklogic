@@ -1,0 +1,8 @@
+{
+  "server-name": "%%mlAppName%%",
+  "group-name": "Default",
+  "content-database": "%%mlAppName%%-content",
+  "modules-database": "%%mlAppName%%-modules",
+  "authentication": "%%ml_rest_authentication%%",
+  "error-handler": "/MarkLogic/rest-api/error-handler.xqy"
+}

@@ -1,0 +1,13 @@
+{
+  "role-name": "%%mlAppName%%-reader",
+  "description": "Can view documents but not edit",
+  "role": ["%%mlAppName%%-nobody", "tde-view"],
+  "privilege": [
+    {
+      "privilege-name": "rest-reader",
+      "action": "http://marklogic.com/xdmp/privileges/rest-reader",
+      "kind": "execute"
+    }
+  ]
+}
+

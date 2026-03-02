@@ -1,0 +1,22 @@
+<options xmlns="http://marklogic.com/appservices/search">
+  <search-option>unfiltered</search-option>
+  <search-option>score-logtfidf</search-option>
+  <return-facets>false</return-facets>
+  <return-metrics>true</return-metrics>
+  <return-results>true</return-results>
+  <transform-results apply="empty-snippet"/>
+
+  <extract-document-data selected="include">
+    <extract-path>/householdId</extract-path>
+    <extract-path>/state</extract-path>
+    <extract-path>/_decisionLedger/correlationId</extract-path>
+    <extract-path>/_decisionLedger/outputPayloadUri</extract-path>
+    <extract-path>/person/fullName</extract-path>
+    <extract-path>/person/eligibilityPathway/pathway</extract-path>
+    <extract-path>/person/eligibilityPathway/programCode</extract-path>
+    <extract-path>/person/eligibilityPathway/determination/eligibility</extract-path>
+    <extract-path>/person/eligibilityPathway/determination/reasonCode</extract-path>
+    <extract-path>/corticon/Metrics/attributeChanges/rulesheetName</extract-path>
+    <extract-path>/corticon/Metrics/attributeChanges/ruleNumber</extract-path>
+  </extract-document-data>
+</options>

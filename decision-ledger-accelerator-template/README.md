@@ -1,17 +1,15 @@
 ﻿# Decision Ledger Accelerator Template
 
-This directory is a baseline starter for building a new Corticon.js + MarkLogic Explainable Decision Ledger implementation.
+This folder is a standalone starter template for building a Corticon.js + MarkLogic explainable decision ledger.
 
-It aligns with ml-gradle best-practice layout from `ml-gradle.wiki/Project-layout.md` and incorporates the authoritative MarkLogic+Corticon patterns from `accenture-demo/marklogic`.
+It includes:
 
-## What This Template Assumes
+1. MarkLogic project scaffolding (`ml-gradle` layout, security, REST resources, TDE starter).
+2. Generic decision execution patterns (resource-based and optional trigger-based).
+3. FastTrack UI starter placeholders.
+4. Environment-driven configuration scripts for repeatable setup.
 
-1. Windows desktop environment.
-2. MarkLogic 12 available.
-3. A compiled Corticon JavaScript decision bundle ready to deploy (`decisionServiceBundle.js`).
-4. Access to a FastTrack archive in the `2.x` line, named similar to `ml-fasttrack-2.0.0-20250701b.tgz`.
-
-## Layout
+## Template Structure
 
 ```text
 decision-ledger-accelerator-template/
@@ -31,27 +29,40 @@ decision-ledger-accelerator-template/
     package.template.json
 ```
 
-## User-Configured Files and Where They Go
+## Decision Ledger Data Contract (Generic)
 
-1. Corticon decision service bundle
-   - Place at `marklogic/src/main/ml-modules/ext/decisionServiceBundle.js`.
-   - Replace the placeholder file in this template.
+The template assumes output documents include:
 
-2. Split Corticon output data (optional but recommended for repeatable demos)
-   - Place JSON docs under `marklogic/src/main/ml-data/split/...` by data type.
-   - Keep `collections.properties` and `permissions.properties` in each leaf folder.
+1. Business payload (`payload`, or your domain object root).
+2. Decision result fields under `corticon` (status/messages/metrics).
+3. Ledger metadata under `_decisionLedger`.
 
-3. MarkLogic credentials and app naming
-   - Copy `.env.template` to `.env` and edit values.
-   - Run `scripts/init-from-env.ps1` to generate `marklogic/gradle.properties` from `marklogic/gradle-template.properties`.
+Minimal example:
 
-4. FastTrack archive
-   - Place `ml-fasttrack-2.x.y-<build>.tgz` into `ui-fasttrack/`.
-   - Update `ui-fasttrack/package.template.json` to point to the exact archive filename.
+```json
+{
+  "_decisionLedger": {
+    "correlationId": "abc-123",
+    "entityId": "case-001",
+    "inputPayloadUri": "/data/input/case-001.json",
+    "outputPayloadUri": "/results/case-001.json",
+    "processedAt": "2026-02-27T12:00:00Z"
+  },
+  "corticon": {
+    "status": "eligible",
+    "messages": [
+      { "code": "RULE-1", "severity": "info", "message": "Example message" }
+    ]
+  },
+  "payload": {
+    "id": "case-001"
+  }
+}
+```
 
-## Start Here (Windows)
+## Quick Start (Windows)
 
-1. Copy and edit environment file:
+1. Copy and edit environment values:
 
 ```powershell
 cd decision-ledger-accelerator-template
@@ -59,66 +70,65 @@ Copy-Item .env.template .env
 notepad .env
 ```
 
-2. Generate `gradle.properties`:
+2. Generate `marklogic/gradle.properties`:
 
 ```powershell
 .\scripts\init-from-env.ps1
 ```
 
-3. Add your Corticon bundle:
+3. Replace placeholder bundle:
 
 ```text
 marklogic/src/main/ml-modules/ext/decisionServiceBundle.js
 ```
 
-4. Optional: place split Corticon export docs under `marklogic/src/main/ml-data/split`.
-
-5. Deploy MarkLogic app:
+4. Deploy MarkLogic resources:
 
 ```powershell
 cd marklogic
 gradle mlDeploy -i
 ```
 
-6. Load split data:
+5. Optionally load split seed data:
 
 ```powershell
 gradle mlLoadData -i
 ```
 
-7. Execute the decision service via REST resource:
+6. Execute the service endpoint:
 
 ```powershell
 curl.exe --location --request POST "http://localhost:8003/v1/resources/processAndEnrich" `
   --header "Content-Type: application/json" `
   --digest --user <writer-user>:<writer-password> `
-  --data-binary "@<path-to-input-json>"
+  --data-raw "{`"id`":`"case-001`",`"state`":`"CA`"}"
 ```
 
-8. Verify output collection:
+7. Verify output load:
 
 ```javascript
-cts.estimate(cts.collectionQuery("corticon-results"))
+cts.estimate(cts.collectionQuery("decision-ledger-output"))
 ```
 
-## If You Need to Recreate the Gradle Project from Scratch
+## Where To Customize
 
-This template already includes a ready ml-gradle layout. If you need to rebuild it manually:
-
-1. Create a new folder and add `build.gradle` with `com.marklogic.ml-gradle`.
-2. Run `gradle mlNewProject` (optional wizard scaffold).
-3. Ensure these directories exist (per `ml-gradle.wiki/Project-layout.md`):
-   - `src/main/ml-config`
-   - `src/main/ml-data`
-   - `src/main/ml-modules`
-   - `src/main/ml-schemas`
-4. Copy this template's `marklogic/src/main` contents into your new project and adjust tokens/properties.
+1. Decision execution:
+   - `marklogic/src/main/ml-modules/services/processAndEnrich.sjs`
+   - `marklogic/src/main/ml-modules/ext/corticonTrigger.sjs`
+2. Search and retrieval:
+   - `marklogic/src/main/ml-modules/services/chunkSearch.sjs`
+   - `marklogic/src/main/ml-modules/options/search-options.xml`
+3. SQL analytics:
+   - `marklogic/src/main/ml-schemas/tde/corticon-output.tde`
+4. Load metadata conventions:
+   - `marklogic/src/main/ml-data/split/**/collections.properties`
+   - `marklogic/src/main/ml-data/split/**/permissions.properties`
+5. UI bootstrap:
+   - `ui-fasttrack/package.template.json`
+   - `ui-fasttrack/README.md`
 
 ## Notes
 
-1. This template uses the service-based process-and-enrich pattern (authoritative baseline).
-2. Optional trigger skeletons are included:
-   - `marklogic/src/main/ml-config/triggers/corticonTrigger.json` (disabled by default)
-   - `marklogic/src/main/ml-modules/ext/corticonTrigger.sjs`
-3. Trigger-based execution can be enabled if your ingestion flow requires event-driven processing.
-4. Keep tokens in `ml-config` payload files (`%%mlAppName%%`, etc.) and resolve environment values in `gradle.properties`.
+1. Trigger execution is disabled by default in `ml-config/triggers/corticonTrigger.json`.
+2. Tokenized roles/users (`%%mlAppName%%-*`) are resolved via generated `gradle.properties`.
+3. Keep `.env` local and out of source control.

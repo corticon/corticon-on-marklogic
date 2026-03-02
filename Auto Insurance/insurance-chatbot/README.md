@@ -90,3 +90,12 @@ npm start
 - Calls the OpenAI Responses API to generate a readable explanation for the user.
 
 Tip: If you don’t need LLM explanations, you can omit `OPENAI_API_KEY` and rely on the UI’s explainability tabs (Decision Log, Execution Trace) via the `/v1` proxy.
+
+---
+
+## Template Reference
+
+If you need a generic middle-tier + backend scaffold for a new domain, start with:
+
+1. `../../decision-ledger-accelerator-template/README.md`
+2. `../../decision-ledger-accelerator-template/ui-fasttrack/README.md`

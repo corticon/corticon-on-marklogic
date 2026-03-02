@@ -1,37 +1,56 @@
-{
+﻿{
   "template": {
+    "description": "Generic decision-ledger output analytics template",
     "collections": [
-      "corticon-results",
-      "fraud-detection",
-      "decision-audit"
+      "decision-ledger-output"
     ],
     "context": "/",
     "rows": [
       {
-        "schemaName": "corticon",
+        "schemaName": "decision_ledger",
         "viewName": "decision_output",
+        "viewLayout": "sparse",
         "columns": [
-          { "name": "request_id", "scalarType": "string", "val": "payload/claim/claim_id", "nullable": true },
-          { "name": "patient_id", "scalarType": "string", "val": "payload/claim/patient_id", "nullable": true },
-          { "name": "practitioner_npi", "scalarType": "string", "val": "payload/claim/practitioner_npi", "nullable": true },
-          { "name": "claim_total", "scalarType": "decimal", "val": "payload/claim/claim_total", "nullable": true },
-          { "name": "decision_status", "scalarType": "string", "val": "corticon/status", "nullable": true }
+          { "name": "correlation_id", "scalarType": "string", "val": "_decisionLedger/correlationId", "nullable": true },
+          { "name": "entity_id", "scalarType": "string", "val": "_decisionLedger/entityId", "nullable": true },
+          { "name": "decision_status", "scalarType": "string", "val": "corticon/status", "nullable": true },
+          { "name": "input_payload_uri", "scalarType": "string", "val": "_decisionLedger/inputPayloadUri", "nullable": true },
+          { "name": "output_payload_uri", "scalarType": "string", "val": "_decisionLedger/outputPayloadUri", "nullable": true },
+          { "name": "message_count", "scalarType": "integer", "val": "fn:count(corticon/messages[])", "nullable": true }
         ]
       }
     ],
     "templates": [
       {
-        "context": "/corticon/entities/Alert",
+        "context": "corticon/messages[]",
         "rows": [
           {
-            "schemaName": "corticon",
-            "viewName": "alerts",
+            "schemaName": "decision_ledger",
+            "viewName": "rule_messages",
+            "viewLayout": "sparse",
             "columns": [
-              { "name": "alert_id", "scalarType": "integer", "val": "id", "nullable": true },
-              { "name": "alert_code", "scalarType": "string", "val": "code", "nullable": true },
-              { "name": "decision", "scalarType": "string", "val": "decision", "nullable": true },
+              { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+              { "name": "entity_id", "scalarType": "string", "val": "/_decisionLedger/entityId", "nullable": true },
+              { "name": "code", "scalarType": "string", "val": "code", "nullable": true },
               { "name": "severity", "scalarType": "string", "val": "severity", "nullable": true },
-              { "name": "confidence", "scalarType": "decimal", "val": "confidence", "nullable": true }
+              { "name": "message", "scalarType": "string", "val": "message", "nullable": true }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "corticon/Metrics/ruleMessages[]",
+        "rows": [
+          {
+            "schemaName": "decision_ledger",
+            "viewName": "rule_trace",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+              { "name": "entity_id", "scalarType": "string", "val": "/_decisionLedger/entityId", "nullable": true },
+              { "name": "rule", "scalarType": "string", "val": "rule", "nullable": true },
+              { "name": "rulesheet", "scalarType": "string", "val": "rulesheet", "nullable": true },
+              { "name": "message", "scalarType": "string", "val": "message", "nullable": true }
             ]
           }
         ]
@@ -39,4 +58,3 @@
     ]
   }
 }
-

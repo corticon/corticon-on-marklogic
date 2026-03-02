@@ -1,0 +1,98 @@
+<options xmlns="http://marklogic.com/appservices/search">
+  <search-option>unfiltered</search-option>
+  <search-option>score-zero</search-option>
+  <quality-weight>0</quality-weight>
+  <return-facets>true</return-facets>
+  <return-metrics>true</return-metrics>
+  <return-query>true</return-query>
+  <return-results>true</return-results>
+  <return-values>false</return-values>
+
+  <extract-document-data selected="include">
+    <extract-path>/householdId</extract-path>
+    <extract-path>/state</extract-path>
+    <extract-path>/corticon/status</extract-path>
+    <extract-path>/_decisionLedger/correlationId</extract-path>
+    <extract-path>/_decisionLedger/outputPayloadUri</extract-path>
+    <extract-path>/person/fullName</extract-path>
+    <extract-path>/person/ageCategory</extract-path>
+    <extract-path>/person/population/type</extract-path>
+    <extract-path>/person/eligibilityPathway/pathway</extract-path>
+    <extract-path>/person/eligibilityPathway/programCode</extract-path>
+    <extract-path>/person/eligibilityPathway/assignedPathwayType</extract-path>
+    <extract-path>/person/eligibilityPathway/determination/eligibility</extract-path>
+    <extract-path>/person/eligibilityPathway/determination/reasonCode</extract-path>
+  </extract-document-data>
+
+  <constraint name="collection">
+    <collection>
+      <facet-option>frequency-order</facet-option>
+      <facet-option>limit=20</facet-option>
+    </collection>
+  </constraint>
+
+  <constraint name="state">
+    <value>
+      <json-property>state</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="corticon_status">
+    <value>
+      <json-property>status</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="population_type">
+    <value>
+      <json-property>type</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="program_code">
+    <value>
+      <json-property>programCode</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="assigned_pathway_type">
+    <value>
+      <json-property>assignedPathwayType</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="eligibility">
+    <value>
+      <json-property>eligibility</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="reason_code">
+    <value>
+      <json-property>reasonCode</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="age_category">
+    <value>
+      <json-property>ageCategory</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <constraint name="household_id">
+    <value>
+      <json-property>householdId</json-property>
+      <term-option>case-insensitive</term-option>
+    </value>
+  </constraint>
+
+  <transform-results apply="empty-snippet"/>
+</options>

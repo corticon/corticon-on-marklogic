@@ -33,7 +33,7 @@ The project is designed to showcase a simple, yet powerful, data processing work
 ### Prerequisites
 
 *   **MarkLogic 12+**
-*   **Java 11+** and **Gradle**
+*   **Java 17+** and **Gradle 8+**
 *   **Corticon.js Studio 2.3 or higher** (to view the rules, or to re-bundle the decision service)
 *   A command-line tool capable of making HTTP requests, such as **cURL**.
 
@@ -134,3 +134,12 @@ If the request is successful, you can then view the document in MarkLogic (e.g.,
 - `src/main/ml-modules/options/corticonml-options.xml` — Search options and resource registration.
 - `src/main/ml-modules/rest-properties.json` — REST API properties.
 - `gradle.properties` — MarkLogic connection defaults (host, REST port, admin user/pass).
+
+---
+
+## Template Reference
+
+To start a new domain implementation from a neutral baseline, use:
+
+1. `../decision-ledger-accelerator-template/README.md`
+2. `../decision-ledger-accelerator-template/marklogic/README.md`

@@ -77,3 +77,12 @@ Once the application is running, you can use the search bar to find and explore 
 - `src/components/ExecutionTrace.jsx` — Detailed rule execution trace visualization.
 - `src/components/PolicyDetails.jsx` — Summarized, enriched policy view.
 - `src/App.jsx` — Top-level layout and routing.
+
+---
+
+## Template Reference
+
+For a generic UI/bootstrap baseline, see:
+
+1. `../../../decision-ledger-accelerator-template/README.md`
+2. `../../../decision-ledger-accelerator-template/ui-fasttrack/README.md`

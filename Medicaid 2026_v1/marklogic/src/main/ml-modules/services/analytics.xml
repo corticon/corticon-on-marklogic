@@ -1,0 +1,11 @@
+<resource xmlns="http://marklogic.com/rest-api">
+  <title>analytics</title>
+  <description>Management analytics endpoint for Medicaid eligibility population and trace analysis</description>
+  <methods>
+    <method name="get">
+      <response>
+        <representation media-type="application/json"/>
+      </response>
+    </method>
+  </methods>
+</resource>

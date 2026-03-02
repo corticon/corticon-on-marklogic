@@ -1,0 +1,10 @@
+﻿.env
+marklogic/gradle.properties
+marklogic/.gradle/
+marklogic/build/
+ui-fasttrack/node_modules/
+ui-fasttrack/dist/
+ui-fasttrack/proxy/config.js
+ui-fasttrack/proxy/node_modules/
+mockup/node_modules/
+mockup/dist/

@@ -1,0 +1,11 @@
+<resource xmlns="http://marklogic.com/rest-api">
+  <title>eligibilityDeterminations</title>
+  <description>List/filter Medicaid eligibility determinations for FastTrack-backed UI views</description>
+  <methods>
+    <method name="get">
+      <response>
+        <representation media-type="application/json"/>
+      </response>
+    </method>
+  </methods>
+</resource>

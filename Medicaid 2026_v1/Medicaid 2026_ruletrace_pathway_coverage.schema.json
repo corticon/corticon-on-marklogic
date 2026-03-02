@@ -1,0 +1,1167 @@
+{
+  "num_rows": 100,
+  "file_format": "json",
+  "name": "Medicaid 2026 Rule Trace Pathway Coverage Households",
+  "array": true,
+  "columns": [
+    {
+      "name": "__household_row",
+      "null_percentage": 0,
+      "type": "Row Number",
+      "formula": null
+    },
+    {
+      "name": "householdId",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "concat('HH-', field('__household_row').to_i)",
+      "formula": ""
+    },
+    {
+      "name": "__family_lastname",
+      "null_percentage": 0,
+      "type": "Last Name",
+      "formula": null
+    },
+    {
+      "name": "state",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Alabama",
+        "Alaska",
+        "Arizona",
+        "Arkansas",
+        "California",
+        "Colorado",
+        "Connecticut",
+        "Delaware",
+        "District of Columbia",
+        "Florida",
+        "Georgia",
+        "Hawaii",
+        "Idaho",
+        "Illinois",
+        "Indiana",
+        "Iowa",
+        "Kansas",
+        "Kentucky",
+        "Louisiana",
+        "Maine",
+        "Maryland",
+        "Massachusetts",
+        "Michigan",
+        "Minnesota",
+        "Mississippi",
+        "Missouri",
+        "Montana",
+        "Nebraska",
+        "Nevada",
+        "New Hampshire",
+        "New Jersey",
+        "New Mexico",
+        "New York",
+        "North Carolina",
+        "North Dakota",
+        "Ohio",
+        "Oklahoma",
+        "Oregon",
+        "Pennsylvania",
+        "Rhode Island",
+        "South Carolina",
+        "South Dakota",
+        "Tennessee",
+        "Texas",
+        "Utah",
+        "Vermont",
+        "Virginia",
+        "Washington",
+        "West Virginia",
+        "Wisconsin",
+        "Wyoming"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "Alabama": 1,
+            "Alaska": 3,
+            "Arizona": 11,
+            "Arkansas": 1,
+            "California": 1,
+            "Colorado": 1,
+            "Connecticut": 1,
+            "Delaware": 1,
+            "District of Columbia": 1,
+            "Florida": 3,
+            "Georgia": 5,
+            "Hawaii": 1,
+            "Idaho": 1,
+            "Illinois": 1,
+            "Indiana": 1,
+            "Iowa": 1,
+            "Kansas": 1,
+            "Kentucky": 1,
+            "Louisiana": 1,
+            "Maine": 1,
+            "Maryland": 1,
+            "Massachusetts": 1,
+            "Michigan": 1,
+            "Minnesota": 1,
+            "Mississippi": 1,
+            "Missouri": 1,
+            "Montana": 1,
+            "Nebraska": 1,
+            "Nevada": 1,
+            "New Hampshire": 1,
+            "New Jersey": 1,
+            "New Mexico": 1,
+            "New York": 1,
+            "North Carolina": 1,
+            "North Dakota": 1,
+            "Ohio": 1,
+            "Oklahoma": 1,
+            "Oregon": 1,
+            "Pennsylvania": 1,
+            "Rhode Island": 1,
+            "South Carolina": 1,
+            "South Dakota": 1,
+            "Tennessee": 1,
+            "Texas": 4,
+            "Utah": 1,
+            "Vermont": 1,
+            "Virginia": 1,
+            "Washington": 1,
+            "West Virginia": 1,
+            "Wisconsin": 1,
+            "Wyoming": 1
+          }
+        }
+      ],
+      "formula": null
+    },
+    {
+      "name": "__hh_case_theme",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "coverage",
+        "denial",
+        "edge",
+        "maternal",
+        "aged",
+        "ltss"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "coverage": 30,
+            "denial": 25,
+            "edge": 15,
+            "maternal": 12,
+            "aged": 12,
+            "ltss": 6
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "__hh_size_plan",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "r=random(1,100); r<=22 ? 1 : (r<=49 ? 2 : (r<=76 ? 3 : (r<=93 ? 4 : 5)))",
+      "formula": ""
+    },
+    {
+      "name": "__hh_fpl_pct_base",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 10,
+      "max": 400,
+      "decimals": 1,
+      "formula": "t=field('__hh_case_theme'); t=='edge' ? [44,67,89,100,133,138,150,200,211,300].sample+random(-5,5) : (t=='denial' ? random(70,330) : (t=='aged' ? random(20,170) : random(30,260)))"
+    },
+    {
+      "name": "__hh_monthly_income_base",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 50000,
+      "decimals": 2,
+      "formula": "s=field('__hh_size_plan').to_i; p=field('__hh_fpl_pct_base').to_f; b=(s<=1 ? 1255 : (s==2 ? 1704 : (s==3 ? 2152 : (s==4 ? 2600 : 3048+((s-5)*448))))); v=((p/100.0)*b)+random(-100,100); (v<0 ? 0 : v).round(2)"
+    },
+    {
+      "name": "resources",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 150000,
+      "decimals": 2,
+      "formula": "t=field('__hh_case_theme'); t=='aged'||t=='ltss' ? random(1000,70000).round(2) : (t=='edge' ? ([1500,1999,2000,2100,7500,10000].sample+random(-50,50)).round(2) : random(0,30000).round(2))"
+    },
+    {
+      "name": "person",
+      "null_percentage": 0,
+      "type": "JSON Array",
+      "minItems": 1,
+      "maxItems": 5,
+      "formula": null
+    },
+    {
+      "name": "person.__scenarioIndex",
+      "null_percentage": 0,
+      "type": "Row Number",
+      "formula": null
+    },
+    {
+      "name": "person.__targetPathwayCode",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "ADULT_133",
+        "CHILD_PUB_EMP",
+        "TITLEIVE_CHILD",
+        "DEEMED_NEWBORN",
+        "CHILD_DENTAL_ONLY",
+        "DAC",
+        "DWW_EARLY_SS",
+        "CASH_ASSIST_INST_EXC",
+        "EXT_EARNINGS",
+        "EXT_SUPPORT",
+        "FAMILY_OPP",
+        "FAMILY_PLANNING",
+        "FOSTER_GUARD",
+        "FORMER_FOSTER_26",
+        "HCBS",
+        "HOSPICE",
+        "ABOVE133_U65",
+        "SSI",
+        "ESSENTIAL_SPOUSE",
+        "CHILD_U19",
+        "KIDS_WAIVER",
+        "MEDICALLY_NEEDY",
+        "MENTAL_HEALTH",
+        "NONIVE_ADOPT",
+        "OPT_TLI_CHILD",
+        "PACE",
+        "PARENT_CARETAKER",
+        "POVERTY_AGED_DISABLED",
+        "PREGNANT",
+        "POSTPARTUM",
+        "QUAL_DISABLED_CHILD",
+        "QMB",
+        "QI",
+        "SLMB",
+        "TMA",
+        "BCC_TREAT",
+        "WORK_INCENTIVE",
+        "WORKING_DISABLED_1619B"
+      ],
+      "selectionStyle": "sequential",
+      "distribution": null,
+      "formula": null
+    },
+    {
+      "name": "person.__targetPathwayLabel",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "m={\"ADULT_133\" => \"Adult Group- Individuals at or below 133 FPL\", \"CHILD_PUB_EMP\" => \"CHILDREN_WITH_ACCESS_TO_PUBLIC_EMPLOYEE_COVERAGE\", \"TITLEIVE_CHILD\" => \"Children with Title IV-E Foster Care, Adoption, or Guardianship Assistance\", \"DEEMED_NEWBORN\" => \"Deemed Newborns\", \"CHILD_DENTAL_ONLY\" => \"Dental Only Supplemental (CHILD_DENTAL_ONLY)\", \"DAC\" => \"Disabled Adult Children (DAC)\", \"DWW_EARLY_SS\" => \"Disabled Widows and Widowers, Lost SSI Due to Early Social Security Receipt\", \"CASH_ASSIST_INST_EXC\" => \"Eligible for Cash Assistance except Institutionalization (INDIV_ELIGIBLE_CASH_ASSIST_EXCEPT_INSTITUTIONALIZATION)\", \"EXT_EARNINGS\" => \"Extended Medicaid due to Earnings\", \"EXT_SUPPORT\" => \"Extended Medicaid due to Spousal Support Collections\", \"FAMILY_OPP\" => \"Family Opportunity Act\", \"FAMILY_PLANNING\" => \"Family Planning\", \"FOSTER_GUARD\" => \"Foster Care or Guardianship Care\", \"FORMER_FOSTER_26\" => \"Former Foster Care Children (up to Age 26)\", \"HCBS\" => \"HCBS\", \"HOSPICE\" => \"Hospice\", \"ABOVE133_U65\" => \"Individuals above 133 FPL under Age 65\", \"SSI\" => \"Individuals Receiving SSI\", \"ESSENTIAL_SPOUSE\" => \"Individuals Who Are Essential Spouses\", \"CHILD_U19\" => \"Infants and Children under Age 19 (Mandatory)\", \"KIDS_WAIVER\" => \"Kids\\u2019 Waivers\", \"MEDICALLY_NEEDY\" => \"Medically Needy\", \"MENTAL_HEALTH\" => \"Mental Health Expansion\", \"NONIVE_ADOPT\" => \"Non-IV-E Adoption Assistance\", \"OPT_TLI_CHILD\" => \"Optional Targeted Low-Income Children\", \"PACE\" => \"PACE\", \"PARENT_CARETAKER\" => \"Parents and Other Caretaker Relatives\", \"POVERTY_AGED_DISABLED\" => \"Poverty Level Aged or Disabled\", \"PREGNANT\" => \"Pregnant Women\", \"POSTPARTUM\" => \"Postpartum Women\", \"QUAL_DISABLED_CHILD\" => \"Qualified Disabled Children\", \"QMB\" => \"Qualified Medicare Beneficiaries\", \"QI\" => \"Qualifying Individuals\", \"SLMB\" => \"Specified Low-Income Medicare Beneficiaries\", \"TMA\" => \"Transitional Medical Assistance (TMA)\", \"BCC_TREAT\" => \"Treatment for Breast or Cervical Cancer\", \"WORK_INCENTIVE\" => \"Work Incentive\", \"WORKING_DISABLED_1619B\" => \"Working Disabled \\u2013 Section 1619(b)\"}; m[field('__targetPathwayCode')]||field('__targetPathwayCode')",
+      "formula": ""
+    },
+    {
+      "name": "person.__testOutcomeIntent",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "p=field('__targetPathwayCode'); i=field('__scenarioIndex').to_i%11; ip=[\"ADULT_133\", \"ABOVE133_U65\", \"FAMILY_PLANNING\", \"PARENT_CARETAKER\", \"PREGNANT\", \"POSTPARTUM\", \"OPT_TLI_CHILD\", \"CHILD_U19\", \"CHILD_PUB_EMP\", \"QMB\", \"QI\", \"SLMB\", \"POVERTY_AGED_DISABLED\", \"WORK_INCENTIVE\", \"WORKING_DISABLED_1619B\", \"FAMILY_OPP\", \"QUAL_DISABLED_CHILD\", \"MEDICALLY_NEEDY\", \"HCBS\", \"PACE\", \"CASH_ASSIST_INST_EXC\", \"MENTAL_HEALTH\"]; rp=[\"HCBS\", \"PACE\", \"QMB\", \"QI\", \"SLMB\", \"POVERTY_AGED_DISABLED\", \"MEDICALLY_NEEDY\", \"WORK_INCENTIVE\", \"WORKING_DISABLED_1619B\", \"SSI\", \"CASH_ASSIST_INST_EXC\"]; if i<=4 then (i==0 ? 'PASS_ALT' : 'PASS') elsif i==5 then 'FAIL_AGE' elsif i==6 then (ip.include?(p) ? 'FAIL_INCOME' : 'FAIL_STATUS') elsif i==7 then (rp.include?(p) ? 'FAIL_RESOURCE' : 'FAIL_STATUS') elsif i==8 then (p=='POSTPARTUM' ? 'FAIL_POSTPARTUM' : ([\"PREGNANT\", \"POSTPARTUM\"].include?(p) ? 'FAIL_PREGNANCY' : 'FAIL_RESIDENCY')) elsif i==9 then ([\"QMB\", \"QI\", \"SLMB\"].include?(p) ? 'FAIL_MEDICARE' : (['TMA','WORK_INCENTIVE','WORKING_DISABLED_1619B'].include?(p) ? 'FAIL_WORK' : 'FAIL_STATUS')) else (p=='CHILD_PUB_EMP' ? 'FAIL_INSURANCE' : (p=='PARENT_CARETAKER' ? 'FAIL_PARENT' : (p=='EXT_SUPPORT' ? 'FAIL_SUPPORT' : (['HCBS','PACE','HOSPICE'].include?(p) ? 'FAIL_INSTITUTION' : 'FAIL_STATUS')))) end",
+      "formula": ""
+    },
+    {
+      "name": "person.__ageTarget",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 95,
+      "decimals": 0,
+      "formula": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); if p=='DEEMED_NEWBORN' then 0 elsif [\"CHILD_PUB_EMP\", \"TITLEIVE_CHILD\", \"CHILD_DENTAL_ONLY\", \"CHILD_U19\", \"KIDS_WAIVER\", \"NONIVE_ADOPT\", \"OPT_TLI_CHILD\", \"QUAL_DISABLED_CHILD\"].include?(p) then (v=='FAIL_AGE' ? random(19,35) : random(0,18)) elsif [\"FORMER_FOSTER_26\"].include?(p) then (v=='FAIL_AGE' ? random(27,40) : random(18,26)) elsif [\"PREGNANT\", \"POSTPARTUM\"].include?(p) then (v=='FAIL_AGE' ? random(50,75) : random(15,44)) elsif [\"QMB\", \"QI\", \"SLMB\"].include?(p) then (v=='FAIL_AGE' ? random(18,63) : random(65,89)) elsif ['SSI','ESSENTIAL_SPOUSE','POVERTY_AGED_DISABLED'].include?(p) then (v=='FAIL_AGE' ? random(5,25) : random(50,89)) else (p=='ADULT_133' && v=='FAIL_AGE' ? random(0,17) : random(19,74)) end"
+    },
+    {
+      "name": "person.__dobDayOffset",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 500,
+      "decimals": 0,
+      "formula": "field('__targetPathwayCode')=='DEEMED_NEWBORN' ? (field('__testOutcomeIntent')=='FAIL_AGE' ? random(31,420) : random(0,30)) : random(0,364)"
+    },
+    {
+      "name": "person.__firstName",
+      "null_percentage": 0,
+      "type": "First Name",
+      "formula": null
+    },
+    {
+      "name": "person.__lastName",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "__parent__['__family_lastname']",
+      "formula": ""
+    },
+    {
+      "name": "person.__rootState",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "__parent__['state']",
+      "formula": ""
+    },
+    {
+      "name": "person.__rootHhSizePlan",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "(__parent__['__hh_size_plan'] || 1).to_i",
+      "formula": ""
+    },
+    {
+      "name": "person.__rootHhFplPctBase",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "(__parent__['__hh_fpl_pct_base'] || 100).to_f",
+      "formula": ""
+    },
+    {
+      "name": "person.__rootResources",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "(__parent__['resources'] || 0).to_f",
+      "formula": ""
+    },
+    {
+      "name": "person.fullName",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "concat(field('__firstName'),' ',field('__lastName'))",
+      "formula": ""
+    },
+    {
+      "name": "person.sex",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "F",
+        "M"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "F": 51,
+            "M": 49
+          }
+        }
+      ],
+      "formula": "['PREGNANT','POSTPARTUM','BCC_TREAT'].include?(field('__targetPathwayCode')) ? 'F' : this"
+    },
+    {
+      "name": "person.dateOfBirth",
+      "null_percentage": 0,
+      "type": "Datetime",
+      "min": "1950-01-01",
+      "max": "2026-02-22",
+      "format": "%Y-%m-%d",
+      "formula": "(now()-years(field('__ageTarget').to_i)-days(field('__dobDayOffset').to_i)).strftime('%Y-%m-%d')"
+    },
+    {
+      "name": "person.age",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 120,
+      "decimals": 0,
+      "formula": "field('__ageTarget').to_i"
+    },
+    {
+      "name": "person.ageCategory",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Age <1",
+        "Age 1-5",
+        "Age 6-14",
+        "Age 15-18",
+        "Age 19-20",
+        "Age 21-44",
+        "Age 45-64",
+        "Age 65-74",
+        "Age 75-84",
+        "Age 85-125"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "a=field('age').to_i; a<1 ? 'Age <1' : (a<=5 ? 'Age 1-5' : (a<=14 ? 'Age 6-14' : (a<=18 ? 'Age 15-18' : (a<=20 ? 'Age 19-20' : (a<=44 ? 'Age 21-44' : (a<=64 ? 'Age 45-64' : (a<=74 ? 'Age 65-74' : (a<=84 ? 'Age 75-84' : 'Age 85-125'))))))))"
+    },
+    {
+      "name": "person.agingOutAge",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 18,
+      "max": 26,
+      "decimals": 0,
+      "formula": "field('__targetPathwayCode')=='QUAL_DISABLED_CHILD' ? 19 : 18"
+    },
+    {
+      "name": "person.isParentOrCaretaker",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); a=field('age').to_i; v=='FAIL_PARENT' ? false : (['PARENT_CARETAKER','EXT_EARNINGS','EXT_SUPPORT','TMA'].include?(p) ? true : (a>=19 && random(1,100)<=35))",
+      "formula": ""
+    },
+    {
+      "name": "person.hasDependentChild",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "field('isParentOrCaretaker') ? true : (['PREGNANT','POSTPARTUM'].include?(field('__targetPathwayCode')) && field('age').to_i>=18 && random(1,100)<=30)",
+      "formula": ""
+    },
+    {
+      "name": "person.relationToPolicyholder",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Self",
+        "Spouse",
+        "Domestic Partner",
+        "Child",
+        "Stepchild",
+        "Adopted Child",
+        "Foster Child",
+        "Dependent Child",
+        "Parent",
+        "Stepparent",
+        "Sibling",
+        "Grandchild",
+        "Ward",
+        "Legal Guardian",
+        "Other Dependent"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "p=field('__targetPathwayCode'); a=field('age').to_i; if ([\"CHILD_PUB_EMP\", \"TITLEIVE_CHILD\", \"CHILD_DENTAL_ONLY\", \"CHILD_U19\", \"KIDS_WAIVER\", \"NONIVE_ADOPT\", \"OPT_TLI_CHILD\", \"QUAL_DISABLED_CHILD\"].include?(p)||[\"FORMER_FOSTER_26\"].include?(p)||a<19) then ['Child','Stepchild','Adopted Child','Foster Child','Dependent Child','Grandchild','Ward'].sample else (field('isParentOrCaretaker') && random(1,100)<=25 ? ['Spouse','Domestic Partner','Parent','Sibling','Legal Guardian','Other Dependent'].sample : 'Self') end"
+    },
+    {
+      "name": "person.caretakerRelationship",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "PARENT",
+        "STEPPARENT",
+        "GRANDPARENT",
+        "LEGAL_GUARDIAN",
+        "OTHER_RELATIVE_CARETAKER",
+        "NON_RELATIVE_CARETAKER",
+        "NONE"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "if !field('isParentOrCaretaker') then 'NONE' else r=field('relationToPolicyholder'); a=field('age').to_i; if r=='Spouse' && random(1,100)<=25 then 'STEPPARENT' elsif r=='Grandchild' || (a>=50 && random(1,100)<=20) then 'GRANDPARENT' elsif ['Ward','Legal Guardian'].include?(r) then 'LEGAL_GUARDIAN' elsif r=='Other Dependent' then (random(1,100)<=50 ? 'OTHER_RELATIVE_CARETAKER' : 'NON_RELATIVE_CARETAKER') else 'PARENT' end end"
+    },
+    {
+      "name": "person.filesAs",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Single"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "'Single'"
+    },
+    {
+      "name": "person.filingStatus",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Tax filers not claimed as a tax dependent",
+        "Tax dependents",
+        "Non-filers not claimed as a tax dependent"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "Tax dependents": 40,
+            "Tax filers not claimed as a tax dependent": 45,
+            "Non-filers not claimed as a tax dependent": 15
+          }
+        }
+      ],
+      "formula": "r=field('relationToPolicyholder'); a=field('age').to_i; if ['Child','Stepchild','Adopted Child','Foster Child','Dependent Child','Grandchild','Ward'].include?(r) || a<19 then 'Tax dependents' elsif a<25 && random(1,100)<=25 then 'Non-filers not claimed as a tax dependent' elsif random(1,100)<=12 then 'Non-filers not claimed as a tax dependent' else 'Tax filers not claimed as a tax dependent' end"
+    },
+    {
+      "name": "person.maritalStatus",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Never married",
+        "Married",
+        "Widowed",
+        "Separated",
+        "Divorced"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "Never married": 55,
+            "Married": 25,
+            "Widowed": 6,
+            "Separated": 4,
+            "Divorced": 10
+          }
+        }
+      ],
+      "formula": "a=field('age').to_i; if a<18 then 'Never married' elsif a<25 then (random(1,100)<=12 ? 'Married' : 'Never married') elsif a>=65 then (r=random(1,100); r<=18 ? 'Widowed' : (r<=42 ? 'Married' : (r<=49 ? 'Divorced' : (r<=54 ? 'Separated' : 'Never married')))) else (r=random(1,100); r<=32 ? 'Married' : (r<=42 ? 'Divorced' : (r<=46 ? 'Separated' : 'Never married'))) end"
+    },
+    {
+      "name": "person.citizenshipStatus",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Alien with Qualified Status (Five-Year Bar Applies)",
+        "Alien with Qualified Status (Five-Year Bar Exempt)",
+        "Alien with Qualified Status (No Five-Year Bar)",
+        "Non-Qualified Alien (Emergency Services Only)",
+        "Non-Immigrant (Temporary Visa Holder)",
+        "PRUCOL (Permanently Residing Under Color of Law)",
+        "Refugee / Asylee / Humanitarian Entrant",
+        "Undocumented (No Coverage Except Emergency)",
+        "United States Citizen",
+        "United States National"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "Alien with Qualified Status (Five-Year Bar Applies)": 3,
+            "Alien with Qualified Status (Five-Year Bar Exempt)": 4,
+            "Alien with Qualified Status (No Five-Year Bar)": 5,
+            "Non-Qualified Alien (Emergency Services Only)": 3,
+            "Non-Immigrant (Temporary Visa Holder)": 2,
+            "PRUCOL (Permanently Residing Under Color of Law)": 8,
+            "Refugee / Asylee / Humanitarian Entrant": 6,
+            "Undocumented (No Coverage Except Emergency)": 4,
+            "United States Citizen": 71,
+            "United States National": 4
+          }
+        }
+      ],
+      "formula": "v=field('__testOutcomeIntent'); p=field('__targetPathwayCode'); if v=='FAIL_STATUS' && ['ADULT_133','ABOVE133_U65','PARENT_CARETAKER','PREGNANT','POSTPARTUM'].include?(p) && random(1,100)<=60 then ['Undocumented (No Coverage Except Emergency)','Non-Qualified Alien (Emergency Services Only)','Non-Immigrant (Temporary Visa Holder)'].sample else this end"
+    },
+    {
+      "name": "person.intendToRemainStateResident",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__testOutcomeIntent')=='FAIL_RESIDENCY' ? false : (random(1,100)<=96)"
+    },
+    {
+      "name": "person.currentResidenceState",
+      "null_percentage": 0,
+      "type": "State",
+      "onlyUSPlaces": true,
+      "formula": "s=field('__rootState'); field('intendToRemainStateResident') ? s : ((([\"Alabama\", \"Alaska\", \"Arizona\", \"Arkansas\", \"California\", \"Colorado\", \"Connecticut\", \"Delaware\", \"District of Columbia\", \"Florida\", \"Georgia\", \"Hawaii\", \"Idaho\", \"Illinois\", \"Indiana\", \"Iowa\", \"Kansas\", \"Kentucky\", \"Louisiana\", \"Maine\", \"Maryland\", \"Massachusetts\", \"Michigan\", \"Minnesota\", \"Mississippi\", \"Missouri\", \"Montana\", \"Nebraska\", \"Nevada\", \"New Hampshire\", \"New Jersey\", \"New Mexico\", \"New York\", \"North Carolina\", \"North Dakota\", \"Ohio\", \"Oklahoma\", \"Oregon\", \"Pennsylvania\", \"Rhode Island\", \"South Carolina\", \"South Dakota\", \"Tennessee\", \"Texas\", \"Utah\", \"Vermont\", \"Virginia\", \"Washington\", \"West Virginia\", \"Wisconsin\", \"Wyoming\"] - [s]).sample) || 'Texas')"
+    },
+    {
+      "name": "person.householdSize",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 10,
+      "decimals": 0,
+      "formula": "(field('__rootHhSizePlan')||1).to_i"
+    },
+    {
+      "name": "person.householdMagiIncomePctFPL",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 500,
+      "decimals": 1,
+      "formula": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); x=(field('__rootHhFplPctBase')||100).to_f; x=(p=='ADULT_133' ? random(60,132) : (p=='ABOVE133_U65' ? random(134,260) : (['PREGNANT','POSTPARTUM'].include?(p) ? random(70,225) : (['CHILD_U19','OPT_TLI_CHILD','CHILD_PUB_EMP','CHILD_DENTAL_ONLY','DEEMED_NEWBORN'].include?(p) ? random(30,260) : (['QMB','QI','SLMB'].include?(p) ? (p=='QMB' ? random(40,110) : (p=='SLMB' ? random(80,130) : random(100,140))) : (['SSI','ESSENTIAL_SPOUSE','POVERTY_AGED_DISABLED'].include?(p) ? random(20,140) : x+random(-35,35))))))); x+=random(70,180) if v=='FAIL_INCOME'; (x<0 ? 0 : x).round(1)"
+    },
+    {
+      "name": "person.householdMonthlyIncome",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 50000,
+      "decimals": 2,
+      "formula": "pct=field('householdMagiIncomePctFPL').to_f; s=field('householdSize').to_i; b=(s<=1 ? 1255 : (s==2 ? 1704 : (s==3 ? 2152 : (s==4 ? 2600 : 3048+((s-5)*448))))); v=((pct/100.0)*b)+random(-50,50); (v<0 ? 0 : v).round(2)"
+    },
+    {
+      "name": "person.householdAnnualIncome",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 600000,
+      "decimals": 2,
+      "formula": "(field('householdMonthlyIncome').to_f*12).round(2)"
+    },
+    {
+      "name": "person.householdResources",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 200000,
+      "decimals": 2,
+      "formula": "(field('__rootResources')||0).to_f.round(2)"
+    },
+    {
+      "name": "person.countableMonthlyIncome",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 30000,
+      "decimals": 2,
+      "formula": "p=field('__targetPathwayCode'); a=field('age').to_i; v=field('__testOutcomeIntent'); hh=field('householdMonthlyIncome').to_f; if a<16 || p=='DEEMED_NEWBORN' then 0 elsif ['CHILD_U19','TITLEIVE_CHILD','FOSTER_GUARD','NONIVE_ADOPT','OPT_TLI_CHILD','CHILD_DENTAL_ONLY','CHILD_PUB_EMP'].include?(p) && a<19 then (random(0,200)/1.0).round(2) elsif ['SSI','WORKING_DISABLED_1619B','WORK_INCENTIVE','QMB','QI','SLMB','POVERTY_AGED_DISABLED'].include?(p) then ((v=='FAIL_INCOME' ? random(1800,6500) : random(0,2500))/1.0).round(2) else z=(hh*(random(18,65)/100.0)); (v=='FAIL_INCOME' ? z+random(300,1500) : z).round(2) end"
+    },
+    {
+      "name": "person.countableResources",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 250000,
+      "decimals": 2,
+      "formula": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); a=field('age').to_i; if a<19 then ((v=='FAIL_RESOURCE') ? random(5000,25000) : random(0,1000)).round(2) elsif ['QMB','QI','SLMB','SSI','POVERTY_AGED_DISABLED','WORK_INCENTIVE','WORKING_DISABLED_1619B','PACE','HCBS','MEDICALLY_NEEDY','CASH_ASSIST_INST_EXC'].include?(p) then ((v=='FAIL_RESOURCE') ? random(4000,25000) : random(0,2000)).round(2) else random(0,20000).round(2) end"
+    },
+    {
+      "name": "person.pregnancyStatus",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "not pregnant",
+        "pregnant",
+        "postpartum"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "not pregnant": 90,
+            "pregnant": 6,
+            "postpartum": 4
+          }
+        }
+      ],
+      "formula": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); a=field('age').to_i; s=field('sex'); if s!='F'||a<10 then 'not pregnant' elsif p=='PREGNANT' then (v=='FAIL_PREGNANCY' ? 'not pregnant' : 'pregnant') elsif p=='POSTPARTUM' then (v=='FAIL_PREGNANCY' ? 'pregnant' : 'postpartum') elsif a>=15&&a<=44 then (r=random(1,100); r<=7 ? 'pregnant' : (r<=11 ? 'postpartum' : 'not pregnant')) else 'not pregnant' end"
+    },
+    {
+      "name": "person.pregnantWithCount",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 3,
+      "decimals": 0,
+      "formula": "field('pregnancyStatus')=='pregnant' ? [1,1,1,2].sample : 0"
+    },
+    {
+      "name": "person.isInPostpartumPeriod",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('pregnancyStatus')=='postpartum' && field('__testOutcomeIntent')!='FAIL_POSTPARTUM'"
+    },
+    {
+      "name": "person.daysPostpartum",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 730,
+      "decimals": 0,
+      "formula": "field('pregnancyStatus')=='postpartum' ? (field('__testOutcomeIntent')=='FAIL_POSTPARTUM' ? random(366,720) : random(1,365)) : 0"
+    },
+    {
+      "name": "person.pregnancyEndDate",
+      "null_percentage": 0,
+      "type": "Datetime",
+      "min": "2024-01-01",
+      "max": "2027-12-31",
+      "format": "%Y-%m-%d",
+      "formula": "field('pregnancyStatus')=='postpartum' ? (now()-days(field('daysPostpartum').to_i)).strftime('%Y-%m-%d') : (field('pregnancyStatus')=='pregnant' ? (now()+days(random(30,240))).strftime('%Y-%m-%d') : nil)"
+    },
+    {
+      "name": "person.blindnessStatus",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "NOT_BLIND",
+        "BLIND_FEDERAL_STANDARD"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "NOT_BLIND": 88,
+            "BLIND_FEDERAL_STANDARD": 12
+          }
+        }
+      ],
+      "formula": "['SSI','POVERTY_AGED_DISABLED','WORK_INCENTIVE','WORKING_DISABLED_1619B'].include?(field('__targetPathwayCode')) && random(1,100)<=25 ? 'BLIND_FEDERAL_STANDARD' : 'NOT_BLIND'"
+    },
+    {
+      "name": "person.disabilityStatus",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "NOT_DISABLED",
+        "DISABLED_SSA_DETERMINED",
+        "DISABLED_STATE_DETERMINED",
+        "PENDING_DISABILITY_DETERMINATION"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "NOT_DISABLED": 72,
+            "DISABLED_SSA_DETERMINED": 17,
+            "DISABLED_STATE_DETERMINED": 7,
+            "PENDING_DISABILITY_DETERMINATION": 4
+          }
+        }
+      ],
+      "formula": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); dpaths=['SSI','POVERTY_AGED_DISABLED','DAC','DWW_EARLY_SS','QUAL_DISABLED_CHILD','WORK_INCENTIVE','WORKING_DISABLED_1619B','HCBS','KIDS_WAIVER','FAMILY_OPP']; if dpaths.include?(p) then (v=='FAIL_STATUS' ? 'NOT_DISABLED' : (r=random(1,100); r<=58 ? 'DISABLED_SSA_DETERMINED' : (r<=87 ? 'DISABLED_STATE_DETERMINED' : 'PENDING_DISABILITY_DETERMINATION'))) else (random(1,100)<=2 ? 'PENDING_DISABILITY_DETERMINATION' : 'NOT_DISABLED') end"
+    },
+    {
+      "name": "person.medicareEntitledPartA",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); a=field('age').to_i; v=='FAIL_MEDICARE' ? false : (['QMB','QI','SLMB'].include?(p) ? true : (a>=65 ? random(1,100)<=88 : (field('disabilityStatus')!='NOT_DISABLED' && random(1,100)<=22)))"
+    },
+    {
+      "name": "person.medicareEntitledPartB",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('medicareEntitledPartA') ? (field('__testOutcomeIntent')=='FAIL_MEDICARE' ? false : random(1,100)<=90) : false"
+    },
+    {
+      "name": "person.meetsWorkParticipationCrtieria",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['TMA','WORK_INCENTIVE','WORKING_DISABLED_1619B'].include?(field('__targetPathwayCode')) ? field('__testOutcomeIntent')!='FAIL_WORK' : (random(1,100)<=70)"
+    },
+    {
+      "name": "person.lostMedicaidDueToEarnings",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['EXT_EARNINGS','TMA','WORK_INCENTIVE','WORKING_DISABLED_1619B'].include?(field('__targetPathwayCode')) ? field('__testOutcomeIntent')!='FAIL_WORK' : false"
+    },
+    {
+      "name": "person.lostMedicaidDueToSupport",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='EXT_SUPPORT' ? field('__testOutcomeIntent')!='FAIL_SUPPORT' : false"
+    },
+    {
+      "name": "person.lostMedicaidPostPartum",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='POSTPARTUM' && field('__testOutcomeIntent')=='FAIL_POSTPARTUM'"
+    },
+    {
+      "name": "person.lostMedicaidAnyReason",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('lostMedicaidDueToEarnings')||field('lostMedicaidDueToSupport')||field('lostMedicaidPostPartum')"
+    },
+    {
+      "name": "person.workingDisabled",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['WORK_INCENTIVE','WORKING_DISABLED_1619B'].include?(field('__targetPathwayCode')) ? field('__testOutcomeIntent')!='FAIL_WORK' : false"
+    },
+    {
+      "name": "person.ssiRecipient",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); p=='SSI' ? !['FAIL_STATUS','FAIL_RESOURCE','FAIL_INCOME'].include?(v) : (['WORKING_DISABLED_1619B','WORK_INCENTIVE'].include?(p) && random(1,100)<=20)"
+    },
+    {
+      "name": "person.ssiDeemedRecipient",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('ssiRecipient') && field('age').to_i<19 ? random(1,100)<=35 : false"
+    },
+    {
+      "name": "person.receivesStateSupplementMandatory",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['ESSENTIAL_SPOUSE','POVERTY_AGED_DISABLED'].include?(field('__targetPathwayCode')) ? random(1,100)<=18 : false"
+    },
+    {
+      "name": "person.presentlyUninsured",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__testOutcomeIntent')=='FAIL_INSURANCE' ? false : (field('__targetPathwayCode')=='CHILD_PUB_EMP' ? random(1,100)<=55 : random(1,100)<=82)"
+    },
+    {
+      "name": "person.hasAccessToPublicEmployeeCoverage",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "p=field('__targetPathwayCode'); p=='CHILD_PUB_EMP' ? (field('__testOutcomeIntent')=='FAIL_INSURANCE' ? false : true) : (p=='PREGNANT' && random(1,100)<=18 ? true : random(1,100)<=9)"
+    },
+    {
+      "name": "person.livesAtHome",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "random(1,100)<=93"
+    },
+    {
+      "name": "person.needsLtssLevelOfCare",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['HCBS','PACE'].include?(field('__targetPathwayCode')) ? !['FAIL_INSTITUTION','FAIL_STATUS'].include?(field('__testOutcomeIntent')) : random(1,100)<=4"
+    },
+    {
+      "name": "person.requiresInstitutionalCare",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['HCBS','PACE'].include?(field('__targetPathwayCode')) ? !['FAIL_INSTITUTION','FAIL_STATUS'].include?(field('__testOutcomeIntent')) : random(1,100)<=3"
+    },
+    {
+      "name": "person.institutionalized",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "p=field('__targetPathwayCode'); v=field('__testOutcomeIntent'); p=='PACE' ? !['FAIL_INSTITUTION','FAIL_STATUS'].include?(v) : (p=='HCBS' ? (v=='FAIL_INSTITUTION' ? false : random(1,100)<=55) : (p=='HOSPICE' ? (v=='FAIL_INSTITUTION' ? false : random(1,100)<=35) : random(1,100)<=6))"
+    },
+    {
+      "name": "person.inHospice",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='HOSPICE' ? !['FAIL_INSTITUTION','FAIL_STATUS'].include?(field('__testOutcomeIntent')) : random(1,100)<=3"
+    },
+    {
+      "name": "person.isEssentialSpouse",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='ESSENTIAL_SPOUSE' ? field('__testOutcomeIntent')!='FAIL_STATUS' : false"
+    },
+    {
+      "name": "person.activeTbRequiringTreatment",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "random(1,100)<=2"
+    },
+    {
+      "name": "person.activeBreastOrCervicalCancer",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='BCC_TREAT' ? field('__testOutcomeIntent')!='FAIL_STATUS' : false"
+    },
+    {
+      "name": "person.intellectualDisability",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['KIDS_WAIVER','QUAL_DISABLED_CHILD'].include?(field('__targetPathwayCode')) ? random(1,100)<=60 : random(1,100)<=4"
+    },
+    {
+      "name": "person.diagnosedAutism",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='KIDS_WAIVER' ? random(1,100)<=45 : random(1,100)<=3"
+    },
+    {
+      "name": "person.diagnosedBrainOrSpinalInjury",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['HCBS','PACE'].include?(field('__targetPathwayCode')) ? random(1,100)<=12 : random(1,100)<=2"
+    },
+    {
+      "name": "person.diagnosedDevelopmentalIntellectualDisabilityOrAutism",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('diagnosedAutism')||field('intellectualDisability')"
+    },
+    {
+      "name": "person.diagnosedMedicallyFragileOrTechDependent",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='KIDS_WAIVER' ? random(1,100)<=18 : random(1,100)<=2"
+    },
+    {
+      "name": "person.diagnosedPhysicalOrOtherHealthDisability",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['HCBS','WORK_INCENTIVE','WORKING_DISABLED_1619B','POVERTY_AGED_DISABLED'].include?(field('__targetPathwayCode')) ? random(1,100)<=35 : random(1,100)<=8"
+    },
+    {
+      "name": "person.diagnosedSeriousDisturbanceMentalIllness",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='MENTAL_HEALTH' ? field('__testOutcomeIntent')!='FAIL_STATUS' : random(1,100)<=5"
+    },
+    {
+      "name": "person.diagnosedHivAids",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "random(1,100)<=2"
+    },
+    {
+      "name": "person.eligibleForDentalOnlySupplementalCoverage",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='CHILD_DENTAL_ONLY' ? field('__testOutcomeIntent')!='FAIL_STATUS' : false"
+    },
+    {
+      "name": "person.eligibleForCashAssistance",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='CASH_ASSIST_INST_EXC' ? field('__testOutcomeIntent')!='FAIL_STATUS' : false"
+    },
+    {
+      "name": "person.bornToMedicaidEnrolledMother",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='DEEMED_NEWBORN' ? field('__testOutcomeIntent')!='FAIL_STATUS' : false"
+    },
+    {
+      "name": "person.nonTitleIVEAdoptionAssistance",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='NONIVE_ADOPT' ? field('__testOutcomeIntent')!='FAIL_FOSTER' : false"
+    },
+    {
+      "name": "person.receivesTitleIVE",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='TITLEIVE_CHILD' ? field('__testOutcomeIntent')!='FAIL_FOSTER' : false"
+    },
+    {
+      "name": "person.lostSSIearlySS",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='DWW_EARLY_SS' ? field('__testOutcomeIntent')!='FAIL_STATUS' : false"
+    },
+    {
+      "name": "person.eligibleForMedicareCostSharingAssistance",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['QMB','QI','SLMB'].include?(field('__targetPathwayCode')) ? !['FAIL_MEDICARE','FAIL_INCOME','FAIL_RESOURCE','FAIL_STATUS'].include?(field('__testOutcomeIntent')) : random(1,100)<=5"
+    },
+    {
+      "name": "person.currentFosterCare",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['TITLEIVE_CHILD','FOSTER_GUARD'].include?(field('__targetPathwayCode')) ? field('__testOutcomeIntent')!='FAIL_FOSTER' : false"
+    },
+    {
+      "name": "person.formerFosterCare",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "p=field('__targetPathwayCode'); p=='FORMER_FOSTER_26' ? field('__testOutcomeIntent')!='FAIL_FOSTER' : (['TITLEIVE_CHILD','FOSTER_GUARD'].include?(p) ? random(1,100)<=20 : random(1,100)<=2)"
+    },
+    {
+      "name": "person.inFosterCareAtAge18OrAgingOut",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='FORMER_FOSTER_26' ? field('__testOutcomeIntent')!='FAIL_FOSTER' : false"
+    },
+    {
+      "name": "person.wasMedicaidEnrolledAtAgingOut",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='FORMER_FOSTER_26' ? field('__testOutcomeIntent')!='FAIL_FOSTER' : false"
+    },
+    {
+      "name": "person.fosterCareState",
+      "null_percentage": 0,
+      "type": "State",
+      "onlyUSPlaces": true,
+      "formula": "['TITLEIVE_CHILD','FORMER_FOSTER_26','FOSTER_GUARD','NONIVE_ADOPT'].include?(field('__targetPathwayCode')) ? (random(1,100)<=40 ? 'Alaska' : field('__rootState')) : nil"
+    },
+    {
+      "name": "person.lostSSIdueToParentSSI",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "field('__targetPathwayCode')=='QUAL_DISABLED_CHILD' ? random(1,100)<=20 : false"
+    },
+    {
+      "name": "person.lostSsiOasdiColaIncreases",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['POVERTY_AGED_DISABLED','QI','SLMB'].include?(field('__targetPathwayCode')) ? random(1,100)<=16 : false"
+    },
+    {
+      "name": "person.__expectedAutoEnroll",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": "['DEEMED_NEWBORN','SSI','TITLEIVE_CHILD'].include?(field('__targetPathwayCode')) ? random(1,100)<=35 : random(1,100)<=5"
+    },
+    {
+      "name": "person.__expectedOverlayCategory",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "NONE",
+        "INSTITUTIONAL_RULES",
+        "SPECIAL_INCOME_LEVEL"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "NONE": 86,
+            "INSTITUTIONAL_RULES": 10,
+            "SPECIAL_INCOME_LEVEL": 4
+          }
+        }
+      ],
+      "formula": "p=field('__targetPathwayCode'); ['PACE','HCBS','HOSPICE'].include?(p) ? 'INSTITUTIONAL_RULES' : (p=='HCBS' && random(1,100)<=30 ? 'SPECIAL_INCOME_LEVEL' : 'NONE')"
+    },
+    {
+      "name": "person.priorEligibilityPathway",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Adult Group- Individuals at or below 133% FPL",
+        "Aged, Blind and Disabled Individuals",
+        "Certain Individuals Needing Treatment for Breast or Cervical Cancer",
+        "Children with Non-IV-E Adoption Assistance",
+        "Children Eligible for Dental Only Supplemental Coverage",
+        "Children with Access to Public Employee Coverage",
+        "Foster Care or Guardianship Care",
+        "Deemed Newborns",
+        "Disabled Adult Children",
+        "Disabled Widows and Widowers Ineligible for SSI due to Early Receipt of Social Security",
+        "Disabled Widows and Widowers Ineligible for SSI due to Increase in OASDI",
+        "Extended Medicaid due to Earnings",
+        "Extended Medicaid due to Spousal Support Collections",
+        "Family Opportunity Act Children with Disabilities",
+        "Family Planning Participants (expansion group)",
+        "Former Foster Care Children",
+        "Independent Foster Care Adolescents",
+        "Individuals above 133% FPL under Age 65",
+        "Individuals Eligible for Cash Assistance except for Institutionalization",
+        "Individuals Eligible for Family Planning Services",
+        "Individuals Eligible for Home and Community-Based Services",
+        "Individuals Eligible for Home and Community-Based Services -- Special Income Level",
+        "Individuals participating in a PACE Program under Institutional Rules",
+        "Optional State supplement Recipients, 209(b) States, and SSI Criteria States without 1616 Agreements",
+        "Individuals Receiving Home and Community Based Services under Institutional Rules",
+        "Individuals Receiving Hospice Care",
+        "Individuals Receiving Mandatory State Supplements",
+        "Individuals Receiving SSI",
+        "Individuals Who Are Essential Spouses",
+        "Individuals Who Lost Eligibility for SSI/SSP Due to an Increase in OASDI Benefits in 1972",
+        "Individuals Who Would be Eligible for SSI/SSP but for OASDI COLA increases since April 1977",
+        "Individuals with mental health Conditions (expansion group)",
+        "Individuals with Tuberculosis",
+        "Infants and Children under Age 19",
+        "Institutionalized Individuals Continuously Eligible Since 1973",
+        "Institutionalized Individuals Eligible under a Special Income Level",
+        "Blind or Disabled",
+        "Medically Needy Blind or Disabled Individuals Eligible in 1973",
+        "Medically Needy Children Aged 18 through 20",
+        "Medically Needy Children under Age 18",
+        "Medically Needy Parents and Other Caretakers",
+        "Medically Needy Pregnant Women",
+        "Optional Coverage of Parents and Other Caretaker Relatives",
+        "Optional State Supplement Recipients, 1634 States, and SSI Criteria States with 1616 Agreements",
+        "Optional State Supplement Recipients, 209(b) States, and SSI Criteria States without 1616 Agreements",
+        "Optional Targeted Low-Income Children",
+        "Parents and Other Caretaker Relatives",
+        "Postpartum Coverage",
+        "Poverty Level Aged or Disabled",
+        "Pregnant Women",
+        "Pregnant Women with Access to Public Employee Coverage",
+        "Qualified Disabled Children under Age 19",
+        "Qualified Medicare Beneficiaries",
+        "Qualifying Individuals",
+        "Reasonable Classifications of Individuals under Age 21",
+        "Specified Low Income Medicare Beneficiaries",
+        "Targeted Low-Income",
+        "Targeted Low-Income Children",
+        "Ticket to Work Basic Group",
+        "Ticket to Work Medical Improvements Group",
+        "Transitional Medical Assistance",
+        "Medicaid Buy-In for Workers with Disabilities",
+        "Working Disabled under 1619(b)"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "p=field('__targetPathwayCode'); if p=='TMA' then 'Parents and Other Caretaker Relatives' elsif p=='EXT_EARNINGS' then 'Adult Group- Individuals at or below 133% FPL' elsif p=='POSTPARTUM' then 'Pregnant Women' elsif p=='WORKING_DISABLED_1619B' then 'Individuals Receiving SSI' elsif random(1,100)<=88 then nil else this end"
+    },
+    {
+      "name": "person.__expectedPopulationFitMultiplier",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0.25,
+      "max": 2.0,
+      "decimals": 2,
+      "formula": "field('__testOutcomeIntent').start_with?('PASS') ? (1.05+random(0,55)/100.0).round(2) : (0.45+random(0,55)/100.0).round(2)"
+    },
+    {
+      "name": "person.__expectedPopulationHandicap",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 10,
+      "decimals": 2,
+      "formula": "field('__testOutcomeIntent').start_with?('PASS') ? (random(0,150)/100.0).round(2) : (1.0+random(0,800)/100.0).round(2)"
+    },
+    {
+      "name": "person.__expectedCoverageValueBase",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 100,
+      "decimals": 2,
+      "formula": "a=field('age').to_i; b=(a<1 ? 95 : (a<19 ? 75 : (a>=65 ? 82 : 68))); x=b+(field('__testOutcomeIntent').start_with?('PASS') ? random(5,18) : random(-20,5)); (x<0 ? 0 : (x>100 ? 100 : x))"
+    },
+    {
+      "name": "person.__expectedPopulationCode",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "EXPANSION_ADULT",
+        "ABD",
+        "DISABLED",
+        "BREAST_CERVICAL_CANCER",
+        "CHILD",
+        "ADOPTION_ASSISTANCE_CHILD",
+        "INFANT",
+        "WORKING_DISABLED_ADULT",
+        "PARENT_CARETAKER",
+        "CHILD_WITH_DISABILITY",
+        "FAMILY_PLANNING",
+        "FORMER_FOSTER_YOUTH",
+        "FOSTER_YOUTH",
+        "LTSS_NEEDS",
+        "HOSPICE",
+        "TB_PATIENT",
+        "INSTITUTIONALIZED",
+        "YOUTH_18_20",
+        "PREGNANT_PERSON",
+        "AGED_OR_DISABLED",
+        "MEDICARE_BENEFICIARY",
+        "FOSTER_CARE_CHILD",
+        "POSTPARTUM",
+        "GENERAL"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "m={\"ADULT_133\" => \"EXPANSION_ADULT\", \"ABOVE133_U65\" => \"EXPANSION_ADULT\", \"PARENT_CARETAKER\" => \"PARENT_CARETAKER\", \"EXT_EARNINGS\" => \"PARENT_CARETAKER\", \"EXT_SUPPORT\" => \"PARENT_CARETAKER\", \"TMA\" => \"PARENT_CARETAKER\", \"PREGNANT\" => \"PREGNANT_PERSON\", \"POSTPARTUM\" => \"POSTPARTUM\", \"DEEMED_NEWBORN\" => \"INFANT\", \"CHILD_U19\" => \"CHILD\", \"OPT_TLI_CHILD\" => \"CHILD\", \"CHILD_PUB_EMP\" => \"CHILD\", \"CHILD_DENTAL_ONLY\" => \"CHILD\", \"TITLEIVE_CHILD\" => \"FOSTER_CARE_CHILD\", \"FOSTER_GUARD\" => \"FOSTER_CARE_CHILD\", \"NONIVE_ADOPT\" => \"FOSTER_CARE_CHILD\", \"FORMER_FOSTER_26\" => \"FOSTER_YOUTH\", \"QUAL_DISABLED_CHILD\" => \"CHILD_WITH_DISABILITY\", \"KIDS_WAIVER\" => \"CHILD_WITH_DISABILITY\", \"BCC_TREAT\" => \"BREAST_CERVICAL_CANCER\", \"HOSPICE\" => \"HOSPICE\", \"PACE\" => \"INSTITUTIONALIZED\", \"HCBS\" => \"LTSS_NEEDS\", \"QMB\" => \"MEDICARE_BENEFICIARY\", \"QI\" => \"MEDICARE_BENEFICIARY\", \"SLMB\" => \"MEDICARE_BENEFICIARY\", \"SSI\" => \"AGED_OR_DISABLED\", \"ESSENTIAL_SPOUSE\" => \"AGED_OR_DISABLED\", \"POVERTY_AGED_DISABLED\" => \"AGED_OR_DISABLED\"}; p=field('__targetPathwayCode'); t=m[p]||'EXPANSION_ADULT'; field('activeTbRequiringTreatment') && random(1,100)<=20 ? 'TB_PATIENT' : t"
+    },
+    {
+      "name": "person.__expectedReasonCodeHint",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "m={\"FAIL_INCOME\" => \"INELIG_INCOME_OVER_LIMIT\", \"FAIL_AGE\" => \"INELIG_AGE_OUT_OF_RANGE\", \"FAIL_RESIDENCY\" => \"INELIG_NOT_STATE_RESIDENT\", \"FAIL_INSURANCE\" => \"INELIG_PRESENTLYUNINSURED\", \"FAIL_MEDICARE\" => \"INELIG_NOT_MEDICARE_ENTITLED_PART_A\", \"FAIL_WORK\" => \"INELIG_WORK_PARTICIPATION_NOT_MET\", \"FAIL_PARENT\" => \"INELIG_NOT_PARENT_OR_CARETAKER\", \"FAIL_POSTPARTUM\" => \"INELIG_POSTPARTUM_PERIOD_EXPIRED\", \"FAIL_PREGNANCY\" => \"INELIG_PREGNANCY_STATUS_MISMATCH\", \"FAIL_INSTITUTION\" => \"INELIG_INSTITUTIONAL_STATUS_MISMATCH\", \"FAIL_RESOURCE\" => \"INELIG_RESOURCES_OVER_LIMIT\", \"FAIL_SUPPORT\" => \"INELIG_TMA_CRITERIA_NOT_MET\"}; v=field('__testOutcomeIntent'); p=field('__targetPathwayCode'); v.start_with?('PASS') ? '' : (v=='FAIL_STATUS' && p=='HOSPICE' ? 'INELIG_NOT_IN_HOSPICE' : (v=='FAIL_STATUS' && p=='BCC_TREAT' ? 'INELIG_NOT_ACTIVE_BREAST_OR_CERVICAL_CANCER' : (m[v]||'INELIG_REQUIREMENT_NOT_MET')))",
+      "formula": ""
+    },
+    {
+      "name": "person.__scenarioNote",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "concat(field('__targetPathwayLabel'),' | intent=',field('__testOutcomeIntent'),' | reasonHint=',(field('__expectedReasonCodeHint').to_s=='' ? 'ELIGIBLE_EXPECTED' : field('__expectedReasonCodeHint')))",
+      "formula": ""
+    }
+  ]
+}

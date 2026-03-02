@@ -1,9 +1,9 @@
-"use strict";
+﻿"use strict";
 
 // Optional utility resource for middle-tier retrieval.
 exports.GET = function (context, params) {
   const criteria = params.criteria || "";
-  const collection = params.collection || "corticon-results";
+  const collection = params.collection || "decision-ledger-output";
   const page = params.page ? parseInt(params.page, 10) : 1;
   const pageLength = params.pageLength ? parseInt(params.pageLength, 10) : 20;
 
@@ -21,4 +21,3 @@ exports.GET = function (context, params) {
     results: results
   };
 };
-

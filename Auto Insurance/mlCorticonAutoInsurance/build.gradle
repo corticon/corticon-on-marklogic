@@ -1,4 +1,4 @@
 plugins {
-  id "com.marklogic.ml-gradle" version "5.0.0"
+  id "com.marklogic.ml-gradle" version "6.1.0"
   id "base"
 }

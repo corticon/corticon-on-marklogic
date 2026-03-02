@@ -1,26 +1,28 @@
 ﻿# FastTrack UI Starter Notes
 
-This folder is where you place your FastTrack 2.x archive and scaffold your UI project.
+This folder holds template assets for bootstrapping a FastTrack-based UI against the template MarkLogic backend.
 
 ## Required Input
 
-1. Copy your FastTrack archive (`ml-fasttrack-2.x.y-<build>.tgz`) into this folder.
-2. Update `package.template.json` so the `ml-fasttrack` dependency points to your exact filename.
+1. Place your FastTrack archive (`ml-fasttrack-2.x.y-<build>.tgz`) in this folder.
+2. Update `package.template.json` so `ml-fasttrack` points at that exact file.
 
-## Example
-
-If your archive is:
-
-```text
-ml-fasttrack-2.0.1-20250815a.tgz
-```
-
-Set dependency to:
+Example:
 
 ```json
-"ml-fasttrack": "file:./ml-fasttrack-2.0.1-20250815a.tgz"
+"ml-fasttrack": "file:./ml-fasttrack-2.0.0-20250701b.tgz"
 ```
 
-## Suggested Next Step
+## Suggested Workflow
 
-Use this package template as a base for your app-specific `package.json`, then wire it to the MarkLogic endpoints in `../marklogic`.
+1. Copy `package.template.json` to `package.json`.
+2. Add your app scripts/components.
+3. Configure API base URL to a proxy or directly to MarkLogic REST.
+4. Connect UI views to:
+   - `/v1/resources/processAndEnrich`
+   - `/v1/resources/chunkSearch`
+   - `/v1/search?options=search-options`
+
+## Recommendation
+
+Keep credentials in a local proxy/middle tier and avoid direct browser auth to MarkLogic in production environments.

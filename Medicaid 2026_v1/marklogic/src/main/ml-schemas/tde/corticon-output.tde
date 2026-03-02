@@ -1,0 +1,385 @@
+{
+  "template": {
+    "description": "Expanded Corticon output TDE for household, person, population, pathway, and trace analytics",
+    "collections": [
+      "%%collectionPrefix%%_output"
+    ],
+    "context": "/",
+    "rows": [
+      {
+        "schemaName": "corticon",
+        "viewName": "decision_output",
+        "viewLayout": "sparse",
+        "columns": [
+          { "name": "correlation_id", "scalarType": "string", "val": "_decisionLedger/correlationId", "nullable": true },
+          { "name": "household_id", "scalarType": "string", "val": "householdId", "nullable": true },
+          { "name": "state", "scalarType": "string", "val": "state", "nullable": true },
+          { "name": "resources", "scalarType": "decimal", "val": "resources", "nullable": true },
+          { "name": "person_count", "scalarType": "integer", "val": "fn:count(person)", "nullable": true },
+          { "name": "decision_status", "scalarType": "string", "val": "corticon/status", "nullable": true },
+          { "name": "corticon_timestamp", "scalarType": "string", "val": "corticon/timestamp", "nullable": true },
+          { "name": "input_payload_uri", "scalarType": "string", "val": "_decisionLedger/inputPayloadUri", "nullable": true },
+          { "name": "output_payload_uri", "scalarType": "string", "val": "_decisionLedger/outputPayloadUri", "nullable": true },
+          { "name": "collection_prefix", "scalarType": "string", "val": "_decisionLedger/collectionPrefix", "nullable": true },
+
+          { "name": "request_id", "scalarType": "string", "val": "payload/claim/claim_id", "nullable": true },
+          { "name": "patient_id", "scalarType": "string", "val": "payload/claim/patient_id", "nullable": true },
+          { "name": "practitioner_npi", "scalarType": "string", "val": "payload/claim/practitioner_npi", "nullable": true },
+          { "name": "claim_total", "scalarType": "decimal", "val": "payload/claim/claim_total", "nullable": true }
+        ]
+      },
+      {
+        "schemaName": "corticon",
+        "viewName": "household_case",
+        "viewLayout": "sparse",
+        "columns": [
+          { "name": "correlation_id", "scalarType": "string", "val": "_decisionLedger/correlationId", "nullable": true },
+          { "name": "household_id", "scalarType": "string", "val": "householdId", "nullable": true },
+          { "name": "state", "scalarType": "string", "val": "state", "nullable": true },
+          { "name": "resources", "scalarType": "decimal", "val": "resources", "nullable": true },
+          { "name": "person_count", "scalarType": "integer", "val": "fn:count(person)", "nullable": true },
+          { "name": "corticon_status", "scalarType": "string", "val": "corticon/status", "nullable": true },
+          { "name": "corticon_timestamp", "scalarType": "string", "val": "corticon/timestamp", "nullable": true },
+          { "name": "input_payload_uri", "scalarType": "string", "val": "_decisionLedger/inputPayloadUri", "nullable": true },
+          { "name": "output_payload_uri", "scalarType": "string", "val": "_decisionLedger/outputPayloadUri", "nullable": true },
+          { "name": "record_type", "scalarType": "string", "val": "_decisionLedger/recordType", "nullable": true },
+          { "name": "created_by", "scalarType": "string", "val": "_decisionLedger/createdBy", "nullable": true },
+          { "name": "collection_prefix", "scalarType": "string", "val": "_decisionLedger/collectionPrefix", "nullable": true }
+        ]
+      }
+    ],
+    "templates": [
+      {
+        "context": "corticon/entities/Alert",
+        "rows": [
+          {
+            "schemaName": "corticon",
+            "viewName": "alerts",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+              { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+              { "name": "state", "scalarType": "string", "val": "/state", "nullable": true },
+              { "name": "alert_id", "scalarType": "integer", "val": "id", "nullable": true },
+              { "name": "alert_code", "scalarType": "string", "val": "code", "nullable": true },
+              { "name": "decision", "scalarType": "string", "val": "decision", "nullable": true },
+              { "name": "severity", "scalarType": "string", "val": "severity", "nullable": true },
+              { "name": "confidence", "scalarType": "decimal", "val": "confidence", "nullable": true }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "person",
+        "rows": [
+          {
+            "schemaName": "corticon",
+            "viewName": "person",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+              { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+              { "name": "household_state", "scalarType": "string", "val": "/state", "nullable": true },
+
+              { "name": "full_name", "scalarType": "string", "val": "fullName", "nullable": true },
+              { "name": "sex", "scalarType": "string", "val": "sex", "nullable": true },
+              { "name": "date_of_birth", "scalarType": "string", "val": "dateOfBirth", "nullable": true },
+              { "name": "age", "scalarType": "integer", "val": "age", "nullable": true },
+              { "name": "age_category", "scalarType": "string", "val": "ageCategory", "nullable": true },
+              { "name": "relation_to_policyholder", "scalarType": "string", "val": "relationToPolicyholder", "nullable": true },
+              { "name": "caretaker_relationship", "scalarType": "string", "val": "caretakerRelationship", "nullable": true },
+              { "name": "files_as", "scalarType": "string", "val": "filesAs", "nullable": true },
+              { "name": "filing_status", "scalarType": "string", "val": "filingStatus", "nullable": true },
+              { "name": "marital_status", "scalarType": "string", "val": "maritalStatus", "nullable": true },
+              { "name": "citizenship_status", "scalarType": "string", "val": "citizenshipStatus", "nullable": true },
+              { "name": "current_residence_state", "scalarType": "string", "val": "currentResidenceState", "nullable": true },
+              { "name": "household_size", "scalarType": "integer", "val": "householdSize", "nullable": true },
+
+              { "name": "household_magi_income_pct_fpl", "scalarType": "string", "val": "householdMagiIncomePctFPL", "nullable": true },
+              { "name": "household_monthly_income", "scalarType": "string", "val": "householdMonthlyIncome", "nullable": true },
+              { "name": "household_annual_income", "scalarType": "string", "val": "householdAnnualIncome", "nullable": true },
+              { "name": "household_resources", "scalarType": "string", "val": "householdResources", "nullable": true },
+              { "name": "countable_monthly_income", "scalarType": "string", "val": "countableMonthlyIncome", "nullable": true },
+              { "name": "countable_resources", "scalarType": "string", "val": "countableResources", "nullable": true },
+
+              { "name": "is_parent_or_caretaker", "scalarType": "boolean", "val": "isParentOrCaretaker", "nullable": true },
+              { "name": "has_dependent_child", "scalarType": "boolean", "val": "hasDependentChild", "nullable": true },
+              { "name": "pregnancy_status", "scalarType": "string", "val": "pregnancyStatus", "nullable": true },
+              { "name": "pregnant_with_count", "scalarType": "integer", "val": "pregnantWithCount", "nullable": true },
+              { "name": "is_in_postpartum_period", "scalarType": "boolean", "val": "isInPostpartumPeriod", "nullable": true },
+              { "name": "days_postpartum", "scalarType": "integer", "val": "daysPostpartum", "nullable": true },
+              { "name": "blindness_status", "scalarType": "string", "val": "blindnessStatus", "nullable": true },
+              { "name": "disability_status", "scalarType": "string", "val": "disabilityStatus", "nullable": true },
+              { "name": "medicare_entitled_part_a", "scalarType": "boolean", "val": "medicareEntitledPartA", "nullable": true },
+              { "name": "medicare_entitled_part_b", "scalarType": "boolean", "val": "medicareEntitledPartB", "nullable": true },
+              { "name": "meets_work_participation_criteria", "scalarType": "boolean", "val": "meetsWorkParticipationCrtieria", "nullable": true },
+              { "name": "presently_uninsured", "scalarType": "boolean", "val": "presentlyUninsured", "nullable": true },
+              { "name": "has_access_to_public_employee_coverage", "scalarType": "boolean", "val": "hasAccessToPublicEmployeeCoverage", "nullable": true },
+
+              { "name": "needs_ltss_level_of_care", "scalarType": "boolean", "val": "needsLtssLevelOfCare", "nullable": true },
+              { "name": "requires_institutional_care", "scalarType": "boolean", "val": "requiresInstitutionalCare", "nullable": true },
+              { "name": "institutionalized", "scalarType": "boolean", "val": "institutionalized", "nullable": true },
+              { "name": "in_hospice", "scalarType": "boolean", "val": "inHospice", "nullable": true },
+
+              { "name": "active_tb_requiring_treatment", "scalarType": "boolean", "val": "activeTbRequiringTreatment", "nullable": true },
+              { "name": "active_breast_or_cervical_cancer", "scalarType": "boolean", "val": "activeBreastOrCervicalCancer", "nullable": true },
+              { "name": "diagnosed_autism", "scalarType": "boolean", "val": "diagnosedAutism", "nullable": true },
+              { "name": "diagnosed_dev_id_or_autism", "scalarType": "boolean", "val": "diagnosedDevelopmentalIntellectualDisabilityOrAutism", "nullable": true },
+              { "name": "diagnosed_medically_fragile_or_tech_dependent", "scalarType": "boolean", "val": "diagnosedMedicallyFragileOrTechDependent", "nullable": true },
+              { "name": "diagnosed_physical_or_other_health_disability", "scalarType": "boolean", "val": "diagnosedPhysicalOrOtherHealthDisability", "nullable": true },
+              { "name": "diagnosed_serious_mental_illness", "scalarType": "boolean", "val": "diagnosedSeriousDisturbanceMentalIllness", "nullable": true },
+              { "name": "diagnosed_hiv_aids", "scalarType": "boolean", "val": "diagnosedHivAids", "nullable": true },
+
+              { "name": "eligible_for_dental_only_supplemental_coverage", "scalarType": "boolean", "val": "eligibleForDentalOnlySupplementalCoverage", "nullable": true },
+              { "name": "eligible_for_cash_assistance", "scalarType": "boolean", "val": "eligibleForCashAssistance", "nullable": true },
+              { "name": "born_to_medicaid_enrolled_mother", "scalarType": "boolean", "val": "bornToMedicaidEnrolledMother", "nullable": true },
+              { "name": "non_title_iv_e_adoption_assistance", "scalarType": "boolean", "val": "nonTitleIVEAdoptionAssistance", "nullable": true },
+              { "name": "receives_title_iv_e", "scalarType": "boolean", "val": "receivesTitleIVE", "nullable": true },
+              { "name": "current_foster_care", "scalarType": "boolean", "val": "currentFosterCare", "nullable": true },
+              { "name": "former_foster_care", "scalarType": "boolean", "val": "formerFosterCare", "nullable": true },
+              { "name": "foster_care_state", "scalarType": "string", "val": "fosterCareState", "nullable": true },
+
+              { "name": "lost_medicaid_due_to_earnings", "scalarType": "boolean", "val": "lostMedicaidDueToEarnings", "nullable": true },
+              { "name": "lost_medicaid_due_to_support", "scalarType": "boolean", "val": "lostMedicaidDueToSupport", "nullable": true },
+              { "name": "lost_medicaid_post_partum", "scalarType": "boolean", "val": "lostMedicaidPostPartum", "nullable": true },
+              { "name": "lost_medicaid_any_reason", "scalarType": "boolean", "val": "lostMedicaidAnyReason", "nullable": true },
+              { "name": "prior_eligibility_pathway", "scalarType": "string", "val": "priorEligibilityPathway", "nullable": true }
+            ]
+          }
+        ],
+        "templates": [
+          {
+            "context": "population",
+            "rows": [
+              {
+                "schemaName": "corticon",
+                "viewName": "person_population",
+                "viewLayout": "sparse",
+                "columns": [
+                  { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+                  { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+                  { "name": "household_state", "scalarType": "string", "val": "/state", "nullable": true },
+                  { "name": "person_full_name", "scalarType": "string", "val": "../fullName", "nullable": true },
+                  { "name": "person_sex", "scalarType": "string", "val": "../sex", "nullable": true },
+                  { "name": "person_age", "scalarType": "integer", "val": "../age", "nullable": true },
+                  { "name": "person_age_category", "scalarType": "string", "val": "../ageCategory", "nullable": true },
+                  { "name": "person_relation_to_policyholder", "scalarType": "string", "val": "../relationToPolicyholder", "nullable": true },
+                  { "name": "population_type", "scalarType": "string", "val": "type", "nullable": true }
+                ]
+              }
+            ]
+          },
+          {
+            "context": "eligibilityPathway",
+            "rows": [
+              {
+                "schemaName": "corticon",
+                "viewName": "person_eligibility_pathway",
+                "viewLayout": "sparse",
+                "columns": [
+                  { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+                  { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+                  { "name": "household_state", "scalarType": "string", "val": "/state", "nullable": true },
+                  { "name": "person_full_name", "scalarType": "string", "val": "../fullName", "nullable": true },
+                  { "name": "person_sex", "scalarType": "string", "val": "../sex", "nullable": true },
+                  { "name": "person_age", "scalarType": "integer", "val": "../age", "nullable": true },
+                  { "name": "person_age_category", "scalarType": "string", "val": "../ageCategory", "nullable": true },
+                  { "name": "person_relation_to_policyholder", "scalarType": "string", "val": "../relationToPolicyholder", "nullable": true },
+
+                  { "name": "pathway", "scalarType": "string", "val": "pathway", "nullable": true },
+                  { "name": "program_code", "scalarType": "string", "val": "programCode", "nullable": true },
+                  { "name": "benefit_scope", "scalarType": "string", "val": "benefitScope", "nullable": true },
+                  { "name": "coverage_value_base", "scalarType": "decimal", "val": "coverageValueBase", "nullable": true },
+                  { "name": "overlay", "scalarType": "boolean", "val": "overlay", "nullable": true },
+                  { "name": "auto_enroll", "scalarType": "boolean", "val": "autoEnroll", "nullable": true },
+                  { "name": "assigned_pathway_type", "scalarType": "string", "val": "assignedPathwayType", "nullable": true },
+                  { "name": "eligibility_effective_date", "scalarType": "string", "val": "eligibilityEffectiveDate", "nullable": true },
+
+                  { "name": "operational_burden", "scalarType": "string", "val": "operationalBurden", "nullable": true },
+                  { "name": "operational_burden_description", "scalarType": "string", "val": "operationalBurdenDescription", "nullable": true },
+                  { "name": "population_handicap", "scalarType": "string", "val": "populationHandicap", "nullable": true },
+                  { "name": "population_fit_multiplier", "scalarType": "string", "val": "populationFitMultiplier", "nullable": true },
+                  { "name": "net_recommendation_score", "scalarType": "string", "val": "netRecommendationScore", "nullable": true }
+                ]
+              },
+              {
+                "schemaName": "corticon",
+                "viewName": "person_eligibility_determination",
+                "viewLayout": "sparse",
+                "columns": [
+                  { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+                  { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+                  { "name": "household_state", "scalarType": "string", "val": "/state", "nullable": true },
+                  { "name": "person_full_name", "scalarType": "string", "val": "../fullName", "nullable": true },
+                  { "name": "person_sex", "scalarType": "string", "val": "../sex", "nullable": true },
+                  { "name": "person_age", "scalarType": "integer", "val": "../age", "nullable": true },
+                  { "name": "pathway", "scalarType": "string", "val": "pathway", "nullable": true },
+                  { "name": "program_code", "scalarType": "string", "val": "programCode", "nullable": true },
+                  { "name": "assigned_pathway_type", "scalarType": "string", "val": "assignedPathwayType", "nullable": true },
+                  { "name": "eligibility", "scalarType": "string", "val": "determination/eligibility", "nullable": true },
+                  { "name": "reason_code", "scalarType": "string", "val": "determination/reasonCode", "nullable": true }
+                ]
+              }
+            ]
+          },
+          {
+            "context": "primaryPathway",
+            "rows": [
+              {
+                "schemaName": "corticon",
+                "viewName": "person_primary_pathway",
+                "viewLayout": "sparse",
+                "columns": [
+                  { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+                  { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+                  { "name": "person_full_name", "scalarType": "string", "val": "../fullName", "nullable": true },
+                  { "name": "person_age", "scalarType": "integer", "val": "../age", "nullable": true },
+                  { "name": "pathway", "scalarType": "string", "val": "pathway", "nullable": true },
+                  { "name": "program_code", "scalarType": "string", "val": "programCode", "nullable": true },
+                  { "name": "benefit_scope", "scalarType": "string", "val": "benefitScope", "nullable": true },
+                  { "name": "coverage_value_base", "scalarType": "decimal", "val": "coverageValueBase", "nullable": true },
+                  { "name": "overlay", "scalarType": "boolean", "val": "overlay", "nullable": true },
+                  { "name": "assigned_pathway_type", "scalarType": "string", "val": "assignedPathwayType", "nullable": true },
+                  { "name": "net_recommendation_score", "scalarType": "string", "val": "netRecommendationScore", "nullable": true }
+                ]
+              }
+            ]
+          },
+          {
+            "context": "alternativePathways",
+            "rows": [
+              {
+                "schemaName": "corticon",
+                "viewName": "person_alternative_pathway",
+                "viewLayout": "sparse",
+                "columns": [
+                  { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+                  { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+                  { "name": "person_full_name", "scalarType": "string", "val": "../fullName", "nullable": true },
+                  { "name": "person_age", "scalarType": "integer", "val": "../age", "nullable": true },
+                  { "name": "pathway", "scalarType": "string", "val": "pathway", "nullable": true },
+                  { "name": "program_code", "scalarType": "string", "val": "programCode", "nullable": true },
+                  { "name": "benefit_scope", "scalarType": "string", "val": "benefitScope", "nullable": true },
+                  { "name": "coverage_value_base", "scalarType": "decimal", "val": "coverageValueBase", "nullable": true },
+                  { "name": "overlay", "scalarType": "boolean", "val": "overlay", "nullable": true },
+                  { "name": "assigned_pathway_type", "scalarType": "string", "val": "assignedPathwayType", "nullable": true },
+                  { "name": "net_recommendation_score", "scalarType": "string", "val": "netRecommendationScore", "nullable": true }
+                ]
+              }
+            ]
+          },
+          {
+            "context": "overlayPathways",
+            "rows": [
+              {
+                "schemaName": "corticon",
+                "viewName": "person_overlay_pathway",
+                "viewLayout": "sparse",
+                "columns": [
+                  { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+                  { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+                  { "name": "person_full_name", "scalarType": "string", "val": "../fullName", "nullable": true },
+                  { "name": "person_age", "scalarType": "integer", "val": "../age", "nullable": true },
+                  { "name": "pathway", "scalarType": "string", "val": "pathway", "nullable": true },
+                  { "name": "program_code", "scalarType": "string", "val": "programCode", "nullable": true },
+                  { "name": "benefit_scope", "scalarType": "string", "val": "benefitScope", "nullable": true },
+                  { "name": "coverage_value_base", "scalarType": "decimal", "val": "coverageValueBase", "nullable": true },
+                  { "name": "overlay", "scalarType": "boolean", "val": "overlay", "nullable": true },
+                  { "name": "assigned_pathway_type", "scalarType": "string", "val": "assignedPathwayType", "nullable": true },
+                  { "name": "net_recommendation_score", "scalarType": "string", "val": "netRecommendationScore", "nullable": true }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "corticon/messages/message",
+        "rows": [
+          {
+            "schemaName": "corticon",
+            "viewName": "corticon_message",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+              { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+              { "name": "state", "scalarType": "string", "val": "/state", "nullable": true },
+              { "name": "severity", "scalarType": "string", "val": "severity", "nullable": true },
+              { "name": "text", "scalarType": "string", "val": "text", "nullable": true },
+              { "name": "rule_sheet", "scalarType": "string", "val": "ruleSheet", "nullable": true },
+              { "name": "rule", "scalarType": "string", "val": "rule", "nullable": true }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "corticon/Metrics/attributeChanges",
+        "rows": [
+          {
+            "schemaName": "corticon",
+            "viewName": "metrics_attribute_change",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+              { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+              { "name": "state", "scalarType": "string", "val": "/state", "nullable": true },
+              { "name": "rulesheet_name", "scalarType": "string", "val": "rulesheetName", "nullable": true },
+              { "name": "rule_number", "scalarType": "string", "val": "ruleNumber", "nullable": true },
+              { "name": "entity_corticon_id", "scalarType": "string", "val": "entityCorticonId", "nullable": true },
+              { "name": "entity_name", "scalarType": "string", "val": "entityName", "nullable": true },
+              { "name": "attribute_name", "scalarType": "string", "val": "attributeName", "nullable": true },
+              { "name": "before_value", "scalarType": "string", "val": "fn:string(beforeValue)", "nullable": true },
+              { "name": "after_value", "scalarType": "string", "val": "fn:string(afterValue)", "nullable": true },
+              { "name": "sequence", "scalarType": "integer", "val": "sequence", "nullable": true }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "corticon/Metrics/associationChanges",
+        "rows": [
+          {
+            "schemaName": "corticon",
+            "viewName": "metrics_association_change",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+              { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+              { "name": "state", "scalarType": "string", "val": "/state", "nullable": true },
+              { "name": "rulesheet_name", "scalarType": "string", "val": "rulesheetName", "nullable": true },
+              { "name": "rule_number", "scalarType": "string", "val": "ruleNumber", "nullable": true },
+              { "name": "source_entity_name", "scalarType": "string", "val": "sourceEntityName", "nullable": true },
+              { "name": "source_entity_corticon_id", "scalarType": "string", "val": "sourceEntityCorticonId", "nullable": true },
+              { "name": "association_role_name", "scalarType": "string", "val": "associationRoleName", "nullable": true },
+              { "name": "target_entity_name", "scalarType": "string", "val": "targetEntityName", "nullable": true },
+              { "name": "target_entity_corticon_id", "scalarType": "string", "val": "targetEntityCorticonId", "nullable": true },
+              { "name": "action", "scalarType": "string", "val": "action", "nullable": true },
+              { "name": "sequence", "scalarType": "integer", "val": "sequence", "nullable": true }
+            ]
+          }
+        ]
+      },
+      {
+        "context": "corticon/Metrics/entityChanges",
+        "rows": [
+          {
+            "schemaName": "corticon",
+            "viewName": "metrics_entity_change",
+            "viewLayout": "sparse",
+            "columns": [
+              { "name": "correlation_id", "scalarType": "string", "val": "/_decisionLedger/correlationId", "nullable": true },
+              { "name": "household_id", "scalarType": "string", "val": "/householdId", "nullable": true },
+              { "name": "state", "scalarType": "string", "val": "/state", "nullable": true },
+              { "name": "rulesheet_name", "scalarType": "string", "val": "rulesheetName", "nullable": true },
+              { "name": "rule_number", "scalarType": "string", "val": "ruleNumber", "nullable": true },
+              { "name": "entity_name", "scalarType": "string", "val": "entityName", "nullable": true },
+              { "name": "entity_corticon_id", "scalarType": "string", "val": "entityCorticonId", "nullable": true },
+              { "name": "action", "scalarType": "string", "val": "action", "nullable": true },
+              { "name": "sequence", "scalarType": "integer", "val": "sequence", "nullable": true }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
