@@ -1,11 +1,12 @@
 ﻿# Explainable Decision Ledger with Corticon.js and MarkLogic
 
-This repository contains reference implementations and starter assets for building explainable decision systems with Corticon.js running inside MarkLogic.
+This repository contains reference implementations and domain demos for building explainable decision systems with Corticon.js running inside MarkLogic.
 
 ## Current Project Map
 
-1. `decision-ledger-accelerator-template`
-   - Standalone, domain-neutral template for new implementations.
+1. `docs`
+   - Consolidated documentation hub for this repository.
+   - Canonical reusable template code lives in <https://github.com/corticon/explainable-decision-ledger>.
 2. `Medicaid 2026_v1`
    - Full Medicaid decision-ledger demo (MarkLogic services, analytics, chatbot, FastTrack UI, and mockup app).
    - This replaces the previous `MedicaidEligibility` and `Eligibility Pathways` demos.
@@ -42,21 +43,26 @@ Many projects default to similar app names and ports. Deploy one project at a ti
 
 ## Where to Start
 
-1. Template docs:
-   - `decision-ledger-accelerator-template/README.md`
-   - `decision-ledger-accelerator-template/marklogic/README.md`
-   - `decision-ledger-accelerator-template/ui-fasttrack/README.md`
-2. Primary walkthrough demo:
+1. Documentation hub:
+   - `docs/README.md`
+2. Canonical template repository:
+   - <https://github.com/corticon/explainable-decision-ledger>
+   - <https://github.com/corticon/explainable-decision-ledger/tree/main/marklogic>
+   - <https://github.com/corticon/explainable-decision-ledger/tree/main/ui-fasttrack>
+3. Primary walkthrough demo:
    - `Medicaid 2026_v1/README.md`
-3. Additional domain demos:
+4. Additional domain demos:
    - `Auto Insurance/README.md`
    - `Trade Data Settlement/README.md`
 
 ## Documentation Index
 
+- Repo documentation hub: `docs/README.md`
 - Medicaid backend details: `Medicaid 2026_v1/marklogic/README.md`
 - Medicaid FastTrack UI: `Medicaid 2026_v1/ui-fasttrack/README.md`
 - Medicaid UI proxy: `Medicaid 2026_v1/ui-fasttrack/proxy/README.md`
 - Auto Insurance backend: `Auto Insurance/mlCorticonAutoInsurance/README.md`
 - Auto Insurance middle tier: `Auto Insurance/insurance-chatbot/README.md`
 - Auto Insurance UI: `Auto Insurance/insurance-chatbot/ui/README.md`
+
+

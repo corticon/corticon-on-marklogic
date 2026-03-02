@@ -1,4 +1,4 @@
-# MarkLogic Backend for Auto Insurance Demo
+﻿# MarkLogic Backend for Auto Insurance Demo
 
 This project contains the MarkLogic backend components for the Auto Insurance demonstration. It is responsible for deploying the necessary databases, servers, and triggers to MarkLogic, and for running the Corticon.js decision service to process insurance applications.
 
@@ -90,5 +90,8 @@ After the PUT completes, look for an enriched document at a URI like `/data/poli
 
 For a generic baseline project structure and deployment approach, see:
 
-1. `../../decision-ledger-accelerator-template/README.md`
-2. `../../decision-ledger-accelerator-template/marklogic/README.md`
+1. <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md>
+2. <https://github.com/corticon/explainable-decision-ledger/blob/main/marklogic/README.md>
+
+
+

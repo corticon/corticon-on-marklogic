@@ -54,4 +54,6 @@ npm run build
 1. `ml-fasttrack-2.0.0-20250701b.tgz` is included as the current FastTrack archive dependency.
 2. `.env.example` controls UI-local options (including debug flags).
 3. The visual design patterns were derived from `../mockup`, while API behavior is implemented in FastTrack + custom React components.
-4. For reusable generic scaffolding, see `../../decision-ledger-accelerator-template/ui-fasttrack/README.md`.
+4. For reusable generic scaffolding, see <https://github.com/corticon/explainable-decision-ledger/blob/main/ui-fasttrack/README.md>.
+
+

@@ -1,6 +1,0 @@
-{
-  "user-name": "%%usernameAdmin%%",
-  "password": "%%passwordAdmin%%",
-  "role": ["%%mlAppName%%-admin"]
-}
-

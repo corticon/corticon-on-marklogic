@@ -1,4 +1,4 @@
-# Auto Insurance Explainability Dashboard
+﻿# Auto Insurance Explainability Dashboard
 
 This project is a React-based frontend that provides an interactive dashboard for exploring the results of the automated insurance underwriting process. It is designed to provide a clear, transparent, and user-friendly view into the decisions made by the Corticon.js rules engine.
 
@@ -84,5 +84,7 @@ Once the application is running, you can use the search bar to find and explore 
 
 For a generic UI/bootstrap baseline, see:
 
-1. `../../../decision-ledger-accelerator-template/README.md`
-2. `../../../decision-ledger-accelerator-template/ui-fasttrack/README.md`
+1. <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md>
+2. <https://github.com/corticon/explainable-decision-ledger/blob/main/ui-fasttrack/README.md>
+
+

@@ -1,4 +1,4 @@
-# Trade Data Settlement with Corticon.js and MarkLogic
+﻿# Trade Data Settlement with Corticon.js and MarkLogic
 
 This project demonstrates how to run a **Corticon.js** decision service directly inside a **MarkLogic** database to perform real-time data validation and enrichment. It provides a foundational example of how to integrate Corticon.js into a MarkLogic-based data pipeline for any scenario that requires rules-based processing as data is ingested.
 
@@ -141,5 +141,7 @@ If the request is successful, you can then view the document in MarkLogic (e.g.,
 
 To start a new domain implementation from a neutral baseline, use:
 
-1. `../decision-ledger-accelerator-template/README.md`
-2. `../decision-ledger-accelerator-template/marklogic/README.md`
+1. <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md>
+2. <https://github.com/corticon/explainable-decision-ledger/blob/main/marklogic/README.md>
+
+

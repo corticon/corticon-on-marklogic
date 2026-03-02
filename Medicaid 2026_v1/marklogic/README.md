@@ -78,4 +78,6 @@ curl.exe --location --request POST "http://localhost:8003/v1/resources/processAn
 
 ## Reuse Guidance
 
-For new domains, start with the generic template docs in `../decision-ledger-accelerator-template/README.md` and then adapt this Medicaid backend where domain-specific analytics/chat behavior is needed.
+For new domains, start with the generic template docs in <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md> and then adapt this Medicaid backend where domain-specific analytics/chat behavior is needed.
+
+

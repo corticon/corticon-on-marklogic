@@ -1,4 +1,4 @@
-# Auto Insurance Middle-Tier (Node)
+﻿# Auto Insurance Middle-Tier (Node)
 
 This lightweight Node server sits between the React UI and MarkLogic. It centralizes Digest auth, avoids browser CORS hassles, and optionally generates natural‑language explanations of Corticon decisions using an LLM.
 
@@ -97,5 +97,9 @@ Tip: If you don’t need LLM explanations, you can omit `OPENAI_API_KEY` and rel
 
 If you need a generic middle-tier + backend scaffold for a new domain, start with:
 
-1. `../../decision-ledger-accelerator-template/README.md`
-2. `../../decision-ledger-accelerator-template/ui-fasttrack/README.md`
+1. <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md>
+2. <https://github.com/corticon/explainable-decision-ledger/blob/main/ui-fasttrack/README.md>
+
+
+
+

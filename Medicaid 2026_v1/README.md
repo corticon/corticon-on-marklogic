@@ -148,4 +148,6 @@ Default URLs:
 4. Decision transparency notes:
    - `CORTICON_PLATFORM_DECISION_TRANSPARENCY.md`
    - `CORTICON_PLATFORM_DECISION_TRANSPARENCY_SLIDE_READY.md`
-5. Reusable starter template: `../decision-ledger-accelerator-template/README.md`
+5. Reusable starter template: <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md>
+
+

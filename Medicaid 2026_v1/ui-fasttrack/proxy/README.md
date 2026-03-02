@@ -40,4 +40,6 @@ Set before `npm start`:
 
 ## Template Reference
 
-If you need a generic proxy scaffold for a new domain, start from `../../../decision-ledger-accelerator-template/ui-fasttrack/README.md` and adapt this implementation.
+If you need a generic proxy scaffold for a new domain, start from <https://github.com/corticon/explainable-decision-ledger/blob/main/ui-fasttrack/README.md> and adapt this implementation.
+
+

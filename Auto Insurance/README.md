@@ -1,4 +1,4 @@
-# Automated Auto Insurance Underwriting with MarkLogic and Corticon.js
+﻿# Automated Auto Insurance Underwriting with MarkLogic and Corticon.js
 
 This project demonstrates a full-stack, end-to-end application for automating the auto insurance underwriting process. It is designed to showcase how the combination of **MarkLogic** as a flexible data hub and **Corticon.js** as a powerful business rules engine can solve a common business challenge: the need for fast, accurate, and transparent insurance quoting.
 
@@ -147,6 +147,9 @@ To get this demo up and running, please follow the step-by-step instructions in 
 
 For reusable, domain-neutral starter guidance (MarkLogic scaffolding, process-and-enrich pattern, and FastTrack bootstrap), see:
 
-1. `../decision-ledger-accelerator-template/README.md`
-2. `../decision-ledger-accelerator-template/marklogic/README.md`
-3. `../decision-ledger-accelerator-template/ui-fasttrack/README.md`
+1. <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md>
+2. <https://github.com/corticon/explainable-decision-ledger/blob/main/marklogic/README.md>
+3. <https://github.com/corticon/explainable-decision-ledger/blob/main/ui-fasttrack/README.md>
+
+
+
