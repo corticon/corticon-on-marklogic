@@ -99,7 +99,7 @@ cd server
 npm install
 ```
 
-> **ml-fasttrack**: The frontend depends on `ml-fasttrack-2.0.0.tar`, a local package archive that must be present in `portal/`. It is referenced as `"ml-fasttrack": "file:ml-fasttrack-2.0.0.tar"` in `package.json`.
+> **ml-fasttrack (required, not in version control):** The frontend depends on `ml-fasttrack-2.0.0.tar`, a local npm package archive that bundles the full KendoReact / Telerik UI library. It is referenced as `"ml-fasttrack": "file:ml-fasttrack-2.0.0.tar"` in `package.json` and **must be present in `portal/` before running `npm install`**. The file is excluded from version control (`.gitignore`), so it is not included when you clone the repository. Obtain it from the Progress / Telerik distribution or from the project maintainer and copy it into `portal/` manually. Without it, `npm install` will fail with a missing file error.
 
 ### 4.3 Configure environment variables
 
@@ -144,8 +144,8 @@ cp server/.env.template server/.env
 | `ML_MIDDLE_TIER_PORT` | Port Express listens on | `4005` |
 | `UI_ORIGIN` | Allowed CORS origin (frontend URL) | `http://localhost:5174` |
 | `VITE_ML_OPTIONS` | MarkLogic search options resource name | `corticonml-options` |
-| `OPENAI_API_KEY` | Optional — enable AI-assisted chat explanations | *(blank to disable)* |
-| `OPENAI_MODEL` | OpenAI model to use if key is set | `gpt-4o-mini` |
+| `OPENAI_API_KEY` | **Not currently used** — placeholder for future AI-assisted features. Leave blank. | *(blank)* |
+| `OPENAI_MODEL` | **Not currently used** — placeholder for future AI-assisted features. Leave blank. | *(blank)* |
 
 > **Why two files?**
 > Vite reads `portal/.env` at build/dev time and makes `VITE_*` variables available in the browser as `import.meta.env.*`. Express reads `portal/server/.env` at runtime from its own working directory. They serve different processes and must be configured independently.
@@ -402,8 +402,10 @@ The portal creates and manages the following documents in MarkLogic:
 
 ### Query Definition documents
 
-**Collection:** *(no collection — retrieved by URI pattern)*
+**Collection:** `QueryDefs`
 **URI pattern:** `/queries/{ruleProjectName}/{queryName}.json`
+
+**Read (SELECT) example:**
 
 ```json
 {
@@ -422,8 +424,30 @@ The portal creates and manages the following documents in MarkLogic:
 }
 ```
 
+**Write (UPSERT) example:**
+
+A write step uses `statementType` of `insert`, `update`, or `upsert` and writes a document back to MarkLogic instead of returning rows. The `statement` field is omitted; instead `documentUriTemplate` defines the URI of the document to write, and `collections` lists the MarkLogic collections to assign to it.
+
+```json
+{
+  "queryName": "product-decision-write",
+  "steps": [
+    {
+      "sequenceNo": 1,
+      "statementType": "upsert",
+      "addToExistingEntity": "Root",
+      "roleName": "products",
+      "documentUriTemplate": "/decisions/{Product.Id}/result.json",
+      "collections": ["DecisionResults"],
+      "enable": true
+    }
+  ]
+}
+```
+
 ### Ruleflow documentation documents
 
+**Collection:** `RuleflowDetails`
 **URI pattern:** `/rules/{projectName}/{ruleflowName}.json`
 
 Created automatically during compilation. Contains metadata about rulesheets and rules — used by the portal to render the rule detail panel in the Rule Messages and Rule Trace tabs.
@@ -471,12 +495,35 @@ The typical workflow for setting up a new decision service with data access:
 ```
 1. Query Maintenance page
    └─ Create a rule project
+        The rule project name you enter here MUST exactly match the rule project
+        name as defined in Corticon.js Studio — specifically the value supplied
+        to the ADC either via the Service Callout Runtime Property "ruleProject"
+        or via the QueryConfig.ruleProject attribute in the Corticon vocabulary.
+        The ADC uses this name to construct the URI it fetches at runtime:
+        /queries/{ruleProject}/{queryName}.json
    └─ Create one or more query definitions
    └─ Test each query against your live MarkLogic TDE views
+        Note: only READ (SELECT) steps can be tested in the portal.
+        Write steps (insert / update / upsert) are skipped during the Query
+        Maintenance Test tab — test those end-to-end by executing the deployed
+        decision service on the Decision Service Test page.
 
 2. Corticon.js Studio (outside this portal)
    └─ Add ADC files to Corticon Extensions
+        Add all 4 files from src/callout/ to the project's Corticon Extensions list
+        (right-click project → Properties → Corticon Extensions):
+          • MarkLogicServiceCallout.js   — SCO entry point (register as SCO)
+          • MarkLogicQueryConnector.js   — query orchestration (dependency file)
+          • MarkLogicQueryLibrary.js     — utility functions (dependency file)
+          • MarkLogicStudioConfig.js     — your MarkLogic credentials for Studio
+                                          (copy from MarkLogicStudioConfig.template.js
+                                           and fill in host/port/user/password;
+                                           required for local Studio testing;
+                                           NEVER commit this file — it holds credentials)
+        For production-only deployments (no Studio testing), the first 3 files suffice.
    └─ Add a Service Callout block to the ruleflow
+   └─ In the Service Callout properties, set the Service name to:
+        MarkLogicServiceCallout.js.AdvancedDataConnectorML
    └─ Set queryName / ruleProject (Runtime Properties or QueryConfig rulesheet)
    └─ Build and test the rule project in Studio
 
