@@ -229,7 +229,7 @@ Each query definition contains one or more **steps**. Each step is a SQL `SELECT
 | `statementType` | `select` (default), `insert`, `update`, or `upsert` for write steps |
 
 Write steps (`insert`/`update`/`upsert`) additionally require:
-- `documentUriTemplate` — URI pattern for the document to write, e.g. `/data/{plant}/{matnr}.json`
+- `documentUriTemplate` — URI pattern for the document to write. Placeholders use **bare attribute names** — e.g. `/data/{plant}/{matnr}.json` — where `plant` and `matnr` are attribute names on the entity being written. **Important:** this is different from SQL placeholders, which use the `{Entity.attribute}` dotted form. In a URI template the entity context is already set (one document is written per entity instance), so you reference attributes without the entity prefix. An unresolvable placeholder will not raise an error — the ADC replaces it with a generated UUID instead.
 - `collections` — MarkLogic collections to assign to the written document
 
 **SQL editor features:**
@@ -367,15 +367,15 @@ The portal creates and manages the following documents in MarkLogic:
 
 ```json
 {
-  "projectName": "MyProject",
+  "projectName": "My Rule Project",
   "bundleName": "ProductDecisions",
   "compilation": {
     "javaHome": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.8.9-hotspot",
     "platform": "MarkLogic",
     "dependentJS": ["MarkLogicServiceCallout.js", "MarkLogicQueryConnector.js", "MarkLogicQueryLibrary.js"],
-    "inputErf": "C:\\rules\\MyProject\\ProductDecisions.erf",
-    "outputDir": "C:\\rules\\output",
-    "corticonHome": "C:\\CorticonJS\\Studio"
+    "inputErf": "C:\\rules\\My Rule Project\\Ruleflows\\Product Decisions.erf",
+    "outputDir": "C:\\rules\\\\My Rule Project\\Deployment Artefacts",
+    "corticonHome": "C:\\Progress\\Corticon.js 2.4"
   },
   "deployment": {
     "bundleUriBase": "/ext",
@@ -386,14 +386,14 @@ The portal creates and manages the following documents in MarkLogic:
     "mlUsername": "your-ml-username",
     "mlPassword": "your-ml-password",
     "modulesDatabase": "corticonml-modules",
-    "gradleProjectDir": "C:\\rules\\gradle",
+    "gradleProjectDir": "C:\\gradle",
     "additionalGradleArgs": ""
   },
   "deployedVersions": [
     {
       "version": 1,
-      "bundleUri": "/ext/MyProject/ProductDecisions/1/decisionServiceBundle.js",
-      "ruleflowUri": "/rules/MyProject/ProductDecisions.json",
+      "bundleUri": "/ext/My Rule Project/ProductDecisions/1/decisionServiceBundle.js",
+      "ruleflowUri": "/rules/My Rule Project/Product Decisions.json",
       "deployedAt": "2026/04/21 14:30:00"
     }
   ]
@@ -409,14 +409,14 @@ The portal creates and manages the following documents in MarkLogic:
 
 ```json
 {
-  "queryName": "product-lookup",
+  "queryName": "Retrieve class for product",
   "steps": [
     {
       "sequenceNo": 1,
-      "statement": "SELECT * FROM Products WHERE ID IN ({Product.Id})",
-      "addAsTopLevelEntity": null,
-      "addToExistingEntity": "Root",
-      "roleName": "products",
+      "statement": "SELECT * FROM ProcessClasses WHERE className = {Products.className}",
+      "addAsTopLevelEntity": ,
+      "addToExistingEntity": "Products",
+      "roleName": "processClasses",
       "maxRows": 5000,
       "enable": true
     }
@@ -428,22 +428,27 @@ The portal creates and manages the following documents in MarkLogic:
 
 A write step uses `statementType` of `insert`, `update`, or `upsert` and writes a document back to MarkLogic instead of returning rows. The `statement` field is omitted; instead `documentUriTemplate` defines the URI of the document to write, and `collections` lists the MarkLogic collections to assign to it.
 
+The ADC iterates over the entity instances identified by `addToExistingEntity` + `roleName` and writes one MarkLogic document per instance. `documentUriTemplate` placeholders are resolved against each individual entity instance using **bare attribute names** (e.g. `{Id}`, not `{Product.Id}`). If a placeholder cannot be resolved, the ADC silently appends a generated UUID rather than raising an error — so verify your attribute names carefully.
+
 ```json
 {
-  "queryName": "product-decision-write",
+  "queryName": "Insert product decision",
   "steps": [
     {
       "sequenceNo": 1,
       "statementType": "upsert",
       "addToExistingEntity": "Root",
       "roleName": "products",
-      "documentUriTemplate": "/decisions/{Product.Id}/result.json",
+      "documentUriTemplate": "/decisions/product/{Id}/decisionresult.json",
       "collections": ["DecisionResults"],
       "enable": true
     }
   ]
 }
 ```
+
+> **Note:** `{Id}` above resolves to the `Id` attribute of each `products` entity instance. Do **not** use the dotted `{Product.Id}` form here — that syntax is for SQL `statement` placeholders only, not for URI templates.
+> The portal's URI template field has built-in autocomplete: type `{` and it will suggest the bare attribute names valid for the step's entity context, so you can discover the correct names without consulting the vocabulary file manually.
 
 ### Ruleflow documentation documents
 
