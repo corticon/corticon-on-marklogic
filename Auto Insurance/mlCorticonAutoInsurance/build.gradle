@@ -2,3 +2,89 @@ plugins {
   id "com.marklogic.ml-gradle" version "6.1.0"
   id "base"
 }
+
+task set_ml_rest_authentication(type: com.marklogic.gradle.task.MarkLogicTask) {
+  doFirst {
+    println ""
+    println "Setting app server authentication to '${project.getProperty("ml_rest_authentication")}'..."
+
+    def client = mlAppConfig.newDatabaseClient()
+    def script = '''
+      const admin = require("/MarkLogic/admin.xqy");
+      const config = admin.getConfiguration();
+      const groupId = admin.groupGetId(config, "Default");
+      admin.saveConfigurationWithoutRestart(
+        admin.appserverSetAuthentication(
+          config,
+          admin.appserverGetId(config, groupId, "''' + project.getProperty("mlAppName") + '''"),
+          "''' + project.getProperty("ml_rest_authentication") + '''"
+        )
+      );
+      'done'
+    '''
+    client.newServerEval().javascript(script).evalAs(String.class)
+  }
+}
+
+task set_ml_range_path_indexes(type: com.marklogic.gradle.task.MarkLogicTask) {
+  doFirst {
+    println ""
+    println "Ensuring required path range indexes exist..."
+
+    def client = mlAppConfig.newDatabaseClient()
+    def xquery = '''
+      xquery version "1.0-ml";
+      import module namespace admin = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
+      declare namespace db = "http://marklogic.com/xdmp/database";
+
+      declare function local:ensure-indexes($config as element(), $database-id as xs:unsignedLong, $specs as element(index)*) as element() {
+        if (empty($specs)) then
+          $config
+        else
+          let $spec := $specs[1]
+          let $path := fn:string($spec/path)
+          let $scalar := fn:string($spec/scalar)
+          let $collation := fn:string($spec/collation)
+          let $existing := admin:database-get-range-path-indexes($config, $database-id)[
+            db:path-expression = $path and db:scalar-type = $scalar and db:collation = $collation
+          ]
+          let $next-config :=
+            if (exists($existing)) then
+              $config
+            else
+              admin:database-add-range-path-index(
+                $config,
+                $database-id,
+                admin:database-range-path-index(
+                  $database-id,
+                  $scalar,
+                  $path,
+                  $collation,
+                  fn:false(),
+                  "reject"
+                )
+              )
+          return local:ensure-indexes($next-config, $database-id, subsequence($specs, 2))
+      };
+
+      let $config := admin:get-configuration()
+      let $database-id := admin:database-get-id($config, "''' + mlAppConfig.contentDatabaseName + '''")
+      let $required := (
+        <index><scalar>string</scalar><path>/payload/state</path><collation>http://marklogic.com/collation/codepoint</collation></index>,
+        <index><scalar>string</scalar><path>/payload/paymentPlan</path><collation>http://marklogic.com/collation/codepoint</collation></index>,
+        <index><scalar>string</scalar><path>/payload/drivers/incidents/incidentType</path><collation>http://marklogic.com/collation/codepoint</collation></index>,
+        <index><scalar>string</scalar><path>/payload/vehicles/bodyStyle</path><collation>http://marklogic.com/collation/codepoint</collation></index>
+      )
+      let $updated := local:ensure-indexes($config, $database-id, $required)
+      return (
+        admin:save-configuration($updated),
+        "done"
+      )
+    '''
+    client.newServerEval().xquery(xquery).evalAs(String.class)
+  }
+}
+
+mlDeploy.finalizedBy set_ml_rest_authentication
+mlDeployRestApis.finalizedBy set_ml_rest_authentication
+mlDeploy.finalizedBy set_ml_range_path_indexes

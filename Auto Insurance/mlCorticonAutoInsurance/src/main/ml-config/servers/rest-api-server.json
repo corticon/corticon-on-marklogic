@@ -1,4 +1,4 @@
 {
   "server-name": "corticonml",
-  "authentication": "basic"
+  "authentication": "%%ml_rest_authentication%%"
 }

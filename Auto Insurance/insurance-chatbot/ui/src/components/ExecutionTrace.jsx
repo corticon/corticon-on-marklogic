@@ -1,99 +1,108 @@
-// ui/src/components/ExecutionTrace.jsx
-import React from 'react';
-import { DataGrid } from 'ml-fasttrack';
+import { DataGrid } from "ml-fasttrack";
 
-// Helper function to extract the rulesheet name from the file path
-const getRulesheetNameFromPath = (fullPath) => {
-  if (typeof fullPath !== 'string') return '';
-  const parts = fullPath.split('/');
-  const filenameWithExt = parts[parts.length - 1];
-  if (!filenameWithExt) return '';
-  const filenameParts = filenameWithExt.split('.');
-  return filenameParts[0];
-};
+function getRulesheetName(fullPath) {
+  if (typeof fullPath !== "string") {
+    return "";
+  }
 
-// Define columns for each type of change
+  const parts = fullPath.split("/");
+  const filename = parts[parts.length - 1] || "";
+  return filename.split(".")[0] || filename;
+}
+
 const attributeColumns = [
-  { 
-    field: 'rulesheetName', 
-    title: 'Rulesheet', 
-    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
+  { field: "sequence", title: "Sequence" },
+  {
+    field: "rulesheetName",
+    title: "Rulesheet",
+    cell: (props) => <td>{getRulesheetName(props.dataItem.rulesheetName)}</td>
   },
-  { field: 'ruleNumber', title: 'Rule #' },
-  { field: 'entityCorticonId', title: 'Entity ID' },
-  { field: 'entityName', title: 'Entity Name' },
-  { field: 'attributeName', title: 'Attribute Name' },
-  { 
-    field: 'beforeValue', 
-    title: 'Before Value', 
-    cell: (props) => <td className="break-all"><pre>{JSON.stringify(props.value, null, 2)}</pre></td> 
-  },
-  { 
-    field: 'afterValue', 
-    title: 'After Value', 
-    cell: (props) => <td className="break-all"><pre>{JSON.stringify(props.value, null, 2)}</pre></td> 
-  },
-  { field: 'sequence', title: 'Sequence' },
+  { field: "entityName", title: "Entity" },
+  { field: "attributeName", title: "Attribute" },
+  { field: "beforeValue", title: "Before" },
+  { field: "afterValue", title: "After" }
 ];
 
 const associationColumns = [
-  { 
-    field: 'rulesheetName', 
-    title: 'Rulesheet', 
-    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
+  { field: "sequence", title: "Sequence" },
+  {
+    field: "rulesheetName",
+    title: "Rulesheet",
+    cell: (props) => <td>{getRulesheetName(props.dataItem.rulesheetName)}</td>
   },
-  { field: 'ruleNumber', title: 'Rule #' },
-  { field: 'sourceEntityCorticonId', title: 'Source Entity ID' },
-  { field: 'sourceEntityName', title: 'Source Entity Name' },
-  { field: 'associationRoleName', title: 'Association' },
-  { field: 'targetEntityCorticonId', title: 'Target Entity ID' },
-  { field: 'targetEntityName', title: 'Target Entity Name' },
-  { field: 'action', title: 'Action' },
-  { field: 'sequence', title: 'Sequence' },
+  { field: "sourceEntityName", title: "Source" },
+  { field: "associationRoleName", title: "Association" },
+  { field: "targetEntityName", title: "Target" },
+  { field: "action", title: "Action" }
 ];
 
 const entityColumns = [
-  { 
-    field: 'rulesheetName', 
-    title: 'Rulesheet', 
-    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
+  { field: "sequence", title: "Sequence" },
+  {
+    field: "rulesheetName",
+    title: "Rulesheet",
+    cell: (props) => <td>{getRulesheetName(props.dataItem.rulesheetName)}</td>
   },
-  { field: 'ruleNumber', title: 'Rule #' },
-  { field: 'entityCorticonId', title: 'Entity ID' },
-  { field: 'entityName', title: 'Entity Name' },
-  { field: 'action', title: 'Action' },
-  { field: 'sequence', title: 'Sequence' },
+  { field: "entityName", title: "Entity" },
+  { field: "entityCorticonId", title: "Entity ID" },
+  { field: "action", title: "Action" }
 ];
 
 export default function ExecutionTrace({ metrics }) {
   if (!metrics) {
-    return <p>No execution trace available.</p>;
+    return <div className="widget-panel placeholder-panel">No execution trace available.</div>;
   }
 
-  const { attributeChanges, associationChanges, entityChanges } = metrics;
+  const attributeChanges = metrics.attributeChanges || [];
+  const associationChanges = metrics.associationChanges || [];
+  const entityChanges = metrics.entityChanges || [];
 
   return (
-    <div>
-      <h4>Attribute Changes</h4>
-      {attributeChanges && attributeChanges.length > 0 ? (
-        <DataGrid data={attributeChanges} columns={attributeColumns} />
-      ) : (
-        <p>No attribute changes.</p>
-      )}
+    <section className="trace-stack">
+      <div className="stat-grid stat-grid--trace">
+        <div className="stat-card accent-blue">
+          <span className="stat-label">Attribute changes</span>
+          <strong>{attributeChanges.length}</strong>
+        </div>
+        <div className="stat-card accent-gold">
+          <span className="stat-label">Association changes</span>
+          <strong>{associationChanges.length}</strong>
+        </div>
+        <div className="stat-card accent-green">
+          <span className="stat-label">Entity changes</span>
+          <strong>{entityChanges.length}</strong>
+        </div>
+      </div>
 
-      <h4 className="mt-8">Association Changes</h4>
-      {associationChanges && associationChanges.length > 0 ? (
-        <DataGrid data={associationChanges} columns={associationColumns} />
-      ) : (
-        <p>No association changes.</p>
-      )}
+      <section className="widget-panel">
+        <div className="widget-heading compact">
+          <div>
+            <h3>Attribute changes</h3>
+            <p>Property-level mutations applied by the rules execution.</p>
+          </div>
+        </div>
+        <DataGrid data={attributeChanges} gridColumns={attributeColumns} GridProps={{ sortable: true, resizable: true, style: { maxHeight: 380 } }} />
+      </section>
 
-      <h4 className="mt-8">Entity Changes</h4>
-      {entityChanges && entityChanges.length > 0 ? (
-        <DataGrid data={entityChanges} columns={entityColumns} />
-      ) : (
-        <p>No entity changes.</p>
-      )}
-    </div>
+      <section className="widget-panel">
+        <div className="widget-heading compact">
+          <div>
+            <h3>Association changes</h3>
+            <p>Relationship changes created by rules during the decision flow.</p>
+          </div>
+        </div>
+        <DataGrid data={associationChanges} gridColumns={associationColumns} GridProps={{ sortable: true, resizable: true, style: { maxHeight: 320 } }} />
+      </section>
+
+      <section className="widget-panel">
+        <div className="widget-heading compact">
+          <div>
+            <h3>Entity changes</h3>
+            <p>New entities and entity-level actions emitted during execution.</p>
+          </div>
+        </div>
+        <DataGrid data={entityChanges} gridColumns={entityColumns} GridProps={{ sortable: true, resizable: true, style: { maxHeight: 280 } }} />
+      </section>
+    </section>
   );
 }

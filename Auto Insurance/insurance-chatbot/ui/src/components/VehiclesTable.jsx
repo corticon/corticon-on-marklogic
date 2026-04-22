@@ -1,31 +1,40 @@
-// ui/src/components/VehiclesTable.jsx
-import React from 'react';
+import { DataGrid } from "ml-fasttrack";
+import { formatCurrency, getVehicleRows } from "../utils/policyUtils";
+
+const gridColumns = [
+  { field: "label", title: "Vehicle" },
+  { field: "bodyStyle", title: "Body style" },
+  { field: "highTheft", title: "Theft profile" },
+  { field: "coverageCount", title: "Coverages" },
+  { field: "coverageSummary", title: "Coverage mix" },
+  {
+    field: "netPremium",
+    title: "Net premium",
+    cell: (props) => <td>{formatCurrency(props.dataItem.netPremium)}</td>
+  }
+];
 
 export default function VehiclesTable({ vehicles }) {
-  if (!vehicles || vehicles.length === 0) {
-    return <p>No vehicles listed on this policy.</p>;
+  const rows = getVehicleRows(vehicles);
+
+  if (rows.length === 0) {
+    return <div className="widget-panel placeholder-panel">No vehicles listed on this policy.</div>;
   }
 
   return (
-    <table className="w-full min-w-full table-auto divide-y divide-gray-200">
-      <thead className="bg-gray-50">
-        <tr>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle</th>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Year</th>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Net Premium</th>
-        </tr>
-      </thead>
-      <tbody className="bg-white divide-y divide-gray-200">
-        {vehicles.map((vehicle, index) => (
-          <tr key={index} className="odd:bg-gray-50">
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{vehicle.make} {vehicle.model}</td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">{vehicle.modelYear}</td>
-            <td className="px-6 py-4 text-sm text-gray-500">{vehicle.type}</td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">${vehicle.netPremium.toLocaleString()}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <section className="widget-panel">
+      <div className="widget-heading compact">
+        <div>
+          <h3>Vehicle exposure</h3>
+          <p>Vehicle-level pricing, coverage, and theft-risk indicators for this policy.</p>
+        </div>
+      </div>
+
+      <DataGrid
+        data={rows}
+        gridColumns={gridColumns}
+        GridProps={{ sortable: true, resizable: true, style: { maxHeight: 520 } }}
+      />
+    </section>
   );
 }

@@ -1,43 +1,39 @@
 // src/components/DriversTable.jsx
 
+import { DataGrid } from "ml-fasttrack";
+import { getDriverRows } from "../utils/policyUtils";
+
+const gridColumns = [
+  { field: "name", title: "Driver" },
+  { field: "segment", title: "Segment" },
+  { field: "age", title: "Age" },
+  { field: "licensed", title: "Licensed since" },
+  { field: "incidentSummary", title: "Incident profile" },
+  { field: "discounts", title: "Discounts" },
+  { field: "surcharges", title: "Surcharges" }
+];
+
 export default function DriversTable({ drivers }) {
-  if (!drivers || drivers.length === 0) {
-    return <p>No drivers listed for this policy.</p>;
+  const rows = getDriverRows(drivers);
+
+  if (rows.length === 0) {
+    return <div className="widget-panel placeholder-panel">No drivers listed for this policy.</div>;
   }
 
   return (
-    <div className="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Licensed</th>
-            <th>Incidents</th>
-            <th>Discounts & Surcharges</th>
-          </tr>
-        </thead>
-        <tbody>
-          {drivers.map((driver, index) => (
-            <tr key={index}>
-              <td>{driver.first} {driver.last}</td>
-              <td>{driver.age}</td>
-              <td>{driver.yearLicensed}</td>
-              <td>
-                {driver.incidents?.map((inc, i) => (
-                  <div key={i}>{inc.incidentType}</div>
-                )) || 'None'}
-              </td>
-              <td>
-                {/* FIX: Change 'discounts' to 'discount' */}
-                {driver.discount?.map((d, i) => (
-                  <div key={i}>{d.category}</div>
-                )) || 'None'}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <section className="widget-panel">
+      <div className="widget-heading compact">
+        <div>
+          <h3>Driver roster</h3>
+          <p>Underwriting-ready view of driver demographics, incidents, and applied adjustments.</p>
+        </div>
+      </div>
+
+      <DataGrid
+        data={rows}
+        gridColumns={gridColumns}
+        GridProps={{ sortable: true, resizable: true, style: { maxHeight: 520 } }}
+      />
+    </section>
   );
 }

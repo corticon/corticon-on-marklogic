@@ -2,6 +2,25 @@
 
 This project contains the MarkLogic backend components for the Auto Insurance demonstration. It is responsible for deploying the necessary databases, servers, and triggers to MarkLogic, and for running the Corticon.js decision service to process insurance applications.
 
+## What Gets Deployed
+
+1. REST app server on `mlRestPort` (default `8004`) with digest authentication.
+2. Trigger-driven enrichment for documents inserted into `http://example.com/data/policy-input`.
+3. Resource services for synchronous decision execution and analytics:
+  - `processAndEnrich`
+  - `analytics`
+  - `corticonml-options`
+4. TDE-backed relational views from `src/main/ml-schemas/tde/simple.tde`.
+
+## Important Runtime Collections
+
+1. `auto-insurance`
+2. `auto-insurance_input`
+3. `auto-insurance_output`
+4. `auto-insurance_trace`
+5. `http://example.com/data/policy-input`
+6. `http://example.com/data/policy`
+
 ---
 
 ## Prerequisites
@@ -69,20 +88,44 @@ curl --location --request PUT 'http://localhost:8004/v1/documents?uri=/data/poli
 
 After the PUT completes, look for an enriched document at a URI like `/data/policy/APP-123.json`.
 
+### 4. Invoke the Decision Service Synchronously
+
+If you want middleware-style orchestration instead of trigger-based enrichment, call:
+
+```bash
+curl --location --request POST 'http://localhost:8004/v1/resources/processAndEnrich' \
+  --header 'Content-Type: application/json' \
+  --digest --user admin:password \
+  --data-binary '@policy.json'
+```
+
+### 5. Query Aggregated Analytics
+
+```bash
+curl --location --request GET 'http://localhost:8004/v1/resources/analytics?rs:state=Virginia' \
+  --digest --user admin:password
+```
+
 ---
 
 ## Notable Files
 
 - `src/main/ml-config/triggers/autoInsuranceTrigger.json` — Trigger definition; watches the `http://example.com/data/policy-input` collection and calls the SJS module after document creation.
+- `src/main/ml-modules/ext/autoInsuranceLib.sjs` — Shared execution, persistence, collection tagging, and TDE helper library.
 - `src/main/ml-modules/ext/autoInsuranceTrigger.sjs` — Trigger module that executes the Corticon decision service and writes an enriched envelope to `/data/policy/`.
+- `src/main/ml-modules/ext/processAndEnrichUpdate.sjs` — Update transaction used by the synchronous REST resource.
+- `src/main/ml-modules/ext/examples/reprocessPolicy.sjs` — Example replay module for scheduled or batch recalculation.
 - `src/main/ml-modules/ext/decisionServiceBundle.js` — Compiled Corticon.js rules bundle invoked by the trigger (`decisionService.execute`).
 - `src/main/ml-schemas/tde/simple.tde` — Template Driven Extraction for analytics over enriched documents.
+- `src/main/ml-modules/services/processAndEnrich.sjs` — Synchronous decisioning REST resource.
+- `src/main/ml-modules/services/analytics.sjs` — TDE-backed dashboard and explainability analytics resource.
 - `src/main/ml-modules/services/corticonml-options.sjs` — REST resource for fetching policies used by the UI.
 - `src/main/ml-modules/options/corticonml-options.xml` — Registers the resource and search options.
 - `src/main/ml-modules/rest-properties.json` — REST API properties.
 - `src/main/ml-config/security/*` — Roles and users (`corticonml-reader`, `corticonml-writer`, `corticonml-admin`).
 - `src/main/ml-config/servers/rest-api-server.json` — REST server configuration.
 - `src/main/ml-config/servers/odbc-server.json` — Optional ODBC/SQL access.
+- `../integration-patterns/README.md` — Pattern catalog covering trigger, API, replay, TDE, and SCO integration styles.
 
 ---
 

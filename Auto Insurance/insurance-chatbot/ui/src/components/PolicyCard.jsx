@@ -1,32 +1,42 @@
-// src/components/PolicyCard.jsx
+import { formatCurrency, normalizeList, yesNo } from "../utils/policyUtils";
 
-export default function PolicyCard({ policyData, onSelect }) {
+export default function PolicyCard({ policyData, onSelect, selected = false, variant = "hero" }) {
   if (!policyData) {
     return null;
   }
-  const { familyName, applicationId, state, netPremium } = policyData;
+  const driverCount = normalizeList(policyData.drivers).length;
+  const vehicleCount = normalizeList(policyData.vehicles).length;
 
-  // Add a special class if the card is selectable
-  const cardClassName = `policy-card ${onSelect ? 'is-selectable' : ''}`;
+  const cardClassName = [
+    "policy-card",
+    `policy-card--${variant}`,
+    onSelect ? "is-selectable" : "",
+    selected ? "is-selected" : ""
+  ].filter(Boolean).join(" ");
 
   return (
-    <div className={cardClassName} onClick={onSelect}>
-      <div className="policy-header">
-        <h2>{familyName ? `${familyName} Family Policy` : 'Untitled'}</h2>
-        <div className="policy-meta">
-          <span>ID: {applicationId || '—'}</span>
-          <span className="separator">•</span>
-          <span>State: {state || '—'}</span>
+    <article className={cardClassName} onClick={onSelect}>
+      <div className="policy-card-topline">
+        <span className="policy-state-pill">{policyData.state || "No state"}</span>
+        <span className="policy-id">{policyData.applicationId || "Unassigned ID"}</span>
+      </div>
+
+      <div className="policy-card-header">
+        <div>
+          <h2>{policyData.familyName ? `${policyData.familyName} household` : "Untitled policy"}</h2>
+          <p>{driverCount} drivers, {vehicleCount} vehicles, paperless {yesNo(policyData.isPaperless).toLowerCase()}</p>
+        </div>
+        <div className="premium-pill">
+          <span>Net premium</span>
+          <strong>{formatCurrency(policyData.netPremium)}</strong>
         </div>
       </div>
-      <div className="policy-body">
-        <div className="premium-display">
-          <span className="label">Net Premium:</span>
-          <span className="value">
-            {netPremium ? `$${netPremium.toFixed(2)}` : 'N/A'}
-          </span>
-        </div>
+
+      <div className="policy-tag-row">
+        <span className="feature-chip">AutoPay {yesNo(policyData.isAutoPay)}</span>
+        <span className="feature-chip">Multi-car {yesNo(policyData.isMultiCar)}</span>
+        <span className="feature-chip">Home bundle {yesNo(policyData.hasHomePolicy)}</span>
       </div>
-    </div>
+    </article>
   );
 }

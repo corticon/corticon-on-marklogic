@@ -1,12 +1,22 @@
 # Dependencies
 **/node_modules/
 **/bower_components/
-**/ml-fasttrack-2.0.0-20250701b/
+**/ml-fasttrack-*/
+
+# Python environments and caches
+**/.venv/
+**/venv/
+**/__pycache__/
+**/.pytest_cache/
 
 # Build artifacts
 **/build/
 **/dist/
 **/.out/
+**/.vite/
+**/coverage/
+**/storybook-static/
+**/*.tsbuildinfo
 **/*.zip
 **/*.tar
 **/*.tar.gz
@@ -31,6 +41,7 @@ dependency-reduced-pom.xml
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # IDEs and editors
 .idea/
@@ -48,17 +59,13 @@ Thumbs.db
 
 # Environment variables
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
 
 # Other
-*.pdf
-*.docx
 *.ffs_db
+*.xlsx
+*.xls
 # Ignore any file or directory containing 'mockaroo' (case-safe)
 *[Mm]ockaroo*/
 *[Mm]ockaroo*
-PDP-Decision-Management/portal/.gitignore
-PDP-Decision-Management/plans

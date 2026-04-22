@@ -1,12 +1,10 @@
 // src/api/marklogicService.js
 
-// Build the proxy base from env so local overrides work in Vite
-const ML_HOST = import.meta.env.VITE_ML_HOST || "localhost";
-const ML_PORT = import.meta.env.VITE_ML_PORT || "4004"; // middle tier port
-const ML_PROXY_BASE = `http://${ML_HOST}:${ML_PORT}/v1`;
+const PROXY_BASE_URL = import.meta.env.VITE_PROXY_BASE_URL || "http://localhost:4004";
+const ML_PROXY_BASE = `${PROXY_BASE_URL}/v1`;
 
 // Ensure declared const; use env or default
-const OPTIONS_NAME = import.meta.env.VITE_ML_OPTIONS || "corticonml-options";
+const OPTIONS_NAME = import.meta.env.VITE_FT_OPTIONS || "corticonml-options";
 
 /**
  * Fetch a single document by URI
@@ -148,7 +146,23 @@ export async function searchByApplicationId (applicationId, options = {}) {
 }
 
 
-const CHAT_API_BASE = `http://${ML_HOST}:${ML_PORT}/api`;
+const CHAT_API_BASE = `${PROXY_BASE_URL}/api`;
+
+export async function getAnalytics(filters = {}) {
+  const params = new URLSearchParams();
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value !== null && value !== undefined && String(value).trim() !== "") {
+      params.set(`rs:${key}`, String(value));
+    }
+  });
+
+  const url = `${ML_PROXY_BASE}/resources/analytics${params.toString() ? `?${params.toString()}` : ""}`;
+  const resp = await fetch(url);
+  if (!resp.ok) {
+    throw new Error(`Failed to fetch analytics. HTTP ${resp.status}`);
+  }
+  return resp.json();
+}
 
 export async function sendMessage(message) {
   const resp = await fetch(`${CHAT_API_BASE}/chat`, {
