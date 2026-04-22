@@ -1,0 +1,1261 @@
+.query-maintenance-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Splitter drag bar - make it visually prominent and inviting to drag */
+.query-maintenance-page .k-splitbar {
+  background: rgba(0, 0, 0, 0.06);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  width: 6px !important;
+  position: relative;
+  transition: background 0.15s;
+}
+.query-maintenance-page .k-splitbar:hover,
+.query-maintenance-page .k-splitbar.k-splitbar-dragging-horizontal {
+  background: rgba(0, 120, 212, 0.15);
+  border-color: rgba(0, 120, 212, 0.3);
+}
+/* Grip dots for visual affordance */
+.query-maintenance-page .k-splitbar::after {
+  content: '···';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.25);
+  letter-spacing: 2px;
+  pointer-events: none;
+}
+.query-maintenance-page .k-splitbar:hover::after {
+  color: #0078d4;
+}
+[data-theme="dark"] .query-maintenance-page .k-splitbar {
+  background: rgba(255, 255, 255, 0.04);
+  border-left-color: rgba(255, 255, 255, 0.06);
+  border-right-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .query-maintenance-page .k-splitbar:hover,
+[data-theme="dark"] .query-maintenance-page .k-splitbar.k-splitbar-dragging-horizontal {
+  background: rgba(0, 120, 212, 0.2);
+  border-color: rgba(0, 120, 212, 0.4);
+}
+[data-theme="dark"] .query-maintenance-page .k-splitbar::after {
+  color: rgba(255, 255, 255, 0.2);
+}
+[data-theme="dark"] .query-maintenance-page .k-splitbar:hover::after {
+  color: #4da6ff;
+}
+
+/* Status bar */
+.query-status-bar {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.query-status-bar.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.query-status-bar.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Left panel: Query list */
+.query-maintenance-page .k-splitbar + .k-pane,
+.query-maintenance-page .k-pane:first-child {
+  overflow: hidden !important;
+}
+.query-list-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--surface-secondary, #f5f5f5);
+}
+[data-theme="dark"] .query-list-panel {
+  background: #1e1e2e;
+}
+
+.query-list-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--border-color, #ddd);
+  gap: 8px;
+}
+.query-list-toolbar h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.query-list-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.query-list-actions .k-button {
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.query-list-items {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 4px 24px 4px;
+}
+.query-list-items .k-treeview {
+  min-width: 0;
+}
+.query-list-items .k-treeview-leaf,
+.query-list-items .k-treeview-leaf-text {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+.tree-project-node {
+  min-width: 0;
+  max-width: 100%;
+}
+.tree-project-text,
+.tree-query-node {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* TreeView styles */
+.query-list-items .k-treeview {
+  font-size: 13px;
+}
+
+.tree-project-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 2px 0;
+}
+.tree-project-icon {
+  font-size: 16px;
+}
+.tree-project-count {
+  background: rgba(0,120,212,0.15);
+  color: #0078d4;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 4px;
+}
+
+.tree-query-node {
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.tree-query-node.selected {
+  background: #0078d4;
+  color: #fff;
+  font-weight: 500;
+}
+.tree-project-node.selected {
+  background: #0078d4;
+  color: #fff;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+.tree-project-node.selected .tree-project-count {
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+}
+
+.query-list-items .k-treeview-item .k-treeview-leaf:hover .tree-query-node:not(.selected) {
+  background: rgba(0,0,0,0.05);
+}
+[data-theme="dark"] .query-list-items .k-treeview-item .k-treeview-leaf:hover .tree-query-node:not(.selected) {
+  background: rgba(255,255,255,0.08);
+}
+
+.query-list-loading,
+.query-list-empty {
+  padding: 20px 14px;
+  color: #888;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Right panel: Detail */
+.query-detail-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.query-detail-panel .k-tabstrip {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modern Apple-style tabs */
+.query-detail-panel .k-tabstrip-items-wrapper {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  margin: 12px 16px 0 16px;
+  padding: 3px;
+  border: none !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+[data-theme="dark"] .query-detail-panel .k-tabstrip-items-wrapper {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.query-detail-panel .k-tabstrip-items {
+  border: none !important;
+  gap: 2px;
+}
+
+.query-detail-panel .k-tabstrip-item {
+  border: none !important;
+  border-radius: 8px;
+  padding: 6px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  background: transparent;
+  transition: all 0.2s ease;
+  margin: 0;
+}
+.query-detail-panel .k-tabstrip-item:hover:not(.k-active) {
+  color: #333;
+  background: rgba(0, 0, 0, 0.04);
+}
+[data-theme="dark"] .query-detail-panel .k-tabstrip-item {
+  color: #999;
+}
+[data-theme="dark"] .query-detail-panel .k-tabstrip-item:hover:not(.k-active) {
+  color: #ccc;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.query-detail-panel .k-tabstrip-item.k-active {
+  background: #fff;
+  color: #111;
+  border: none !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+}
+[data-theme="dark"] .query-detail-panel .k-tabstrip-item.k-active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.query-detail-panel .k-tabstrip-content {
+  padding: 20px 16px;
+  overflow-y: auto;
+  border: none !important;
+}
+
+/* Placeholder */
+.query-placeholder {
+  padding: 40px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Definition tab */
+.query-definition {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Definition tab */
+.query-definition {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Project editor panel (shown when a project node is selected) */
+.project-editor-panel {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.project-editor-title {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+.project-editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.project-editor-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.project-editor-hint {
+  font-size: 12px;
+  color: #888;
+}
+.project-editor-hint code {
+  font-family: 'Consolas', monospace;
+  background: rgba(128,128,128,0.15);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.query-header-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+.query-header-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.query-field-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+}
+[data-theme="dark"] .query-field-label {
+  color: #e0e0e0;
+}
+
+.query-steps-section {
+  flex: 1;
+  min-width: 0;
+}
+.query-steps-scroll-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+.query-steps-section .k-grid {
+  font-size: 13px;
+}
+/* Do not force table-layout:fixed — KendoReact resizable needs to control widths freely */
+/* Entity cell is blank for write steps */
+.query-steps-section .entity-cell-write {
+  background: inherit;
+}
+.query-steps-section .k-header {
+  font-size: 11px !important;
+  line-height: 1.3 !important;
+}
+.query-steps-section .k-grid-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* All grid cells - wrapping text with auto row height */
+.query-steps-section .k-table-td {
+  white-space: normal !important;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  vertical-align: middle !important;
+  font-size: 12px !important;
+}
+.query-steps-section .k-table-th {
+  white-space: normal !important;
+  text-align: center;
+}
+
+/* SQL Statement cell */
+.sql-cell {
+  white-space: normal !important;
+  padding: 6px 8px !important;
+}
+.sql-cell-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.sql-cell-text {
+  flex: 1;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: pre-wrap;
+  min-height: 20px;
+  color: inherit;
+}
+.sql-edit-btn,
+.sql-edit-btn.k-button {
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  margin-top: -2px;
+  color: #444 !important;
+}
+[data-theme="dark"] .sql-edit-btn,
+[data-theme="dark"] .sql-edit-btn.k-button {
+  color: #ccc !important;
+}
+.sql-cell:hover .sql-edit-btn {
+  opacity: 1;
+}
+
+/* ── Vocabulary info bar ─────────────────────────────────────────────────────── */
+.vocab-info-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  border: 1px solid #c8e6c9;
+  border-radius: 4px;
+  background: #f1f8e9;
+  font-size: 12px;
+  color: #2e7d32;
+  flex-wrap: wrap;
+}
+[data-theme='dark'] .vocab-info-bar {
+  background: #1a2e1c;
+  border-color: #2e5c32;
+  color: #81c784;
+}
+.vocab-info-bar.has-errors {
+  border-color: #ffe082;
+  background: #fffde7;
+  color: #795548;
+}
+[data-theme='dark'] .vocab-info-bar.has-errors {
+  background: #2e2800;
+  border-color: #7c6900;
+  color: #ffe082;
+}
+.vocab-info-bar-empty {
+  border-color: #e0e0e0;
+  background: #fafafa;
+  color: #888;
+}
+[data-theme='dark'] .vocab-info-bar-empty {
+  background: #1e1e2e;
+  border-color: #444;
+  color: #999;
+}
+.vocab-info-icon {
+  font-size: 14px;
+}
+.vocab-info-name {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.vocab-info-sep {
+  color: #aaa;
+}
+.vocab-info-updated {
+  color: #666;
+}
+[data-theme='dark'] .vocab-info-updated {
+  color: #999;
+}
+.vocab-info-errors {
+  color: #d84315;
+  font-weight: 600;
+}
+[data-theme='dark'] .vocab-info-errors {
+  color: #ff7043;
+}
+.vocab-refresh-btn.k-button {
+  font-size: 11px;
+  padding: 1px 6px;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.vocab-refresh-btn.k-button:hover {
+  opacity: 1;
+}
+.vocab-info-empty-text {
+  color: #999;
+}
+
+/* ── Vocabulary error detail list ────────────────────────────────────────────── */
+.vocab-error-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px 12px 8px;
+  margin-bottom: 8px;
+  border: 1px solid #ffe082;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  background: #fffde7;
+  font-size: 12px;
+}
+[data-theme='dark'] .vocab-error-list {
+  background: #2a2200;
+  border-color: #7c6900;
+}
+.vocab-error-item {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  line-height: 1.5;
+}
+.vocab-error-step {
+  font-weight: 700;
+  color: #d84315;
+  white-space: nowrap;
+}
+[data-theme='dark'] .vocab-error-step {
+  color: #ff7043;
+}
+.vocab-error-field {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+  color: #795548;
+  background: rgba(0,0,0,0.05);
+  padding: 0 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+[data-theme='dark'] .vocab-error-field {
+  color: #ffe082;
+  background: rgba(255,255,255,0.06);
+}
+.vocab-error-sep {
+  color: #bbb;
+}
+.vocab-error-msg {
+  color: #5d4037;
+  flex: 1;
+}
+[data-theme='dark'] .vocab-error-msg {
+  color: #ffcc80;
+}
+
+/* ── FK/PK disabled cell (no prior step match) ────────────────────────────────── */
+.fkpk-disabled {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 5px,
+    rgba(128, 128, 128, 0.1) 5px,
+    rgba(128, 128, 128, 0.1) 10px
+  ) !important;
+  cursor: not-allowed;
+}
+
+/* ── Vocabulary entity-field error highlight ─────────────────────────────────── */
+.entity-cell-error {
+  background: rgba(229, 57, 53, 0.08) !important;
+  outline: 1px solid #e53935 !important;
+}
+.entity-cell-error .entity-field-input {
+  border-color: #e53935 !important;
+}
+
+/* ── ComboBox inside grid cell (entity/role dropdowns) ───────────────────────── */
+.entity-combobox.k-combobox {
+  width: 100%;
+  font-size: 11px;
+  border: none;
+  background: transparent;
+}
+.entity-combobox .k-input-inner {
+  padding: 1px 4px;
+  font-size: 11px;
+  height: 24px;
+}
+.entity-combobox .k-button {
+  padding: 0 4px;
+  min-width: 20px;
+  height: 24px;
+}
+/* Dropdown popup for grid cell ComboBoxes — auto-width, small font */
+.entity-cb-popup .k-list-item,
+.entity-cb-popup .k-list-item-text {
+  font-size: 11px;
+  white-space: nowrap;
+  padding: 3px 8px;
+}
+.entity-cb-popup .k-list {
+  min-width: 180px;
+}
+/* ── Grid column resize handles — make them visible ─────────────────────────── */
+/* Use high-specificity scoped selector + !important to override the Kendo theme */
+.query-steps-section .k-grid th.k-header {
+  position: relative !important;
+  overflow: visible !important;
+}
+.query-steps-section .k-grid .k-column-resizer {
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 6px !important;
+  height: 100% !important;
+  background: rgba(120, 120, 180, 0.35) !important;
+  cursor: col-resize !important;
+  z-index: 10;
+}
+.query-steps-section .k-grid .k-column-resizer:hover {
+  background: rgba(0, 120, 212, 0.75) !important;
+}
+
+/* ── Autocomplete popup (SQL editor + URI template) ──────────────────────────── */
+.vocab-ac-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 9999;
+  min-width: 200px;
+  max-width: 380px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--kendo-color-surface-alt, #fff);
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  padding: 2px 0;
+}
+.vocab-ac-popup-input {
+  top: 100%;
+}
+.vocab-ac-popup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.vocab-ac-popup li {
+  padding: 5px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+.vocab-ac-popup li:hover,
+.vocab-ac-popup li.highlighted {
+  background: var(--kendo-color-primary, #0078d4);
+  color: #fff;
+}
+.vocab-ac-filter {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  font-family: inherit;
+  background: var(--kendo-color-surface-alt, #fff);
+  color: inherit;
+  outline: none;
+}
+.vocab-ac-filter:focus {
+  border-bottom-color: var(--kendo-color-primary, #0078d4);
+}
+[data-theme='dark'] .vocab-ac-filter {
+  border-bottom-color: #444;
+}
+[data-theme='dark'] .vocab-ac-filter:focus {
+  border-bottom-color: var(--kendo-color-primary, #4fc3f7);
+}
+
+/* ── Project vocab file indicator ───────────────────────────────────────────── */
+.project-vocab-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 5px 10px;
+  background: #f0f4ff;
+  border: 1px solid #c5cae9;
+  border-radius: 4px;
+  font-size: 12px;
+}
+[data-theme='dark'] .project-vocab-file {
+  background: #1a1a2e;
+  border-color: #3949ab;
+}
+.project-vocab-file-icon {
+  font-size: 14px;
+}
+.project-vocab-file-path {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-weight: 600;
+  color: #3949ab;
+}
+[data-theme='dark'] .project-vocab-file-path {
+  color: #7986cb;
+}
+.project-vocab-file-date {
+  color: #888;
+  margin-left: auto;
+  font-size: 11px;
+}
+
+/* SQL Editor Dialog */
+.sql-editor-dialog {
+  padding: 8px 0;
+}
+.sql-editor-dialog .k-textarea {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* SQL Editor Validation Warnings */
+.sql-editor-warnings {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #fef3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  color: #856404;
+  font-size: 13px;
+}
+[data-theme="dark"] .sql-editor-warnings {
+  background: #332b00;
+  border-color: #665500;
+  color: #ffd54f;
+}
+.sql-warning-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.sql-editor-warnings ul {
+  margin: 0;
+  padding: 0 0 0 16px;
+  list-style: disc;
+}
+.sql-editor-warnings li {
+  margin-bottom: 2px;
+}
+
+/* ── SQL editor dialog — solid footer to prevent bleed-through ─────── */
+.qm-sql-dialog .k-actions,
+.qm-sql-dialog .k-dialog-buttongroup {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  background: #f5f5f5;
+  border-top: 1px solid #ddd;
+}
+[data-theme="dark"] .qm-sql-dialog .k-actions,
+[data-theme="dark"] .qm-sql-dialog .k-dialog-buttongroup {
+  background: #1e1e2e;
+  border-top-color: #3a3a4a;
+}
+
+.query-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+}
+.unsaved-indicator {
+  color: #e67e22;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Test tab */
+.query-test {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.query-test-params {
+  background: var(--surface-secondary, #f9f9f9);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 6px;
+  padding: 16px;
+}
+[data-theme="dark"] .query-test-params {
+  background: #1e1e2e;
+}
+.query-test-params h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+}
+
+.param-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.param-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.param-label {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  min-width: 200px;
+  color: #0078d4;
+  font-weight: 500;
+}
+
+.query-test-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Resolved SQL preview */
+.query-test-resolved {
+  margin-bottom: 12px;
+}
+.query-test-resolved h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+.query-resolved-step {
+  margin-bottom: 8px;
+}
+.query-resolved-step-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 4px;
+  display: block;
+}
+.query-resolved-sql-wrap {
+  position: relative;
+  background: var(--surface-secondary, #f5f5f5);
+  border-radius: 4px;
+  border: 1px solid var(--border-color, #ddd);
+}
+[data-theme="dark"] .query-resolved-sql-wrap {
+  background: #1e1e2e;
+}
+.query-resolved-sql {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 10px 12px;
+  padding-right: 70px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: all;
+}
+.query-resolved-copy-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 12px !important;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+.query-resolved-sql-wrap:hover .query-resolved-copy-btn {
+  opacity: 1;
+}
+
+.query-test-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 13px;
+}
+[data-theme="dark"] .query-test-error {
+  background: rgba(220, 38, 38, 0.08);
+  color: #fca5a5;
+  border-color: rgba(220, 38, 38, 0.2);
+}
+
+.query-error-friendly {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.query-error-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.query-error-details {
+  margin-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 10px;
+}
+[data-theme="dark"] .query-error-details {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+.query-error-details summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b91c1c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+[data-theme="dark"] .query-error-details summary {
+  color: #f87171;
+}
+.query-error-details summary:hover {
+  opacity: 0.8;
+}
+.query-error-details pre {
+  margin: 8px 0 0 0;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #7f1d1d;
+  max-height: 200px;
+  overflow-y: auto;
+}
+[data-theme="dark"] .query-error-details pre {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fca5a5;
+}
+
+.query-test-result {
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.query-test-result h4 {
+  margin: 0;
+  font-size: 14px;
+}
+.query-test-sql {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  background: var(--surface-secondary, #f5f5f5);
+  padding: 8px 12px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+[data-theme="dark"] .query-test-sql {
+  background: #1e1e2e;
+}
+
+.query-test-no-data {
+  color: #888;
+  font-style: italic;
+  padding: 12px;
+}
+.query-test-count {
+  font-size: 12px;
+  color: #888;
+  text-align: right;
+}
+
+/* ── Write query support ──────────────────────────────────────────────── */
+
+/* Step type badge (shown inside SQL cell) */
+.step-type-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(0, 120, 212, 0.12);
+  color: #0078d4;
+  margin-bottom: 3px;
+  line-height: 1.5;
+  vertical-align: middle;
+  align-self: flex-start;
+}
+.step-type-badge.write {
+  background: rgba(217, 119, 6, 0.15);
+  color: #b45309;
+}
+[data-theme="dark"] .step-type-badge {
+  background: rgba(0, 120, 212, 0.2);
+  color: #4da6ff;
+}
+[data-theme="dark"] .step-type-badge.write {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+/* SQL cell body — stacks badge above the SQL text */
+.sql-cell-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 2px;
+}
+
+/* Subtle amber left-border on write step rows */
+.sql-cell.sql-cell-write {
+  border-left: 3px solid rgba(217, 119, 6, 0.45) !important;
+}
+
+/* ── SQL editor dialog: statement type selector ───────────────────── */
+.sql-editor-type-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.sql-editor-type-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+[data-theme="dark"] .sql-editor-type-label {
+  color: #e0e0e0;
+}
+
+.sql-type-selector {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+[data-theme="dark"] .sql-type-selector {
+  border-color: #444;
+}
+.sql-type-btn {
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #666;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.3px;
+}
+.sql-type-btn:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
+[data-theme="dark"] .sql-type-btn {
+  color: #999;
+}
+[data-theme="dark"] .sql-type-btn:not(:last-child) {
+  border-right-color: #444;
+}
+.sql-type-btn:hover:not(.active) {
+  background: rgba(0, 0, 0, 0.05);
+}
+[data-theme="dark"] .sql-type-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.08);
+}
+.sql-type-btn.active {
+  background: #0078d4;
+  color: #fff;
+}
+.sql-type-btn.write.active {
+  background: #d97706;
+  color: #fff;
+}
+.sql-type-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: all; /* keep pointer-events so the title tooltip still shows */
+}
+
+/* ── SQL editor textarea: amber tint in write mode ────────────────── */
+.sql-editor-textarea-wrap {
+  position: relative;
+}
+
+/* ── Write step config panel (inside dialog) ──────────────────────── */
+.write-config-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 2px;
+  overflow-y: auto;
+}
+.write-config-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.write-config-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+[data-theme="dark"] .write-config-label {
+  color: #e0e0e0;
+}
+.write-req {
+  color: #dc3545;
+  margin-left: 2px;
+}
+.write-config-hint {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+[data-theme="dark"] .write-config-hint {
+  color: #999;
+}
+.write-config-hint code {
+  font-family: 'Consolas', monospace;
+  background: rgba(128, 128, 128, 0.15);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+[data-theme="dark"] .write-config-hint code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Collections chip inside the grid cell ────────────────────────── */
+.grid-collection-chip {
+  display: inline-block;
+  background: rgba(0, 120, 212, 0.12);
+  color: #0056a0;
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: 11px;
+  font-weight: 500;
+  margin: 1px 2px;
+  white-space: nowrap;
+}
+[data-theme="dark"] .grid-collection-chip {
+  background: rgba(77, 166, 255, 0.15);
+  color: #7ec8ff;
+}
+
+/* ── Collections chip input ───────────────────────────────────────── */
+.collections-chip-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 34px;
+  background: #fff;
+  cursor: text;
+}
+[data-theme="dark"] .collections-chip-input {
+  border-color: #5a5a6a;
+  background: #1a1a2e;
+}
+.collection-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 120, 212, 0.12);
+  color: #0056a0;
+  border-radius: 12px;
+  padding: 2px 8px 2px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+[data-theme="dark"] .collection-chip {
+  background: rgba(77, 166, 255, 0.15);
+  color: #7ec8ff;
+}
+.collection-chip-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 14px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity 0.1s;
+}
+.collection-chip-remove:hover {
+  opacity: 1;
+}
+.collection-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  font-family: inherit;
+  flex: 1;
+  min-width: 150px;
+  padding: 2px 0;
+}
+.collection-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+[data-theme="dark"] .collection-input {
+  color: #ccc;
+}
+
+/* ── Entity-mapping grid cell inputs ──────────────────────────────── */
+.entity-field-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  font-family: inherit;
+  padding: 2px 4px;
+  border-radius: 3px;
+  outline: none;
+}
+.entity-field-input:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.5);
+}
+.entity-field-input:focus {
+  border-color: #0078d4;
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.15);
+}
+[data-theme="dark"] .entity-field-input:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+[data-theme="dark"] .entity-field-input:focus {
+  background: #252535;
+  border-color: #4da6ff;
+  box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.15);
+}

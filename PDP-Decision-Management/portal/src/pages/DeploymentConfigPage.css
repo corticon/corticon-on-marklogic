@@ -1,0 +1,614 @@
+/* ===== Decision Service Configuration Maintenance Page ===== */
+/* Mirrors QueryMaintenancePage styling with form-based layout */
+
+.dc-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ── Project Settings editor panel (shown when project selected, no config) ── */
+.dc-project-editor-panel {
+  padding: 28px 32px;
+  max-width: 520px;
+}
+
+.dc-project-editor-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: var(--text-primary, #1a1a2e);
+}
+[data-theme="dark"] .dc-project-editor-title { color: #d0d0f0; }
+
+.dc-project-editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dc-project-editor-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dc-project-editor-hint {
+  font-size: 11px;
+  color: var(--text-muted, #888);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Splitter drag bar */
+.dc-page .k-splitbar {
+  background: rgba(0, 0, 0, 0.06);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  width: 6px !important;
+  position: relative;
+  transition: background 0.15s;
+}
+.dc-page .k-splitbar:hover,
+.dc-page .k-splitbar.k-splitbar-dragging-horizontal {
+  background: rgba(0, 120, 212, 0.15);
+  border-color: rgba(0, 120, 212, 0.3);
+}
+.dc-page .k-splitbar::after {
+  content: '···';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.25);
+  letter-spacing: 2px;
+  pointer-events: none;
+}
+.dc-page .k-splitbar:hover::after {
+  color: #0078d4;
+}
+[data-theme="dark"] .dc-page .k-splitbar {
+  background: rgba(255, 255, 255, 0.04);
+  border-left-color: rgba(255, 255, 255, 0.06);
+  border-right-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .dc-page .k-splitbar:hover,
+[data-theme="dark"] .dc-page .k-splitbar.k-splitbar-dragging-horizontal {
+  background: rgba(0, 120, 212, 0.2);
+  border-color: rgba(0, 120, 212, 0.4);
+}
+[data-theme="dark"] .dc-page .k-splitbar::after {
+  color: rgba(255, 255, 255, 0.2);
+}
+[data-theme="dark"] .dc-page .k-splitbar:hover::after {
+  color: #4da6ff;
+}
+
+/* Status bar */
+.dc-status-bar {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.dc-status-bar.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.dc-status-bar.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Left panel: Config list */
+.dc-page .k-pane:first-child {
+  overflow: hidden !important;
+}
+.dc-list-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--surface-secondary, #f5f5f5);
+}
+[data-theme="dark"] .dc-list-panel {
+  background: #1e1e2e;
+}
+
+.dc-list-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--border-color, #ddd);
+  gap: 8px;
+}
+.dc-list-toolbar h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.dc-list-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.dc-list-actions .k-button {
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.dc-list-items {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 4px 24px 4px;
+}
+.dc-list-items .k-treeview {
+  min-width: 0;
+}
+.dc-list-items .k-treeview-leaf,
+.dc-list-items .k-treeview-leaf-text {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* TreeView — reuses exact same tree styles from QueryMaintenancePage */
+.dc-list-items .k-treeview {
+  font-size: 13px;
+}
+
+.dc-page .tree-project-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 2px 0;
+}
+.dc-page .tree-project-icon {
+  font-size: 16px;
+}
+.dc-page .tree-project-count {
+  background: rgba(0,120,212,0.15);
+  color: #0078d4;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 4px;
+}
+
+.tree-config-node {
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.tree-config-node.selected {
+  background: #0078d4;
+  color: #fff;
+  font-weight: 500;
+}
+.dc-page .tree-project-node.selected {
+  background: #0078d4;
+  color: #fff;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+.dc-page .tree-project-node.selected .tree-project-count {
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+}
+.dc-list-items .k-treeview-item .k-treeview-leaf:hover .tree-config-node:not(.selected) {
+  background: rgba(0,0,0,0.05);
+}
+[data-theme="dark"] .dc-list-items .k-treeview-item .k-treeview-leaf:hover .tree-config-node:not(.selected) {
+  background: rgba(255,255,255,0.08);
+}
+
+.dc-list-loading,
+.dc-list-empty {
+  padding: 20px 14px;
+  color: #888;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Right panel: Detail */
+.dc-detail-panel {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.dc-detail-panel .k-tabstrip {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* Kendo animation wrapper — must stretch to full width */
+.dc-detail-panel .k-animation-container {
+  width: 100% !important;
+  flex: 1;
+}
+.dc-detail-panel .k-child-animation-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+.dc-detail-panel .k-tabstrip-content,
+.dc-detail-panel .k-content {
+  width: 100% !important;
+  box-sizing: border-box;
+  padding: 20px 16px;
+  overflow-y: auto;
+  border: none !important;
+  flex: 1;
+}
+
+/* Tabs: Apple-style (same as QueryMaintenancePage) */
+.dc-detail-panel .k-tabstrip-items-wrapper {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  margin: 12px 16px 0 16px;
+  padding: 3px;
+  border: none !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+[data-theme="dark"] .dc-detail-panel .k-tabstrip-items-wrapper {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.dc-detail-panel .k-tabstrip-items {
+  border: none !important;
+  gap: 2px;
+}
+
+.dc-detail-panel .k-tabstrip-item {
+  border: none !important;
+  border-radius: 8px;
+  padding: 6px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  background: transparent;
+  transition: all 0.2s ease;
+  margin: 0;
+}
+.dc-detail-panel .k-tabstrip-item:hover:not(.k-active) {
+  color: #333;
+  background: rgba(0, 0, 0, 0.04);
+}
+[data-theme="dark"] .dc-detail-panel .k-tabstrip-item {
+  color: #999;
+}
+[data-theme="dark"] .dc-detail-panel .k-tabstrip-item:hover:not(.k-active) {
+  color: #ccc;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dc-detail-panel .k-tabstrip-item.k-active {
+  background: #fff;
+  color: #111;
+  border: none !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+}
+[data-theme="dark"] .dc-detail-panel .k-tabstrip-item.k-active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Placeholder */
+.dc-placeholder {
+  padding: 40px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+/* ===== Form Layout ===== */
+.dc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dc-form-section {
+  background: var(--surface-secondary, #f9f9f9);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  padding: 16px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+[data-theme="dark"] .dc-form-section {
+  background: #1e1e2e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dc-section-title {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0078d4;
+  display: flex;
+  align-items: center;
+}
+
+.dc-form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.dc-form-row:last-child {
+  margin-bottom: 0;
+}
+
+.dc-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.dc-form-field-wide {
+  flex: 2;
+}
+
+/* Smaller font for input values — long paths need more room */
+.dc-form-section .k-input,
+.dc-form-section .k-input-inner,
+.dc-form-section .k-input-value-text,
+.dc-form-section .k-numerictextbox .k-input-inner {
+  font-size: 12px !important;
+}
+
+.dc-field-label {
+  font-weight: 600;
+  font-size: 12px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+[data-theme="dark"] .dc-field-label {
+  color: #aaa;
+}
+
+/* Read-only derived value (e.g. auto-computed Bundle URI) */
+.dc-field-derived {
+  font-size: 12px;
+  font-family: ui-monospace, 'Cascadia Code', 'Consolas', monospace;
+  color: #444;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 10px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+}
+[data-theme="dark"] .dc-field-derived {
+  color: #ccc;
+  background: #2a2a2a;
+  border-color: #444;
+}
+.dc-field-derived-empty {
+  font-style: italic;
+  color: #999;
+}
+[data-theme="dark"] .dc-field-derived-empty {
+  color: #666;
+}
+
+/* Bundle URI editable base + read-only suffix */
+.dc-bundle-uri-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+[data-theme="dark"] .dc-bundle-uri-row {
+  background: #2a2a2a;
+  border-color: #444;
+}
+.dc-bundle-uri-row .k-input,
+.dc-bundle-uri-row .k-textbox {
+  border: none !important;
+  border-right: 1px solid #ddd !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 12px;
+}
+[data-theme="dark"] .dc-bundle-uri-row .k-input,
+[data-theme="dark"] .dc-bundle-uri-row .k-textbox {
+  border-right-color: #444 !important;
+  color: #ccc;
+}
+.dc-bundle-uri-suffix {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 12px;
+  color: #555;
+  padding: 0 10px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+[data-theme="dark"] .dc-bundle-uri-suffix {
+  color: #aaa;
+}
+
+/* Deployed versions list */
+.dc-deployed-versions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dc-deployed-version-row {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 8px;
+  background: #f8f8f8;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  font-size: 12px;
+}
+[data-theme="dark"] .dc-deployed-version-row {
+  background: #252535;
+  border-color: #3a3a4a;
+}
+.dc-version-badge {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background: #5c6bc0;
+  border-radius: 3px;
+  padding: 2px 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+.dc-version-uri {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 11px;
+  color: #444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+[data-theme="dark"] .dc-version-uri {
+  color: #bbb;
+}
+.dc-version-date {
+  font-size: 11px;
+  color: #888;
+  white-space: nowrap;
+}
+
+/* Dependent JS list */
+.dc-dependent-js-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dc-dependent-js-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dc-dependent-js-index {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  min-width: 22px;
+  text-align: center;
+  background: rgba(0,0,0,0.05);
+  border-radius: 4px;
+  padding: 4px 2px;
+}
+[data-theme="dark"] .dc-dependent-js-index {
+  background: rgba(255,255,255,0.06);
+  color: #999;
+}
+
+.dc-dependent-js-empty {
+  color: #888;
+  font-size: 13px;
+  font-style: italic;
+  padding: 8px 0;
+}
+
+/* Form actions (Save bar) */
+.dc-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+}
+.dc-unsaved-indicator {
+  color: #e67e22;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Dark mode: KendoReact DropDownList (closed) — match Input field background */
+[data-theme="dark"] .dc-form-section .k-dropdownlist,
+[data-theme="dark"] .dc-form-section .k-picker-solid {
+  background-color: var(--kendo-input-bg, #15151f) !important;
+  border-color: var(--kendo-input-border, rgba(255, 255, 255, 0.08)) !important;
+  color: #e0e0e0;
+}
+[data-theme="dark"] .dc-form-section .k-dropdownlist .k-input-inner,
+[data-theme="dark"] .dc-form-section .k-dropdownlist .k-input-value-text {
+  color: #e0e0e0;
+}
+[data-theme="dark"] .dc-form-section .k-dropdownlist .k-button,
+[data-theme="dark"] .dc-form-section .k-dropdownlist .k-select {
+  color: #e0e0e0;
+  background: transparent;
+}
+/* DropDownList popup — rendered at body level, so target via body[data-theme] */
+body[data-theme="dark"] .dc-dropdown-popup,
+body[data-theme="dark"] .dc-dropdown-popup .k-list {
+  background-color: #1e1e2e !important;
+  color: #e0e0e0;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+body[data-theme="dark"] .dc-dropdown-popup .k-list-item {
+  color: #e0e0e0;
+}
+body[data-theme="dark"] .dc-dropdown-popup .k-list-item:hover,
+body[data-theme="dark"] .dc-dropdown-popup .k-list-item.k-hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+body[data-theme="dark"] .dc-dropdown-popup .k-list-item.k-selected {
+  background-color: #0078d4;
+  color: #fff;
+}
+body[data-theme="dark"] .dc-dropdown-popup .k-list-item.k-selected:hover,
+body[data-theme="dark"] .dc-dropdown-popup .k-list-item.k-selected.k-hover {
+  background-color: #1a8ae8;
+  color: #fff;
+}
+
+/* ── Confirm delete dialog — solid footer to prevent bleed-through ────── */
+.dc-confirm-dialog .k-actions,
+.dc-confirm-dialog .k-dialog-buttongroup {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  background: #f5f5f5;
+  border-top: 1px solid #ddd;
+}
+[data-theme="dark"] .dc-confirm-dialog .k-actions,
+[data-theme="dark"] .dc-confirm-dialog .k-dialog-buttongroup {
+  background: #1e1e2e;
+  border-top-color: #3a3a4a;
+}

@@ -1,0 +1,12 @@
+Telerik License File
+====================
+
+Place your Telerik UI for React license file here, named:
+
+    telerik-license.txt
+
+You can download your license file from the Telerik account portal:
+https://www.telerik.com/account/your-products
+
+The file is excluded from version control via .gitignore.
+Do NOT commit telerik-license.txt to a public repository.

@@ -1,0 +1,257 @@
+/* JsonExplorer — Corticon-tester / Windows Explorer style
+   Striped rows, color dots, field [value] format. Clean sans-serif. */
+
+/* Container */
+.jex-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #1a1a2e;
+}
+
+/* Toolbar */
+.jex-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border-bottom: 1px solid #dde3ec;
+  background: #f5f7fb;
+  flex-shrink: 0;
+}
+.jex-btn {
+  border: 1px solid #c8d0de;
+  background: #fff;
+  color: #3a4a6b;
+  padding: 2px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: inherit;
+  transition: background 0.12s, border-color 0.12s;
+}
+.jex-btn:hover  { background: #e8edf6; border-color: #a8b4cc; }
+.jex-btn:active { background: #d8e2f2; }
+.jex-row-count {
+  margin-left: auto;
+  font-size: 11px;
+  color: #8a99b5;
+  white-space: nowrap;
+}
+
+/* Filter input */
+.jex-filter-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 260px;
+}
+.jex-filter-input {
+  width: 100%;
+  padding: 2px 22px 2px 7px;
+  border: 1px solid #c8d0de;
+  border-radius: 3px;
+  font-size: 11px;
+  font-family: inherit;
+  background: #fff;
+  color: #1a2a4a;
+  outline: none;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.jex-filter-input:focus {
+  border-color: #5b9bd5;
+  box-shadow: 0 0 0 2px rgba(91, 155, 213, 0.18);
+}
+.jex-filter-input::placeholder { color: #b0bcd4; }
+.jex-filter-clear {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #8a99b5;
+  font-size: 11px;
+  line-height: 1;
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+}
+.jex-filter-clear:hover { color: #e03030; }
+
+/* Highlight matched text */
+.jex-highlight {
+  background: #fef08a;
+  color: #78350f;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* Scrollable list */
+.jex-list {
+  flex: 1;
+  overflow: auto;
+}
+.jex-empty {
+  padding: 20px 16px;
+  color: #aaa;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* Rows */
+.jex-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 26px;
+  padding: 3px 8px 3px 0;
+  line-height: 1.4;
+  user-select: text;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.jex-row.jex-even { background: #f0f4fb; }
+.jex-row.jex-odd  { background: #ffffff; }
+.jex-row-branch:hover { background: #dce8f5 !important; cursor: pointer; }
+.jex-row-branch:focus { outline: 1px solid #5b9bd5; outline-offset: -1px; }
+
+/* Chevron */
+.jex-chevron {
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+  font-size: 9px;
+  color: #6678a0;
+  user-select: none;
+  line-height: 1;
+}
+
+/* Type dot — small colored square, no text */
+.jex-dot {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.jex-dot-object  { background: #93c5fd; }
+.jex-dot-array   { background: #6ee7b7; }
+.jex-dot-string  { background: #fcd34d; }
+.jex-dot-number  { background: #a78bfa; }
+.jex-dot-boolean { background: #fb923c; }
+.jex-dot-null    { background: #d1d5db; }
+
+/* Field label */
+.jex-label {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: #1a2a4a;
+  min-width: 0;
+}
+.jex-label-branch {
+  font-weight: 600;
+  color: #1a2a4a;
+}
+
+/* Value badge (pill) */
+.jex-value-badge {
+  margin-left: 4px;
+  padding: 0 7px;
+  height: 18px;
+  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 500;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.jex-value-string  { background: #fffbeb; color: #7c4a00; border: 1px solid #f6d860; }
+.jex-value-number  { background: #f0effe; color: #3730a3; border: 1px solid #c7d2fe; }
+.jex-value-boolean { background: #fff7ed; color: #92400e; border: 1px solid #fcd34d; font-style: italic; }
+.jex-value-null    { background: #f9fafb; color: #9ca3af; border: 1px solid #d1d5db; font-style: italic; }
+
+/* ══ Dark mode ══════════════════════════════════════════════════════════════ */
+
+body[data-theme="dark"] .jex-container,
+[data-theme="dark"] .jex-container { background: #1e2233; color: #cdd5e8; }
+
+body[data-theme="dark"] .jex-toolbar,
+[data-theme="dark"] .jex-toolbar   { background: #252840; border-bottom-color: #353a5a; }
+
+body[data-theme="dark"] .jex-btn,
+[data-theme="dark"] .jex-btn       { background: #2d3250; border-color: #455080; color: #c0cadd; }
+body[data-theme="dark"] .jex-btn:hover,
+[data-theme="dark"] .jex-btn:hover { background: #363c60; border-color: #6070a0; }
+
+body[data-theme="dark"] .jex-row-count,
+[data-theme="dark"] .jex-row-count { color: #6070a0; }
+
+body[data-theme="dark"] .jex-filter-input,
+[data-theme="dark"] .jex-filter-input {
+  background: #1a1e30;
+  border-color: #455080;
+  color: #c0cadd;
+}
+body[data-theme="dark"] .jex-filter-input:focus,
+[data-theme="dark"] .jex-filter-input:focus {
+  border-color: #4da6ff;
+  box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.15);
+}
+body[data-theme="dark"] .jex-filter-input::placeholder,
+[data-theme="dark"] .jex-filter-input::placeholder { color: #4a5580; }
+body[data-theme="dark"] .jex-filter-clear,
+[data-theme="dark"] .jex-filter-clear { color: #6070a0; }
+body[data-theme="dark"] .jex-filter-clear:hover,
+[data-theme="dark"] .jex-filter-clear:hover { color: #ff6b6b; }
+body[data-theme="dark"] .jex-highlight,
+[data-theme="dark"] .jex-highlight { background: #78350f; color: #fcd34d; }
+
+body[data-theme="dark"] .jex-row.jex-even,
+[data-theme="dark"] .jex-row.jex-even { background: #1e2233; }
+body[data-theme="dark"] .jex-row.jex-odd,
+[data-theme="dark"] .jex-row.jex-odd  { background: #242840; }
+body[data-theme="dark"] .jex-row-branch:hover,
+[data-theme="dark"] .jex-row-branch:hover { background: #2d3560 !important; }
+
+body[data-theme="dark"] .jex-chevron,
+[data-theme="dark"] .jex-chevron { color: #6070a0; }
+
+body[data-theme="dark"] .jex-label,
+[data-theme="dark"] .jex-label        { color: #c8d4ee; }
+body[data-theme="dark"] .jex-label-branch,
+[data-theme="dark"] .jex-label-branch { color: #dde6ff; }
+
+body[data-theme="dark"] .jex-dot-object,
+[data-theme="dark"] .jex-dot-object   { background: #60a5fa; }
+body[data-theme="dark"] .jex-dot-array,
+[data-theme="dark"] .jex-dot-array    { background: #34d399; }
+body[data-theme="dark"] .jex-dot-string,
+[data-theme="dark"] .jex-dot-string   { background: #fcd34d; }
+body[data-theme="dark"] .jex-dot-number,
+[data-theme="dark"] .jex-dot-number   { background: #c4b5fd; }
+body[data-theme="dark"] .jex-dot-boolean,
+[data-theme="dark"] .jex-dot-boolean  { background: #fb923c; }
+body[data-theme="dark"] .jex-dot-null,
+[data-theme="dark"] .jex-dot-null     { background: #4b5563; }
+
+body[data-theme="dark"] .jex-value-string,
+[data-theme="dark"] .jex-value-string  { background: #3b2700; color: #fcd34d; border-color: #78350f; }
+body[data-theme="dark"] .jex-value-number,
+[data-theme="dark"] .jex-value-number  { background: #200e5c; color: #a5b4fc; border-color: #4338ca; }
+body[data-theme="dark"] .jex-value-boolean,
+[data-theme="dark"] .jex-value-boolean { background: #3b1500; color: #fb923c; border-color: #9a3412; }
+body[data-theme="dark"] .jex-value-null,
+[data-theme="dark"] .jex-value-null    { background: #1f2937; color: #6b7280; border-color: #374151; }

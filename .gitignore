@@ -60,3 +60,5 @@ Thumbs.db
 # Ignore any file or directory containing 'mockaroo' (case-safe)
 *[Mm]ockaroo*/
 *[Mm]ockaroo*
+PDP-Decision-Management/portal/.gitignore
+PDP-Decision-Management/plans
