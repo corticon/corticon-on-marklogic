@@ -33,17 +33,19 @@ Navigate to this directory in your terminal and run the following command to ins
 npm install
 ```
 
+The UI now expects the FastTrack 2.x archive `ml-fasttrack-2.0.0-20250701b.tgz` to exist in this folder.
+
 ### 2. Configure Connection to the Middle Tier
 
 This UI talks to the Node middle‑tier (not directly to MarkLogic) using environment variables.
 
 1. Ensure the middle‑tier is running (see `Auto Insurance/insurance-chatbot/README.md`). Default port is `4004`.
-2. Create a `.env` in this folder with:
+2. Copy `.env.example` to `.env` and adjust as needed:
 
 ```ini
-VITE_ML_HOST=localhost
-VITE_ML_PORT=4004
-VITE_ML_OPTIONS=corticonml-options
+VITE_PROXY_BASE_URL=http://localhost:4004
+VITE_FT_OPTIONS=corticonml-options
+VITE_FT_DEBUG=false
 ```
 
 ### 3. Start the Development Server
@@ -58,7 +60,7 @@ This will launch the application in your web browser, typically at `http://local
 
 ### 4. Explore the Dashboard
 
-Once the application is running, you can use the search bar to find and explore the policies that have been processed by the MarkLogic backend. You can then navigate through the different tabs to see the policy details, the decision log, and the execution trace.
+Once the application is running, you can use the search bar to find and explore the policies that have been processed by the MarkLogic backend. The geography tab now uses the dedicated MarkLogic analytics resource instead of pulling every policy document into the browser.
 
 ---
 
