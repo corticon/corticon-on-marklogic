@@ -132,11 +132,17 @@ To get this demo up and running, please follow the step-by-step instructions in 
   - `src/server.js` — Express server with a chatbot endpoint that can enrich responses using policy data from MarkLogic.
   - `package.json` — `npm start` to run the middle tier if you choose to use it.
 
+- Convenience scripts: `Auto Insurance/scripts`
+  - `Start-Stop-Demo-AutoInsurance.ps1` — Windows PowerShell script with an interactive menu to start/stop the Node.js middleware and the Vite dev server in one step.
+  - `start-stop-demo-autoinsurance.sh` — Linux/macOS equivalent bash script.
+
 ---
 
 ## Quick Start (Summary)
 
 1) Deploy backend: `cd "Auto Insurance/mlCorticonAutoInsurance" && gradle mlDeploy`
 2) Load a policy into `http://example.com/data/policy-input` (see backend README for a cURL example).
-3) Start UI: `cd "Auto Insurance/insurance-chatbot/ui" && npm install && npm run dev`
+3) **Start the UI + middleware** using the convenience script in `scripts/`:
+   - Windows: `cd "Auto Insurance/scripts" && .\Start-Stop-Demo-AutoInsurance.ps1`
+   - Linux/macOS: `cd "Auto Insurance/scripts" && bash start-stop-demo-autoinsurance.sh`
 4) Explore policies and explainability in the dashboard.
