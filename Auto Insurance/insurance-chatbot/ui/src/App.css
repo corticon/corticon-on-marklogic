@@ -1,9 +1,199 @@
 /* General App Styling */
+:root {
+  --bg-color: #f4f6f8;
+  --card-bg: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --primary-color: #007ac2;
+  --border-color: #e0e0e0;
+  --hover-bg: #f9f9f9;
+  --header-bg: #f2f2f2;
+  --navbar-bg: #007ac2;
+  --navbar-text: white;
+  --shadow-color: rgba(0,0,0,0.1);
+  --input-bg: #ffffff;
+  --input-border: #ccc;
+  
+  /* Font family - consistent across entire app */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  
+  /* Kendo overrides */
+  --kendo-bg: #ffffff;
+  --kendo-text: #333333;
+  --kendo-header-bg: #f8f9fa;
+  --kendo-border: rgba(0,0,0,0.08);
+}
+
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaaaaa;
+  --primary-color: #4fc3f7; /* Lighter blue for dark mode */
+  --border-color: #333333;
+  --hover-bg: #2a2a2a;
+  --header-bg: #2c2c2c;
+  --navbar-bg: #1a1a1a;
+  --navbar-text: #e0e0e0;
+  --shadow-color: rgba(0,0,0,0.5);
+  --input-bg: #2c2c2c;
+  --input-border: #444;
+
+  /* Kendo overrides for dark mode */
+  --kendo-bg: #1e1e1e;
+  --kendo-text: #e0e0e0;
+  --kendo-header-bg: #2c2c2c;
+  --kendo-border: #444;
+}
+
+/* Kendo Grid Styling */
+.k-grid,
+.k-grid th,
+.k-grid td,
+.k-grid-header,
+.k-grid-content {
+  font-family: var(--font-family) !important;
+}
+
+/* Bold grid headers for visual distinction */
+.k-grid th,
+.k-grid-header .k-header,
+.k-grid-header .k-cell {
+  font-weight: bold !important;
+}
+
+/* Kendo Grid Dark Mode Overrides */
+[data-theme='dark'] .k-grid {
+  background-color: var(--kendo-bg);
+  color: var(--kendo-text);
+  border-color: var(--kendo-border);
+}
+
+[data-theme='dark'] .k-grid-header,
+[data-theme='dark'] .k-grid-header .k-header {
+  background-color: var(--kendo-header-bg);
+  color: var(--text-primary);
+  border-color: var(--kendo-border);
+}
+
+[data-theme='dark'] .k-grid-content {
+  background-color: var(--kendo-bg);
+}
+
+[data-theme='dark'] .k-grid tr {
+  background-color: var(--kendo-bg);
+  color: var(--kendo-text);
+}
+
+[data-theme='dark'] .k-grid tr.k-alt {
+  background-color: var(--hover-bg);
+}
+
+[data-theme='dark'] .k-grid td, 
+[data-theme='dark'] .k-grid th {
+  border-color: var(--kendo-border);
+}
+
+[data-theme='dark'] .k-pager-wrap {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme='dark'] .k-pager-numbers .k-link {
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .k-pager-numbers .k-link.k-selected {
+    background-color: var(--primary-color);
+    color: #121212;
+}
+
+
+* {
+  font-family: var(--font-family);
+}
+
 .App {
   text-align: center;
 }
 
-/* Main two-column layout using Flexbox */
+/* Layout */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color); 
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  font-family: var(--font-family);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+}
+
+.navbar-links button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: var(--font-family);
+  cursor: pointer;
+  padding: 0 1rem;
+  height: 100%;
+  transition: all 0.2s ease;
+  border-bottom: 4px solid transparent;
+}
+
+.navbar-links button:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-links button.active {
+  color: white;
+  border-bottom-color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.version-display {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-family);
+  margin-left: auto;
+}
+
+/* Main Container */
 .container {
   display: flex;
   flex-direction: row;
@@ -13,15 +203,25 @@
   text-align: left;
   max-width: 1600px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Left Sidebar: Search and Facets */
 .search-controls {
   flex: 0 0 300px;
-  background-color: #f8f8f8;
+  background-color: var(--card-bg);
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1.2rem;
 }
 
 .search-box {
@@ -31,35 +231,46 @@
 }
 
 .search-box input {
-  width: 100%;
-  padding: 8px;
+  flex: 1;
+  padding: 0.5rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  font-family: var(--font-family);
+  border: 1px solid var(--input-border);
   border-radius: 4px;
+  transition: border-color 0.2s;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+}
+
+.search-box input:focus {
+  border-color: var(--primary-color);
+  outline: none;
 }
 
 /* Right Side: Search Results */
 .results {
   flex-grow: 1;
+  width: 100%;
 }
 
 /* Placeholder text */
 .placeholder {
-  color: #888;
+  color: var(--text-secondary);
   text-align: center;
   margin-top: 4rem;
   font-style: italic;
   padding: 2rem;
-  background-color: #fafafa;
+  background-color: var(--card-bg);
   border-radius: 8px;
 }
 
 /* Policy Details Styling */
 .policy-details-container {
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px var(--shadow-color);
+  font-family: var(--font-family);
 }
 
 .policy-header {
@@ -68,7 +279,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -78,7 +289,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .premium-display {
@@ -174,6 +385,7 @@
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
+  font-family: var(--font-family);
   color: #666;
   border-bottom: 2px solid transparent;
   margin-bottom: -2px;
@@ -265,17 +477,85 @@
 
 .severity-badge {
   font-weight: bold;
-  padding: 0.2rem 0.5rem;
-  border-radius: 12px;
-  color: white;
+  padding: 0.2rem 0.8rem;
+  border-radius: 9999px; /* Fully oval */
+  color: white !important;
   font-size: 0.8rem;
-  min-width: 60px;
+  min-width: 80px;
   text-align: center;
   display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--font-family);
 }
 
-.severity-info .severity-badge { background-color: #2196f3; }
-.severity-warning .severity-badge { background-color: #ff9800; color: #333; }
+.severity-badge.severity-info { 
+  background-color: #4caf50 !important; 
+  color: white !important;
+}
+
+.severity-badge.severity-warning { 
+  background-color: #ff9800 !important; 
+  color: #fff !important;
+}
+
+.severity-badge.severity-danger { 
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+/* Ensure badges display properly in Kendo Grid cells */
+.k-grid td .severity-badge {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+/* Type badges for Execution Trace */
+.type-badge {
+  font-weight: bold;
+  padding: 0.2rem 0.8rem;
+  border-radius: 9999px; /* Fully oval */
+  color: white !important;
+  font-size: 0.8rem;
+  min-width: 100px;
+  text-align: center;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--font-family);
+}
+
+.type-badge.type-attribute { 
+  background-color: #4caf50 !important; /* Green */
+  color: white !important;
+}
+
+.type-badge.type-entity { 
+  background-color: #2196f3 !important; /* Blue */
+  color: white !important;
+}
+
+.type-badge.type-association { 
+  background-color: #ff9800 !important; /* Orange */
+  color: white !important;
+}
+
+/* Ensure type badges display properly in Kendo Grid cells */
+.k-grid td .type-badge {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+/* Map marker styling for searched policy (pinTarget shape) */
+.k-marker-pin-target {
+  background-color: #2196f3 !important; /* Blue for searched policy */
+}
+
+.k-marker-pin-target::before {
+  border-top-color: #2196f3 !important;
+}
+
+/* Default policy markers (pin shape) remain red (Kendo default) */
 
 
 
@@ -286,6 +566,7 @@
   padding: 0.5rem 1rem;
   border-radius: 4px;
   border: none;
+  font-family: var(--font-family);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -361,94 +642,397 @@
   font-weight: bold;
 }
 
-/* src/App.css */
-.chatbot-container {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
+/* Chatbot Styling */
+.chatbot-wrapper {
+  max-width: 1600px; /* Increased to ~66% of typical screen width for more horizontal space */
+  margin: 0 auto;
+  width: 100%;
+  height: calc(100vh - 140px); /* Fill screen minus navbar/padding */
   display: flex;
   flex-direction: column;
-  height: 400px;
 }
 
-.messages {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-bottom: 16px;
+.chatbot-header {
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
-.message {
-  padding: 8px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  max-width: 80%;
+.chatbot-header h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
 }
 
-.message.user {
-  background-color: #dcf8c6;
-  align-self: flex-end;
+.chatbot-header p {
+  margin: 0;
+  color: var(--text-secondary);
 }
 
-.message.assistant {
-  background-color: #f1f0f0;
-  align-self: flex-start;
+.chatbot-container {
+   /* Container for the widget */
+   flex: 1 1 auto;
+   border: 1px solid var(--border-color);
+   border-radius: 12px;
+   background-color: var(--card-bg);
+   box-shadow: 0 4px 12px var(--shadow-color);
+   overflow: hidden;
+   display: flex !important;
+   flex-direction: column !important; 
+   min-height: 0;
+   max-height: 100%;
+   position: relative;
 }
 
-.input-area {
-  display: flex;
+/* Override Kendo's inline styles with higher specificity */
+.chatbot-container > div {
+   display: flex !important;
+   flex-direction: column !important;
+   height: 100% !important;
 }
 
-.input-area input {
-  flex-grow: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+/* Kendo Chat Font */
+.k-chat,
+.k-chat *,
+.k-bubble,
+.k-bubble *,
+.k-message-author,
+.k-message-time,
+.k-input-inner {
+  font-family: var(--font-family) !important;
 }
 
-.input-area button {
-  margin-left: 8px;
-  padding: 8px 16px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+/* Ensure Kendo Chat takes full height */
+.chatbot-container .k-chat[style] {
+    height: 100% !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    flex: 1 1 auto !important;
+    position: relative !important;
 }
 
-/* Add these new styles to the end of your App.css file */
-
-.message.assistant {
-  text-align: left;
+/* Message list with proper scrolling */
+.chatbot-container .k-message-list {
+    flex: 1 1 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-bottom: 10px !important;
+    min-height: 0 !important;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
-.message.assistant h3 {
-  font-size: 1.25em;
-  font-weight: bold;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.25em;
+/* Input wrapper at bottom */
+.chatbot-container .k-message-box-wrapper {
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    min-height: 60px !important;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--card-bg) !important;
+    z-index: 10 !important;
 }
 
-.message.assistant p {
-  margin-bottom: 0.75em;
-  line-height: 1.5;
+/* Ensure input box is visible at the bottom */
+.chatbot-container .k-message-box {
+    flex: 0 0 auto !important; /* Don't shrink */
+    flex-shrink: 0 !important;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--card-bg) !important;
+    z-index: 10;
+    position: relative !important;
+    display: flex !important;
+    visibility: visible !important;
+    min-height: 60px !important; /* Force minimum height */
+    height: auto !important;
 }
 
-.message.assistant ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-bottom: 1em;
+/* Ensure Toolbar (Restart button) is visible */
+.chatbot-container .k-chat-toolbar {
+    display: flex !important;
+    border-bottom: 1px solid var(--border-color);
+    flex: 0 0 auto;
 }
 
-.message.assistant li {
-  margin-bottom: 0.5em;
+/* Markdown Styles for Chatbot */
+/* Force parent containers to use full width */
+.k-chat .k-message-group-receiver {
+    max-width: 100% !important;
+    width: 100% !important;
 }
 
-.message.assistant strong {
-  font-weight: bold;
-  color: #333;
+.k-chat .k-message-group-receiver .k-message-group-content {
+    max-width: 100% !important;
+    width: 100% !important;
 }
+
+/* Force BOT message bubbles to maximum width */
+.k-chat .k-message-group-receiver .k-bubble {
+    display: block !important;
+    min-width: 95% !important;
+    max-width: 98% !important;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Keep user bubbles flexible */
+.k-chat .k-bubble {
+    display: block !important;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Ensure bot messages (left side) expand to fill available space if needed, but usually fit-content is better for bubbles. 
+   To make them "larger to the right", we just increased max-width. 
+*/
+
+.k-chat .k-bubble p {
+    margin: 0 0 0.15rem 0;
+    line-height: 1.5;
+}
+
+.k-chat .k-bubble p:last-child {
+    margin-bottom: 0;
+}
+
+.k-chat .k-bubble h1, 
+.k-chat .k-bubble h2, 
+.k-chat .k-bubble h3, 
+.k-chat .k-bubble h4 {
+    display: block; /* Ensure headers take full width */
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0.75rem 0 0.05rem 0;
+    color: inherit;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(0,0,0,0.1); /* Subtle separator for headers */
+    padding-bottom: 1px;
+}
+
+/* Treat a paragraph containing ONLY a bold element as a section header.
+   This avoids styling all <strong> tags (which breaks inline emphasis). */
+.k-chat .k-bubble p > strong:first-child:last-child {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0.75rem 0 0.05rem 0;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 1px;
+}
+
+/* Also treat paragraphs that START with bold text as a section header.
+   This covers patterns like: **Header**\nBody... (ReactMarkdown often renders this as one <p> with a <br/>). */
+.k-chat .k-bubble p > strong:first-child {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0.75rem 0 0.05rem 0;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 1px;
+}
+
+.k-chat .k-bubble p:first-child > strong:first-child:last-child {
+    margin-top: 0;
+}
+
+.k-chat .k-bubble p:first-child > strong:first-child {
+    margin-top: 0;
+}
+
+.k-chat .k-bubble ul, 
+.k-chat .k-bubble ol {
+    display: block;
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.k-chat .k-bubble li {
+    margin-bottom: 0.25rem;
+}
+
+/* User messages styling */
+.k-chat .k-message-group-sender .k-bubble {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
+    max-width: 70% !important;
+}
+
+/* Ensure text inside user bubble is white */
+.k-chat .k-message-group.k-alt .k-bubble * {
+    color: white !important;
+}
+
+/* Typing Indicator Styling */
+.k-typing-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 4px 8px;
+    min-height: 20px;
+}
+
+.k-typing-indicator span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #888;
+    border-radius: 50%;
+    animation: k-typing-dot 1.4s infinite ease-in-out both;
+}
+
+.k-typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.k-typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+.k-typing-indicator span:nth-child(3) { animation-delay: 0s; }
+
+@keyframes k-typing-dot {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.6; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* Dark mode adjustment for typing indicator */
+[data-theme='dark'] .k-typing-indicator span {
+    background-color: #aaa;
+}
+
+
+.k-chat .k-message-group.k-alt .k-bubble h1,
+.k-chat .k-message-group.k-alt .k-bubble h2,
+.k-chat .k-message-group.k-alt .k-bubble h3,
+.k-chat .k-message-group.k-alt .k-bubble strong {
+    border-bottom-color: rgba(255,255,255,0.3);
+}
+
+/* Fix input area position if needed */
+.k-chat .k-message-box {
+    border-top: 1px solid var(--border-color);
+}
+
+/* Dark Mode Chatbot Styling */
+[data-theme='dark'] .chatbot-wrapper {
+    background-color: var(--bg-color);
+}
+
+[data-theme='dark'] .chatbot-container {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme='dark'] .k-chat {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .k-message-list {
+    background-color: var(--card-bg) !important;
+}
+
+[data-theme='dark'] .k-bubble {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme='dark'] .k-message-group-receiver .k-bubble {
+    background-color: #2a2a2a !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme='dark'] .k-message-box {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+}
+
+[data-theme='dark'] .k-message-box input {
+    background-color: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--input-border) !important;
+}
+
+[data-theme='dark'] .k-message-box input::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+/* More specific input styling for dark mode */
+[data-theme='dark'] .k-input,
+[data-theme='dark'] .k-input-inner,
+[data-theme='dark'] input[type="text"],
+[data-theme='dark'] .k-textbox,
+[data-theme='dark'] .k-textbox-container {
+    background-color: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--input-border) !important;
+}
+
+[data-theme='dark'] .k-input::placeholder,
+[data-theme='dark'] .k-input-inner::placeholder,
+[data-theme='dark'] input[type="text"]::placeholder,
+[data-theme='dark'] .k-textbox::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+/* Force white text for all input elements in dark mode */
+[data-theme='dark'] .k-message-box * {
+    color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .k-message-box *::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme='dark'] .k-chat-toolbar {
+    background-color: var(--header-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme='dark'] .k-chat-toolbar button {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
+}
+
+[data-theme='dark'] .k-chat-toolbar button:hover {
+    background-color: var(--hover-bg) !important;
+}
+
+/* Ensure all text in chat bubbles is readable in dark mode */
+[data-theme='dark'] .k-bubble,
+[data-theme='dark'] .k-bubble p,
+[data-theme='dark'] .k-bubble h1,
+[data-theme='dark'] .k-bubble h2,
+[data-theme='dark'] .k-bubble h3,
+[data-theme='dark'] .k-bubble h4,
+[data-theme='dark'] .k-bubble strong,
+[data-theme='dark'] .k-bubble ul,
+[data-theme='dark'] .k-bubble ol,
+[data-theme='dark'] .k-bubble li {
+    color: var(--text-primary) !important;
+}
+
+/* User messages in dark mode */
+[data-theme='dark'] .k-message-group-sender .k-bubble {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
+}
+
+[data-theme='dark'] .k-message-group-sender .k-bubble *,
+[data-theme='dark'] .k-message-group.k-alt .k-bubble * {
+    color: white !important;
+}
+
+/* Removed custom message and input-area styles as they are handled by the widget */
+
 
 
 .is-selectable {
@@ -458,17 +1042,179 @@
 
 .is-selectable:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #3b82f6;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  border-color: var(--primary-color);
 }
 
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
+}
 
+@media (max-width: 768px) {
   .search-controls {
     flex: 1 1 auto;
     width: 100%;
   }
+}
+
+/* Navbar Search Styling */
+.navbar-search {
+  flex-grow: 1;
+  max-width: 500px;
+  margin: 0 2rem;
+}
+
+.header-search {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 0 !important; /* Override default search-box margin */
+}
+
+.header-search input {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+}
+
+.header-search input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.header-search input:focus {
+  outline: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+}
+
+.btn-search {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+
+.btn-search:hover {
+  transform: scale(1.1);
+}
+
+/* Search Results Dropdown */
+.search-results-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--card-bg);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  margin-top: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 2000;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.search-result-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background-color: var(--hover-bg);
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0 10px;
+}
+
+.geo-map-container {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: var(--card-bg);
+}
+
+/* Policy Context Card */
+.policy-context-card {
+  background-color: var(--card-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  margin-bottom: 1rem;
+}
+
+/* Premium Box Styles */
+.premium-box {
+  margin-left: 20px;
+  padding: 5px 10px;
+  background-color: #f0f9ff;
+  border-radius: 4px;
+  border: 1px solid #bae6fd;
+  display: inline-flex;
+  align-items: center;
+}
+
+.premium-box .label {
+  margin-right: 5px;
+  font-weight: bold;
+  color: #0284c7;
+}
+
+.premium-box .value {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #0369a1;
+}
+
+/* Dark Mode Overrides for Premium Box */
+[data-theme='dark'] .premium-box {
+  background-color: rgba(2, 132, 199, 0.2);
+  border-color: #0284c7;
+}
+
+[data-theme='dark'] .premium-box .label {
+  color: #4fc3f7;
+}
+
+[data-theme='dark'] .premium-box .value {
+  color: #e1f5fe;
+}
+
+/* Policy Title Box (Pink-Red) */
+.policy-title-box {
+  margin-right: 20px;
+  padding: 5px 15px;
+  background-color: #ffebee; /* Pink-Red background */
+  border-radius: 4px;
+  border: 1px solid #ffcdd2;
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #c62828; /* Dark red text */
+}
+
+[data-theme='dark'] .policy-title-box {
+  background-color: rgba(229, 57, 53, 0.2);
+  border-color: #e57373;
+  color: #ffcdd2;
 }

@@ -4,8 +4,8 @@ ECHO Step 1: Generating 1 new auto insurance application record from Mockaroo...
 ECHO ================================================================
 
 REM Define the output file path and directory
-SET OUTPUT_DIR=C:\Users\smeldon\Projects\mlCorticonAutoInsurance\data
-SET OUTPUT_FILE=%OUTPUT_DIR%\mockaroo_auto_output.json
+SET "OUTPUT_DIR=C:\Progress\Corticon Rule Projects\Corticon_Rule_Projects_JS_2.4\MarkLogic\Auto Insurance\Documents"
+SET "OUTPUT_FILE=%OUTPUT_DIR%\mockaroo_auto_output.json"
 
 REM Create the output directory if it doesn't exist
 IF NOT EXIST "%OUTPUT_DIR%" (
@@ -34,9 +34,9 @@ ECHO Step 2: Ingesting the new auto insurance application data into MarkLogic (I
 ECHO ================================================================
 
 REM Run the Flux command to import the newly created JSON file
-"C:\Progress\flux\marklogic-flux-1.3.0\bin\flux.bat" import-aggregate-json-files ^
+"C:\MarkLogic\marklogic-flux-1.4.0\bin\flux.bat" import-aggregate-json-files ^
     --path "%OUTPUT_FILE%" ^
-    --connection-string "admin:password@localhost:8004" ^
+    --connection-string "admin:Pr0gress#1@localhost:8004" ^
     --database corticonml-content ^
     --permissions corticonml-reader,read,corticonml-writer,update ^
     --collections http://example.com/data/policy-input ^

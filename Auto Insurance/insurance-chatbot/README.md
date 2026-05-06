@@ -1,4 +1,4 @@
-﻿# Auto Insurance Middle-Tier (Node)
+# Auto Insurance Middle-Tier (Node)
 
 This lightweight Node server sits between the React UI and MarkLogic. It centralizes Digest auth, avoids browser CORS hassles, and optionally generates natural‑language explanations of Corticon decisions using an LLM.
 
@@ -29,29 +29,31 @@ This lightweight Node server sits between the React UI and MarkLogic. It central
 npm install
 ```
 
-2) Create a `.env` file (example values shown):
+2) Create your `.env` files from the single provided template:
 
-```ini
-# MarkLogic REST connection used by the proxy and chat route
-ML_HOST=localhost
-ML_PORT=8004
-ML_USER=corticonml-admin
-ML_PASS=corticonml-admin
+```bash
+# Windows
+copy .env.template .env
+copy .env.template ui\.env
 
-# Port for this middle tier
-ML_MIDDLE_TIER_PORT=4004
-
-# Allow the UI origin during development
-UI_ORIGIN=http://localhost:5173
-
-# Name of the custom MarkLogic resource used by the UI
-VITE_ML_OPTIONS=corticonml-options
-
-# Optional: enable chat explanations
-OPENAI_API_KEY=sk-...
-# Optional: pick a model (defaults to gpt-4o-mini)
-# OPENAI_MODEL=gpt-4o-mini
+# macOS / Linux
+cp .env.template .env
+cp .env.template ui/.env
 ```
+
+Then open both copies and fill in your credentials:
+
+| Variable | Used by | Description |
+|---|---|---|
+| `ML_USER` | middleware | MarkLogic username (default role: `corticonml-admin`) |
+| `ML_PASS` | middleware | MarkLogic password |
+| `OPENAI_API_KEY` | middleware | OpenAI API key — required for the `/api/chat` endpoint |
+| `VITE_ML_OPTIONS` | both | MarkLogic REST resource name (default: `corticonml-options`) |
+| `VITE_ML_HOST` / `VITE_ML_PORT` | UI | Middleware host/port seen by the browser (defaults: `localhost`/`4004`) |
+
+> **Why two `.env` files?** Vite's build tooling only reads a `.env` file located in its own project root (`ui/`), and Node/dotenv only reads the `.env` in the directory where the server starts (`insurance-chatbot/`). Neither process can reach the other's file — they are resolved at different times (build time vs. runtime) by different tools. Two runtime files are therefore unavoidable, but a single `.env.template` keeps the source of truth in one place.
+
+> **Note:** Both `.env` files are excluded from git (via `.gitignore`). `.env.template` is the single committed reference — never put real credentials in it.
 
 ---
 
@@ -78,7 +80,8 @@ npm start
 
 - `src/server.js` — Express app implementing `/api/chat`, `/v1/*` proxy, and CORS.
 - `package.json` — Scripts (`npm start`) and dependencies (`digest-fetch`, `express`).
-- `.env` — Environment configuration for MarkLogic and the UI origin.
+- `.env.template` — Single committed template; copy to `.env` **and** `ui/.env`, then fill in credentials.
+- `.env` / `ui/.env` — Your local environment configuration (both excluded from git).
 
 ---
 
@@ -90,16 +93,3 @@ npm start
 - Calls the OpenAI Responses API to generate a readable explanation for the user.
 
 Tip: If you don’t need LLM explanations, you can omit `OPENAI_API_KEY` and rely on the UI’s explainability tabs (Decision Log, Execution Trace) via the `/v1` proxy.
-
----
-
-## Template Reference
-
-If you need a generic middle-tier + backend scaffold for a new domain, start with:
-
-1. <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md>
-2. <https://github.com/corticon/explainable-decision-ledger/blob/main/ui-fasttrack/README.md>
-
-
-
-

@@ -5,6 +5,10 @@ import PolicySearch from "./components/PolicySearch";
 import PolicyDetails from "./components/PolicyDetails";
 import PoliciesByState from "./components/PoliciesByState";
 import Chatbot from "./components/Chatbot";
+import { UI_VERSION } from "./version";
+// ...
+// No changes needed for Chatbot props as it is a custom component.
+
 import { getPolicy } from "./api/marklogicService";
 import "./App.css";
 
@@ -12,11 +16,23 @@ export default function App() {
   const [policy, setPolicy] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [view, setView] = useState('search');
+  const [view, setView] = useState('details'); // Default to details view
+  
+  // Persist search query
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  // Theme state
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
 
   async function fetchPolicy(id) {
     setLoading(true);
     setError("");
+    // Ensure we switch to details view when a policy is selected
+    setView('details');
     try {
       const payload = await getPolicy(id);
       setPolicy(payload);
@@ -27,41 +43,71 @@ export default function App() {
       setLoading(false);
     }
   }
+
   return (
     <ErrorBoundary>
-      <div className="container">
-        <div className="view-switcher">
-          <button onClick={() => setView('search')} className={view === 'search' ? 'active' : ''}>Policy Search</button>
-          <button onClick={() => setView('map')} className={view === 'map' ? 'active' : ''}>Policies by State</button>
-          <button onClick={() => setView('chat')} className={view === 'chat' ? 'active' : ''}>Chatbot</button>
-        </div>
+      <div className="app-layout" data-theme={theme}>
+        <header className="navbar">
+          <div className="navbar-brand">Insurance Assistant</div>
+          
+          {/* Search Bar in Header */}
+          <div className="navbar-search">
+            <PolicySearch 
+                query={searchQuery} 
+                onQueryChange={setSearchQuery} 
+                onSelect={fetchPolicy} 
+            />
+          </div>
 
-        {view === 'search' && (
-          <>
-            <div className="search-controls">
-              <h2 className="font-bold mb-2">Policy Search</h2>
-              <PolicySearch onSearch={fetchPolicy} />
-            </div>
-            <div className="results">
-              {/* --- FIX: Corrected the typo here --- */}
-              {loading && <div className="text-gray-500">Loading…</div>}
-              {error && <div className="text-red-600">{error}</div>}
-              {policy ? (
-                <PolicyDetails policy={policy} />
-              ) : (
-                <div className="placeholder">Search for a policy to see the details.</div>
-              )}
-            </div>
-          </>
-        )}
+          <nav className="navbar-links">
+            <button 
+              onClick={() => setView('details')} 
+              className={view === 'details' ? 'active' : ''}
+            >
+              Policy Details
+            </button>
+            <button 
+              onClick={() => setView('map')} 
+              className={view === 'map' ? 'active' : ''}
+            >
+              Policies by State
+            </button>
+            <button 
+              onClick={() => setView('chat')} 
+              className={view === 'chat' ? 'active' : ''}
+            >
+              Chatbot
+            </button>
+            <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
+                {theme === 'light' ? '🌙' : '☀️'}
+            </button>
+            <span className="version-display">v{UI_VERSION}</span>
+          </nav>
+        </header>
 
-        {view === 'map' && (
-          <PoliciesByState />
-        )}
-        
-        {view === 'chat' && (
-          <Chatbot />
-        )}
+        <main className="container">
+          {view === 'details' && (
+            <div className="details-view">
+                {loading && <div className="loading-state">Loading...</div>}
+                {error && <div className="error-state">{error}</div>}
+                {policy ? (
+                  <PolicyDetails policy={policy} theme={theme} />
+                ) : (
+                  <div className="placeholder">
+                    <p>Use the search bar in the header to find a policy.</p>
+                  </div>
+                )}
+            </div>
+          )}
+
+          {view === 'map' && (
+            <PoliciesByState theme={theme} policy={policy} />
+          )}
+          
+          {view === 'chat' && (
+            <Chatbot policy={policy} />
+          )}
+        </main>
       </div>
     </ErrorBoundary>
   );

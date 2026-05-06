@@ -1,8 +1,13 @@
 // ui/src/components/PoliciesByState.jsx
 
 import React, { useState, useEffect } from 'react';
-import { GeoMap } from 'ml-fasttrack';
+import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import { searchPolicies } from '../api/marklogicService'; // Corrected import
+import PolicyCard from './PolicyCard';
+import EntityDetailsModal from './EntityDetailsModal';
+
 
 const stateCoordinates = {
   "AL": { "latitude": 32.806671, "longitude": -86.791130 },
@@ -71,19 +76,63 @@ const stateNameToAbbr = {
     "West Virginia": "WV", "Wisconsin": "WI", "Wyoming": "WY"
 };
 
-const PoliciesByState = () => {
+// Simple hash function to generate deterministic offsets from policy ID
+const getOffsetFromId = (id) => {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = ((hash << 5) - hash) + id.charCodeAt(i);
+    hash = hash & hash;
+  }
+  const normalized = (hash % 1000) / 1000;
+  return {
+    lat: (normalized - 0.5) * 1.0,
+    lng: ((hash % 500) / 500 - 0.5) * 1.0
+  };
+};
+
+// Create custom icons for Leaflet - unique instance for each marker
+const createCustomIcon = (isSearched = false, policyId = '') => {
+  const color = isSearched ? '#0066cc' : '#cc0000';
+  const shadow = isSearched ? 'drop-shadow(0 0 4px #0066cc)' : 'none';
+  
+  console.log(`Creating icon for ${policyId}, isSearched: ${isSearched}, color: ${color}`);
+  
+  // Use SVG for complete color control (like React Leaflet examples)
+  return L.divIcon({
+    html: `
+      <div style="
+        width: 25px; 
+        height: 25px; 
+        filter: ${shadow};
+        transform: translateY(-50%);
+      ">
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.5 0C5.6 0 0 5.6 0 12.5C0 19.4 12.5 25 12.5 25S25 19.4 25 12.5C25 5.6 19.4 0 12.5 0Z" fill="${color}"/>
+          <circle cx="12.5" cy="12.5" r="4" fill="white"/>
+        </svg>
+      </div>
+    `,
+    iconSize: [25, 25],
+    iconAnchor: [12, 25],
+    popupAnchor: [0, -25],
+    className: `custom-marker-${policyId}-${isSearched ? 'searched' : 'normal'}`
+  });
+};
+
+const PoliciesByState = ({ theme, policy }) => {
   const [policies, setPolicies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedPolicy, setSelectedPolicy] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  
   useEffect(() => {
     const fetchAllPolicies = async () => {
       setLoading(true);
       setError(null);
       try {
-        // Call the correct search function for the custom endpoint
         const data = await searchPolicies(''); 
-        // The data returned from searchPolicies is already the list of policies
         setPolicies(data.results || []);
       } catch (err) {
         setError(err.message || 'Failed to fetch policies');
@@ -94,65 +143,120 @@ const PoliciesByState = () => {
     fetchAllPolicies();
   }, []);
 
-  const transformMarkers = (policies) => {
-    if (!policies) return [];
-
-    const policiesByState = policies.reduce((acc, doc) => {
-        // The policy data is the first item in the payload array
-        if (doc.payload && doc.payload[0] && doc.payload[0].state) {
-          const fullStateName = doc.payload[0].state;
-          const stateAbbr = stateNameToAbbr[fullStateName];
-          if (stateAbbr) {
-            if (!acc[stateAbbr]) {
-              acc[stateAbbr] = { count: 0, state: stateAbbr };
-            }
-            acc[stateAbbr].count++;
-          }
-        }
-      return acc;
-    }, {});
-
-    return Object.values(policiesByState).map(stateData => {
-      const coords = stateCoordinates[stateData.state];
-      if (!coords) {
-        return null;
-      }
-
-      return {
-        point: {
-          latitude: coords.latitude,
-          longitude: coords.longitude,
-          uri: stateData.state
-        },
-        symbol: {
-          type: 'simple-marker',
-          color: 'blue',
-          size: '10px',
-        },
-        popupTemplate: {
-            title: `${stateData.state}`,
-            content: `Number of policies: ${stateData.count}`
-        }
-      };
-    }).filter(Boolean);
+  const handleMarkerClick = (policyData) => {
+    setSelectedPolicy({
+      title: `Policy Details - ${policyData.applicationId}`,
+      data: policyData
+    });
+    setIsModalOpen(true);
   };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // Clear selectedPolicy after a short delay to ensure modal unmounts
+    setTimeout(() => setSelectedPolicy(null), 100);
+  };
+
+  // Create markers for display
+  const markers = [];
+  const searchedPolicyId = policy?.payload?.[0]?.applicationId;
+  
+  policies.forEach(doc => {
+    if (!doc.payload || !doc.payload[0] || !doc.payload[0].state) return;
+    
+    const policyData = doc.payload[0];
+    const stateAbbr = stateNameToAbbr[policyData.state];
+    if (!stateAbbr) return;
+    
+    const coords = stateCoordinates[stateAbbr];
+    if (!coords) return;
+    
+    const offset = getOffsetFromId(policyData.applicationId);
+    const isSearchedPolicy = policyData.applicationId === searchedPolicyId;
+    
+    console.log(`Policy ${policyData.applicationId} - isSearched: ${isSearchedPolicy}, searchedId: ${searchedPolicyId}`);
+    
+    markers.push({
+      position: [coords.latitude + offset.lat, coords.longitude + offset.lng],
+      policyData: policyData,
+      isSearched: isSearchedPolicy
+    });
+  });
 
   return (
     <div>
+      {policy && policy.payload && policy.payload[0] && (
+        <div className="policy-context-card">
+          <PolicyCard policyData={policy.payload[0]} />
+        </div>
+      )}
       <h2>Policies by State</h2>
-      {loading && <div>Loading...</div>}
+      {loading && <div>Loading policies...</div>}
       {error && <div style={{ color: 'red' }}>{error}</div>}
-      <div style={{ height: '600px', border: '1px solid #ccc', borderRadius: '5px' }}>
-        <GeoMap
-          markers={policies}
-          transformMarkers={transformMarkers}
-          esriApiKey="AAPTxy8BH1VEsoebNVZXo8HurB6tqQwavudVSaREHRyGRjgF6CfWanva0OmOthzBIROC5AhBVEafVdatjzKvwC7agHkGMq7XXvxgys_nD2DNRa2b58dXLgLn9FdfQ1wtKcYzWlbmXxWpJ9Tw_1ndEOk2btmYn3NdopZhq5_ito9OsdkcDHctFRUhH9Z_wy2R2eJmIEW-EPjOUbI-PdfJWSmtsOE8YUUoDrBRoukp0dsorRc.AT1_YaYwaQ6t" // <-- IMPORTANT: Replace with your actual ESRI API Key
-          viewType="2D"
-          zoom={3}
-          center={[-98.556, 39.810]}
+      
+      {/* Interactive Leaflet Map */}
+      <MapContainer 
+        center={[39.810, -98.556]} 
+        zoom={4} 
+        style={{ height: '600px', width: '100%' }}
+        zoomControl={true}
+        attributionControl={true}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          subdomains={['a', 'b', 'c']}
         />
-      </div>
-      <p><strong>Note:</strong> You need to replace "YOUR_ESRI_API_KEY" with your actual ESRI API Key in the `PoliciesByState.jsx` component.</p>
+        {markers.map((marker, index) => (
+          <Marker
+            key={`${index}-${marker.isSearched ? 'searched' : 'normal'}`}
+            position={marker.position}
+            icon={createCustomIcon(marker.isSearched, marker.policyData.applicationId)}
+            eventHandlers={{
+              click: () => handleMarkerClick(marker.policyData)
+            }}
+          >
+            <Tooltip permanent={false} direction="top" sticky={false}>
+              <div style={{ pointerEvents: 'none' }}>
+                <strong>{marker.policyData.applicationId}</strong><br/>
+                {marker.policyData.state}<br/>
+                {marker.policyData.familyName || 'N/A'}
+              </div>
+            </Tooltip>
+            <Popup>
+              <div>
+                <strong>{marker.policyData.applicationId}</strong><br/>
+                {marker.policyData.state}<br/>
+                {marker.policyData.familyName || 'N/A'}<br/>
+                <button 
+                  onClick={() => handleMarkerClick(marker.policyData)}
+                  style={{
+                    marginTop: '5px',
+                    padding: '4px 8px',
+                    backgroundColor: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  View Details
+                </button>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+      
+      {isModalOpen && selectedPolicy && (
+        <EntityDetailsModal 
+          isOpen={isModalOpen} 
+          onClose={closeModal}
+          title={selectedPolicy.title}
+          data={selectedPolicy.data}
+          theme={theme}
+        />
+      )}
     </div>
   );
 };

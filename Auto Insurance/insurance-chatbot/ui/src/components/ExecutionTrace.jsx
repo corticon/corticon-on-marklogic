@@ -1,6 +1,7 @@
 // ui/src/components/ExecutionTrace.jsx
 import React from 'react';
-import { DataGrid } from 'ml-fasttrack';
+import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
+import '@progress/kendo-theme-default/dist/all.css';
 
 // Helper function to extract the rulesheet name from the file path
 const getRulesheetNameFromPath = (fullPath) => {
@@ -12,88 +13,150 @@ const getRulesheetNameFromPath = (fullPath) => {
   return filenameParts[0];
 };
 
-// Define columns for each type of change
-const attributeColumns = [
-  { 
-    field: 'rulesheetName', 
-    title: 'Rulesheet', 
-    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
-  },
-  { field: 'ruleNumber', title: 'Rule #' },
-  { field: 'entityCorticonId', title: 'Entity ID' },
-  { field: 'entityName', title: 'Entity Name' },
-  { field: 'attributeName', title: 'Attribute Name' },
-  { 
-    field: 'beforeValue', 
-    title: 'Before Value', 
-    cell: (props) => <td className="break-all"><pre>{JSON.stringify(props.value, null, 2)}</pre></td> 
-  },
-  { 
-    field: 'afterValue', 
-    title: 'After Value', 
-    cell: (props) => <td className="break-all"><pre>{JSON.stringify(props.value, null, 2)}</pre></td> 
-  },
-  { field: 'sequence', title: 'Sequence' },
-];
-
-const associationColumns = [
-  { 
-    field: 'rulesheetName', 
-    title: 'Rulesheet', 
-    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
-  },
-  { field: 'ruleNumber', title: 'Rule #' },
-  { field: 'sourceEntityCorticonId', title: 'Source Entity ID' },
-  { field: 'sourceEntityName', title: 'Source Entity Name' },
-  { field: 'associationRoleName', title: 'Association' },
-  { field: 'targetEntityCorticonId', title: 'Target Entity ID' },
-  { field: 'targetEntityName', title: 'Target Entity Name' },
-  { field: 'action', title: 'Action' },
-  { field: 'sequence', title: 'Sequence' },
-];
-
-const entityColumns = [
-  { 
-    field: 'rulesheetName', 
-    title: 'Rulesheet', 
-    cell: (props) => <td>{getRulesheetNameFromPath(props.value)}</td> 
-  },
-  { field: 'ruleNumber', title: 'Rule #' },
-  { field: 'entityCorticonId', title: 'Entity ID' },
-  { field: 'entityName', title: 'Entity Name' },
-  { field: 'action', title: 'Action' },
-  { field: 'sequence', title: 'Sequence' },
-];
 
 export default function ExecutionTrace({ metrics }) {
+  // Custom cell component using Grid-level cells prop
+  const CustomDataCell = (props) => {
+    const { field, dataItem } = props;
+    
+    // Type badge styling
+    if (field === 'type') {
+      const type = dataItem[field];
+      let badgeClass = "type-badge";
+      
+      if (type === 'Attribute') {
+        badgeClass += " type-attribute";
+      } else if (type === 'Entity') {
+        badgeClass += " type-entity";
+      } else if (type === 'Association') {
+        badgeClass += " type-association";
+      }
+      
+      return (
+        <td {...props.tdProps}>
+          <span className={badgeClass}>{type}</span>
+        </td>
+      );
+    }
+    
+    // Rulesheet name extraction
+    if (field === 'rulesheetName') {
+      const value = dataItem[field];
+      return (
+        <td {...props.tdProps}>
+          {getRulesheetNameFromPath(value)}
+        </td>
+      );
+    }
+    
+    // JSON formatting for before/after values
+    if (field === 'beforeValueString' || field === 'afterValueString') {
+      // Get the original value (not the stringified version)
+      const originalField = field === 'beforeValueString' ? 'beforeValue' : 'afterValue';
+      const value = dataItem[originalField];
+      if (value === undefined || value === null) {
+        return <td {...props.tdProps}></td>;
+      }
+      return (
+        <td {...props.tdProps} className="break-all">
+          <pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontSize: '0.8em' }}>
+            {JSON.stringify(value, null, 2)}
+          </pre>
+        </td>
+      );
+    }
+    
+    // Default rendering for other fields
+    return (
+      <td {...props.tdProps}>
+        {dataItem[field]}
+      </td>
+    );
+  };
+
   if (!metrics) {
     return <p>No execution trace available.</p>;
   }
 
   const { attributeChanges, associationChanges, entityChanges } = metrics;
 
+  // Combine all changes into a single list with stringified values for sorting/filtering
+  const allChanges = React.useMemo(() => {
+    const attributes = (attributeChanges || []).map(item => ({ 
+      ...item, 
+      type: 'Attribute',
+      primaryEntityName: item.entityName,
+      propertyName: item.attributeName,
+      beforeValueString: item.beforeValue !== undefined && item.beforeValue !== null 
+        ? JSON.stringify(item.beforeValue) 
+        : '',
+      afterValueString: item.afterValue !== undefined && item.afterValue !== null 
+        ? JSON.stringify(item.afterValue) 
+        : ''
+    }));
+    const associations = (associationChanges || []).map(item => ({ 
+      ...item, 
+      type: 'Association',
+      primaryEntityName: item.sourceEntityName,
+      propertyName: item.associationRoleName,
+      beforeValueString: item.beforeValue !== undefined && item.beforeValue !== null 
+        ? JSON.stringify(item.beforeValue) 
+        : '',
+      afterValueString: item.afterValue !== undefined && item.afterValue !== null 
+        ? JSON.stringify(item.afterValue) 
+        : ''
+    }));
+    const entities = (entityChanges || []).map(item => ({ 
+      ...item, 
+      type: 'Entity',
+      primaryEntityName: item.entityName,
+      propertyName: '',
+      beforeValueString: item.beforeValue !== undefined && item.beforeValue !== null 
+        ? JSON.stringify(item.beforeValue) 
+        : '',
+      afterValueString: item.afterValue !== undefined && item.afterValue !== null 
+        ? JSON.stringify(item.afterValue) 
+        : ''
+    }));
+    return [...attributes, ...associations, ...entities];
+  }, [attributeChanges, associationChanges, entityChanges]);
+
+  if (allChanges.length === 0) {
+     return <p>No execution trace changes recorded.</p>;
+  }
+
   return (
-    <div>
-      <h4>Attribute Changes</h4>
-      {attributeChanges && attributeChanges.length > 0 ? (
-        <DataGrid data={attributeChanges} columns={attributeColumns} />
-      ) : (
-        <p>No attribute changes.</p>
-      )}
-
-      <h4 className="mt-8">Association Changes</h4>
-      {associationChanges && associationChanges.length > 0 ? (
-        <DataGrid data={associationChanges} columns={associationColumns} />
-      ) : (
-        <p>No association changes.</p>
-      )}
-
-      <h4 className="mt-8">Entity Changes</h4>
-      {entityChanges && entityChanges.length > 0 ? (
-        <DataGrid data={entityChanges} columns={entityColumns} />
-      ) : (
-        <p>No entity changes.</p>
-      )}
+    <div className="execution-trace-container">
+      <h4 className="text-lg font-semibold mb-2">Execution Trace</h4>
+      <Grid
+        data={allChanges}
+        dataItemKey="sequence"
+        autoProcessData={true}
+        defaultSort={[{ field: 'sequence', dir: 'asc' }]}
+        sortable={true}
+        filterable={true}
+        pageable={{
+          buttonCount: 5,
+          info: true,
+          pageSizes: [10, 20, 50],
+          previousNext: true
+        }}
+        scrollable="virtual"
+        style={{ height: '600px' }}
+        resizable={true}
+        cells={{ data: CustomDataCell }}
+      >
+        <Column field="type" title="Type" width="120px" />
+        <Column field="sequence" title="Seq" width="80px" filter="numeric" />
+        <Column field="rulesheetName" title="Rulesheet" width="200px" />
+        <Column field="ruleNumber" title="Rule #" width="100px" />
+        <Column field="primaryEntityName" title="Entity" width="150px" />
+        <Column field="propertyName" title="Attribute/Association" width="200px" />
+        <Column field="targetEntityName" title="Target Entity" width="150px" />
+        <Column field="beforeValueString" title="Before" width="200px" />
+        <Column field="afterValueString" title="After" width="200px" />
+        <Column field="action" title="Action" width="100px" />
+      </Grid>
     </div>
   );
 }

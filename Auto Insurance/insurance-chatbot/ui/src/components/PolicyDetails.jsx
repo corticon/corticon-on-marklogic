@@ -7,7 +7,7 @@ import DecisionLog from './DecisionLog';
 import ExecutionTrace from './ExecutionTrace';
 import PolicyNetworkGraph from './PolicyNetworkGraph';
 
-export default function PolicyDetails({ policy }) {
+export default function PolicyDetails({ policy, theme }) {
   const [activeTab, setActiveTab] = useState('drivers');
 
   if (!policy || !policy.payload || !policy.payload[0]) {
@@ -48,6 +48,12 @@ export default function PolicyDetails({ policy }) {
           >
             Execution Trace
           </button>
+          <button
+            className={`tab-button ${activeTab === 'network' ? 'active' : ''}`}
+            onClick={() => setActiveTab('network')}
+          >
+            Policy Network
+          </button>
         </div>
 
         <div className="tab-content">
@@ -55,13 +61,12 @@ export default function PolicyDetails({ policy }) {
           {activeTab === 'vehicles' && <VehiclesTable vehicles={policyData.vehicles} />}
           {activeTab === 'log' && <DecisionLog messages={corticon?.messages?.message} />}
           {activeTab === 'trace' && <ExecutionTrace metrics={corticon?.Metrics} />}
+          {activeTab === 'network' && (
+            <div className="network-graph-container">
+              <PolicyNetworkGraph policy={policy} theme={theme} />
+            </div>
+          )}
         </div>
-      </div>
-
-      {/* Network Graph */}
-      <div className="network-graph-container">
-        <h3 className="text-xl font-semibold mb-4">Policy Network</h3>
-        <PolicyNetworkGraph policy={policy} />
       </div>
     </div>
   );

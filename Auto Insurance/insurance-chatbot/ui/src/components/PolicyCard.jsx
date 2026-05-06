@@ -11,20 +11,28 @@ export default function PolicyCard({ policyData, onSelect }) {
 
   return (
     <div className={cardClassName} onClick={onSelect}>
-      <div className="policy-header">
-        <h2>{familyName ? `${familyName} Family Policy` : 'Untitled'}</h2>
-        <div className="policy-meta">
-          <span>ID: {applicationId || '—'}</span>
-          <span className="separator">•</span>
-          <span>State: {state || '—'}</span>
+      <div className="policy-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+        <div className="policy-title-box">
+            {familyName ? `${familyName} Family Policy` : 'Untitled'}
         </div>
-      </div>
-      <div className="policy-body">
-        <div className="premium-display">
-          <span className="label">Net Premium:</span>
-          <span className="value">
-            {netPremium ? `$${netPremium.toFixed(2)}` : 'N/A'}
-          </span>
+        
+        <div className="policy-details-row" style={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'flex-end', gap: '15px' }}>
+          <div className="premium-box">
+            <span className="label">ID:</span>
+            <span className="value">{applicationId || '—'}</span>
+          </div>
+          
+          <div className="premium-box">
+            <span className="label">State:</span>
+            <span className="value">{state || '—'}</span>
+          </div>
+          
+          <div className="premium-box">
+            <span className="label">Net Premium:</span>
+            <span className="value">
+              {netPremium ? `$${netPremium.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'N/A'}
+            </span>
+          </div>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import { MarkLogicProvider } from 'ml-fasttrack';
+import 'leaflet/dist/leaflet.css';
 
 // Use proxy host/port
 const host = import.meta.env.VITE_ML_HOST || 'localhost';
@@ -13,12 +14,12 @@ console.log('Using MarkLogic proxy host/port/options:', host, port, optionsName)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-<MarkLogicProvider
-  protocol="http"
-  host={host}
-  port={port}
-  searchOptionsName={optionsName}
->
+    <MarkLogicProvider
+      scheme="http"
+      host={host}
+      port={port}
+      options={optionsName}
+    >
 
       <App />
     </MarkLogicProvider>

@@ -1,4 +1,4 @@
-﻿# Automated Auto Insurance Underwriting with MarkLogic and Corticon.js
+# Automated Auto Insurance Underwriting with MarkLogic and Corticon.js
 
 This project demonstrates a full-stack, end-to-end application for automating the auto insurance underwriting process. It is designed to showcase how the combination of **MarkLogic** as a flexible data hub and **Corticon.js** as a powerful business rules engine can solve a common business challenge: the need for fast, accurate, and transparent insurance quoting.
 
@@ -102,7 +102,7 @@ To get this demo up and running, please follow the step-by-step instructions in 
 ## Before You Start
 
 - MarkLogic 12 is running locally and you have admin credentials.
-- Java 17+ and Gradle 8+ are installed (`gradle -v` works).
+- Java 11+ and Gradle are installed (`gradle -v` works).
 - Node.js (LTS) is installed for the UI.
 - Port 8004 is available or matches `mlRestPort` in backend `gradle.properties`.
 
@@ -140,16 +140,3 @@ To get this demo up and running, please follow the step-by-step instructions in 
 2) Load a policy into `http://example.com/data/policy-input` (see backend README for a cURL example).
 3) Start UI: `cd "Auto Insurance/insurance-chatbot/ui" && npm install && npm run dev`
 4) Explore policies and explainability in the dashboard.
-
----
-
-## Template Reference
-
-For reusable, domain-neutral starter guidance (MarkLogic scaffolding, process-and-enrich pattern, and FastTrack bootstrap), see:
-
-1. <https://github.com/corticon/explainable-decision-ledger/blob/main/docs/README.md>
-2. <https://github.com/corticon/explainable-decision-ledger/blob/main/marklogic/README.md>
-3. <https://github.com/corticon/explainable-decision-ledger/blob/main/ui-fasttrack/README.md>
-
-
-

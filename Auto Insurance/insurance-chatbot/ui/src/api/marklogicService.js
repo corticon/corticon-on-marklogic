@@ -150,11 +150,11 @@ export async function searchByApplicationId (applicationId, options = {}) {
 
 const CHAT_API_BASE = `http://${ML_HOST}:${ML_PORT}/api`;
 
-export async function sendMessage(message) {
+export async function sendMessage(message, context = {}) {
   const resp = await fetch(`${CHAT_API_BASE}/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message }),
+    body: JSON.stringify({ message, ...context }),
   });
   const text = await resp.text();
   // Try to parse JSON; if parse fails or reply empty, surface it
