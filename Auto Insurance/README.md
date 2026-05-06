@@ -105,6 +105,21 @@ To get this demo up and running, please follow the step-by-step instructions in 
 - Java 11+ and Gradle are installed (`gradle -v` works).
 - Node.js (LTS) is installed for the UI.
 - Port 8004 is available or matches `mlRestPort` in backend `gradle.properties`.
+- **Environment files:** The middleware and UI each require a `.env` file with credentials. Copy the single provided template **twice** before starting anything:
+
+  ```bash
+  # from Auto Insurance/insurance-chatbot/
+
+  # Windows
+  copy .env.template .env
+  copy .env.template ui\.env
+
+  # macOS / Linux
+  cp .env.template .env
+  cp .env.template ui/.env
+  ```
+
+  Then open both copies and fill in `ML_USER`, `ML_PASS`, and `OPENAI_API_KEY`. Neither file is committed to git. See [`insurance-chatbot/README.md`](./insurance-chatbot/README.md) for the full variable reference.
 
 ---
 
@@ -140,9 +155,10 @@ To get this demo up and running, please follow the step-by-step instructions in 
 
 ## Quick Start (Summary)
 
-1) Deploy backend: `cd "Auto Insurance/mlCorticonAutoInsurance" && gradle mlDeploy`
-2) Load a policy into `http://example.com/data/policy-input` (see backend README for a cURL example).
-3) **Start the UI + middleware** using the convenience script in `scripts/`:
+1) Create `.env` files from the template (see **Before You Start** above).
+2) Deploy backend: `cd "Auto Insurance/mlCorticonAutoInsurance" && gradle mlDeploy`
+3) Load a policy into `http://example.com/data/policy-input` (see backend README for a cURL example).
+4) **Start the UI + middleware** using the convenience script in `scripts/`:
    - Windows: `cd "Auto Insurance/scripts" && .\Start-Stop-Demo-AutoInsurance.ps1`
    - Linux/macOS: `cd "Auto Insurance/scripts" && bash start-stop-demo-autoinsurance.sh`
-4) Explore policies and explainability in the dashboard.
+5) Explore policies and explainability in the dashboard.
